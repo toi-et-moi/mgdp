@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "src.toi_et_moi.mgdp.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mgdp.refmap.json",
+  "mixins": [
+    "AbstractGolemEntityMixin",
+    "GolemSwimMoveControlMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

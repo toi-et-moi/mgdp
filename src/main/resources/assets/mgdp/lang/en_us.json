@@ -1,0 +1,11 @@
+{
+  "itemGroup.mgdp": "Modular Golems:Decisive Plan",
+  "modifier.modulargolems.harvest_crop": "Harvest Crop",
+  "modifier.modulargolems.harvest_crop.desc": "Auto harvest and replant crops within %s block(s) per Pickup level. Requires Pickup upgrade to work.",
+  "modifier.modulargolems.flight": "Flight",
+  "modifier.modulargolems.flight.desc": "Golem gains creative-style flight. Can move freely through the air.",
+  "item.mgdp.harvest_crop": "Harvest Crop Upgrade",
+  "item.mgdp.flight": "Flight Upgrade",
+  "key.categories.mgdp": "Modular Golems: Decisive Plan",
+  "key.mgdp.flight_descend": "Flight Descend"
+}

@@ -1,0 +1,11 @@
+{
+  "itemGroup.mgdp": "傀儡装配：决战方案",
+  "modifier.modulargolems.harvest_crop": "收获作物",
+  "modifier.modulargolems.harvest_crop.desc": "自动收获傀儡周围（每级拾取升级 %s 格范围）的成熟作物并补种。需先安装拾取升级才能生效。",
+  "modifier.modulargolems.flight": "飞行",
+  "modifier.modulargolems.flight.desc": "傀儡获得创造飞行能力，可自由在空中三维移动。",
+  "item.mgdp.harvest_crop": "收获作物升级",
+  "item.mgdp.flight": "飞行升级",
+  "key.categories.mgdp": "傀儡装配：决战方案",
+  "key.mgdp.flight_descend": "飞行下降"
+}

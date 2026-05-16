@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mgdp:item/upgrades/harvest_crop",
+    "layer1": "modulargolems:item/blue_arrow"
+  }
+}
