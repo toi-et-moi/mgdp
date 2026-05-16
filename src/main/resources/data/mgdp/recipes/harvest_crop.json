@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": { "item": "minecraft:iron_hoe" },
+    "A": { "item": "minecraft:iron_axe" },
+    "S": { "tag": "forge:seeds" },
+    "U": { "item": "modulargolems:empty_upgrade" }
+  },
+  "pattern": [
+    "HSH",
+    "SUS",
+    "ASA"
+  ],
+  "result": {
+    "item": "mgdp:harvest_crop"
+  },
+  "show_notification": true
+}

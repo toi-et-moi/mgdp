@@ -6,6 +6,9 @@
   "modifier.modulargolems.flight.desc": "Golem gains creative-style flight. Can move freely through the air.",
   "item.mgdp.harvest_crop": "Harvest Crop Upgrade",
   "item.mgdp.flight": "Flight Upgrade",
+  "item.mgdp.potion_aura": "Potion Aura Upgrade",
+  "modifier.modulargolems.potion_aura": "Potion Aura",
+  "modifier.modulargolems.potion_aura.desc": "Shares beneficial effects with allies every 3s and inflicts harmful effects on hostiles within 48 blocks.",
   "key.categories.mgdp": "Modular Golems: Decisive Plan",
   "key.mgdp.flight_descend": "Flight Descend"
 }

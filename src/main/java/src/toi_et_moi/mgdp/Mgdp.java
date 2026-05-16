@@ -44,6 +44,7 @@ public class Mgdp {
 					.displayItems((params, output) -> {
 						output.accept(MGDPItems.HARVEST_CROP.get());
 						output.accept(MGDPItems.FLIGHT.get());
+						output.accept(MGDPItems.POTION_AURA.get());
 					})
 					.build());
 

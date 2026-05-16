@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": { "item": "minecraft:nether_star" },
+    "H": { "item": "minecraft:dragon_head" },
+    "G": { "item": "minecraft:netherite_block" },
+    "U": { "item": "modulargolems:empty_upgrade" },
+    "B": { "item": "minecraft:beacon" },
+    "T": { "item": "modulargolems:netherite_expansion_template" }
+  },
+  "pattern": [
+    "NHN",
+    "GUG",
+    "BTB"
+  ],
+  "result": {
+    "item": "mgdp:potion_aura"
+  },
+  "show_notification": true
+}

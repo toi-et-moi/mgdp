@@ -191,6 +191,8 @@ dependencies {
     implementation fg.deobf("dev.xkmc.mob_weapon_api:mob_weapon_api:0.2.14")
     implementation fg.deobf("dev.xkmc.modulargolems:modulargolems:${modulargolems_version}-slim")
 
+    compileOnly fg.deobf("maven.modrinth:l2-complements:${l2complements_version}")
+
     implementation fg.deobf(jarJar("dev.xkmc.l2modularblock:l2modularblock:1.1.0")) {
         transitive = false
         jarJar.ranged(it, "[1.1.0,)")

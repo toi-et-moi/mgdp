@@ -1,7 +1,5 @@
 {
   "values": [
-    "mgdp:harvest_crop",
-    "mgdp:flight",
     "mgdp:potion_aura"
   ]
 }

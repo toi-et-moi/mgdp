@@ -13,13 +13,17 @@ public class MGDPItems {
 
 	public static final RegistryObject<SimpleUpgradeItem> HARVEST_CROP;
 	public static final RegistryObject<SimpleUpgradeItem> FLIGHT;
+	public static final RegistryObject<SimpleUpgradeItem> POTION_AURA;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.HARVEST_CROP.get(), 1, false));
 
 		FLIGHT = Mgdp.ITEMS.register("flight",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FLIGHT.get(), 1, false));
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FLIGHT.get(), 1, true));
+
+		POTION_AURA = Mgdp.ITEMS.register("potion_aura",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.POTION_AURA.get(), 1, true));
 	}
 
 	public static void register() {
@@ -33,6 +37,7 @@ public class MGDPItems {
 			if (event.getTabKey() == GolemItems.UPGRADES.getKey()) {
 				event.accept(HARVEST_CROP.get());
 				event.accept(FLIGHT.get());
+				event.accept(POTION_AURA.get());
 			}
 		}
 	}

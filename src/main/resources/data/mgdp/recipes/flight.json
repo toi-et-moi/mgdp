@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": { "item": "minecraft:nether_star" },
+    "E": { "item": "minecraft:elytra" },
+    "D": { "item": "minecraft:diamond" },
+    "S": { "item": "modulargolems:swim" },
+    "P": { "item": "minecraft:phantom_membrane" },
+    "G": { "item": "minecraft:netherite_block" }
+  },
+  "pattern": [
+    "NEN",
+    "DSD",
+    "PGP"
+  ],
+  "result": {
+    "item": "mgdp:flight"
+  },
+  "show_notification": true
+}

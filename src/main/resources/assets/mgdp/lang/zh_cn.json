@@ -6,6 +6,9 @@
   "modifier.modulargolems.flight.desc": "傀儡获得创造飞行能力，可自由在空中三维移动。",
   "item.mgdp.harvest_crop": "收获作物升级",
   "item.mgdp.flight": "飞行升级",
+  "item.mgdp.potion_aura": "药水光环升级",
+  "modifier.modulargolems.potion_aura": "药水光环",
+  "modifier.modulargolems.potion_aura.desc": "每秒将自身正面药水效果分享给48格内友方，并持续对范围内敌对生物施加自身负面药水效果（包括负面药水升级）。",
   "key.categories.mgdp": "傀儡装配：决战方案",
-  "key.mgdp.flight_descend": "飞行下降"
+  "key.mgdp.flight_descend": "骑乘犬形飞行下降"
 }

@@ -6,7 +6,9 @@
   "refmap": "mgdp.refmap.json",
   "mixins": [
     "AbstractGolemEntityMixin",
-    "GolemSwimMoveControlMixin"
+    "GolemSwimMoveControlMixin",
+    "PotionAttackModifierAccessor",
+    "AbstractBladeEnchantmentAccessor"
   ],
   "client": [
   ],
