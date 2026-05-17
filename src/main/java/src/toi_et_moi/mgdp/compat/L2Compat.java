@@ -6,7 +6,8 @@ import dev.xkmc.modulargolems.compat.materials.l2complements.SoulFlameModifier;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.fml.ModList;
-import src.toi_et_moi.mgdp.mixin.AbstractBladeEnchantmentAccessor;
+
+import java.lang.reflect.Method;
 
 public class L2Compat {
 
@@ -17,11 +18,16 @@ public class L2Compat {
     public static MobEffectInstance tryGetEffect(GolemModifier mod, int level) {
         if (!isLoaded()) return null;
         try {
+            Object enchant = null;
             if (mod instanceof SoulFlameModifier) {
-                return ((AbstractBladeEnchantmentAccessor) LCEnchantments.FLAME_BLADE.get()).callGetEffect(level);
+                enchant = LCEnchantments.FLAME_BLADE.get();
+            } else if (mod instanceof FreezingModifier) {
+                enchant = LCEnchantments.ICE_BLADE.get();
             }
-            if (mod instanceof FreezingModifier) {
-                return ((AbstractBladeEnchantmentAccessor) LCEnchantments.ICE_BLADE.get()).callGetEffect(level);
+            if (enchant != null) {
+                Method m = enchant.getClass().getMethod("getEffect", int.class);
+                m.setAccessible(true);
+                return (MobEffectInstance) m.invoke(enchant, level);
             }
         } catch (Exception ignored) {}
         return null;

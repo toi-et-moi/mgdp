@@ -12,4 +12,11 @@ public class MGDPKeyMappings {
             GLFW.GLFW_KEY_LEFT_ALT,
             "key.categories.mgdp"
     );
+
+    public static final KeyMapping FLIGHT_SPRINT = new KeyMapping(
+            "key.mgdp.flight_sprint",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_LEFT_CONTROL,
+            "key.categories.mgdp"
+    );
 }

@@ -1,6 +1,9 @@
 {
   "values": [
     "mgdp:harvest_crop",
-    "mgdp:flight"
+    "mgdp:flight",
+    "mgdp:rebirth",
+    "mgdp:unstoppable",
+    "mgdp:spirit"
   ]
 }

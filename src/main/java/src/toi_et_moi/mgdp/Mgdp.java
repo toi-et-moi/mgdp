@@ -45,6 +45,9 @@ public class Mgdp {
 						output.accept(MGDPItems.HARVEST_CROP.get());
 						output.accept(MGDPItems.FLIGHT.get());
 						output.accept(MGDPItems.POTION_AURA.get());
+						output.accept(MGDPItems.REBIRTH.get());
+						output.accept(MGDPItems.UNSTOPPABLE.get());
+						output.accept(MGDPItems.SPIRIT.get());
 					})
 					.build());
 
@@ -86,6 +89,7 @@ public class Mgdp {
 		@SubscribeEvent
 		public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
 			event.register(MGDPKeyMappings.FLIGHT_DESCEND);
+				event.register(MGDPKeyMappings.FLIGHT_SPRINT);
 		}
 	}
 }

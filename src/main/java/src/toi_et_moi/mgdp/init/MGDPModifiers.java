@@ -4,6 +4,9 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import src.toi_et_moi.mgdp.modifier.FlightModifier;
 import src.toi_et_moi.mgdp.modifier.HarvestCropModifier;
 import src.toi_et_moi.mgdp.modifier.PotionAuraModifier;
+import src.toi_et_moi.mgdp.modifier.RebirthModifier;
+import src.toi_et_moi.mgdp.modifier.SpiritModifier;
+import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -12,6 +15,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
 	public static final RegistryEntry<FlightModifier> FLIGHT;
 	public static final RegistryEntry<PotionAuraModifier> POTION_AURA;
+	public static final RegistryEntry<RebirthModifier> REBIRTH;
+	public static final RegistryEntry<UnstoppableModifier> UNSTOPPABLE;
+	public static final RegistryEntry<SpiritModifier> SPIRIT;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -25,6 +31,18 @@ public class MGDPModifiers {
 		POTION_AURA = reg("potion_aura", PotionAuraModifier::new,
 				"Potion Aura",
 				"Shares positive effects with allies and inflicts negative effects on enemies within 48 blocks.");
+
+		REBIRTH = reg("rebirth", RebirthModifier::new,
+				"Rebirth",
+				"Golem gains the ability to revive after death and recycle itself.");
+
+		UNSTOPPABLE = reg("unstoppable", UnstoppableModifier::new,
+				"Unstoppable",
+				"Golem ignores terrain slowdown, knockback, entity collision, and cramming damage.");
+
+		SPIRIT = reg("spirit", SpiritModifier::new,
+				"Spirit",
+				"Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.");
 	}
 
 	public static void register() {

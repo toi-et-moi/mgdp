@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety_revelation"
+    }
+  ],
+  "key": {
+    "I": {
+      "tag": "modulargolems:revelation_ingot"
+    },
+    "O": {
+      "item": "minecraft:item_frame"
+    },
+    "U": {
+      "item": "modulargolems:recycle"
+    }
+  },
+  "pattern": [
+    "III",
+    "IOI",
+    "IUI"
+  ],
+  "result": {
+    "item": "mgdp:rebirth"
+  },
+  "show_notification": true
+}

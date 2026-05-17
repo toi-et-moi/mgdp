@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": { "item": "modulargolems:speed" },
+    "N": { "item": "minecraft:netherite_block" },
+    "C": { "tag": "minecraft:trim_templates" },
+    "O": { "item": "minecraft:crying_obsidian" },
+    "D": { "item": "minecraft:diamond_block" }
+  },
+  "pattern": [
+    "CNC",
+    "DSD",
+    "COC"
+  ],
+  "result": {
+    "item": "mgdp:unstoppable"
+  },
+  "show_notification": true
+}

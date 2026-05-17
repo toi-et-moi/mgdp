@@ -7,8 +7,18 @@
   "item.mgdp.harvest_crop": "Harvest Crop Upgrade",
   "item.mgdp.flight": "Flight Upgrade",
   "item.mgdp.potion_aura": "Potion Aura Upgrade",
+  "item.mgdp.rebirth": "Rebirth Upgrade",
+  "item.mgdp.unstoppable": "Unstoppable Upgrade",
+  "modifier.modulargolems.rebirth": "Rebirth",
+  "modifier.modulargolems.rebirth.desc": "Golem gains the ability to revive after death and recycle itself.",
+  "modifier.modulargolems.unstoppable": "Unstoppable",
+  "modifier.modulargolems.unstoppable.desc": "Golem ignores terrain slowdown, knockback, entity collision, and cramming damage.",
+  "item.mgdp.spirit": "Spirit Upgrade",
+  "modifier.modulargolems.spirit": "Spirit",
+  "modifier.modulargolems.spirit.desc": "Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.",
   "modifier.modulargolems.potion_aura": "Potion Aura",
   "modifier.modulargolems.potion_aura.desc": "Shares beneficial effects with allies every 3s and inflicts harmful effects on hostiles within 48 blocks.",
   "key.categories.mgdp": "Modular Golems: Decisive Plan",
-  "key.mgdp.flight_descend": "Flight Descend"
+  "key.mgdp.flight_descend": "Flight Descend",
+  "key.mgdp.flight_sprint": "Flight Sprint"
 }

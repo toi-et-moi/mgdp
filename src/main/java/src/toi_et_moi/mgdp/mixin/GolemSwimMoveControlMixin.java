@@ -24,6 +24,11 @@ public abstract class GolemSwimMoveControlMixin extends MoveControl {
 	@Inject(method = "tick", at = @At("HEAD"), cancellable = true)
 	private void mgdp$flightTick(CallbackInfo ci) {
 		if (!golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())) return;
+		if (!golem.isMovable()) {
+			golem.setDeltaMovement(Vec3.ZERO);
+			ci.cancel();
+			return;
+		}
 		flightTickImpl();
 		ci.cancel();
 	}

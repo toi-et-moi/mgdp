@@ -14,6 +14,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> HARVEST_CROP;
 	public static final RegistryObject<SimpleUpgradeItem> FLIGHT;
 	public static final RegistryObject<SimpleUpgradeItem> POTION_AURA;
+	public static final RegistryObject<SimpleUpgradeItem> REBIRTH;
+	public static final RegistryObject<SimpleUpgradeItem> UNSTOPPABLE;
+	public static final RegistryObject<SimpleUpgradeItem> SPIRIT;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -24,6 +27,15 @@ public class MGDPItems {
 
 		POTION_AURA = Mgdp.ITEMS.register("potion_aura",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.POTION_AURA.get(), 1, true));
+
+		REBIRTH = Mgdp.ITEMS.register("rebirth",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REBIRTH.get(), 1, true));
+
+		UNSTOPPABLE = Mgdp.ITEMS.register("unstoppable",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UNSTOPPABLE.get(), 1, true));
+
+		SPIRIT = Mgdp.ITEMS.register("spirit",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SPIRIT.get(), 1, true));
 	}
 
 	public static void register() {
@@ -38,6 +50,9 @@ public class MGDPItems {
 				event.accept(HARVEST_CROP.get());
 				event.accept(FLIGHT.get());
 				event.accept(POTION_AURA.get());
+				event.accept(REBIRTH.get());
+				event.accept(UNSTOPPABLE.get());
+				event.accept(SPIRIT.get());
 			}
 		}
 	}

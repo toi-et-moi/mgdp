@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mgdp.refmap.json",
   "mixins": [
+    "EntityAccessor",
     "AbstractGolemEntityMixin",
     "GolemSwimMoveControlMixin",
     "PotionAttackModifierAccessor",
-    "AbstractBladeEnchantmentAccessor"
+    "EnderDragonMixin"
   ],
   "client": [
   ],
