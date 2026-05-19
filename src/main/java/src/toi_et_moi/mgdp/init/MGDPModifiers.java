@@ -5,6 +5,8 @@ import src.toi_et_moi.mgdp.modifier.FlightModifier;
 import src.toi_et_moi.mgdp.modifier.HarvestCropModifier;
 import src.toi_et_moi.mgdp.modifier.PotionAuraModifier;
 import src.toi_et_moi.mgdp.modifier.RebirthModifier;
+import src.toi_et_moi.mgdp.modifier.EnchantedNetheriteGoldModifier;
+import src.toi_et_moi.mgdp.modifier.NetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.SpiritModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 
@@ -18,6 +20,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<RebirthModifier> REBIRTH;
 	public static final RegistryEntry<UnstoppableModifier> UNSTOPPABLE;
 	public static final RegistryEntry<SpiritModifier> SPIRIT;
+	public static final RegistryEntry<NetheriteGoldModifier> NETHERITE_GOLD;
+	public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -43,6 +47,14 @@ public class MGDPModifiers {
 		SPIRIT = reg("spirit", SpiritModifier::new,
 				"Spirit",
 				"Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.");
+
+		NETHERITE_GOLD = reg("netherite_gold", NetheriteGoldModifier::new,
+				"Netherite Gold Apple",
+				"Regeneration V and fire immunity in one upgrade.");
+
+		ENCHANTED_NETHERITE_GOLD = reg("enchanted_netherite_gold", EnchantedNetheriteGoldModifier::new,
+				"Enchanted Netherite Gold Apple",
+				"Regeneration V, fire immune, explosion resistant, lava walking, and +10% healing.");
 	}
 
 	public static void register() {

@@ -19,6 +19,14 @@
   "modifier.modulargolems.potion_aura": "药水光环",
   "modifier.modulargolems.potion_aura.desc": "每秒将自身正面药水效果分享给48格内友方，并持续对范围内敌对生物施加自身负面药水效果（包括负面药水升级）。",
   "key.categories.mgdp": "傀儡装配：决战方案",
+  "item.mgdp.netherite_gold": "下界合金苹果升级",
+  "item.mgdp.enchanted_netherite_gold": "附魔下界合金苹果升级",
+  "modifier.modulargolems.netherite_gold": "下界合金苹果",
+  "modifier.modulargolems.netherite_gold.desc": "回复V+火焰免疫。",
+  "modifier.modulargolems.enchanted_netherite_gold": "附魔下界合金苹果",
+  "modifier.modulargolems.enchanted_netherite_gold.desc": "回复V+火焰免疫+爆炸抗性II+10%减伤+治疗效力+10%。",
   "key.mgdp.flight_descend": "骑乘犬形飞行下降",
-  "key.mgdp.flight_sprint": "骑乘犬形飞行加速"
+  "key.mgdp.flight_sprint": "骑乘犬形飞行加速",
+  "item.mgdp.iron_curtain": "铁幕装置",
+  "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得45秒绝对无敌"
 }

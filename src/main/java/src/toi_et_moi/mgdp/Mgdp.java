@@ -6,10 +6,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import src.toi_et_moi.mgdp.item.IronCurtainItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -37,6 +40,9 @@ public class Mgdp {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
+	public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
+			() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
 	public static final RegistryObject<CreativeModeTab> MGDP_TAB = CREATIVE_MODE_TABS.register("mgdp_tab",
 			() -> CreativeModeTab.builder()
 					.title(Component.translatable("itemGroup.mgdp"))
@@ -48,6 +54,9 @@ public class Mgdp {
 						output.accept(MGDPItems.REBIRTH.get());
 						output.accept(MGDPItems.UNSTOPPABLE.get());
 						output.accept(MGDPItems.SPIRIT.get());
+						output.accept(MGDPItems.NETHERITE_GOLD.get());
+						output.accept(MGDPItems.ENCHANTED_NETHERITE_GOLD.get());
+						output.accept(IRON_CURTAIN.get());
 					})
 					.build());
 
@@ -70,6 +79,13 @@ public class Mgdp {
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
 		LOGGER.info("MGDP common setup");
+	}
+
+	@SubscribeEvent
+	public void onLivingAttack(LivingAttackEvent event) {
+		if (IronCurtainItem.isProtected(event.getEntity())) {
+			event.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent

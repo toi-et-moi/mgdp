@@ -2,6 +2,7 @@ package src.toi_et_moi.mgdp.mixin;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemSwimMoveControl;
+import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -22,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import src.toi_et_moi.mgdp.compat.CreateCompat;
+
 
 @Mixin(AbstractGolemEntity.class)
 public abstract class AbstractGolemEntityMixin extends Mob {
@@ -34,8 +35,12 @@ public abstract class AbstractGolemEntityMixin extends Mob {
     @Inject(method = "aiStep", at = @At("TAIL"))
     private void mgdp$onAiStep(CallbackInfo ci) {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        if (!golem.level().isClientSide && ModList.get().isLoaded("create")) {
-            CreateCompat.tryDriveHandCrank(golem);
+        if (!golem.level().isClientSide && ModList.get().isLoaded("create")
+                && golem.getMode() == GolemModes.STAND) {
+            try {
+                Class<?> cc = Class.forName("src.toi_et_moi.mgdp.compat.CreateCompat");
+                cc.getMethod("tryDriveHandCrank", AbstractGolemEntity.class).invoke(null, golem);
+            } catch (Exception ignored) {}
         }
     }
 

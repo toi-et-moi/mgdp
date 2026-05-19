@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": { "item": "modulargolems:gold" },
+    "R": { "item": "modulargolems:enchanted_gold" },
+    "N": { "item": "minecraft:netherite_ingot" },
+    "B": { "item": "minecraft:netherite_block" }
+  },
+  "pattern": [
+    "NBN",
+    "RGR",
+    "NBN"
+  ],
+  "result": {
+    "item": "mgdp:netherite_gold"
+  },
+  "show_notification": true
+}

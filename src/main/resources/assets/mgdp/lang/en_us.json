@@ -20,5 +20,13 @@
   "modifier.modulargolems.potion_aura.desc": "Shares beneficial effects with allies every 3s and inflicts harmful effects on hostiles within 48 blocks.",
   "key.categories.mgdp": "Modular Golems: Decisive Plan",
   "key.mgdp.flight_descend": "Flight Descend",
-  "key.mgdp.flight_sprint": "Flight Sprint"
+  "item.mgdp.netherite_gold": "Netherite Gold Apple Upgrade",
+  "item.mgdp.enchanted_netherite_gold": "Enchanted Netherite Gold Apple Upgrade",
+  "modifier.modulargolems.netherite_gold": "Netherite Gold Apple",
+  "modifier.modulargolems.netherite_gold.desc": "Regeneration V and fire immunity.",
+  "modifier.modulargolems.enchanted_netherite_gold": "Enchanted Netherite Gold Apple",
+  "modifier.modulargolems.enchanted_netherite_gold.desc": "Regeneration V, fire immunity, explosion resistance II, -10% damage taken, and +10% healing.",
+  "key.mgdp.flight_sprint": "Flight Sprint",
+  "item.mgdp.iron_curtain": "Iron Curtain",
+  "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 45s of absolute invulnerability to allies within 16 blocks"
 }

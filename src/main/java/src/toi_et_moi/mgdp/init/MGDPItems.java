@@ -2,6 +2,7 @@ package src.toi_et_moi.mgdp.init;
 
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
+import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,6 +18,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> REBIRTH;
 	public static final RegistryObject<SimpleUpgradeItem> UNSTOPPABLE;
 	public static final RegistryObject<SimpleUpgradeItem> SPIRIT;
+	public static final RegistryObject<SimpleUpgradeItem> NETHERITE_GOLD;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_NETHERITE_GOLD;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -36,6 +39,12 @@ public class MGDPItems {
 
 		SPIRIT = Mgdp.ITEMS.register("spirit",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SPIRIT.get(), 1, true));
+
+		NETHERITE_GOLD = Mgdp.ITEMS.register("netherite_gold",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.NETHERITE_GOLD.get(), 1, false));
+
+		ENCHANTED_NETHERITE_GOLD = Mgdp.ITEMS.register("enchanted_netherite_gold",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_NETHERITE_GOLD.get(), 1, true));
 	}
 
 	public static void register() {
@@ -53,6 +62,8 @@ public class MGDPItems {
 				event.accept(REBIRTH.get());
 				event.accept(UNSTOPPABLE.get());
 				event.accept(SPIRIT.get());
+				event.accept(NETHERITE_GOLD.get());
+				event.accept(ENCHANTED_NETHERITE_GOLD.get());
 			}
 		}
 	}

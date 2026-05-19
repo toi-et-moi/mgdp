@@ -5,6 +5,8 @@
     "mgdp:potion_aura",
     "mgdp:rebirth",
     "mgdp:unstoppable",
-    "mgdp:spirit"
+    "mgdp:spirit",
+    "mgdp:netherite_gold",
+    "mgdp:enchanted_netherite_gold"
   ]
 }

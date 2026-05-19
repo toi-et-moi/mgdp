@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": { "item": "minecraft:gold_block" },
+    "R": { "item": "mgdp:netherite_gold" },
+    "N": { "item": "minecraft:netherite_block" },
+    "T": { "item": "modulargolems:netherite_expansion_template" }
+  },
+  "pattern": [
+    "NTN",
+    "GRG",
+    "NTN"
+  ],
+  "result": {
+    "item": "mgdp:enchanted_netherite_gold"
+  },
+  "show_notification": true
+}

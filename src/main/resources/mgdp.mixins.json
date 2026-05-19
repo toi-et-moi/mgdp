@@ -9,7 +9,8 @@
     "AbstractGolemEntityMixin",
     "GolemSwimMoveControlMixin",
     "PotionAttackModifierAccessor",
-    "EnderDragonMixin"
+    "EnderDragonMixin",
+    "LivingEntityMixin"
   ],
   "client": [
   ],

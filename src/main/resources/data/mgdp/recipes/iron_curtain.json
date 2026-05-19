@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": { "item": "minecraft:obsidian" },
+    "N": { "item": "minecraft:nether_star" },
+    "I": { "item": "minecraft:iron_block" },
+    "C": { "item": "minecraft:crying_obsidian" }
+  },
+  "pattern": [
+    "IOI",
+    "CNC",
+    "IOI"
+  ],
+  "result": {
+    "item": "mgdp:iron_curtain"
+  },
+  "show_notification": true
+}

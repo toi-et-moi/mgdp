@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mgdp:item/upgrades/netherite_gold",
+    "layer1": "modulargolems:item/blue_arrow"
+  }
+}
