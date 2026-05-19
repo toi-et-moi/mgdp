@@ -25,7 +25,7 @@
   "modifier.modulargolems.netherite_gold": "Netherite Gold Apple",
   "modifier.modulargolems.netherite_gold.desc": "Regeneration V and fire immunity.",
   "modifier.modulargolems.enchanted_netherite_gold": "Enchanted Netherite Gold Apple",
-  "modifier.modulargolems.enchanted_netherite_gold.desc": "Regeneration V, fire immunity, explosion resistance II, -10% damage taken, and +10% healing.",
+  "modifier.modulargolems.enchanted_netherite_gold.desc": "Regeneration V, fire immunity, explosion resistance II, -20% damage taken.",
   "key.mgdp.flight_sprint": "Flight Sprint",
   "item.mgdp.iron_curtain": "Iron Curtain",
   "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
