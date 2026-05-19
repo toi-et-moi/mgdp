@@ -33,8 +33,7 @@ public class EnchantedNetheriteGoldModifier extends AttributeGolemModifier {
         if (!event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             event.setAmount(event.getAmount() * 0.8F);
             if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
-                double reduction = 1.0 - level * MGConfig.COMMON.explosionResistance.get();
-                event.setAmount((float) Math.max(0, event.getAmount() * reduction));
+                event.setAmount(event.getAmount() * 0.6F);
             }
         }
     }
