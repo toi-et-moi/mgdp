@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
@@ -22,6 +23,12 @@ public class LivingEntityMixin {
             return amount * 1.1F;
         }
         return amount;
+    }
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void mgdp$ironCurtainVisual(CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        self.setGlowingTag(IronCurtainItem.isProtected(self));
     }
 
     @Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z",

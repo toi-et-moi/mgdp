@@ -28,5 +28,5 @@
   "key.mgdp.flight_descend": "骑乘犬形飞行下降",
   "key.mgdp.flight_sprint": "骑乘犬形飞行加速",
   "item.mgdp.iron_curtain": "铁幕装置",
-  "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得45秒绝对无敌"
+  "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得50秒绝对无敌，5分钟冷却时间"
 }

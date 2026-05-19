@@ -24,7 +24,7 @@ import java.util.List;
 public class IronCurtainItem extends Item {
 
     private static final int CHARGE_TIME = 40;  // 2 seconds
-    private static final int DURATION = 900;    // 45 seconds
+    private static final int DURATION = 1000;   // 50 seconds
     private static final double RANGE = 16.0;
     private static final String TAG_EXPIRY = "mgdp_iron_curtain";
 
@@ -89,7 +89,7 @@ public class IronCurtainItem extends Item {
             ally.getPersistentData().putLong(TAG_EXPIRY, expiry);
         }
 
-        Component msg = Component.literal("警告：铁幕装置已启动！").withStyle(ChatFormatting.RED, ChatFormatting.BOLD);
+        Component msg = Component.literal("Warning:Iron Curtain Activated!").withStyle(ChatFormatting.RED, ChatFormatting.BOLD);
         for (Player p : level.players()) {
             p.displayClientMessage(msg, false);
         }

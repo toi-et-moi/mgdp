@@ -28,5 +28,5 @@
   "modifier.modulargolems.enchanted_netherite_gold.desc": "Regeneration V, fire immunity, explosion resistance II, -10% damage taken, and +10% healing.",
   "key.mgdp.flight_sprint": "Flight Sprint",
   "item.mgdp.iron_curtain": "Iron Curtain",
-  "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 45s of absolute invulnerability to allies within 16 blocks"
+  "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
 }
