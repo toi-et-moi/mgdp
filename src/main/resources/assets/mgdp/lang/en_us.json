@@ -28,5 +28,14 @@
   "modifier.modulargolems.enchanted_netherite_gold.desc": "Regeneration V, fire immunity, explosion resistance II, -20% damage taken.",
   "key.mgdp.flight_sprint": "Flight Sprint",
   "item.mgdp.iron_curtain": "Iron Curtain",
+  "item.mgdp.bell_of_avici": "Bell of Avici Upgrade",
+  "modifier.modulargolems.bell_of_avici": "Bell of Avici",
+  "modifier.modulargolems.bell_of_avici.desc": "64-block radius enemy glow, teleports targeting foes nearby every 2s.",
+  "item.mgdp.diamond_attack": "Diamond Attack Upgrade",
+  "modifier.modulargolems.diamond_attack": "Diamond Attack",
+  "modifier.modulargolems.diamond_attack.desc": "+30% attack damage.",
+  "item.mgdp.enchanted_diamond_attack": "Enchanted Diamond Attack Upgrade",
+  "modifier.modulargolems.enchanted_diamond_attack": "Enchanted Diamond Attack",
+  "modifier.modulargolems.enchanted_diamond_attack.desc": "+60% attack damage, all attacks are critical hits.",
   "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
 }

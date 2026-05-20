@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mgdp:item/upgrades/bell_of_avici",
+    "layer1": "modulargolems:item/purple_arrow"
+  }
+}

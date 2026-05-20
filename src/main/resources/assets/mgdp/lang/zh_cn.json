@@ -28,5 +28,14 @@
   "key.mgdp.flight_descend": "骑乘犬形飞行下降",
   "key.mgdp.flight_sprint": "骑乘犬形飞行加速",
   "item.mgdp.iron_curtain": "铁幕装置",
+  "item.mgdp.bell_of_avici": "无间之钟升级",
+  "modifier.modulargolems.bell_of_avici": "无间之钟",
+  "modifier.modulargolems.bell_of_avici.desc": "使64格半径内目标获得发光并锁定自身，且每2秒将其传送至附近。",
+  "item.mgdp.diamond_attack": "晶钻攻击升级",
+  "modifier.modulargolems.diamond_attack": "晶钻攻击",
+  "modifier.modulargolems.diamond_attack.desc": "+30%攻击伤害。",
+  "item.mgdp.enchanted_diamond_attack": "附魔晶钻攻击升级",
+  "modifier.modulargolems.enchanted_diamond_attack": "附魔晶钻攻击",
+  "modifier.modulargolems.enchanted_diamond_attack.desc": "+60%攻击伤害，所有攻击视为暴击。",
   "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得50秒绝对无敌，5分钟冷却时间"
 }

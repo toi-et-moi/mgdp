@@ -3,17 +3,14 @@
   "category": "misc",
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:mod_loaded",
-        "modid": "cataclysm"
-      }
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
     }
   ],
   "key": {
     "W": { "item": "modulargolems:summon_wand" },
     "D": { "item": "minecraft:dragon_egg" },
-    "I": { "item": "minecraft:iron_block" },
+    "I": { "item": "cataclysm:witherite_block" },
     "C": { "item": "minecraft:crying_obsidian" },
     "N": { "item": "modulargolems:netherite_expansion_template" }
   },

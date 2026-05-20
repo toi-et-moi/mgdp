@@ -56,6 +56,9 @@ public class Mgdp {
 						output.accept(MGDPItems.SPIRIT.get());
 						output.accept(MGDPItems.NETHERITE_GOLD.get());
 						output.accept(MGDPItems.ENCHANTED_NETHERITE_GOLD.get());
+						output.accept(MGDPItems.BELL_OF_AVICI.get());
+						output.accept(MGDPItems.DIAMOND_ATTACK.get());
+						output.accept(MGDPItems.ENCHANTED_DIAMOND_ATTACK.get());
 						output.accept(IRON_CURTAIN.get());
 					})
 					.build());

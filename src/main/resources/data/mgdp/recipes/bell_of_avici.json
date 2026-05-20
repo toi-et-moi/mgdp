@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": { "item": "modulargolems:bell" },
+    "E": { "item": "minecraft:ender_eye" },
+    "N": { "item": "modulargolems:diamond_expansion_template" },
+    "O": { "item": "minecraft:crying_obsidian" }
+  },
+  "pattern": [
+    "ENE",
+    "OBO",
+    "ENE"
+  ],
+  "result": {
+    "item": "mgdp:bell_of_avici"
+  },
+  "show_notification": true
+}

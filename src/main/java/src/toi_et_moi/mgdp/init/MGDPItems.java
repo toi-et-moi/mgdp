@@ -20,6 +20,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> SPIRIT;
 	public static final RegistryObject<SimpleUpgradeItem> NETHERITE_GOLD;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_NETHERITE_GOLD;
+	public static final RegistryObject<SimpleUpgradeItem> BELL_OF_AVICI;
+	public static final RegistryObject<SimpleUpgradeItem> DIAMOND_ATTACK;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_DIAMOND_ATTACK;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -45,6 +48,15 @@ public class MGDPItems {
 
 		ENCHANTED_NETHERITE_GOLD = Mgdp.ITEMS.register("enchanted_netherite_gold",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_NETHERITE_GOLD.get(), 1, true));
+
+		BELL_OF_AVICI = Mgdp.ITEMS.register("bell_of_avici",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BELL_OF_AVICI.get(), 1, true));
+
+		DIAMOND_ATTACK = Mgdp.ITEMS.register("diamond_attack",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DIAMOND_ATTACK.get(), 1, false));
+
+		ENCHANTED_DIAMOND_ATTACK = Mgdp.ITEMS.register("enchanted_diamond_attack",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get(), 1, true));
 	}
 
 	public static void register() {
@@ -64,6 +76,9 @@ public class MGDPItems {
 				event.accept(SPIRIT.get());
 				event.accept(NETHERITE_GOLD.get());
 				event.accept(ENCHANTED_NETHERITE_GOLD.get());
+				event.accept(BELL_OF_AVICI.get());
+				event.accept(DIAMOND_ATTACK.get());
+				event.accept(ENCHANTED_DIAMOND_ATTACK.get());
 			}
 		}
 	}

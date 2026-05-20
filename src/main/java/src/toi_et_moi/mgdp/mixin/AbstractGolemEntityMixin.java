@@ -85,6 +85,18 @@ public abstract class AbstractGolemEntityMixin extends Mob {
         boolean hasFlight = golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get());
         boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
         ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
+
+        java.util.UUID diamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_diamond_attack");
+        java.util.UUID enchDiamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_diamond_attack");
+        var atk = this.getAttribute(Attributes.ATTACK_DAMAGE);
+        atk.removeModifier(diamondId);
+        atk.removeModifier(enchDiamondId);
+        if (golem.getModifiers().containsKey(MGDPModifiers.DIAMOND_ATTACK.get())) {
+            atk.addPermanentModifier(new AttributeModifier(diamondId, "mgdp diamond attack", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
+        if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get())) {
+            atk.addPermanentModifier(new AttributeModifier(enchDiamondId, "mgdp enchanted diamond attack", 0.6, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
     }
 
     @Inject(method = "canSwim", at = @At("RETURN"), cancellable = true, remap = false)

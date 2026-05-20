@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "N": { "item": "minecraft:nether_star" },
+    "N": { "item": "modulargolems:netherite_expansion_template" },
     "E": { "item": "minecraft:elytra" },
     "D": { "item": "minecraft:diamond" },
     "S": { "item": "modulargolems:swim" },

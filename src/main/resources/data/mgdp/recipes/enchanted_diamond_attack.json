@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": { "item": "mgdp:diamond_attack" },
+    "T": { "item": "modulargolems:diamond_expansion_template" },
+    "D": { "item": "minecraft:diamond_block" },
+    "N": { "item": "modulargolems:netherite_expansion_template" }
+  },
+  "pattern": [
+    "DTD",
+    "DAD",
+    "DND"
+  ],
+  "result": {
+    "item": "mgdp:enchanted_diamond_attack"
+  },
+  "show_notification": true
+}

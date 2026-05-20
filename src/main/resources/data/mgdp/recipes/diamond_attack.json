@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Q": { "item": "modulargolems:quartz" },
+    "D": { "item": "minecraft:diamond" },
+    "B": { "item": "minecraft:diamond_block" }
+  },
+  "pattern": [
+    "DDD",
+    "BQB",
+    "DDD"
+  ],
+  "result": {
+    "item": "mgdp:diamond_attack"
+  },
+  "show_notification": true
+}

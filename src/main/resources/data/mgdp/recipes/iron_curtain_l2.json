@@ -1,20 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "equipment",
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:mod_loaded",
-        "modid": "cataclysm"
-      }
+      "type": "forge:mod_loaded",
+      "modid": "l2complements"
     }
   ],
   "key": {
     "W": { "item": "modulargolems:summon_wand" },
-    "D": { "item": "minecraft:dragon_egg" },
-    "I": { "item": "minecraft:iron_block" },
-    "C": { "item": "minecraft:crying_obsidian" },
+    "D": { "item": "l2complements:guardian_eye" },
+    "I": { "item": "l2complements:eternium_ingot" },
+    "C": { "item": "l2complements:force_field" },
     "N": { "item": "modulargolems:netherite_expansion_template" }
   },
   "pattern": [

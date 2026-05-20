@@ -8,6 +8,9 @@ import src.toi_et_moi.mgdp.modifier.RebirthModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedNetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.NetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.SpiritModifier;
+import src.toi_et_moi.mgdp.modifier.BellOfAviciModifier;
+import src.toi_et_moi.mgdp.modifier.DiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -22,6 +25,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<SpiritModifier> SPIRIT;
 	public static final RegistryEntry<NetheriteGoldModifier> NETHERITE_GOLD;
 	public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
+	public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
+	public static final RegistryEntry<DiamondAttackModifier> DIAMOND_ATTACK;
+	public static final RegistryEntry<EnchantedDiamondAttackModifier> ENCHANTED_DIAMOND_ATTACK;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -55,6 +61,18 @@ public class MGDPModifiers {
 		ENCHANTED_NETHERITE_GOLD = reg("enchanted_netherite_gold", EnchantedNetheriteGoldModifier::new,
 				"Enchanted Netherite Gold Apple",
 				"Regeneration V, fire immune, explosion resistant, lava walking, and +10% healing.");
+
+		BELL_OF_AVICI = reg("bell_of_avici", BellOfAviciModifier::new,
+				"Bell of Avici",
+				"Enhanced Bell: 64-block radius, enemies that target the golem are teleported nearby every 2s.");
+
+		DIAMOND_ATTACK = reg("diamond_attack", DiamondAttackModifier::new,
+				"Diamond Attack",
+				"+30% attack damage.");
+
+		ENCHANTED_DIAMOND_ATTACK = reg("enchanted_diamond_attack", EnchantedDiamondAttackModifier::new,
+				"Enchanted Diamond Attack",
+				"+60% attack damage, all attacks are critical hits.");
 	}
 
 	public static void register() {
