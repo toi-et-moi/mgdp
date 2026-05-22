@@ -38,7 +38,10 @@ public class LightningStormModifier extends GolemModifier {
             targets = golem.level().getEntitiesOfClass(LivingEntity.class, area,
                     e -> e.isAlive() && e != golem && shouldStrike(golem, e));
         }
-        if (targets.isEmpty()) return;
+
+        boolean selfImmune = golem.hasFlag(GolemFlags.THUNDER_IMMUNE);
+
+        if (targets.isEmpty() && !selfImmune) return;
 
         float dmg = (float) golem.getAttributeValue(Attributes.ATTACK_DAMAGE);
         if (sl.isThundering()) dmg *= 3.0F;
@@ -52,12 +55,31 @@ public class LightningStormModifier extends GolemModifier {
             target.invulnerableTime = 0;
             target.hurt(sl.damageSources().lightningBolt(), dmg);
         }
+        for (LivingEntity target : targets) {
+            if (target instanceof AbstractGolemEntity<?, ?> eg
+                    && eg.hasFlag(GolemFlags.THUNDER_IMMUNE)) {
+                eg.clearFire();
+                eg.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                        net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
+                eg.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
+            }
+        }
+        if (selfImmune) {
+            LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(sl);
+            bolt.setPos(golem.getX(), golem.getY(), golem.getZ());
+            bolt.setVisualOnly(true);
+            sl.addFreshEntity(bolt);
+
+            golem.clearFire();
+            golem.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                    net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
+            golem.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
+        }
     }
 
     private static boolean shouldStrike(AbstractGolemEntity<?, ?> golem, LivingEntity e) {
-        if (e == golem.getTarget()) return true;
         if (e instanceof AbstractGolemEntity<?, ?> eg && eg.hasFlag(GolemFlags.THUNDER_IMMUNE))
             return golem.isAlliedTo(eg);
-        return TargetManager.wantsToAttack(golem, e);
+        return e == golem.getTarget() || TargetManager.wantsToAttack(golem, e);
     }
 }
