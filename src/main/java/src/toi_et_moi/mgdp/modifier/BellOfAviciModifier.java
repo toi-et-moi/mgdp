@@ -3,8 +3,8 @@ package src.toi_et_moi.mgdp.modifier;
 import dev.xkmc.l2library.base.effects.EffectUtil;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -61,7 +61,7 @@ public class BellOfAviciModifier extends GolemModifier {
     private void teleportTargeters(AbstractGolemEntity<?, ?> golem) {
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<Mob> nearby = golem.level().getEntitiesOfClass(Mob.class, area,
-                e -> e.isAlive() && e.getTarget() == golem);
+                e -> e.isAlive() && (e.getTarget() == golem || TargetManager.wantsToAttack(golem, e)));
 
         for (Mob mob : nearby) {
             double angle = golem.getRandom().nextDouble() * Math.PI * 2;
