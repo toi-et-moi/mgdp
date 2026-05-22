@@ -3,10 +3,10 @@ package src.toi_et_moi.mgdp.modifier;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
+import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
 import dev.xkmc.modulargolems.content.modifier.base.PotionAttackModifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.phys.AABB;
 import src.toi_et_moi.mgdp.compat.L2Compat;
 import src.toi_et_moi.mgdp.mixin.PotionAttackModifierAccessor;
@@ -83,10 +83,9 @@ public class PotionAuraModifier extends GolemModifier {
     }
 
     private void applyToEnemies(AbstractGolemEntity<?, ?> golem, List<MobEffectInstance> effects) {
-        LivingEntity golemTarget = golem.getTarget();
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<LivingEntity> nearby = golem.level().getEntitiesOfClass(LivingEntity.class, area,
-                e -> e != golem && e.isAlive() && !golem.isAlliedTo(e) && (e instanceof Enemy || e == golemTarget));
+                e -> e != golem && e.isAlive() && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
         for (LivingEntity entity : nearby) {
             for (MobEffectInstance src : effects) {

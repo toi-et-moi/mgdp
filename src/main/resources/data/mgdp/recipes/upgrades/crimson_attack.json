@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Q": { "item": "modulargolems:quartz" },
+    "D": { "item": "minecraft:redstone_block" },
+    "B": { "item": "minecraft:wither_skeleton_skull" }
+  },
+  "pattern": [
+    "DDD",
+    "BQB",
+    "DDD"
+  ],
+  "result": {
+    "item": "mgdp:crimson_attack"
+  },
+  "show_notification": true
+}

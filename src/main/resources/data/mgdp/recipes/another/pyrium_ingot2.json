@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "irons_spellbooks"
+    }
+  ],
+  "key": {
+    "W": { "item": "irons_spellbooks:decrepit_scythe" },
+    "D": { "item": "irons_spellbooks:arcane_ingot" }
+  },
+  "pattern": [
+    "DDD",
+    "DWD",
+    "DDD"
+  ],
+  "result": {
+    "item": "irons_spellbooks:pyrium_ingot",
+    "count": 8
+  },
+  "show_notification": true
+}

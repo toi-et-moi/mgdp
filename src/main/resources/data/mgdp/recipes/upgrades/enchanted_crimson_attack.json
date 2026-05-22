@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": { "item": "mgdp:crimson_attack" },
+    "T": { "item": "modulargolems:diamond_expansion_template" },
+    "D": { "item": "minecraft:redstone_block" }
+  },
+  "pattern": [
+    "DTD",
+    "DAD",
+    "DTD"
+  ],
+  "result": {
+    "item": "mgdp:enchanted_crimson_attack"
+  },
+  "show_notification": true
+}

@@ -9,8 +9,11 @@ import src.toi_et_moi.mgdp.modifier.EnchantedNetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.NetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.SpiritModifier;
 import src.toi_et_moi.mgdp.modifier.BellOfAviciModifier;
+import src.toi_et_moi.mgdp.modifier.CrimsonAttackModifier;
 import src.toi_et_moi.mgdp.modifier.DiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.EnchantedCrimsonAttackModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.LightningStormModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -28,6 +31,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
 	public static final RegistryEntry<DiamondAttackModifier> DIAMOND_ATTACK;
 	public static final RegistryEntry<EnchantedDiamondAttackModifier> ENCHANTED_DIAMOND_ATTACK;
+	public static final RegistryEntry<CrimsonAttackModifier> CRIMSON_ATTACK;
+	public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
+	public static final RegistryEntry<LightningStormModifier> LIGHTNING_STORM;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -73,6 +79,18 @@ public class MGDPModifiers {
 		ENCHANTED_DIAMOND_ATTACK = reg("enchanted_diamond_attack", EnchantedDiamondAttackModifier::new,
 				"Enchanted Diamond Attack",
 				"+60% attack damage, all attacks are critical hits.");
+
+		CRIMSON_ATTACK = reg("crimson_attack", CrimsonAttackModifier::new,
+				"Crimson Attack",
+				"-5% current HP per hit, +50% attack damage, min attack speed 1.0.");
+
+		ENCHANTED_CRIMSON_ATTACK = reg("enchanted_crimson_attack", EnchantedCrimsonAttackModifier::new,
+				"Enchanted Crimson Attack",
+				"-10% current HP per hit, +100% attack damage, 50% lifesteal, min attack speed 1.0.");
+
+		LIGHTNING_STORM = reg("lighting_storm", LightningStormModifier::new,
+				"Lightning Storm",
+				"Periodically strikes lightning on enemies. Damage = golem attack. 3x in thunderstorms.");
 	}
 
 	public static void register() {

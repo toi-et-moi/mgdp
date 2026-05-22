@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": { "item": "modulargolems:thunder_immune" },
+    "T": { "item": "modulargolems:diamond_expansion_template" },
+    "D": { "item": "minecraft:diamond_block" },
+    "N": { "tag": "forge:tools/tridents" }
+  },
+  "pattern": [
+    "DND",
+    "NAN",
+    "DTD"
+  ],
+  "result": {
+    "item": "mgdp:lighting_storm"
+  },
+  "show_notification": true
+}

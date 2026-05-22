@@ -88,14 +88,40 @@ public abstract class AbstractGolemEntityMixin extends Mob {
 
         java.util.UUID diamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_diamond_attack");
         java.util.UUID enchDiamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_diamond_attack");
+        java.util.UUID crimsonId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_attack");
+        java.util.UUID enchCrimsonId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_crimson_attack");
+        java.util.UUID crimsonArmorId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_armor");
+        java.util.UUID crimsonToughId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_tough");
         var atk = this.getAttribute(Attributes.ATTACK_DAMAGE);
+        var armor = this.getAttribute(Attributes.ARMOR);
+        var tough = this.getAttribute(Attributes.ARMOR_TOUGHNESS);
         atk.removeModifier(diamondId);
         atk.removeModifier(enchDiamondId);
+        atk.removeModifier(crimsonId);
+        atk.removeModifier(enchCrimsonId);
+        armor.removeModifier(crimsonArmorId);
+        tough.removeModifier(crimsonToughId);
         if (golem.getModifiers().containsKey(MGDPModifiers.DIAMOND_ATTACK.get())) {
             atk.addPermanentModifier(new AttributeModifier(diamondId, "mgdp diamond attack", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
         }
         if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get())) {
             atk.addPermanentModifier(new AttributeModifier(enchDiamondId, "mgdp enchanted diamond attack", 0.6, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
+        double armorVal = 0;
+        double toughVal = 0;
+        if (golem.getModifiers().containsKey(MGDPModifiers.CRIMSON_ATTACK.get())) {
+            atk.addPermanentModifier(new AttributeModifier(crimsonId, "mgdp crimson attack", 0.5, AttributeModifier.Operation.MULTIPLY_BASE));
+            armorVal = -0.5;
+            toughVal = -0.5;
+        }
+        if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_CRIMSON_ATTACK.get())) {
+            atk.addPermanentModifier(new AttributeModifier(enchCrimsonId, "mgdp enchanted crimson attack", 1.0, AttributeModifier.Operation.MULTIPLY_BASE));
+            armorVal = -1.0;
+            toughVal = -1.0;
+        }
+        if (armorVal != 0) {
+            armor.addPermanentModifier(new AttributeModifier(crimsonArmorId, "mgdp crimson armor", armorVal, AttributeModifier.Operation.MULTIPLY_BASE));
+            tough.addPermanentModifier(new AttributeModifier(crimsonToughId, "mgdp crimson tough", toughVal, AttributeModifier.Operation.MULTIPLY_BASE));
         }
     }
 

@@ -23,6 +23,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> BELL_OF_AVICI;
 	public static final RegistryObject<SimpleUpgradeItem> DIAMOND_ATTACK;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_DIAMOND_ATTACK;
+	public static final RegistryObject<SimpleUpgradeItem> CRIMSON_ATTACK;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_CRIMSON_ATTACK;
+	public static final RegistryObject<SimpleUpgradeItem> LIGHTNING_STORM;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -57,6 +60,15 @@ public class MGDPItems {
 
 		ENCHANTED_DIAMOND_ATTACK = Mgdp.ITEMS.register("enchanted_diamond_attack",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get(), 1, true));
+
+		CRIMSON_ATTACK = Mgdp.ITEMS.register("crimson_attack",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CRIMSON_ATTACK.get(), 1, false));
+
+		ENCHANTED_CRIMSON_ATTACK = Mgdp.ITEMS.register("enchanted_crimson_attack",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_CRIMSON_ATTACK.get(), 1, true));
+
+		LIGHTNING_STORM = Mgdp.ITEMS.register("lighting_storm",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIGHTNING_STORM.get(), 1, true));
 	}
 
 	public static void register() {
@@ -79,6 +91,9 @@ public class MGDPItems {
 				event.accept(BELL_OF_AVICI.get());
 				event.accept(DIAMOND_ATTACK.get());
 				event.accept(ENCHANTED_DIAMOND_ATTACK.get());
+				event.accept(CRIMSON_ATTACK.get());
+				event.accept(ENCHANTED_CRIMSON_ATTACK.get());
+				event.accept(LIGHTNING_STORM.get());
 			}
 		}
 	}

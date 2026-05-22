@@ -37,5 +37,14 @@
   "item.mgdp.enchanted_diamond_attack": "Enchanted Diamond Attack Upgrade",
   "modifier.modulargolems.enchanted_diamond_attack": "Enchanted Diamond Attack",
   "modifier.modulargolems.enchanted_diamond_attack.desc": "+60% attack damage, all attacks are critical hits.",
+  "item.mgdp.crimson_attack": "Crimson Attack Upgrade",
+  "modifier.modulargolems.crimson_attack": "Crimson Attack",
+  "modifier.modulargolems.crimson_attack.desc": "+50% attack damage, -50% armor and toughness.",
+  "item.mgdp.enchanted_crimson_attack": "Enchanted Crimson Attack Upgrade",
+  "modifier.modulargolems.enchanted_crimson_attack": "Enchanted Crimson Attack",
+  "modifier.modulargolems.enchanted_crimson_attack.desc": "+100% attack damage, 50% lifesteal, ignores i-frames, -100% armor and toughness.",
+  "item.mgdp.lighting_storm": "Weather Control Device Upgrade",
+  "modifier.modulargolems.lighting_storm": "Lightning Storm",
+  "modifier.modulargolems.lighting_storm.desc": "Strikes lightning on enemies every 3s within 48 blocks. Damage = attack. 2x range + 3x damage in thunderstorms.",
   "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
 }

@@ -59,6 +59,9 @@ public class Mgdp {
 						output.accept(MGDPItems.BELL_OF_AVICI.get());
 						output.accept(MGDPItems.DIAMOND_ATTACK.get());
 						output.accept(MGDPItems.ENCHANTED_DIAMOND_ATTACK.get());
+						output.accept(MGDPItems.CRIMSON_ATTACK.get());
+						output.accept(MGDPItems.ENCHANTED_CRIMSON_ATTACK.get());
+						output.accept(MGDPItems.LIGHTNING_STORM.get());
 						output.accept(IRON_CURTAIN.get());
 					})
 					.build());
