@@ -41,6 +41,17 @@ public class LightningStormModifier extends GolemModifier {
 
         boolean selfImmune = golem.hasFlag(GolemFlags.THUNDER_IMMUNE);
 
+        for (LivingEntity target : targets) {
+            if (target instanceof AbstractGolemEntity<?, ?> eg && eg.hasFlag(GolemFlags.THUNDER_IMMUNE)) {
+                eg.clearFire();
+                eg.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                        net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
+                eg.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
+            }
+        }
+        targets.removeIf(e -> e instanceof AbstractGolemEntity<?, ?>
+                && ((AbstractGolemEntity<?, ?>) e).hasFlag(GolemFlags.THUNDER_IMMUNE));
+
         if (targets.isEmpty() && !selfImmune) return;
 
         float dmg = (float) golem.getAttributeValue(Attributes.ATTACK_DAMAGE);
@@ -55,21 +66,7 @@ public class LightningStormModifier extends GolemModifier {
             target.invulnerableTime = 0;
             target.hurt(sl.damageSources().lightningBolt(), dmg);
         }
-        for (LivingEntity target : targets) {
-            if (target instanceof AbstractGolemEntity<?, ?> eg
-                    && eg.hasFlag(GolemFlags.THUNDER_IMMUNE)) {
-                eg.clearFire();
-                eg.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                        net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
-                eg.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
-            }
-        }
         if (selfImmune) {
-            LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(sl);
-            bolt.setPos(golem.getX(), golem.getY(), golem.getZ());
-            bolt.setVisualOnly(true);
-            sl.addFreshEntity(bolt);
-
             golem.clearFire();
             golem.addEffect(new net.minecraft.world.effect.MobEffectInstance(
                     net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
