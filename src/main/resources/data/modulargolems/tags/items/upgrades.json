@@ -13,6 +13,8 @@
     "mgdp:enchanted_diamond_attack",
     "mgdp:crimson_attack",
     "mgdp:enchanted_crimson_attack",
-    "mgdp:lighting_storm"
+    "mgdp:lighting_storm",
+    "mgdp:rocket_flight",
+    "mgdp:dragon_breath"
   ]
 }

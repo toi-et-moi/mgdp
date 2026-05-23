@@ -2,20 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "N": { "item": "modulargolems:netherite_expansion_template" },
-    "E": { "item": "minecraft:elytra" },
+    "E": { "item": "minecraft:feather" },
     "D": { "item": "minecraft:diamond" },
-    "S": { "item": "mgdp:rocket_flight" },
+    "S": { "item": "modulargolems:swim" },
     "P": { "item": "minecraft:phantom_membrane" },
-    "G": { "item": "minecraft:netherite_block" }
+    "G": { "item": "minecraft:firework_rocket" }
   },
   "pattern": [
-    "NEN",
+    "GEG",
     "DSD",
     "PGP"
   ],
   "result": {
-    "item": "mgdp:flight"
+    "item": "mgdp:rocket_flight"
   },
   "show_notification": true
 }

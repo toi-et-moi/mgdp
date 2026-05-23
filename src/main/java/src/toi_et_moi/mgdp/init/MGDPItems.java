@@ -26,6 +26,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> CRIMSON_ATTACK;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_CRIMSON_ATTACK;
 	public static final RegistryObject<SimpleUpgradeItem> LIGHTNING_STORM;
+	public static final RegistryObject<SimpleUpgradeItem> ROCKET_FLIGHT;
+	public static final RegistryObject<SimpleUpgradeItem> DRAGON_BREATH;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -69,6 +71,12 @@ public class MGDPItems {
 
 		LIGHTNING_STORM = Mgdp.ITEMS.register("lighting_storm",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIGHTNING_STORM.get(), 1, true));
+
+		ROCKET_FLIGHT = Mgdp.ITEMS.register("rocket_flight",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ROCKET_FLIGHT.get(), 1, false));
+
+		DRAGON_BREATH = Mgdp.ITEMS.register("dragon_breath",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAGON_BREATH.get(), 1, true));
 	}
 
 	public static void register() {
@@ -94,6 +102,8 @@ public class MGDPItems {
 				event.accept(CRIMSON_ATTACK.get());
 				event.accept(ENCHANTED_CRIMSON_ATTACK.get());
 				event.accept(LIGHTNING_STORM.get());
+				event.accept(ROCKET_FLIGHT.get());
+				event.accept(DRAGON_BREATH.get());
 			}
 		}
 	}

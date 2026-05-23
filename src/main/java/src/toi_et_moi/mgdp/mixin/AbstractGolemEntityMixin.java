@@ -44,10 +44,15 @@ public abstract class AbstractGolemEntityMixin extends Mob {
         }
     }
 
+    private boolean mgdp$isFlying(AbstractGolemEntity<?, ?> golem) {
+        return golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
+                || golem.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get());
+    }
+
     @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
     private void mgdp$flightTravel(Vec3 travelVector, CallbackInfo ci) {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        if (!golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())) return;
+        if (!mgdp$isFlying(golem)) return;
         if (!golem.isMovable()) return;
         if (!golem.isEffectiveAi() && !golem.isControlledByLocalInstance()) return;
 
@@ -75,14 +80,14 @@ public abstract class AbstractGolemEntityMixin extends Mob {
     @Inject(method = "updateAttributes", at = @At("TAIL"), remap = false)
     private void mgdp$setFlightMoveControl(CallbackInfo ci) {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        if (golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())) {
+        if (mgdp$isFlying(golem)) {
             this.moveControl = new GolemSwimMoveControl(golem);
             this.navigation = new FlightPathNavigation(golem, golem.level());
         }
         if (golem.getModifiers().containsKey(MGDPModifiers.UNSTOPPABLE.get())) {
             golem.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0);
         }
-        boolean hasFlight = golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get());
+        boolean hasFlight = mgdp$isFlying(golem);
         boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
         ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
 
@@ -102,10 +107,18 @@ public abstract class AbstractGolemEntityMixin extends Mob {
         armor.removeModifier(crimsonArmorId);
         tough.removeModifier(crimsonToughId);
         if (golem.getModifiers().containsKey(MGDPModifiers.DIAMOND_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(diamondId, "mgdp diamond attack", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
+            atk.addPermanentModifier(new AttributeModifier(diamondId, "mgdp diamond attack", 0.3, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
         if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(enchDiamondId, "mgdp enchanted diamond attack", 0.6, AttributeModifier.Operation.MULTIPLY_BASE));
+            atk.addPermanentModifier(new AttributeModifier(enchDiamondId, "mgdp enchanted diamond attack", 0.6, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        java.util.UUID rocketArmorId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_armor");
+        java.util.UUID rocketToughId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_tough");
+        armor.removeModifier(rocketArmorId);
+        tough.removeModifier(rocketToughId);
+        if (golem.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())) {
+            armor.addPermanentModifier(new AttributeModifier(rocketArmorId, "mgdp rocket armor", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            tough.addPermanentModifier(new AttributeModifier(rocketToughId, "mgdp rocket tough", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
         double armorVal = 0;
         double toughVal = 0;
@@ -129,7 +142,7 @@ public abstract class AbstractGolemEntityMixin extends Mob {
     private void mgdp$canSwimWithFlight(CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) {
             AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-            if (golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())) {
+            if (mgdp$isFlying(golem)) {
                 cir.setReturnValue(true);
             }
         }

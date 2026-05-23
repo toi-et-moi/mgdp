@@ -46,5 +46,11 @@
   "item.mgdp.lighting_storm": "天气控制机升级",
   "modifier.modulargolems.lighting_storm": "闪电风暴",
   "modifier.modulargolems.lighting_storm.desc": "每3秒对48格内敌人降下闪电，伤害等于攻击力，雷暴天气时范围翻倍且3倍伤害。",
+  "item.mgdp.rocket_flight": "火箭飞行兵升级",
+  "modifier.modulargolems.rocket_flight": "火箭飞行兵",
+  "modifier.modulargolems.rocket_flight.desc": "同飞行升级，但护甲值和盔甲韧性-100%。",
+  "item.mgdp.dragon_breath": "龙息弹升级",
+  "modifier.modulargolems.dragon_breath": "龙息弹",
+  "modifier.modulargolems.dragon_breath.desc": "每6/5/4秒发射追踪龙息弹，爆炸并留下龙息云。等级越高弹数/目标数/爆炸威力越大。",
   "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得50秒绝对无敌，5分钟冷却时间"
 }

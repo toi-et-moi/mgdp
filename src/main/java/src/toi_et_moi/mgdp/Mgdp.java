@@ -62,6 +62,8 @@ public class Mgdp {
 						output.accept(MGDPItems.CRIMSON_ATTACK.get());
 						output.accept(MGDPItems.ENCHANTED_CRIMSON_ATTACK.get());
 						output.accept(MGDPItems.LIGHTNING_STORM.get());
+						output.accept(MGDPItems.ROCKET_FLIGHT.get());
+						output.accept(MGDPItems.DRAGON_BREATH.get());
 						output.accept(IRON_CURTAIN.get());
 					})
 					.build());

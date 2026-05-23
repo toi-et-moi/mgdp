@@ -46,5 +46,11 @@
   "item.mgdp.lighting_storm": "Weather Control Device Upgrade",
   "modifier.modulargolems.lighting_storm": "Lightning Storm",
   "modifier.modulargolems.lighting_storm.desc": "Strikes lightning on enemies every 3s within 48 blocks. Damage = attack. 2x range + 3x damage in thunderstorms.",
+  "item.mgdp.rocket_flight": "Rocket Flight Upgrade",
+  "modifier.modulargolems.rocket_flight": "Rocket Flight",
+  "modifier.modulargolems.rocket_flight.desc": "Same as Flight, but -100% armor and toughness.",
+  "item.mgdp.dragon_breath": "Dragon Breath Upgrade",
+  "modifier.modulargolems.dragon_breath": "Dragon Breath",
+  "modifier.modulargolems.dragon_breath.desc": "Fires homing dragon fireballs at enemies. Explosion + breath cloud on impact. More balls/targets at higher levels.",
   "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
 }

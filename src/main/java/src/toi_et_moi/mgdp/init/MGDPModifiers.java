@@ -11,9 +11,11 @@ import src.toi_et_moi.mgdp.modifier.SpiritModifier;
 import src.toi_et_moi.mgdp.modifier.BellOfAviciModifier;
 import src.toi_et_moi.mgdp.modifier.CrimsonAttackModifier;
 import src.toi_et_moi.mgdp.modifier.DiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.DragonBreathModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedCrimsonAttackModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
 import src.toi_et_moi.mgdp.modifier.LightningStormModifier;
+import src.toi_et_moi.mgdp.modifier.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -34,6 +36,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<CrimsonAttackModifier> CRIMSON_ATTACK;
 	public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
 	public static final RegistryEntry<LightningStormModifier> LIGHTNING_STORM;
+	public static final RegistryEntry<RocketFlightModifier> ROCKET_FLIGHT;
+	public static final RegistryEntry<DragonBreathModifier> DRAGON_BREATH;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -91,6 +95,14 @@ public class MGDPModifiers {
 		LIGHTNING_STORM = reg("lighting_storm", LightningStormModifier::new,
 				"Lightning Storm",
 				"Periodically strikes lightning on enemies. Damage = golem attack. 3x in thunderstorms.");
+
+		ROCKET_FLIGHT = reg("rocket_flight", RocketFlightModifier::new,
+				"Rocket Flight",
+				"Same as Flight, but -100% armor and toughness.");
+
+		DRAGON_BREATH = reg("dragon_breath", DragonBreathModifier::new,
+				"Dragon Breath",
+				"Fires homing dragon fireballs at enemies. Explosion + breath cloud on impact.");
 	}
 
 	public static void register() {

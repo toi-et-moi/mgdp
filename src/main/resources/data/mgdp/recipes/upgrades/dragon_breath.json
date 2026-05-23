@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": { "item": "modulargolems:empty_upgrade" },
+    "M": { "item": "minecraft:end_crystal" },
+    "G": { "item": "minecraft:dragon_breath" }
+  },
+  "pattern": [
+    "MGM",
+    "GUG",
+    "MGM"
+  ],
+  "result": {
+    "item": "mgdp:dragon_breath"
+  },
+  "show_notification": true
+}
