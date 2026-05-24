@@ -1,23 +1,14 @@
 {
   "values": [
-    "mgdp:harvest_crop",
-    "mgdp:flight",
-    "mgdp:potion_aura",
-    "mgdp:rebirth",
-    "mgdp:unstoppable",
-    "mgdp:spirit",
     "mgdp:netherite_gold",
     "mgdp:enchanted_netherite_gold",
-    "mgdp:bell_of_avici",
     "mgdp:diamond_attack",
     "mgdp:enchanted_diamond_attack",
     "mgdp:crimson_attack",
     "mgdp:enchanted_crimson_attack",
     "mgdp:lighting_storm",
-    "mgdp:rocket_flight",
-    "mgdp:dragon_breath",
-    "mgdp:wither_extinction",
     "mgdp:charged_shield",
-    "mgdp:versatility"
+    "mgdp:dragon_breath",
+    "mgdp:wither_extinction"
   ]
 }

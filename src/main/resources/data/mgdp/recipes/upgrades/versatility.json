@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": { "item": "minecraft:netherite_block" },
+    "D": { "item": "minecraft:diamond_block" },
+    "T": { "item": "modulargolems:netherite_expansion_template" }
+  },
+  "pattern": [
+    "NDN",
+    "DTD",
+    "NDN"
+  ],
+  "result": {
+    "item": "mgdp:versatility"
+  },
+  "show_notification": true
+}

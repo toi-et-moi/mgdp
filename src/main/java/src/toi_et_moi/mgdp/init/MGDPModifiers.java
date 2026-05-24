@@ -9,14 +9,17 @@ import src.toi_et_moi.mgdp.modifier.EnchantedNetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.NetheriteGoldModifier;
 import src.toi_et_moi.mgdp.modifier.SpiritModifier;
 import src.toi_et_moi.mgdp.modifier.BellOfAviciModifier;
+import src.toi_et_moi.mgdp.modifier.ChargedShieldModifier;
 import src.toi_et_moi.mgdp.modifier.CrimsonAttackModifier;
 import src.toi_et_moi.mgdp.modifier.DiamondAttackModifier;
 import src.toi_et_moi.mgdp.modifier.DragonBreathModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedCrimsonAttackModifier;
+import src.toi_et_moi.mgdp.modifier.WitherExtinctionModifier;
 import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
 import src.toi_et_moi.mgdp.modifier.LightningStormModifier;
 import src.toi_et_moi.mgdp.modifier.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
+import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -38,6 +41,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<LightningStormModifier> LIGHTNING_STORM;
 	public static final RegistryEntry<RocketFlightModifier> ROCKET_FLIGHT;
 	public static final RegistryEntry<DragonBreathModifier> DRAGON_BREATH;
+	public static final RegistryEntry<WitherExtinctionModifier> WITHER_EXTINCTION;
+	public static final RegistryEntry<ChargedShieldModifier> CHARGED_SHIELD;
+	public static final RegistryEntry<VersatilityModifier> VERSATILITY;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -103,6 +109,18 @@ public class MGDPModifiers {
 		DRAGON_BREATH = reg("dragon_breath", DragonBreathModifier::new,
 				"Dragon Breath",
 				"Fires homing dragon fireballs at enemies. Explosion + breath cloud on impact.");
+
+		WITHER_EXTINCTION = reg("wither_extinction", WitherExtinctionModifier::new,
+				"Wither Extinction",
+				"Charges 10s, then deals 100% max HP as wither + explosion damage to all enemies in 64 blocks. 1min cooldown.");
+
+		CHARGED_SHIELD = reg("charged_shield", ChargedShieldModifier::new,
+				"Charged Shield",
+				"5 damage-absorbing shields. Each blocks 1 hit. Recharges every 15/10/5 seconds per level.");
+
+			VERSATILITY = reg("versatility", VersatilityModifier::new,
+					"Versatility",
+					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
 	}
 
 	public static void register() {

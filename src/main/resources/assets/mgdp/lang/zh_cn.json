@@ -52,5 +52,14 @@
   "item.mgdp.dragon_breath": "龙息弹升级",
   "modifier.modulargolems.dragon_breath": "龙息弹",
   "modifier.modulargolems.dragon_breath.desc": "每6/5/4秒发射追踪龙息弹，爆炸并留下龙息云。等级越高弹数/目标数/爆炸威力越大。",
-  "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得50秒绝对无敌，5分钟冷却时间"
+  "item.mgdp.iron_curtain.desc": "蓄力2秒释放，使16格内同盟生物获得50秒绝对无敌，5分钟冷却时间",
+  "item.mgdp.wither_extinction": "凋零灭绝升级",
+  "modifier.modulargolems.wither_extinction": "凋零灭绝",
+  "modifier.modulargolems.wither_extinction.desc": "蓄力10秒对64格内所有敌对目标施加100%生命上限的凋零伤害+爆炸伤害，冷却1分钟。",
+  "item.mgdp.charged_shield": "充能护盾升级",
+  "modifier.modulargolems.charged_shield": "充能护盾",
+  "modifier.modulargolems.charged_shield.desc": "%s次免伤护盾，每%s秒恢复一个，护盾存在时受到伤害归零。",
+  "item.mgdp.versatility": "协议同归升级",
+  "modifier.modulargolems.versatility": "协议同归",
+  "modifier.modulargolems.versatility.desc": "前5个暗色升级不消耗升级槽。"
 }

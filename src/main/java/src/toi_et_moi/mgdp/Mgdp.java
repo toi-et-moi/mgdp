@@ -13,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -29,6 +30,11 @@ import org.slf4j.Logger;
 import src.toi_et_moi.mgdp.init.MGDPItems;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import src.toi_et_moi.mgdp.modifier.ChargedShieldModifier;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.damagesource.DamageTypes;
 
 @Mod(Mgdp.MODID)
 public class Mgdp {
@@ -64,7 +70,10 @@ public class Mgdp {
 						output.accept(MGDPItems.LIGHTNING_STORM.get());
 						output.accept(MGDPItems.ROCKET_FLIGHT.get());
 						output.accept(MGDPItems.DRAGON_BREATH.get());
+						output.accept(MGDPItems.WITHER_EXTINCTION.get());
+						output.accept(MGDPItems.CHARGED_SHIELD.get());
 						output.accept(IRON_CURTAIN.get());
+						output.accept(MGDPItems.VERSATILITY.get());
 					})
 					.build());
 
@@ -93,6 +102,17 @@ public class Mgdp {
 	public void onLivingAttack(LivingAttackEvent event) {
 		if (IronCurtainItem.isProtected(event.getEntity())) {
 			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public void mgdp$lightningShieldRecharge(LivingAttackEvent event) {
+		if (event.getSource().is(DamageTypes.LIGHTNING_BOLT)
+				&& event.getEntity() instanceof AbstractGolemEntity<?, ?> golem
+				&& golem.hasFlag(GolemFlags.THUNDER_IMMUNE)
+				&& golem.getModifiers().containsKey(MGDPModifiers.CHARGED_SHIELD.get())) {
+			int lv = golem.getModifiers().get(MGDPModifiers.CHARGED_SHIELD.get());
+			ChargedShieldModifier.recharge(golem, lv);
 		}
 	}
 

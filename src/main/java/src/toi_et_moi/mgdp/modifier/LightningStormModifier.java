@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.AABB;
+import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.util.List;
 
@@ -47,6 +48,10 @@ public class LightningStormModifier extends GolemModifier {
                 eg.addEffect(new net.minecraft.world.effect.MobEffectInstance(
                         net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
                 eg.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
+                if (eg.getModifiers().containsKey(MGDPModifiers.CHARGED_SHIELD.get())) {
+                    int lv = eg.getModifiers().get(MGDPModifiers.CHARGED_SHIELD.get());
+                    ChargedShieldModifier.recharge(eg, lv);
+                }
             }
         }
         targets.removeIf(e -> e instanceof AbstractGolemEntity<?, ?>
@@ -71,6 +76,10 @@ public class LightningStormModifier extends GolemModifier {
             golem.addEffect(new net.minecraft.world.effect.MobEffectInstance(
                     net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 200));
             golem.heal(dev.xkmc.modulargolems.init.data.MGConfig.COMMON.thunderHeal.get());
+            if (golem.getModifiers().containsKey(MGDPModifiers.CHARGED_SHIELD.get())) {
+                int lv = golem.getModifiers().get(MGDPModifiers.CHARGED_SHIELD.get());
+                ChargedShieldModifier.recharge(golem, lv);
+            }
         }
     }
 

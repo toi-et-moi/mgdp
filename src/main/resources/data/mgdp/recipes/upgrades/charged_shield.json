@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": { "item": "modulargolems:thunder_immune" },
+    "B": { "item": "minecraft:netherite_ingot" },
+    "C": { "item": "modulargolems:diamond" }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "mgdp:charged_shield"
+  },
+  "show_notification": true
+}

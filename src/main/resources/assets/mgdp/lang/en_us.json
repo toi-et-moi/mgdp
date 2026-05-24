@@ -52,5 +52,14 @@
   "item.mgdp.dragon_breath": "Dragon Breath Upgrade",
   "modifier.modulargolems.dragon_breath": "Dragon Breath",
   "modifier.modulargolems.dragon_breath.desc": "Fires homing dragon fireballs at enemies. Explosion + breath cloud on impact. More balls/targets at higher levels.",
-  "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown."
+  "item.mgdp.wither_extinction": "Wither Extinction Upgrade",
+  "modifier.modulargolems.wither_extinction": "Wither Extinction",
+  "modifier.modulargolems.wither_extinction.desc": "Charges 10s, deals 100% max HP as wither + explosion damage to all enemies in 64 blocks. 1min cooldown.",
+  "item.mgdp.charged_shield": "Charged Shield Upgrade",
+  "modifier.modulargolems.charged_shield": "Charged Shield",
+  "modifier.modulargolems.charged_shield.desc": "%s damage-absorbing shields, each blocks 1 hit. Recharges every %ss.",
+  "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown.",
+  "item.mgdp.versatility": "Versatility Upgrade",
+  "modifier.modulargolems.versatility": "Versatility",
+  "modifier.modulargolems.versatility.desc": "The first 5 Dark upgrades don't consume upgrade slots."
 }

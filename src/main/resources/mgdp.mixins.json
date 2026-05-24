@@ -15,6 +15,7 @@
     "DragonBreathHitMixin"
   ],
   "client": [
+    "AbstractGolemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -28,6 +28,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LIGHTNING_STORM;
 	public static final RegistryObject<SimpleUpgradeItem> ROCKET_FLIGHT;
 	public static final RegistryObject<SimpleUpgradeItem> DRAGON_BREATH;
+	public static final RegistryObject<SimpleUpgradeItem> WITHER_EXTINCTION;
+	public static final RegistryObject<SimpleUpgradeItem> CHARGED_SHIELD;
+	public static final RegistryObject<SimpleUpgradeItem> VERSATILITY;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -77,6 +80,14 @@ public class MGDPItems {
 
 		DRAGON_BREATH = Mgdp.ITEMS.register("dragon_breath",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAGON_BREATH.get(), 1, true));
+
+		WITHER_EXTINCTION = Mgdp.ITEMS.register("wither_extinction",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WITHER_EXTINCTION.get(), 1, true));
+
+		CHARGED_SHIELD = Mgdp.ITEMS.register("charged_shield",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CHARGED_SHIELD.get(), 1, false));
+		VERSATILITY = Mgdp.ITEMS.register("versatility",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.VERSATILITY.get(), 1, true));
 	}
 
 	public static void register() {
@@ -104,6 +115,9 @@ public class MGDPItems {
 				event.accept(LIGHTNING_STORM.get());
 				event.accept(ROCKET_FLIGHT.get());
 				event.accept(DRAGON_BREATH.get());
+				event.accept(WITHER_EXTINCTION.get());
+				event.accept(CHARGED_SHIELD.get());
+				event.accept(VERSATILITY.get());
 			}
 		}
 	}

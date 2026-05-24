@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": { "item": "modulargolems:empty_upgrade" },
+    "S": { "item": "minecraft:nether_star" },
+    "W": { "item": "minecraft:wither_skeleton_skull" },
+    "B": { "item": "minecraft:wither_rose" },
+    "O": { "item": "minecraft:obsidian" },
+    "C": { "item": "minecraft:crying_obsidian" }
+  },
+  "pattern": [
+    "WOW",
+    "SUS",
+    "BCB"
+  ],
+  "result": {
+    "item": "mgdp:wither_extinction"
+  },
+  "show_notification": true
+}
