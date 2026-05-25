@@ -61,5 +61,14 @@
   "item.mgdp.iron_curtain.desc": "Charge for 2s to grant 50s of absolute invulnerability to allies within 16 blocks,five minutes cooldown.",
   "item.mgdp.versatility": "Versatility Upgrade",
   "modifier.modulargolems.versatility": "Versatility",
-  "modifier.modulargolems.versatility.desc": "The first 5 Dark upgrades don't consume upgrade slots."
+  "modifier.modulargolems.versatility.desc": "The first 5 Dark upgrades don't consume upgrade slots.",
+  "item.mgdp.hypothermia": "Hypothermia Upgrade",
+  "modifier.modulargolems.hypothermia": "Hypothermia",
+  "modifier.modulargolems.hypothermia.desc": "Attacks freeze targets and extinguish fire. Every 2s, removes fire blocks and puts out allies on fire within a 48-block radius.",
+  "item.mgdp.self_repair": "Self Repair Upgrade",
+  "modifier.modulargolems.self_repair": "Self Repair",
+  "modifier.modulargolems.self_repair.desc": "When idle for 10s, regenerates 1 HP per second and reduces forge count.",
+  "item.mgdp.sonic_boom": "Sonic Boom Upgrade",
+  "modifier.modulargolems.sonic_boom": "Sonic Boom",
+  "modifier.modulargolems.sonic_boom.desc": "Golem can use Sonic Boom Attack. Deals 10 damage per level and knocks back enemies."
 }

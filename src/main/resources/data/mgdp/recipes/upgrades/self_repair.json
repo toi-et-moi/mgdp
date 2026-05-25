@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": { "item": "minecraft:gold_block" },
+    "R": { "item": "minecraft:redstone_block" },
+    "T": { "item": "modulargolems:diamond_expansion_template" }
+  },
+  "pattern": [
+    "GRG",
+    "RTR",
+    "GRG"
+  ],
+  "result": {
+    "item": "mgdp:self_repair"
+  },
+  "show_notification": true
+}

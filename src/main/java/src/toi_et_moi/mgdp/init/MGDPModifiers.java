@@ -19,6 +19,9 @@ import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
 import src.toi_et_moi.mgdp.modifier.LightningStormModifier;
 import src.toi_et_moi.mgdp.modifier.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
+import src.toi_et_moi.mgdp.modifier.HypothermiaModifier;
+import src.toi_et_moi.mgdp.modifier.SelfRepairModifier;
+import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -44,6 +47,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<WitherExtinctionModifier> WITHER_EXTINCTION;
 	public static final RegistryEntry<ChargedShieldModifier> CHARGED_SHIELD;
 	public static final RegistryEntry<VersatilityModifier> VERSATILITY;
+	public static final RegistryEntry<HypothermiaModifier> HYPOTHERMIA;
+	public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
+	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -117,6 +123,18 @@ public class MGDPModifiers {
 		CHARGED_SHIELD = reg("charged_shield", ChargedShieldModifier::new,
 				"Charged Shield",
 				"5 damage-absorbing shields. Each blocks 1 hit. Recharges every 15/10/5 seconds per level.");
+
+			SONIC_BOOM = reg("sonic_boom", SonicBoomModifier::new,
+					"Sonic Boom",
+					"Golem can use Sonic Boom Attack. Deals 10 damage per level and knocks back enemies.");
+
+			SELF_REPAIR = reg("self_repair", SelfRepairModifier::new,
+					"Self Repair",
+					"When idle for 10s, regenerates 1 HP per second and reduces forge count.");
+
+			HYPOTHERMIA = reg("hypothermia", HypothermiaModifier::new,
+					"Hypothermia",
+					"Freezes enemies on hit and extinguishes fire in a 48-block radius.");
 
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",

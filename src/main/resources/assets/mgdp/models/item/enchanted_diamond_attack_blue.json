@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mgdp:item/upgrades/enchanted_diamond_attack",
-    "layer1": "modulargolems:item/blue_arrow"
-  }
-}

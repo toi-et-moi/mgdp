@@ -61,5 +61,14 @@
   "modifier.modulargolems.charged_shield.desc": "%s次免伤护盾，每%s秒恢复一个，护盾存在时受到伤害归零。",
   "item.mgdp.versatility": "协议同归升级",
   "modifier.modulargolems.versatility": "协议同归",
-  "modifier.modulargolems.versatility.desc": "前5个暗色升级不消耗升级槽。"
+  "modifier.modulargolems.versatility.desc": "前5个暗色升级不消耗升级槽。",
+  "item.mgdp.hypothermia": "失温症升级",
+  "modifier.modulargolems.hypothermia": "失温症",
+  "modifier.modulargolems.hypothermia.desc": "近战攻击会冰冻目标。每2秒清除48格内的火焰方块并给着火的友方灭火。",
+  "item.mgdp.self_repair": "自我修复升级",
+  "modifier.modulargolems.self_repair": "自我修复",
+  "modifier.modulargolems.self_repair.desc": "连续10秒未发现目标时，每秒自我修复一次。",
+  "item.mgdp.sonic_boom": "音爆升级",
+  "modifier.modulargolems.sonic_boom": "音爆",
+  "modifier.modulargolems.sonic_boom.desc": "傀儡可使用音爆攻击，每级造成10点伤害并击退敌人。"
 }

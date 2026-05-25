@@ -7,6 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
@@ -75,6 +77,7 @@ public class ChargedShieldModifier extends GolemModifier {
             shields = Math.min(maxShields, shields + toAdd);
             tag.putInt(TAG_SHIELDS, shields);
             tag.putLong(TAG_REGEN, now - (elapsed % interval));
+        golem.level().playSound(null, golem.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
         }
     }
 }

@@ -3,9 +3,10 @@ package src.toi_et_moi.mgdp;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,7 +25,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import src.toi_et_moi.mgdp.init.MGDPItems;
@@ -35,6 +35,9 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageTypes;
+import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
 
 @Mod(Mgdp.MODID)
 public class Mgdp {
@@ -73,6 +76,9 @@ public class Mgdp {
 						output.accept(MGDPItems.WITHER_EXTINCTION.get());
 						output.accept(MGDPItems.CHARGED_SHIELD.get());
 						output.accept(IRON_CURTAIN.get());
+						output.accept(MGDPItems.HYPOTHERMIA.get());
+						output.accept(MGDPItems.SELF_REPAIR.get());
+						output.accept(MGDPItems.SONIC_BOOM.get());
 						output.accept(MGDPItems.VERSATILITY.get());
 					})
 					.build());
@@ -116,6 +122,24 @@ public class Mgdp {
 		}
 	}
 
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public void mgdp$voidRescue(LivingAttackEvent event) {
+		if (!(event.getEntity() instanceof Player player)) return;
+		if (!event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
+
+		AABB area = player.getBoundingBox().inflate(64);
+		for (var golem : player.level().getEntitiesOfClass(DogGolemEntity.class, area,
+				e -> e.isAlive() && (e.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
+						|| e.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())))) {
+			if (!golem.hasPassenger(player)) {
+				event.setCanceled(true);
+				player.startRiding(golem, true);
+				break;
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("MGDP server starting");
@@ -126,8 +150,6 @@ public class Mgdp {
 
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
-			LOGGER.info("MGDP client setup");
-			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 		}
 
 		@SubscribeEvent

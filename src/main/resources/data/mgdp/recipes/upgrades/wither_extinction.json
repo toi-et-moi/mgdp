@@ -5,14 +5,12 @@
     "U": { "item": "modulargolems:empty_upgrade" },
     "S": { "item": "minecraft:nether_star" },
     "W": { "item": "minecraft:wither_skeleton_skull" },
-    "B": { "item": "minecraft:wither_rose" },
-    "O": { "item": "minecraft:obsidian" },
-    "C": { "item": "minecraft:crying_obsidian" }
+    "B": { "item": "minecraft:wither_rose" }
   },
   "pattern": [
-    "WOW",
-    "SUS",
-    "BCB"
+    "SBS",
+    "WUW",
+    "SBS"
   ],
   "result": {
     "item": "mgdp:wither_extinction"

@@ -1,10 +1,1 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mgdp:item/upgrades/dragon_breath"
-  },
-  "overrides": [
-    {"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/dragon_breath_purple"},
-    {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/dragon_breath_blue"}
-  ]
-}
+{"parent": "item/generated", "textures": {"layer0": "mgdp:item/upgrades/dragon_breath"}, "overrides": [{"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/dragon_breath_dark"}, {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/dragon_breath_dark"}]}

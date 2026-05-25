@@ -9,6 +9,9 @@
     "mgdp:lighting_storm",
     "mgdp:charged_shield",
     "mgdp:dragon_breath",
-    "mgdp:wither_extinction"
+    "mgdp:wither_extinction",
+    "mgdp:hypothermia",
+    "mgdp:self_repair",
+    "mgdp:sonic_boom"
   ]
 }
