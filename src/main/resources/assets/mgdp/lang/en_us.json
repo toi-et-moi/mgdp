@@ -69,6 +69,6 @@
   "modifier.modulargolems.self_repair": "Self Repair",
   "modifier.modulargolems.self_repair.desc": "When idle for 10s, regenerates 1 HP per second and reduces forge count.",
   "item.mgdp.sonic_boom": "Sonic Boom Upgrade",
-  "modifier.modulargolems.sonic_boom": "Sonic Boom",
-  "modifier.modulargolems.sonic_boom.desc": "Golem can use Sonic Boom Attack. Deals 10 damage per level and knocks back enemies."
+  "item.mgdp.magic_resistance": "Magic Resistance Upgrade",
+  "item.mgdp.armor_pierce": "Armor Pierce Upgrade"
 }

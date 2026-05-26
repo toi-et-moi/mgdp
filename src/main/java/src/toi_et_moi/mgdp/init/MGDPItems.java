@@ -34,6 +34,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> HYPOTHERMIA;
 	public static final RegistryObject<SimpleUpgradeItem> SELF_REPAIR;
 	public static final RegistryObject<SimpleUpgradeItem> SONIC_BOOM;
+	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
+	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -89,6 +91,12 @@ public class MGDPItems {
 
 		CHARGED_SHIELD = Mgdp.ITEMS.register("charged_shield",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CHARGED_SHIELD.get(), 1, false));
+		ARMOR_PIERCE = Mgdp.ITEMS.register("armor_pierce",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.ARMOR_BYPASS.get(), 1, false));
+
+		MAGIC_RESISTANCE = Mgdp.ITEMS.register("magic_resistance",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.MAGIC_RES.get(), 1, false));
+
 		SONIC_BOOM = Mgdp.ITEMS.register("sonic_boom",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SONIC_BOOM.get(), 1, false));
 
@@ -132,6 +140,8 @@ public class MGDPItems {
 				event.accept(HYPOTHERMIA.get());
 				event.accept(SELF_REPAIR.get());
 				event.accept(SONIC_BOOM.get());
+				event.accept(ARMOR_PIERCE.get());
+				event.accept(MAGIC_RESISTANCE.get());
 				event.accept(VERSATILITY.get());
 			}
 		}

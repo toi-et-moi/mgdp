@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.AABB;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
@@ -69,7 +70,10 @@ public class LightningStormModifier extends GolemModifier {
             sl.addFreshEntity(bolt);
 
             target.invulnerableTime = 0;
-            target.hurt(sl.damageSources().lightningBolt(), dmg);
+            		var lightningType = sl.registryAccess()
+				.lookupOrThrow(net.minecraft.core.registries.Registries.DAMAGE_TYPE)
+				.getOrThrow(net.minecraft.world.damagesource.DamageTypes.LIGHTNING_BOLT);
+			target.hurt(new net.minecraft.world.damagesource.DamageSource(lightningType, golem), dmg);
         }
         if (selfImmune) {
             golem.clearFire();

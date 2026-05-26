@@ -136,6 +136,7 @@ public class MGDPModifiers {
 					"Hypothermia",
 					"Freezes enemies on hit and extinguishes fire in a 48-block radius.");
 
+
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",
 					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");

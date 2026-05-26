@@ -37,6 +37,11 @@ public class DragonBreathModifier extends GolemModifier {
                 e -> e.isAlive() && e != golem && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
         List<LivingEntity> selected = allTargets.stream()
+                .sorted((a, b) -> {
+                    if (a == golem.getTarget()) return -1;
+                    if (b == golem.getTarget()) return 1;
+                    return 0;
+                })
                 .limit(MAX_TARGETS[idx]).toList();
 
         float atk = (float) golem.getAttributeValue(Attributes.ATTACK_DAMAGE);

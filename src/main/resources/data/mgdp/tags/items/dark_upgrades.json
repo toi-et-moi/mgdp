@@ -12,6 +12,8 @@
     "mgdp:wither_extinction",
     "mgdp:hypothermia",
     "mgdp:self_repair",
-    "mgdp:sonic_boom"
+    "mgdp:sonic_boom",
+    "mgdp:armor_pierce",
+    "mgdp:magic_resistance"
   ]
 }

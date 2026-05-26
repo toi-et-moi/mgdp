@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "T": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "ATA",
+    "BAB"
+  ],
+  "result": {
+    "item": "mgdp:armor_pierce"
+  },
+  "show_notification": true
+}

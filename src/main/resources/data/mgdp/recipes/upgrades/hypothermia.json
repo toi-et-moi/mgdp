@@ -4,7 +4,7 @@
   "key": {
     "B": { "item": "minecraft:blue_ice" },
     "I": { "item": "minecraft:packed_ice" },
-    "C": { "item": "modulargolems:diamond_expansion_template" }
+    "C": { "item": "modulargolems:empty_upgrade" }
   },
   "pattern": [
     "BIB",

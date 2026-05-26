@@ -3,12 +3,13 @@
   "category": "misc",
   "key": {
     "S": { "item": "minecraft:sculk" },
-    "E": { "item": "minecraft:echo_shard" },
-    "T": { "item": "modulargolems:diamond_expansion_template" }
+    "E": { "item": "minecraft:sculk_shrieker" },
+    "C": { "item": "minecraft:sculk_catalyst" },
+    "T": { "item": "modulargolems:empty_upgrade" }
   },
   "pattern": [
     "SES",
-    "ETE",
+    "CTC",
     "SES"
   ],
   "result": {

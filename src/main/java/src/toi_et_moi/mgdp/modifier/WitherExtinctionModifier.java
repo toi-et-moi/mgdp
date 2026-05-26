@@ -74,8 +74,14 @@ public class WitherExtinctionModifier extends GolemModifier {
                 e -> e.isAlive() && e != golem
                         && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
-        DamageSource witherDmg = sl.damageSources().wither();
-        DamageSource explosionDmg = sl.damageSources().explosion(null);
+		var witherType = sl.registryAccess()
+				.lookupOrThrow(net.minecraft.core.registries.Registries.DAMAGE_TYPE)
+				.getOrThrow(net.minecraft.world.damagesource.DamageTypes.WITHER);
+		DamageSource witherDmg = new net.minecraft.world.damagesource.DamageSource(witherType, golem);
+		var explosionType = sl.registryAccess()
+				.lookupOrThrow(net.minecraft.core.registries.Registries.DAMAGE_TYPE)
+				.getOrThrow(net.minecraft.world.damagesource.DamageTypes.EXPLOSION);
+		DamageSource explosionDmg = new net.minecraft.world.damagesource.DamageSource(explosionType, golem);
 
         sl.sendParticles(ParticleTypes.EXPLOSION_EMITTER,
                 golem.getX(), golem.getY(), golem.getZ(), 1, 0, 0, 0, 0);

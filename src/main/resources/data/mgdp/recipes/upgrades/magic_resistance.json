@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:storage_blocks/amethyst"
+    },
+    "B": {
+      "item": "minecraft:lapis_block"
+    },
+    "T": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BTB",
+    "ABA"
+  ],
+  "result": {
+    "item": "mgdp:magic_resistance"
+  },
+  "show_notification": true
+}
