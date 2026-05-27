@@ -70,5 +70,9 @@
   "modifier.modulargolems.self_repair.desc": "When idle for 10s, regenerates 1 HP per second and reduces forge count.",
   "item.mgdp.sonic_boom": "Sonic Boom Upgrade",
   "item.mgdp.magic_resistance": "Magic Resistance Upgrade",
-  "item.mgdp.armor_pierce": "Armor Pierce Upgrade"
+  "item.mgdp.armor_pierce": "Armor Pierce Upgrade",
+  "item.mgdp.simple_iron_golem_spear": "Simple Iron Golem Spear",
+  "item.mgdp.simple_diamond_golem_spear": "Simple Diamond Golem Spear",
+  "item.mgdp.simple_netherite_golem_spear": "Simple Netherite Golem Spear",
+  "item.mgdp.simple_golem_spear": "Simple Golem Spear"
 }

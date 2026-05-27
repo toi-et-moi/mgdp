@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -37,6 +38,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Items;
+import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
@@ -51,8 +53,17 @@ public class Mgdp {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-	public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
-			() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_GOLEM_SPEAR = ITEMS.register("simple_golem_spear",
+			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), 10, 0, 10.0F, 2.0F));
+	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_IRON_GOLEM_SPEAR = ITEMS.register("simple_iron_golem_spear",
+			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1), 6, 0.3, 4.0F, 2.0F));
+	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_DIAMOND_GOLEM_SPEAR = ITEMS.register("simple_diamond_golem_spear",
+			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1), 8, 0.4, 4.0F, 2.0F));
+	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_NETHERITE_GOLEM_SPEAR = ITEMS.register("simple_netherite_golem_spear",
+			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1), 10, 0.5, 4.0F, 2.0F));
+
+		public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
+				() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
 	public static final RegistryObject<CreativeModeTab> MGDP_TAB = CREATIVE_MODE_TABS.register("mgdp_tab",
 			() -> CreativeModeTab.builder()
@@ -77,6 +88,10 @@ public class Mgdp {
 						output.accept(MGDPItems.DRAGON_BREATH.get());
 						output.accept(MGDPItems.WITHER_EXTINCTION.get());
 						output.accept(MGDPItems.CHARGED_SHIELD.get());
+						output.accept(SIMPLE_GOLEM_SPEAR.get());
+						output.accept(SIMPLE_IRON_GOLEM_SPEAR.get());
+						output.accept(SIMPLE_NETHERITE_GOLEM_SPEAR.get());
+						output.accept(SIMPLE_DIAMOND_GOLEM_SPEAR.get());
 						output.accept(IRON_CURTAIN.get());
 						output.accept(MGDPItems.HYPOTHERMIA.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
@@ -161,6 +176,19 @@ public class Mgdp {
 		event.getEntity().level().explode(golem, event.getEntity().getX(), event.getEntity().getY(),
 				event.getEntity().getZ(), 2.0F, Level.ExplosionInteraction.NONE);
 		mgdp$flintGuard--;
+	}
+
+
+
+	@SubscribeEvent
+	public void mgdp$balloonSlayer(LivingHurtEvent event) {
+		if (!(event.getSource().getDirectEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
+		if (!golem.getMainHandItem().is(SIMPLE_GOLEM_SPEAR.get())) return;
+
+		String name = event.getEntity().getName().getString().toLowerCase();
+		if (name.contains("balloon") || name.contains("气球")) {
+			event.setAmount(event.getAmount() * 66.1F);
+		}
 	}
 
 	@SubscribeEvent

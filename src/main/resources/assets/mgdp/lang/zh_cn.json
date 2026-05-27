@@ -69,12 +69,10 @@
   "modifier.modulargolems.self_repair": "自我修复",
   "modifier.modulargolems.self_repair.desc": "连续10秒未发现目标时，每秒自我修复一次。",
   "item.mgdp.sonic_boom": "音爆升级",
-  "modifier.modulargolems.sonic_boom": "音爆",
-  "modifier.modulargolems.sonic_boom.desc": "傀儡可使用音爆攻击，每级造成10点伤害并击退敌人。",
   "item.mgdp.magic_resistance": "魔法抗性升级",
-  "modifier.modulargolems.magic_resistance": "魔法抗性",
-  "modifier.modulargolems.magic_resistance.desc": "每级降低20%%受到的魔法伤害。",
   "item.mgdp.armor_pierce": "护甲穿透升级",
-  "modifier.modulargolems.armor_pierce": "护甲穿透",
-  "modifier.modulargolems.armor_pierce.desc": "攻击每级有20%%的几率无视目标护甲。"
+  "item.mgdp.simple_iron_golem_spear": "简易铁傀儡长矛",
+  "item.mgdp.simple_diamond_golem_spear": "简易钻石傀儡长矛",
+  "item.mgdp.simple_netherite_golem_spear": "简易下界合金傀儡长矛",
+  "item.mgdp.simple_golem_spear": "简易傀儡长矛"
 }

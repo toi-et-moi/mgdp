@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": { "item": "modulargolems:netherite_golem_sword" },
+    "P": { "item": "modulargolems:netherite_golem_spear" },
+    "A": { "item": "modulargolems:netherite_golem_axe" }
+  },
+  "pattern": [
+    "  S",
+    " P ",
+    "A  "
+  ],
+  "result": {
+    "item": "mgdp:simple_netherite_golem_spear"
+  },
+  "show_notification": true
+}

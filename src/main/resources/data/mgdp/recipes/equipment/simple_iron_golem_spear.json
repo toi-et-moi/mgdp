@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": { "item": "modulargolems:iron_golem_sword" },
+    "P": { "item": "modulargolems:iron_golem_spear" },
+    "A": { "item": "modulargolems:iron_golem_axe" }
+  },
+  "pattern": [
+    "  S",
+    " P ",
+    "A  "
+  ],
+  "result": {
+    "item": "mgdp:simple_iron_golem_spear"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:flint_and_steel",
+    {
+      "id": "composite_material:etherite_sword",
+      "required": false
+    }
+  ]
+}
