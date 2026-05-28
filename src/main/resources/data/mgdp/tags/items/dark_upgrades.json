@@ -13,6 +13,8 @@
     "mgdp:hypothermia",
     "mgdp:self_repair",
     "mgdp:sonic_boom",
+    "mgdp:focused_defense",
+    "mgdp:executioner",
     "mgdp:armor_pierce",
     "mgdp:magic_resistance"
   ]

@@ -34,6 +34,10 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> HYPOTHERMIA;
 	public static final RegistryObject<SimpleUpgradeItem> SELF_REPAIR;
 	public static final RegistryObject<SimpleUpgradeItem> SONIC_BOOM;
+	public static final RegistryObject<SimpleUpgradeItem> FOCUSED_DEFENSE;
+	public static final RegistryObject<SimpleUpgradeItem> EXECUTIONER;
+	public static final RegistryObject<SimpleUpgradeItem> INVISIBILITY;
+	public static final RegistryObject<SimpleUpgradeItem> TRUE_INVISIBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
 
@@ -97,6 +101,18 @@ public class MGDPItems {
 		MAGIC_RESISTANCE = Mgdp.ITEMS.register("magic_resistance",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.MAGIC_RES.get(), 1, false));
 
+		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
+
+		INVISIBILITY = Mgdp.ITEMS.register("invisibility",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.INVISIBILITY.get(), 1, false));
+
+		EXECUTIONER = Mgdp.ITEMS.register("executioner",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.EXECUTIONER.get(), 1, true));
+
+		FOCUSED_DEFENSE = Mgdp.ITEMS.register("focused_defense",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FOCUSED_DEFENSE.get(), 1, false));
+
 		SONIC_BOOM = Mgdp.ITEMS.register("sonic_boom",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SONIC_BOOM.get(), 1, false));
 
@@ -140,6 +156,11 @@ public class MGDPItems {
 				event.accept(HYPOTHERMIA.get());
 				event.accept(SELF_REPAIR.get());
 				event.accept(SONIC_BOOM.get());
+				event.accept(FOCUSED_DEFENSE.get());
+				event.accept(EXECUTIONER.get());
+				event.accept(INVISIBILITY.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
+				event.accept(TRUE_INVISIBILITY.get());
 				event.accept(ARMOR_PIERCE.get());
 				event.accept(MAGIC_RESISTANCE.get());
 				event.accept(VERSATILITY.get());

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "irons_spellbooks"
+    }
+  ],
+  "key": {
+    "F": { "item": "mgdp:invisibility" },
+    "A": { "tag": "forge:storage_blocks/amethyst" },
+    "E": { "item": "minecraft:amethyst_cluster" }
+  },
+  "pattern": [
+    "EAE",
+    "AFA",
+    "EAE"
+  ],
+  "result": {
+    "item": "mgdp:true_invisibility"
+  },
+  "show_notification": true
+}

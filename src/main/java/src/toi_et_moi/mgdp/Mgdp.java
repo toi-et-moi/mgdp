@@ -96,6 +96,11 @@ public class Mgdp {
 						output.accept(MGDPItems.HYPOTHERMIA.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
 						output.accept(MGDPItems.SONIC_BOOM.get());
+						output.accept(MGDPItems.FOCUSED_DEFENSE.get());
+						output.accept(MGDPItems.EXECUTIONER.get());
+						output.accept(MGDPItems.INVISIBILITY.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
+							output.accept(MGDPItems.TRUE_INVISIBILITY.get());
 						output.accept(MGDPItems.ARMOR_PIERCE.get());
 						output.accept(MGDPItems.MAGIC_RESISTANCE.get());
 						output.accept(MGDPItems.VERSATILITY.get());
@@ -187,7 +192,7 @@ public class Mgdp {
 
 		String name = event.getEntity().getName().getString().toLowerCase();
 		if (name.contains("balloon") || name.contains("气球")) {
-			event.setAmount(event.getAmount() * 66.1F);
+			event.setAmount(event.getAmount() * 661F);
 		}
 	}
 

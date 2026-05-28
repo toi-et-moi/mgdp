@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "item": "minecraft:netherite_axe"
+    },
+    "B": {
+      "item": "minecraft:netherite_sword"
+    },
+    "T": {
+      "item": "modulargolems:netherite_expansion_template"
+    }
+  },
+  "pattern": [
+    "WBW",
+    "BTB",
+    "WBW"
+  ],
+  "result": {
+    "item": "mgdp:executioner"
+  },
+  "show_notification": true
+}

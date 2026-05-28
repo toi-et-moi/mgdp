@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": { "item": "minecraft:stick" },
+    "G": { "item": "minecraft:fermented_spider_eye" },
+    "R": { "item": "modulargolems:empty_upgrade" },
+    "D": { "item": "minecraft:golden_carrot" }
+  },
+  "pattern": [
+    "GFG",
+    "FRF",
+    "DFD"
+  ],
+  "result": {
+    "item": "mgdp:invisibility"
+  },
+  "show_notification": true
+}

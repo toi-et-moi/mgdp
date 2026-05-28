@@ -1,6 +1,9 @@
 package src.toi_et_moi.mgdp.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.xkmc.modulargolems.content.modifier.base.PotionDefenseModifier;
+import src.toi_et_moi.mgdp.modifier.CompatUtil;
+import net.minecraft.world.effect.MobEffects;
 import src.toi_et_moi.mgdp.modifier.FlightModifier;
 import src.toi_et_moi.mgdp.modifier.HarvestCropModifier;
 import src.toi_et_moi.mgdp.modifier.PotionAuraModifier;
@@ -21,6 +24,8 @@ import src.toi_et_moi.mgdp.modifier.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
 import src.toi_et_moi.mgdp.modifier.HypothermiaModifier;
 import src.toi_et_moi.mgdp.modifier.SelfRepairModifier;
+import src.toi_et_moi.mgdp.modifier.ExecutionerModifier;
+import src.toi_et_moi.mgdp.modifier.FocusedDefenseModifier;
 import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
 
@@ -49,6 +54,10 @@ public class MGDPModifiers {
 	public static final RegistryEntry<VersatilityModifier> VERSATILITY;
 	public static final RegistryEntry<HypothermiaModifier> HYPOTHERMIA;
 	public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
+	public static final RegistryEntry<PotionDefenseModifier> TRUE_INVISIBILITY;
+	public static final RegistryEntry<PotionDefenseModifier> INVISIBILITY;
+	public static final RegistryEntry<ExecutionerModifier> EXECUTIONER;
+	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
 
 	static {
@@ -124,6 +133,22 @@ public class MGDPModifiers {
 				"Charged Shield",
 				"5 damage-absorbing shields. Each blocks 1 hit. Recharges every 15/10/5 seconds per level.");
 
+			TRUE_INVISIBILITY = reg("true_invisibility", () -> new PotionDefenseModifier(1, src.toi_et_moi.mgdp.modifier.CompatUtil::getTrueInvisibility),
+					"True Invisibility",
+					"Golem becomes truly invisible (Iron's Spells 'n Spellbooks).");
+
+			INVISIBILITY = reg("invisibility", () -> new PotionDefenseModifier(1, () -> MobEffects.INVISIBILITY),
+					"Invisibility",
+					"Golem becomes invisible.");
+
+			EXECUTIONER = reg("executioner", ExecutionerModifier::new,
+					"Executioner",
+					"Stronger against weakened enemies. Takes reduced/no damage from low-health attackers.");
+
+			FOCUSED_DEFENSE = reg("focused_defense", FocusedDefenseModifier::new,
+					"Focused Defense",
+					"Only takes damage from the golem's own target.");
+
 			SONIC_BOOM = reg("sonic_boom", SonicBoomModifier::new,
 					"Sonic Boom",
 					"Golem can use Sonic Boom Attack. Deals 10 damage per level and knocks back enemies.");
@@ -136,7 +161,6 @@ public class MGDPModifiers {
 					"Hypothermia",
 					"Freezes enemies on hit and extinguishes fire in a 48-block radius.");
 
-
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",
 					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
@@ -144,5 +168,6 @@ public class MGDPModifiers {
 
 	public static void register() {
 	}
+
 
 }

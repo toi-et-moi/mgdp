@@ -74,5 +74,15 @@
   "item.mgdp.simple_iron_golem_spear": "简易铁傀儡长矛",
   "item.mgdp.simple_diamond_golem_spear": "简易钻石傀儡长矛",
   "item.mgdp.simple_netherite_golem_spear": "简易下界合金傀儡长矛",
-  "item.mgdp.simple_golem_spear": "简易傀儡长矛"
+  "item.mgdp.simple_golem_spear": "简易傀儡长矛",
+  "item.mgdp.invisibility": "药水升级：隐身",
+  "modifier.modulargolems.invisibility": "药水升级：隐身",
+  "item.mgdp.true_invisibility": "药水升级：真实隐身",
+  "modifier.modulargolems.true_invisibility": "药水升级：真实隐身",
+  "item.mgdp.focused_defense": "专注防御升级",
+  "modifier.modulargolems.focused_defense": "专注防御",
+  "modifier.modulargolems.focused_defense.desc": "傀儡只会受到来自自身锁定目标的有源伤害。",
+  "item.mgdp.executioner": "行裁者升级",
+  "modifier.modulargolems.executioner": "处刑终曲",
+  "modifier.modulargolems.executioner.desc": "强化对弱小敌人的攻击。对生命值低于自身50%的生物造成额外100%目标生命上限的伤害，并减免/无视来自低生命值生物的伤害。"
 }

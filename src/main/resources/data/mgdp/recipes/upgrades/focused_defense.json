@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:target"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    },
+    "T": {
+      "item": "modulargolems:diamond_expansion_template"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "STS",
+    "ISI"
+  ],
+  "result": {
+    "item": "mgdp:focused_defense"
+  },
+  "show_notification": true
+}

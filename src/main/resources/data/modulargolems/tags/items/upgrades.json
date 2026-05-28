@@ -23,6 +23,10 @@
     "mgdp:self_repair",
     "mgdp:sonic_boom",
     "mgdp:armor_pierce",
-    "mgdp:magic_resistance"
+    "mgdp:magic_resistance",
+    "mgdp:invisibility",
+    "mgdp:true_invisibility",
+    "mgdp:focused_defense",
+    "mgdp:executioner"
   ]
 }

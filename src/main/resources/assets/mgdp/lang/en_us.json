@@ -74,5 +74,17 @@
   "item.mgdp.simple_iron_golem_spear": "Simple Iron Golem Spear",
   "item.mgdp.simple_diamond_golem_spear": "Simple Diamond Golem Spear",
   "item.mgdp.simple_netherite_golem_spear": "Simple Netherite Golem Spear",
-  "item.mgdp.simple_golem_spear": "Simple Golem Spear"
+  "item.mgdp.simple_golem_spear": "Simple Golem Spear",
+  "item.mgdp.invisibility": "Invisibility Upgrade",
+  "modifier.modulargolems.invisibility": "Invisibility",
+  "modifier.modulargolems.invisibility.desc": "Golem becomes invisible.",
+  "item.mgdp.true_invisibility": "True Invisibility Upgrade",
+  "modifier.modulargolems.true_invisibility": "True Invisibility",
+  "modifier.modulargolems.true_invisibility.desc": "Golem becomes truly invisible (Iron's Spells 'n Spellbooks).",
+  "item.mgdp.focused_defense": "Focused Defense Upgrade",
+  "modifier.modulargolems.focused_defense": "Focused Defense",
+  "modifier.modulargolems.focused_defense.desc": "Only takes damage from the golem's own target.",
+  "item.mgdp.executioner": "Executioner Upgrade",
+  "modifier.modulargolems.executioner": "Executioner",
+  "modifier.modulargolems.executioner.desc": "Stronger against weakened enemies. Deals bonus damage equal to 100% of target's max HP. Reduces/ignores damage from low-health attackers."
 }

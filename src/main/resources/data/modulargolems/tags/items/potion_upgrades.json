@@ -1,5 +1,7 @@
 {
   "values": [
-    "mgdp:potion_aura"
+    "mgdp:potion_aura",
+    "mgdp:invisibility",
+    "mgdp:true_invisibility"
   ]
 }
