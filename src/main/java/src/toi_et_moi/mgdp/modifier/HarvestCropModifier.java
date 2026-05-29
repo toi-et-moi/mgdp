@@ -11,12 +11,20 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -33,6 +41,14 @@ public class HarvestCropModifier extends GolemModifier {
 	public List<MutableComponent> getDetail(int v) {
 		int range = MGConfig.COMMON.basePickupRange.get();
 		return List.of(Component.translatable(getDescriptionId() + ".desc", range).withStyle(ChatFormatting.GREEN));
+	}
+
+	@Override
+    public void onAttacked(AbstractGolemEntity<?, ?> entity, LivingAttackEvent event, int level) {
+		if (event.getSource().is(DamageTypes.SWEET_BERRY_BUSH)
+				|| event.getSource().is(DamageTypes.CACTUS)) {
+            event.setCanceled(true);
+		}
 	}
 
 	@Override
@@ -88,10 +104,60 @@ public class HarvestCropModifier extends GolemModifier {
 					} else if (isTowerCrop(block) && level.getBlockState(pos.below()).getBlock() == block) {
 						Block.dropResources(state, level, pos);
 						level.removeBlock(pos, false);
+					} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
+							&& (block instanceof GrowingPlantHeadBlock
+								|| block instanceof VineBlock
+								|| block instanceof GrowingPlantBodyBlock)) {
+						Block.dropResources(state, level, pos, null, golem, golem.getMainHandItem());
+						level.levelEvent(2001, pos, Block.getId(state));
+						level.removeBlock(pos, false);
+					} else if (block instanceof AmethystClusterBlock && block == Blocks.AMETHYST_CLUSTER) {
+						Direction facing = state.getValue(AmethystClusterBlock.FACING);
+						if (level.getBlockState(pos.relative(facing.getOpposite())).is(Blocks.BUDDING_AMETHYST)) {
+							level.destroyBlock(pos, true);
+						}
 					} else if (block instanceof StemGrownBlock) {
 						if (isAttachedToStem(level, pos)) {
 							level.destroyBlock(pos, true);
 						}
+					} else if ((block instanceof SculkSensorBlock || block instanceof SculkShriekerBlock)
+							&& golem.getMainHandItem().getItem() instanceof HoeItem) {
+						level.levelEvent(2001, pos, Block.getId(state));
+						Block.dropResources(state, level, pos, null, golem, golem.getMainHandItem());
+						level.removeBlock(pos, false);
+					} else if (golem.getMainHandItem().getItem() instanceof AxeItem
+							&& (state.is(BlockTags.LOGS) || state.is(BlockTags.LEAVES))) {
+						ItemStack tool = golem.getMainHandItem();
+						boolean dualWield = golem.getOffhandItem().getItem() instanceof AxeItem;
+						if (state.is(BlockTags.LOGS) && !isTreeLog(level, pos, dualWield)) {
+							continue;
+						}
+						if (state.is(BlockTags.LEAVES) && !dualWield) {
+							boolean adjProtected = false;
+							for (Direction dir : Direction.values()) {
+								BlockPos n = pos.relative(dir);
+								if (level.getBlockState(n).is(BlockTags.LOGS) && !isTreeLog(level, n, false)) {
+									adjProtected = true;
+									break;
+								}
+							}
+							if (adjProtected) continue;
+						}
+						Block.dropResources(state, level, pos, null, golem, tool);
+						level.levelEvent(2001, pos, Block.getId(state));
+						level.removeBlock(pos, false);
+					} else if (golem.getMainHandItem().getItem() instanceof SwordItem
+							&& block == Blocks.COBWEB) {
+						ItemStack tool = golem.getMainHandItem();
+						Block.dropResources(state, level, pos, null, golem, tool);
+						level.levelEvent(2001, pos, Block.getId(state));
+						level.removeBlock(pos, false);
+					} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
+							&& state.is(BlockTags.FLOWERS)) {
+						ItemStack tool = golem.getMainHandItem();
+						Block.dropResources(state, level, pos, null, golem, tool);
+						level.levelEvent(2001, pos, Block.getId(state));
+						level.removeBlock(pos, false);
 					}
 				}
 			}
@@ -270,6 +336,35 @@ public class HarvestCropModifier extends GolemModifier {
 			mushroomColonyClass = null;
 			return false;
 		}
+	}
+
+
+	// --- Tree detection: BFS over connected logs, checks horizontal count and nearby leaves ---
+
+	private static boolean isTreeLog(Level level, BlockPos pos, boolean dualWield) {
+		if (dualWield) return true; // dual-wielding axes bypasses all safety checks
+		Set<BlockPos> visited = new HashSet<>();
+		Queue<BlockPos> queue = new LinkedList<>();
+		queue.add(pos);
+		visited.add(pos);
+		int horizontalCount = 0;
+		boolean hasLeaves = false;
+		while (!queue.isEmpty()) {
+			BlockPos current = queue.poll();
+			for (Direction dir : Direction.values()) {
+				BlockPos neighbor = current.relative(dir);
+				if (visited.contains(neighbor)) continue;
+				if (!level.isLoaded(neighbor)) continue;
+				BlockState state = level.getBlockState(neighbor);
+				if (state.is(BlockTags.LEAVES)) hasLeaves = true;
+				if (state.is(BlockTags.LOGS) && visited.size() < 64) {
+					visited.add(neighbor);
+					queue.add(neighbor);
+					if (dir.getAxis() != Direction.Axis.Y) horizontalCount++;
+				}
+			}
+		}
+		return hasLeaves && horizontalCount <= 10;
 	}
 
 	// --- L2Harvester HarvestableBlock compat (reflection, soft dependency) ---
