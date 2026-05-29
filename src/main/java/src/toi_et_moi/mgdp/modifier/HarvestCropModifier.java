@@ -16,7 +16,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class HarvestCropModifier extends GolemModifier {
@@ -74,13 +76,19 @@ public class HarvestCropModifier extends GolemModifier {
 							Block.popResource(level, pos, drop);
 						}
 						harvestedFlowers.add(pos);
+					} else if (tryHarvestPineapple(level, pos, state, block)) {
+						// handled: FruitsDelight pineapple
+					} else if (tryHarvestMushroomColony(level, pos, state, block)) {
+						// handled: FarmersDelight mushroom colony
+					} else if (tryHarvestModCrop(level, pos, state)) {
+						// handled by L2Harvester HarvestableBlock API
 					} else if (isAgeBasedCrop(block) && isMature(state, block)) {
 						Block.dropResources(state, level, pos);
 						level.setBlock(pos, getReplantState(state, block), Block.UPDATE_CLIENTS);
 					} else if (isTowerCrop(block) && level.getBlockState(pos.below()).getBlock() == block) {
 						Block.dropResources(state, level, pos);
 						level.removeBlock(pos, false);
-					} else if (block instanceof MelonBlock || block instanceof PumpkinBlock) {
+					} else if (block instanceof StemGrownBlock) {
 						if (isAttachedToStem(level, pos)) {
 							level.destroyBlock(pos, true);
 						}
@@ -149,7 +157,7 @@ public class HarvestCropModifier extends GolemModifier {
 		}
 	}
 
-	// --- stem-attached detection for melon/pumpkin ---
+	// --- stem-attached detection for melon/pumpkin/honeydew ---
 
 	private boolean isAttachedToStem(Level level, BlockPos pos) {
 		for (Direction dir : Direction.Plane.HORIZONTAL) {
@@ -200,5 +208,110 @@ public class HarvestCropModifier extends GolemModifier {
 		if (block instanceof CaveVinesPlantBlock) return state.setValue(CaveVinesPlantBlock.BERRIES, false);
 		if (block instanceof CocoaBlock) return state.setValue(CocoaBlock.AGE, 0);
 		return state;
+	}
+
+	// --- FruitsDelight pineapple special case (soft dependency, reflection) ---
+
+	private static boolean pineappleChecked = false;
+	private static Class<?> pineappleBlockClass;
+
+	private boolean tryHarvestPineapple(Level level, BlockPos pos, BlockState state, Block block) {
+		if (!initPineapple()) return false;
+		if (!pineappleBlockClass.isInstance(block)) return false;
+		try {
+			int age = state.getValue(BlockStateProperties.AGE_4);
+			if (age < 4) return false;
+			Block.dropResources(state, level, pos);
+			level.setBlock(pos, state.setValue(BlockStateProperties.AGE_4, 0), Block.UPDATE_CLIENTS);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private static boolean initPineapple() {
+		if (pineappleChecked) return pineappleBlockClass != null;
+		pineappleChecked = true;
+		try {
+			pineappleBlockClass = Class.forName("dev.xkmc.fruitsdelight.content.block.PineappleBlock");
+			return true;
+		} catch (Exception e) {
+			pineappleBlockClass = null;
+			return false;
+		}
+	}
+
+	// --- FarmersDelight mushroom colony special case (soft dependency, reflection) ---
+
+	private static boolean fdMushroomChecked = false;
+	private static Class<?> mushroomColonyClass;
+
+	private boolean tryHarvestMushroomColony(Level level, BlockPos pos, BlockState state, Block block) {
+		if (!initMushroomColony()) return false;
+		if (!mushroomColonyClass.isInstance(block)) return false;
+		try {
+			int age = state.getValue(BlockStateProperties.AGE_3);
+			if (age < 3) return false;
+			Block.dropResources(state, level, pos);
+			level.setBlock(pos, state.setValue(BlockStateProperties.AGE_3, 0), Block.UPDATE_CLIENTS);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private static boolean initMushroomColony() {
+		if (fdMushroomChecked) return mushroomColonyClass != null;
+		fdMushroomChecked = true;
+		try {
+			mushroomColonyClass = Class.forName("vectorwing.farmersdelight.common.block.MushroomColonyBlock");
+			return true;
+		} catch (Exception e) {
+			mushroomColonyClass = null;
+			return false;
+		}
+	}
+
+	// --- L2Harvester HarvestableBlock compat (reflection, soft dependency) ---
+
+	private static boolean l2HarvesterChecked = false;
+	private static Class<?> harvestableBlockClass;
+	private static Method harvestableGetResult;
+	private static Method harvestResultDrops;
+	private static Method harvestResultUpdateState;
+
+	private boolean tryHarvestModCrop(Level level, BlockPos pos, BlockState state) {
+		if (!initL2Harvester()) return false;
+		Block block = state.getBlock();
+		if (!harvestableBlockClass.isInstance(block)) return false;
+		try {
+			Object result = harvestableGetResult.invoke(block, level, state, pos);
+			if (result == null) return true; // block is present but not mature
+			@SuppressWarnings("unchecked")
+			List<ItemStack> drops = (List<ItemStack>) harvestResultDrops.invoke(result);
+			for (ItemStack stack : drops) {
+				Block.popResource(level, pos, stack);
+			}
+			harvestResultUpdateState.invoke(result, level, pos);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private static boolean initL2Harvester() {
+		if (l2HarvesterChecked) return harvestableBlockClass != null;
+		l2HarvesterChecked = true;
+		try {
+			harvestableBlockClass = Class.forName("dev.xkmc.l2harvester.api.HarvestableBlock");
+			harvestableGetResult = harvestableBlockClass.getMethod("getHarvestResult", Level.class, BlockState.class, BlockPos.class);
+			Class<?> resultClass = Class.forName("dev.xkmc.l2harvester.api.HarvestResult");
+			harvestResultDrops = resultClass.getMethod("drops");
+			harvestResultUpdateState = resultClass.getMethod("updateState", Level.class, BlockPos.class);
+			return true;
+		} catch (Exception e) {
+			harvestableBlockClass = null;
+			return false;
+		}
 	}
 }
