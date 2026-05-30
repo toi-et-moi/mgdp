@@ -28,6 +28,7 @@ import src.toi_et_moi.mgdp.modifier.ExecutionerModifier;
 import src.toi_et_moi.mgdp.modifier.FocusedDefenseModifier;
 import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
+import src.toi_et_moi.mgdp.modifier.TotemicModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -59,6 +60,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<ExecutionerModifier> EXECUTIONER;
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
+	public static final RegistryEntry<TotemicModifier> TOTEMIC;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -164,6 +166,11 @@ public class MGDPModifiers {
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",
 					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
+
+			TOTEMIC = reg("totemic", TotemicModifier::new,
+				"Totemic Apple",
+				"Every %ss, grants absorption hearts equal to 10%% of max health per level.");
+
 	}
 
 	public static void register() {

@@ -19,8 +19,14 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -146,6 +152,8 @@ public class HarvestCropModifier extends GolemModifier {
 						Block.dropResources(state, level, pos, null, golem, tool);
 						level.levelEvent(2001, pos, Block.getId(state));
 						level.removeBlock(pos, false);
+					} else if (block instanceof BushBlock && tryRightClickHarvest(level, pos, state, golem)) {
+						// handled by FakePlayer right-click simulation
 					} else if (golem.getMainHandItem().getItem() instanceof SwordItem
 							&& block == Blocks.COBWEB) {
 						ItemStack tool = golem.getMainHandItem();
@@ -365,6 +373,21 @@ public class HarvestCropModifier extends GolemModifier {
 			}
 		}
 		return hasLeaves && horizontalCount <= 10;
+	}
+
+	// --- FakePlayer right-click harvest fallback (兼容支持右键收获的模组作物) ---
+
+	private static FakePlayer fakePlayer;
+
+	private boolean tryRightClickHarvest(Level level, BlockPos pos, BlockState state, AbstractGolemEntity<?, ?> golem) {
+		if (!(level instanceof ServerLevel sl)) return false;
+		if (fakePlayer == null || fakePlayer.level() != level) {
+			fakePlayer = FakePlayerFactory.getMinecraft(sl);
+		}
+		fakePlayer.moveTo(golem.getX(), golem.getY(), golem.getZ(), 0, 0);
+		BlockHitResult hitResult = new BlockHitResult(Vec3.atCenterOf(pos), Direction.UP, pos, false);
+		InteractionResult result = state.use(level, fakePlayer, InteractionHand.MAIN_HAND, hitResult);
+		return result.consumesAction();
 	}
 
 	// --- L2Harvester HarvestableBlock compat (reflection, soft dependency) ---

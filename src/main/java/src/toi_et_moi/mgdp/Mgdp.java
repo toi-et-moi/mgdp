@@ -104,6 +104,9 @@ public class Mgdp {
 						output.accept(MGDPItems.ARMOR_PIERCE.get());
 						output.accept(MGDPItems.MAGIC_RESISTANCE.get());
 						output.accept(MGDPItems.VERSATILITY.get());
+						output.accept(MGDPItems.DAMAGE_CAP.get());
+						output.accept(MGDPItems.TOTEMIC.get());
+						output.accept(MGDPItems.ENCHANTED_TOTEMIC.get());
 					})
 					.build());
 

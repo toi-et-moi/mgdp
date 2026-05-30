@@ -40,6 +40,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> TRUE_INVISIBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
+	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
+	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -100,6 +103,15 @@ public class MGDPItems {
 
 		MAGIC_RESISTANCE = Mgdp.ITEMS.register("magic_resistance",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.MAGIC_RES.get(), 1, false));
+
+		DAMAGE_CAP = Mgdp.ITEMS.register("damage_cap",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.DAMAGE_CAP.get(), 1, true));
+
+		TOTEMIC = Mgdp.ITEMS.register("totemic",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 1, false));
+
+		ENCHANTED_TOTEMIC = Mgdp.ITEMS.register("enchanted_totemic",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 2, true));
 
 		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
@@ -164,6 +176,9 @@ public class MGDPItems {
 				event.accept(ARMOR_PIERCE.get());
 				event.accept(MAGIC_RESISTANCE.get());
 				event.accept(VERSATILITY.get());
+				event.accept(DAMAGE_CAP.get());
+				event.accept(TOTEMIC.get());
+				event.accept(ENCHANTED_TOTEMIC.get());
 			}
 		}
 	}

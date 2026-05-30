@@ -21,6 +21,7 @@
     "mgdp:simple_diamond_golem_spear",
     "mgdp:simple_netherite_golem_spear",
     "mgdp:focused_defense",
-    "mgdp:executioner"
+    "mgdp:executioner",
+    "mgdp:damage_cap"
   ]
 }

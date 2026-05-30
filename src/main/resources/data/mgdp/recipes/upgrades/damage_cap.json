@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:netherite_block"
+    },
+    "N": {
+      "item": "modulargolems:netherite"
+    },
+    "T": {
+      "item": "modulargolems:netherite_expansion_template"
+    }
+  },
+  "pattern": [
+    "TAT",
+    "ANA",
+    "TAT"
+  ],
+  "result": {
+    "item": "mgdp:damage_cap"
+  },
+  "show_notification": true
+}
