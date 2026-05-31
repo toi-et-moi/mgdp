@@ -7,13 +7,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import src.toi_et_moi.mgdp.modifier.FlightPathNavigation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.ModList;
 import net.minecraft.client.Minecraft;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
@@ -180,4 +181,33 @@ public abstract class AbstractGolemEntityMixin extends Mob {
         toRemove.forEach(attr::removeModifier);
     }
 
+
+	@Inject(method = "aiStep", at = @At("TAIL"))
+	private void mgdp$dodgeProjectiles(CallbackInfo ci) {
+		AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+		if (golem.level().isClientSide()) return;
+		if (golem.tickCount % 2 != 0) return;
+
+		var projectiles = golem.level().getEntitiesOfClass(Projectile.class,
+				golem.getBoundingBox().inflate(6));
+		Vec3 golemPos = golem.position();
+
+		for (Projectile proj : projectiles) {
+			if (proj.getOwner() == golem || proj.getOwner() == golem.getOwner()) continue;
+			Vec3 vel = proj.getDeltaMovement();
+			if (vel.lengthSqr() < 0.01) continue;
+
+			Vec3 rel = golemPos.subtract(proj.position());
+			double t = rel.dot(vel) / vel.lengthSqr();
+			if (t < 0 || t > 15) continue;
+
+			Vec3 closest = proj.position().add(vel.scale(t));
+			if (closest.distanceToSqr(golemPos) > 9) continue;
+
+			Vec3 dodge = vel.cross(new Vec3(0, 1, 0)).normalize();
+			if (dodge.lengthSqr() < 0.5) dodge = new Vec3(1, 0, 0);
+			golem.setDeltaMovement(golem.getDeltaMovement().add(dodge.scale(0.5)));
+			break;
+		}
+	}
 }
