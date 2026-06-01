@@ -107,6 +107,7 @@ public class Mgdp {
 						output.accept(MGDPItems.DAMAGE_CAP.get());
 						output.accept(MGDPItems.TOTEMIC.get());
 						output.accept(MGDPItems.ENCHANTED_TOTEMIC.get());
+						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 					})
 					.build());
 

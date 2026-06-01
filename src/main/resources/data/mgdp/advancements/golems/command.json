@@ -1,0 +1,38 @@
+{
+  "parent": "mgdp:root",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "modulargolems:omnipotent_wand_command"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.golems.command.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "modulargolems:omnipotent_wand_command"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.golems.command.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

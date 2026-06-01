@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:blue_wool"
+    },
+    "B": {
+      "item": "minecraft:bone_block"
+    },
+    "P": {
+      "item": "minecraft:pink_wool"
+    },
+    "T": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "L": {
+      "item": "minecraft:light_blue_wool"
+    }
+  },
+  "pattern": [
+    "BLB",
+    "ATA",
+    "BPB"
+  ],
+  "result": {
+    "item": "mgdp:projectile_dodge"
+  },
+  "show_notification": true
+}

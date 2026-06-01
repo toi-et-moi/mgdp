@@ -1,0 +1,35 @@
+{
+  "parent": "mgdp:root",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "mgdp:dark_upgrades"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.upgrades.new_upgrade.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "mgdp:diamond_attack"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.upgrades.new_upgrade.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

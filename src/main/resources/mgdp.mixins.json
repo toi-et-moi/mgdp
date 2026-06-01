@@ -12,7 +12,8 @@
     "EnderDragonMixin",
     "LivingEntityMixin",
     "DragonFireballMixin",
-    "DragonBreathHitMixin"
+    "DragonBreathHitMixin",
+    "ShootUtilsMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

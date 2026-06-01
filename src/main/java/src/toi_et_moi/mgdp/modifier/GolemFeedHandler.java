@@ -33,9 +33,9 @@ public class GolemFeedHandler {
 		if (!(event.getTarget() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		Player player = event.getEntity();
 		if (!golem.canModify(player)) return;
-		if (golem.getHealth() >= golem.getMaxHealth()) return;
-
 		ItemStack stack = event.getItemStack();
+		if (!stack.is(Items.MILK_BUCKET) && golem.getHealth() >= golem.getMaxHealth()) return;
+
 		if (tryConsume(golem, stack)) {
 			if (!player.getAbilities().instabuild) {
 				ItemStack container = getContainer(stack);
@@ -56,7 +56,11 @@ public class GolemFeedHandler {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
 		if (golem.tickCount % 40 != 0) return;
-		if (golem.getHealth() >= golem.getMaxHealth()) return;
+		boolean hasMilk = false;
+		for (InteractionHand h : InteractionHand.values()) {
+			if (golem.getItemInHand(h).is(Items.MILK_BUCKET)) hasMilk = true;
+		}
+		if (!hasMilk && golem.getHealth() >= golem.getMaxHealth()) return;
 
 		for (InteractionHand hand : InteractionHand.values()) {
 			ItemStack stack = golem.getItemInHand(hand);

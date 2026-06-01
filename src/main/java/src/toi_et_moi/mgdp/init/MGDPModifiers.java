@@ -28,6 +28,7 @@ import src.toi_et_moi.mgdp.modifier.ExecutionerModifier;
 import src.toi_et_moi.mgdp.modifier.FocusedDefenseModifier;
 import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
+import src.toi_et_moi.mgdp.modifier.ProjectileDodgeModifier;
 import src.toi_et_moi.mgdp.modifier.TotemicModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -60,6 +61,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<ExecutionerModifier> EXECUTIONER;
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
+	public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
 	public static final RegistryEntry<TotemicModifier> TOTEMIC;
 
 	static {
@@ -166,6 +168,10 @@ public class MGDPModifiers {
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",
 					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
+
+			PROJECTILE_DODGE = reg("projectile_dodge", ProjectileDodgeModifier::new,
+				"Projectile Dodge",
+				"Dodges incoming projectiles and fast-moving threats.");
 
 			TOTEMIC = reg("totemic", TotemicModifier::new,
 				"Totemic Apple",

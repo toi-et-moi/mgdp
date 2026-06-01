@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "mgdp:flight"
+    },
+    "title": {
+      "translate": "advancements.mgdp.root.title"
+    },
+    "description": {
+      "translate": "advancements.mgdp.root.description"
+    },
+    "background": "minecraft:textures/block/netherite_block.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "modulargolems:omnipotent_wand_command"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "mgdp:golems/command",
+  "criteria": {
+    "0": {
+      "trigger": "modulargolems:kill",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:wither"
+        }
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.golems.kill_wither.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:nether_star"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.golems.kill_wither.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

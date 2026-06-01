@@ -1,0 +1,37 @@
+{
+  "parent": "mgdp:upgrades/new_upgrade",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mgdp:hypothermia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.upgrades.hypothermia.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "mgdp:hypothermia"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.upgrades.hypothermia.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

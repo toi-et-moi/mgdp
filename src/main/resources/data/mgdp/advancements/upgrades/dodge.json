@@ -1,0 +1,37 @@
+{
+  "parent": "mgdp:upgrades/new_upgrade",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mgdp:projectile_dodge"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.upgrades.dodge.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "mgdp:projectile_dodge"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.upgrades.dodge.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

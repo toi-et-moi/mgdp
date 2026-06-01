@@ -1,0 +1,38 @@
+{
+  "parent": "mgdp:upgrades/new_upgrade",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mgdp:bell_of_avici"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.upgrades.bell_of_avici.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "mgdp:bell_of_avici"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.upgrades.bell_of_avici.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

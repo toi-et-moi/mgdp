@@ -43,6 +43,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
 	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -113,6 +114,9 @@ public class MGDPItems {
 		ENCHANTED_TOTEMIC = Mgdp.ITEMS.register("enchanted_totemic",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 2, true));
 
+		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
+
 		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
 
@@ -179,6 +183,7 @@ public class MGDPItems {
 				event.accept(DAMAGE_CAP.get());
 				event.accept(TOTEMIC.get());
 				event.accept(ENCHANTED_TOTEMIC.get());
+				event.accept(PROJECTILE_DODGE.get());
 			}
 		}
 	}
