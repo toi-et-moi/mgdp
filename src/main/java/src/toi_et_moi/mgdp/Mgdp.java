@@ -107,6 +107,13 @@ public class Mgdp {
 						output.accept(MGDPItems.DAMAGE_CAP.get());
 						output.accept(MGDPItems.TOTEMIC.get());
 						output.accept(MGDPItems.ENCHANTED_TOTEMIC.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("l2hostility")) {
+							output.accept(MGDPItems.ADAPTIVE.get());
+							output.accept(MGDPItems.DISPELL.get());
+							output.accept(MGDPItems.DEMENTOR.get());
+							output.accept(MGDPItems.DRAIN.get());
+							output.accept(MGDPItems.REPRINT.get());
+						}
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 					})
 					.build());

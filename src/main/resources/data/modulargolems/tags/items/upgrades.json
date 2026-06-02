@@ -1,5 +1,10 @@
 {
   "values": [
+    "mgdp:hostility_reprint",
+    "mgdp:hostility_drain",
+    "mgdp:hostility_dementor",
+    "mgdp:hostility_dispell",
+    "mgdp:hostility_adaptive",
     "mgdp:projectile_dodge",
     "mgdp:enchanted_totemic",
     "mgdp:totemic",

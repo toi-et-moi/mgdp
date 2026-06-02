@@ -4,7 +4,17 @@
     "layer0": "mgdp:item/upgrades/spirit"
   },
   "overrides": [
-    {"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/spirit_purple"},
-    {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/spirit_blue"}
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 0.5
+      },
+      "model": "mgdp:item/spirit_purple"
+    },
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 1
+      },
+      "model": "mgdp:item/spirit_blue"
+    }
   ]
 }

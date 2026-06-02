@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2hostility"
+    }
+  ],
+  "key": {
+    "A": {
+      "item": "l2hostility:book_of_reprint"
+    },
+    "T": {
+      "item": "l2hostility:reprint"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "TAT",
+    "AEA",
+    "TAT"
+  ],
+  "result": {
+    "item": "mgdp:hostility_reprint"
+  },
+  "show_notification": true
+}

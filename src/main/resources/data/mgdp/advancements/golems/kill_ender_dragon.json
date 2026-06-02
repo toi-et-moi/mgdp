@@ -4,9 +4,7 @@
     "0": {
       "trigger": "modulargolems:kill",
       "conditions": {
-        "entity": {
-          "type": "minecraft:ender_dragon"
-        }
+        "type": "minecraft:ender_dragon"
       }
     }
   },

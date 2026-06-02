@@ -4,7 +4,17 @@
     "layer0": "mgdp:item/upgrades/potion_aura"
   },
   "overrides": [
-    {"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/potion_aura_purple"},
-    {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/potion_aura_blue"}
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 0.5
+      },
+      "model": "mgdp:item/potion_aura_purple"
+    },
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 1
+      },
+      "model": "mgdp:item/potion_aura_blue"
+    }
   ]
 }

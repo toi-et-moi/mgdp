@@ -29,6 +29,9 @@ import src.toi_et_moi.mgdp.modifier.FocusedDefenseModifier;
 import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
 import src.toi_et_moi.mgdp.modifier.ProjectileDodgeModifier;
+import src.toi_et_moi.mgdp.modifier.DementorModifier;
+import src.toi_et_moi.mgdp.modifier.DrainModifier;
+import src.toi_et_moi.mgdp.modifier.ReprintModifier;
 import src.toi_et_moi.mgdp.modifier.TotemicModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
@@ -62,6 +65,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
 	public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
+	public static final RegistryEntry<DementorModifier> DEMENTOR;
+	public static final RegistryEntry<DrainModifier> DRAIN;
+	public static final RegistryEntry<ReprintModifier> REPRINT;
 	public static final RegistryEntry<TotemicModifier> TOTEMIC;
 
 	static {
@@ -168,6 +174,18 @@ public class MGDPModifiers {
 			VERSATILITY = reg("versatility", VersatilityModifier::new,
 					"Versatility",
 					"The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
+
+			DEMENTOR = reg("hostility_dementor", DementorModifier::new,
+				"Hostility Upgrade: Dementor",
+				"Reduces incoming damage with a nonlinear formula.");
+
+			DRAIN = reg("hostility_drain", DrainModifier::new,
+				"Hostility Upgrade: Drain",
+				"Deals extra damage per negative effect on target and steals beneficial effects.");
+
+			REPRINT = reg("hostility_reprint", ReprintModifier::new,
+				"Hostility Upgrade: Reprint",
+				"Deals bonus damage based on target's total enchantment levels.");
 
 			PROJECTILE_DODGE = reg("projectile_dodge", ProjectileDodgeModifier::new,
 				"Projectile Dodge",

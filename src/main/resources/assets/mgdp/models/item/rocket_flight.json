@@ -4,7 +4,17 @@
     "layer0": "mgdp:item/upgrades/rocket_flight"
   },
   "overrides": [
-    {"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/rocket_flight_purple"},
-    {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/rocket_flight_blue"}
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 0.5
+      },
+      "model": "mgdp:item/rocket_flight_purple"
+    },
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 1
+      },
+      "model": "mgdp:item/rocket_flight_blue"
+    }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "mgdp:hostility_reprint",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_drain",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_dementor",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_dispell",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_adaptive",
+      "required": false
+    }
+  ]
+}

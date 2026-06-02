@@ -1,20 +1,20 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mgdp:item/upgrades/projectile_dodge"
+    "layer0": "mgdp:item/upgrades/hostility_adaptive"
   },
   "overrides": [
     {
       "predicate": {
         "modulargolems:blue_arrow": 0.5
       },
-      "model": "mgdp:item/projectile_dodge_dark"
+      "model": "mgdp:item/hostility_adaptive_dark"
     },
     {
       "predicate": {
         "modulargolems:blue_arrow": 1
       },
-      "model": "mgdp:item/projectile_dodge_dark"
+      "model": "mgdp:item/hostility_adaptive_dark"
     }
   ]
 }

@@ -1,1 +1,20 @@
-{"parent": "item/generated", "textures": {"layer0": "mgdp:item/upgrades/crimson_attack"}, "overrides": [{"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/crimson_attack_dark"}, {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/crimson_attack_dark"}]}
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mgdp:item/upgrades/crimson_attack"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 0.5
+      },
+      "model": "mgdp:item/crimson_attack_dark"
+    },
+    {
+      "predicate": {
+        "modulargolems:blue_arrow": 1
+      },
+      "model": "mgdp:item/crimson_attack_dark"
+    }
+  ]
+}

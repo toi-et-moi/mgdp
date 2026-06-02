@@ -110,5 +110,16 @@
   "advancements.mgdp.golems.iron_curtain.title": "警告：铁幕装置已部署！",
   "advancements.mgdp.golems.iron_curtain.description": "铁幕装置已部署，咱们的钢铁洪流将碾碎一切敌人。——红魔馆将带领咱们走向胜利。",
   "advancements.mgdp.upgrades.bell_of_avici.title": "无间之钟　～ Infinite Nightmare",
-  "advancements.mgdp.upgrades.bell_of_avici.description": "制作无间之钟升级"
+  "advancements.mgdp.upgrades.bell_of_avici.description": "制作无间之钟升级",
+  "item.mgdp.hostility_adaptive": "恶意升级：适应",
+  "item.mgdp.hostility_dispell": "恶意升级：破魔",
+  "item.mgdp.hostility_dementor": "恶意升级：摄魂",
+  "item.mgdp.hostility_drain": "恶意升级：嗜魔",
+  "item.mgdp.hostility_reprint": "恶意升级：复印",
+  "modifier.modulargolems.hostility_dementor": "恶意词条：摄魂",
+  "modifier.modulargolems.hostility_dementor.desc": "抵抗物理伤害，伤害穿透护甲。",
+  "modifier.modulargolems.hostility_drain": "恶意词条：嗜魔",
+  "modifier.modulargolems.hostility_drain.desc": "目标每有一个负面效果额外造成%s%%伤害，负面效果时间延长%s%%（最多延长至%s秒），窃取%s个正面效果。",
+  "modifier.modulargolems.hostility_reprint": "恶意词条：复印",
+  "modifier.modulargolems.hostility_reprint.desc": "目标装备附魔点数每有一点，傀儡伤害提升2%，x级附魔提供2^x附魔点数。攻击时复制主手物品附魔到副手物品上，并且会将主手物品附魔自动施加到周围容器内物品上。"
 }

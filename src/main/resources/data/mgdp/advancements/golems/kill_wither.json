@@ -4,9 +4,7 @@
     "0": {
       "trigger": "modulargolems:kill",
       "conditions": {
-        "entity": {
-          "type": "minecraft:wither"
-        }
+        "type": "minecraft:wither"
       }
     }
   },

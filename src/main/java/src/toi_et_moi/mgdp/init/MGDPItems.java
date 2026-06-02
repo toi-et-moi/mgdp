@@ -43,7 +43,12 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
 	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> DEMENTOR;
+	public static final RegistryObject<SimpleUpgradeItem> DRAIN;
+	public static final RegistryObject<SimpleUpgradeItem> REPRINT;
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
+	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
+	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -92,7 +97,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ROCKET_FLIGHT.get(), 1, false));
 
 		DRAGON_BREATH = Mgdp.ITEMS.register("dragon_breath",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAGON_BREATH.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAGON_BREATH.get(), 1, false));
 
 		WITHER_EXTINCTION = Mgdp.ITEMS.register("wither_extinction",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WITHER_EXTINCTION.get(), 1, true));
@@ -113,6 +118,23 @@ public class MGDPItems {
 
 		ENCHANTED_TOTEMIC = Mgdp.ITEMS.register("enchanted_totemic",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 2, true));
+
+		ADAPTIVE = Mgdp.ITEMS.register("hostility_adaptive",
+				() -> new SimpleUpgradeItem(new Item.Properties(),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("l2hostility") ? dev.xkmc.modulargolems.compat.materials.l2hostility.LHCompatRegistry.LH_ADAPTIVE.get() : null, 1, false));
+
+		DISPELL = Mgdp.ITEMS.register("hostility_dispell",
+				() -> new SimpleUpgradeItem(new Item.Properties(),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("l2hostility") ? dev.xkmc.modulargolems.compat.materials.l2hostility.LHCompatRegistry.LH_DISPELL.get() : null, 1, false));
+
+		DEMENTOR = Mgdp.ITEMS.register("hostility_dementor",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DEMENTOR.get(), 1, false));
+
+		DRAIN = Mgdp.ITEMS.register("hostility_drain",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAIN.get(), 1, false));
+
+		REPRINT = Mgdp.ITEMS.register("hostility_reprint",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REPRINT.get(), 1, false));
 
 		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
@@ -183,6 +205,13 @@ public class MGDPItems {
 				event.accept(DAMAGE_CAP.get());
 				event.accept(TOTEMIC.get());
 				event.accept(ENCHANTED_TOTEMIC.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("l2hostility")) {
+					event.accept(ADAPTIVE.get());
+					event.accept(DISPELL.get());
+					event.accept(DEMENTOR.get());
+					event.accept(DRAIN.get());
+					event.accept(REPRINT.get());
+				}
 				event.accept(PROJECTILE_DODGE.get());
 			}
 		}

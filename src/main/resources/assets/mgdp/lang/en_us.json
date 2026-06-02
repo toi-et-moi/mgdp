@@ -112,5 +112,16 @@
   "advancements.mgdp.golems.iron_curtain.title": "Iron Curtain",
   "advancements.mgdp.golems.iron_curtain.description": "Iron Curtain deployed. The steel tide will crush all enemies. — The Scarlet Devil Mansion will lead us to victory.",
   "advancements.mgdp.upgrades.bell_of_avici.title": "Bell of Avici ~ Infinite Nightmare",
-  "advancements.mgdp.upgrades.bell_of_avici.description": "Craft the Bell of Avici upgrade"
+  "advancements.mgdp.upgrades.bell_of_avici.description": "Craft the Bell of Avici upgrade",
+  "item.mgdp.hostility_adaptive": "Hostility Upgrade: Adaptive",
+  "item.mgdp.hostility_dispell": "Hostility Upgrade: Dispell",
+  "item.mgdp.hostility_dementor": "Hostility Upgrade: Dementor",
+  "item.mgdp.hostility_drain": "Hostility Upgrade: Drain",
+  "item.mgdp.hostility_reprint": "Hostility Upgrade: Reprint",
+  "modifier.modulargolems.hostility_dementor": "Hostility Upgrade: Dementor",
+  "modifier.modulargolems.hostility_dementor.desc": "Reduces incoming damage with a nonlinear formula.",
+  "modifier.modulargolems.hostility_drain": "Hostility Upgrade: Drain",
+  "modifier.modulargolems.hostility_drain.desc": "Deals %s%% extra damage per negative effect on target, extends negative effect duration by %s%% (max %ss), and steals %s beneficial effect(s).",
+  "modifier.modulargolems.hostility_reprint": "Hostility Upgrade: Reprint",
+  "modifier.modulargolems.hostility_reprint.desc": "Deals bonus damage based on target's total enchantment levels."
 }
