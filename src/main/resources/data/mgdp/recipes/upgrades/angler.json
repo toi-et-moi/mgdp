@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+        {
+            "item": "modulargolems:empty_upgrade"
+        },
+        {
+            "item": "minecraft:fishing_rod"
+        },
+        {
+            "item": "minecraft:water_bucket"
+        }
+    ],
+    "result": {
+        "item": "mgdp:angler"
+    },
+    "show_notification": true
+}

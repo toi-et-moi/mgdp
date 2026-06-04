@@ -9,7 +9,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -70,6 +74,21 @@ public class HypothermiaModifier extends GolemModifier {
 				e -> e != golem && e.isAlive() && golem.isAlliedTo(e) && e.isOnFire());
 		for (LivingEntity ally : allies) {
 			ally.clearFire();
+		}
+
+		// Extinguish fire-based entities
+		for (Entity entity : golem.level().getEntitiesOfClass(Entity.class, area)) {
+			if (entity == golem) continue;
+			if (entity instanceof ItemEntity) continue;
+			if (entity instanceof AbstractGolemEntity) continue;
+			String sn = entity.getType().toShortString().toLowerCase();
+			if (sn.contains("fire") || sn.contains("blaze") || sn.contains("flame")) {
+				entity.discard();
+				if (!golem.level().isClientSide()) {
+					golem.level().addFreshEntity(new ItemEntity(golem.level(), entity.getX(), entity.getY(), entity.getZ(),
+							new ItemStack(Items.ICE, 1)));
+				}
+			}
 		}
 	}
 }

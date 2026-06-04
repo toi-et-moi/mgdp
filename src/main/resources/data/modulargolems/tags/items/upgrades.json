@@ -1,5 +1,8 @@
 {
   "values": [
+    "mgdp:fireball",
+    "mgdp:bomb_disposal",
+    "mgdp:brush",
     "mgdp:hostility_reprint",
     "mgdp:hostility_drain",
     "mgdp:hostility_dementor",
@@ -36,6 +39,13 @@
     "mgdp:invisibility",
     "mgdp:true_invisibility",
     "mgdp:focused_defense",
-    "mgdp:executioner"
+    "mgdp:executioner",
+    "mgdp:hero",
+    "mgdp:flare",
+    "mgdp:death_knell",
+    "mgdp:echo_trio",
+    "mgdp:angler",
+    "mgdp:hostility_undying",
+    "mgdp:hostility_grenade"
   ]
 }

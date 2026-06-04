@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2hostility"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "key": {
+    "T": {
+      "item": "l2hostility:grenade"
+    },
+    "S": {
+      "item": "l2complements:storm_core"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "TST",
+    "SES",
+    "TST"
+  ],
+  "result": {
+    "item": "mgdp:hostility_grenade"
+  },
+  "show_notification": true
+}

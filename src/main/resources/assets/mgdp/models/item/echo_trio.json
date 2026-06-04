@@ -1,0 +1,1 @@
+{"parent": "item/generated", "textures": {"layer0": "mgdp:item/upgrades/echo_trio"}, "overrides": [{"predicate": {"modulargolems:blue_arrow": 0.5}, "model": "mgdp:item/sonic_thunder_dark"}, {"predicate": {"modulargolems:blue_arrow": 1}, "model": "mgdp:item/sonic_thunder_dark"}]}

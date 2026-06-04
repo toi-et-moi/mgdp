@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "modulargolems:empty_upgrade"},
+    {"item": "minecraft:vine"},
+    {"item": "minecraft:oak_sapling"},
+    {"item": "minecraft:bone_meal"}
+  ],
+  "result": {"item": "mgdp:death_knell"},
+  "show_notification": true
+}

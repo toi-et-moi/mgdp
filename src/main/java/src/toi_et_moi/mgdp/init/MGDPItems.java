@@ -42,10 +42,20 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
 	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
 	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> HERO;
+	public static final RegistryObject<SimpleUpgradeItem> FLARE;
+	public static final RegistryObject<SimpleUpgradeItem> UNDYING;
+	public static final RegistryObject<SimpleUpgradeItem> GRENADE;
+	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
+	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
+	public static final RegistryObject<SimpleUpgradeItem> ECHO_TRIO;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
 	public static final RegistryObject<SimpleUpgradeItem> DEMENTOR;
 	public static final RegistryObject<SimpleUpgradeItem> DRAIN;
 	public static final RegistryObject<SimpleUpgradeItem> REPRINT;
+	public static final RegistryObject<SimpleUpgradeItem> FIREBALL;
+	public static final RegistryObject<SimpleUpgradeItem> BRUSH;
+	public static final RegistryObject<SimpleUpgradeItem> BOMB_DISPOSAL;
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
 	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
 	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
@@ -119,6 +129,27 @@ public class MGDPItems {
 		ENCHANTED_TOTEMIC = Mgdp.ITEMS.register("enchanted_totemic",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 2, true));
 
+		HERO = Mgdp.ITEMS.register("hero",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.HERO.get(), 1, false));
+
+		FLARE = Mgdp.ITEMS.register("flare",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FLARE.get(), 1, false));
+
+		UNDYING = Mgdp.ITEMS.register("hostility_undying",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UNDYING.get(), 1, false));
+
+		GRENADE = Mgdp.ITEMS.register("hostility_grenade",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GRENADE.get(), 1, false));
+
+		ANGLER = Mgdp.ITEMS.register("angler",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ANGLER.get(), 1, false));
+
+		DEATH_KNELL = Mgdp.ITEMS.register("death_knell",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DEATH_KNELL.get(), 1, true));
+
+		ECHO_TRIO = Mgdp.ITEMS.register("echo_trio",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ECHO_TRIO.get(), 1, true));
+
 		ADAPTIVE = Mgdp.ITEMS.register("hostility_adaptive",
 				() -> new SimpleUpgradeItem(new Item.Properties(),
 				() -> net.minecraftforge.fml.ModList.get().isLoaded("l2hostility") ? dev.xkmc.modulargolems.compat.materials.l2hostility.LHCompatRegistry.LH_ADAPTIVE.get() : null, 1, false));
@@ -135,6 +166,15 @@ public class MGDPItems {
 
 		REPRINT = Mgdp.ITEMS.register("hostility_reprint",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REPRINT.get(), 1, false));
+
+		FIREBALL = Mgdp.ITEMS.register("fireball",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FIREBALL.get(), 1, false));
+
+		BRUSH = Mgdp.ITEMS.register("brush",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BRUSH.get(), 1, false));
+
+		BOMB_DISPOSAL = Mgdp.ITEMS.register("bomb_disposal",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BOMB_DISPOSAL.get(), 1, false));
 
 		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
@@ -211,7 +251,17 @@ public class MGDPItems {
 					event.accept(DEMENTOR.get());
 					event.accept(DRAIN.get());
 					event.accept(REPRINT.get());
+					event.accept(GRENADE.get());
+					event.accept(UNDYING.get());
 				}
+				event.accept(FIREBALL.get());
+				event.accept(HERO.get());
+				event.accept(FLARE.get());
+				event.accept(ANGLER.get());
+				event.accept(DEATH_KNELL.get());
+				event.accept(ECHO_TRIO.get());
+				event.accept(BRUSH.get());
+				event.accept(BOMB_DISPOSAL.get());
 				event.accept(PROJECTILE_DODGE.get());
 			}
 		}

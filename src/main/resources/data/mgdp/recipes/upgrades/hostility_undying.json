@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2hostility"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2complements"
+    }
+  ],
+  "key": {
+    "A": {
+      "item": "l2complements:life_essence"
+    },
+    "T": {
+      "item": "l2hostility:undying"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "TAT",
+    "AEA",
+    "TAT"
+  ],
+  "result": {
+    "item": "mgdp:hostility_undying"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {"item": "minecraft:pink_wool"},
+    "S": {"item": "minecraft:iron_shovel"},
+    "T": {"item": "minecraft:tnt"},
+    "D": {"item": "minecraft:dirt"},
+    "E": {"item": "modulargolems:empty_upgrade"}
+  },
+  "pattern": [" SP", "DTD", "DED"],
+  "result": {"item": "mgdp:bomb_disposal"},
+  "show_notification": true
+}

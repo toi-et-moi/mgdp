@@ -1,5 +1,8 @@
 {
   "values": [
+    "mgdp:fireball",
+    "mgdp:bomb_disposal",
+    "mgdp:brush",
     "mgdp:projectile_dodge",
     "mgdp:damage_cap",
     "mgdp:netherite_gold",
@@ -18,6 +21,11 @@
     "mgdp:focused_defense",
     "mgdp:executioner",
     "mgdp:armor_pierce",
-    "mgdp:magic_resistance"
+    "mgdp:magic_resistance",
+    "mgdp:hero",
+    "mgdp:flare",
+    "mgdp:death_knell",
+    "mgdp:echo_trio",
+    "mgdp:angler"
   ]
 }

@@ -36,8 +36,6 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.Items;
 import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -114,6 +112,16 @@ public class Mgdp {
 							output.accept(MGDPItems.DRAIN.get());
 							output.accept(MGDPItems.REPRINT.get());
 						}
+						output.accept(MGDPItems.FIREBALL.get());
+						output.accept(MGDPItems.HERO.get());
+						output.accept(MGDPItems.FLARE.get());
+						output.accept(MGDPItems.GRENADE.get());
+						output.accept(MGDPItems.UNDYING.get());
+						output.accept(MGDPItems.ANGLER.get());
+						output.accept(MGDPItems.DEATH_KNELL.get());
+						output.accept(MGDPItems.ECHO_TRIO.get());
+						output.accept(MGDPItems.BRUSH.get());
+						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 					})
 					.build());
@@ -176,36 +184,6 @@ public class Mgdp {
 	}
 
 
-
-	private static int mgdp$flintGuard = 0;
-
-	@SubscribeEvent
-	public void mgdp$flintExplosion(LivingAttackEvent event) {
-		if (mgdp$flintGuard > 0) return;
-		if (!(event.getSource().getDirectEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
-		if (!golem.getMainHandItem().is(Items.FLINT_AND_STEEL)
-				&& !golem.getOffhandItem().is(Items.FLINT_AND_STEEL)) return;
-		if (event.getEntity().level().isClientSide()) return;
-
-		event.getEntity().setSecondsOnFire(5);
-		mgdp$flintGuard++;
-		event.getEntity().level().explode(golem, event.getEntity().getX(), event.getEntity().getY(),
-				event.getEntity().getZ(), 2.0F, Level.ExplosionInteraction.NONE);
-		mgdp$flintGuard--;
-	}
-
-
-
-	@SubscribeEvent
-	public void mgdp$balloonSlayer(LivingHurtEvent event) {
-		if (!(event.getSource().getDirectEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
-		if (!golem.getMainHandItem().is(SIMPLE_GOLEM_SPEAR.get())) return;
-
-		String name = event.getEntity().getName().getString().toLowerCase();
-		if (name.contains("balloon") || name.contains("气球")) {
-			event.setAmount(event.getAmount() * 661F);
-		}
-	}
 
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "modulargolems:empty_upgrade"},
+    {"item": "minecraft:emerald"},
+    {"item": "minecraft:emerald"}
+  ],
+  "result": {"item": "mgdp:hero"},
+  "show_notification": true
+}

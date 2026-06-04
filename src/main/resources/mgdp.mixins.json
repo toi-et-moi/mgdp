@@ -13,7 +13,9 @@
     "LivingEntityMixin",
     "DragonFireballMixin",
     "DragonBreathHitMixin",
-    "ShootUtilsMixin"
+    "ShootUtilsMixin",
+    "SmallFireballMixin",
+    "ShulkerBulletMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

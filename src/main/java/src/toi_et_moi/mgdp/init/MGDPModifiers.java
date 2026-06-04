@@ -32,7 +32,17 @@ import src.toi_et_moi.mgdp.modifier.ProjectileDodgeModifier;
 import src.toi_et_moi.mgdp.modifier.DementorModifier;
 import src.toi_et_moi.mgdp.modifier.DrainModifier;
 import src.toi_et_moi.mgdp.modifier.ReprintModifier;
+import src.toi_et_moi.mgdp.modifier.BrushModifier;
+import src.toi_et_moi.mgdp.modifier.BombDisposalModifier;
+import src.toi_et_moi.mgdp.modifier.FireballModifier;
 import src.toi_et_moi.mgdp.modifier.TotemicModifier;
+import src.toi_et_moi.mgdp.modifier.HeroModifier;
+import src.toi_et_moi.mgdp.modifier.FlareModifier;
+import src.toi_et_moi.mgdp.modifier.AnglerModifier;
+import src.toi_et_moi.mgdp.modifier.UndyingModifier;
+import src.toi_et_moi.mgdp.modifier.GrenadeModifier;
+import src.toi_et_moi.mgdp.modifier.DeathKnellModifier;
+import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -68,7 +78,17 @@ public class MGDPModifiers {
 	public static final RegistryEntry<DementorModifier> DEMENTOR;
 	public static final RegistryEntry<DrainModifier> DRAIN;
 	public static final RegistryEntry<ReprintModifier> REPRINT;
+	public static final RegistryEntry<BrushModifier> BRUSH;
+	public static final RegistryEntry<BombDisposalModifier> BOMB_DISPOSAL;
+	public static final RegistryEntry<FireballModifier> FIREBALL;
 	public static final RegistryEntry<TotemicModifier> TOTEMIC;
+	public static final RegistryEntry<HeroModifier> HERO;
+	public static final RegistryEntry<FlareModifier> FLARE;
+	public static final RegistryEntry<AnglerModifier> ANGLER;
+	public static final RegistryEntry<UndyingModifier> UNDYING;
+	public static final RegistryEntry<GrenadeModifier> GRENADE;
+	public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
+	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -183,6 +203,18 @@ public class MGDPModifiers {
 				"Hostility Upgrade: Drain",
 				"Deals extra damage per negative effect on target and steals beneficial effects.");
 
+			FIREBALL = reg("fireball", FireballModifier::new,
+				"Fireball Attack",
+				"Golem shoots fireballs at enemies within range.");
+
+			BRUSH = reg("brush", BrushModifier::new,
+				"Archaeology",
+				"Requires Pickup. Golem with Brush automatically extracts items from suspicious blocks.");
+
+			BOMB_DISPOSAL = reg("bomb_disposal", BombDisposalModifier::new,
+				"Bomb Disposal Expert",
+				"Nullifies non-friendly explosions and defuses primed TNT.");
+
 			REPRINT = reg("hostility_reprint", ReprintModifier::new,
 				"Hostility Upgrade: Reprint",
 				"Deals bonus damage based on target's total enchantment levels.");
@@ -194,6 +226,34 @@ public class MGDPModifiers {
 			TOTEMIC = reg("totemic", TotemicModifier::new,
 				"Totemic Apple",
 				"Every %ss, grants absorption hearts equal to 10%% of max health per level.");
+
+			HERO = reg("hero", HeroModifier::new,
+				"Hero of the Village",
+				"Grants the owner 1 minute of Hero of the Village per raider slain. Stacks duration. Compatible with Emerald upgrade.");
+
+			FLARE = reg("flare", FlareModifier::new,
+				"Illumination",
+				"Golem automatically places torches in nearby dark areas. Makes cave exploration safer.");
+
+			ANGLER = reg("angler", AnglerModifier::new,
+				"Angler",
+				"Golem automatically fishes when holding a fishing rod near water.");
+
+			UNDYING = reg("hostility_undying", UndyingModifier::new,
+				"Hostility Upgrade: Undying",
+				"When the golem would die, it instead revives with full health. Cannot bypass creative/kill damage.");
+
+			GRENADE = reg("hostility_grenade", GrenadeModifier::new,
+				"Hostility Upgrade: Grenade",
+				"Shoots fast homing explosive grenades at targets within 40 blocks.");
+
+			DEATH_KNELL = reg("death_knell", DeathKnellModifier::new,
+				"Death Knell",
+				"Deals bonus damage equal to 2%% of target's max health.");
+
+			ECHO_TRIO = reg("echo_trio", EchoTrioModifier::new,
+				"Echo Trio",
+				"Locks onto 3 targets within 35 blocks, fires sonic booms at them, and counter-attacks when damaged.");
 
 	}
 

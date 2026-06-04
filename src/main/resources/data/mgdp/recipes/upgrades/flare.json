@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "modulargolems:empty_upgrade"},
+    {"item": "minecraft:campfire"},
+    {"item": "minecraft:torch"},
+    {"item": "minecraft:torch"},
+    {"item": "minecraft:torch"}
+  ],
+  "result": {"item": "mgdp:flare"},
+  "show_notification": true
+}

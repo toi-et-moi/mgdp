@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "modulargolems:empty_upgrade"},
+    {"item": "minecraft:echo_shard"},
+    {"item": "minecraft:sculk_shrieker"}
+  ],
+  "result": {"item": "mgdp:echo_trio"},
+  "show_notification": true
+}

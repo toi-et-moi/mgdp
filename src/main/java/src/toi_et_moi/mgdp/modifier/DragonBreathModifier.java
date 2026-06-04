@@ -5,9 +5,11 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.DragonFireball;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
@@ -28,13 +30,24 @@ public class DragonBreathModifier extends GolemModifier {
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
         if (golem.level().isClientSide()) return;
+        if (golem.tickCount % 20 != 0) return;
+
+        // Fill all glass bottles in hands with dragon's breath
+        for (InteractionHand hand : InteractionHand.values()) {
+            net.minecraft.world.item.ItemStack stack = golem.getItemInHand(hand);
+            if (stack.is(Items.GLASS_BOTTLE)) {
+                int count = stack.getCount();
+                golem.setItemInHand(hand, new net.minecraft.world.item.ItemStack(Items.DRAGON_BREATH, count));
+            }
+        }
+
         int idx = level - 1;
         if (golem.tickCount % INTERVALS[idx] != 0) return;
 
         ServerLevel sl = (ServerLevel) golem.level();
         AABB area = golem.getBoundingBox().inflate(40.0);
         List<LivingEntity> allTargets = sl.getEntitiesOfClass(LivingEntity.class, area,
-                e -> e.isAlive() && e != golem && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
+                e -> e.isAlive() && e != golem && (e == golem.getTarget() || (golem.getSensing().hasLineOfSight(e) && TargetManager.wantsToAttack(golem, e))));
 
         List<LivingEntity> selected = allTargets.stream()
                 .sorted((a, b) -> {

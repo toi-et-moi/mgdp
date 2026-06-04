@@ -19,6 +19,14 @@
     {
       "id": "mgdp:hostility_adaptive",
       "required": false
+    },
+    {
+      "id": "mgdp:hostility_undying",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_grenade",
+      "required": false
     }
   ]
 }
