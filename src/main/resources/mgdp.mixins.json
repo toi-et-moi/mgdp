@@ -15,7 +15,18 @@
     "DragonBreathHitMixin",
     "ShootUtilsMixin",
     "SmallFireballMixin",
-    "ShulkerBulletMixin"
+    "ShulkerBulletMixin",
+    "RiderWandItemMixin",
+    "ItemStackMixin",
+    "GolemRideMixin",
+    "QuickStrikeMixin",
+    "MeleeIntervalMixin",
+    "GolemUserMixin",
+    "GolemBowMixin",
+    "RangedCooldownMixin",
+    "SmartRangedAccessor",
+    "CrossbowAmmoMixin",
+    "TridentHoldMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

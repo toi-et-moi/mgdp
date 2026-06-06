@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDC",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "C": {
+      "item": "golemdungeons:flame_sword"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    }
+  },
+  "result": {
+    "item": "mgdp:piglin_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

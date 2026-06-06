@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "modulargolems:empty_upgrade"
+    },
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "item": "minecraft:dispenser"
+    }
+  ],
+  "result": {
+    "item": "mgdp:infinite_ammo"
+  },
+  "show_notification": true
+}

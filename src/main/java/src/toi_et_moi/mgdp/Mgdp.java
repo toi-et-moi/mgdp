@@ -115,6 +115,9 @@ public class Mgdp {
 						output.accept(MGDPItems.FIREBALL.get());
 						output.accept(MGDPItems.HERO.get());
 						output.accept(MGDPItems.FLARE.get());
+						output.accept(MGDPItems.UNBREAKABLE.get());
+						output.accept(MGDPItems.INFINITE_AMMO.get());
+						output.accept(MGDPItems.QUICK_STRIKE.get());
 						output.accept(MGDPItems.GRENADE.get());
 						output.accept(MGDPItems.UNDYING.get());
 						output.accept(MGDPItems.ANGLER.get());
@@ -123,8 +126,30 @@ public class Mgdp {
 						output.accept(MGDPItems.BRUSH.get());
 						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
-					})
-					.build());
+						output.accept(MGDPItems.REMNANT_GOLEM.get());
+						output.accept(MGDPItems.ILLAGER_GOLEM.get());
+						output.accept(MGDPItems.PIGLIN_GOLEM.get());
+						output.accept(MGDPItems.SCULK_GOLEM.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) {
+								output.accept(MGDPItems.TWILIGHT_GOLEM.get());
+							}
+
+							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) {
+								output.accept(MGDPItems.HARBINGER_GOLEM.get());
+								output.accept(MGDPItems.MONSTROSITY_GOLEM.get());
+								output.accept(MGDPItems.ENDER_GUARDIAN_GOLEM.get());
+								output.accept(MGDPItems.IGNIS_GOLEM.get());
+								output.accept(MGDPItems.SCYLLA_GOLEM.get());
+							}
+							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) {
+								output.accept(MGDPItems.CARVED_GOLEM.get());
+								output.accept(MGDPItems.ENHANCED_CARVED_GOLEM.get());
+								output.accept(MGDPItems.QOAIKU_GOLEM.get());
+								output.accept(MGDPItems.MEROR_GOLEM.get());
+								output.accept(MGDPItems.REFINE_MEROR_GOLEM.get());
+							}
+						})
+						.build());
 
 	public Mgdp() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDE",
+    "AFA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:witherite_block"
+    },
+    "B": {
+      "item": "cataclysm:music_disc_the_harbinger"
+    },
+    "C": {
+      "item": "cataclysm:meat_shredder"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    },
+    "E": {
+      "item": "cataclysm:laser_gatling"
+    },
+    "F": {
+      "item": "cataclysm:wither_assault_shoulder_weapon"
+    }
+  },
+  "result": {
+    "item": "mgdp:harbinger_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

@@ -288,4 +288,14 @@ public abstract class AbstractGolemEntityMixin extends Mob {
 		}
 	} catch (Exception ignored) {}
 	}
+
+	// --- Ride: allow golems to mount larger entities ---
+	@Inject(method = "checkRide", at = @At("HEAD"), cancellable = true, remap = false)
+	private void mgdp$checkRide(LivingEntity target, CallbackInfo ci) {
+		if (target != null) {
+			this.startRiding(target);
+		}
+		ci.cancel();
+	}
+
 }

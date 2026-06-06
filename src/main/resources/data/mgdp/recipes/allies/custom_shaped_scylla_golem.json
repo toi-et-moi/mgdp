@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDE",
+    "AFA"
+  ],
+  "key": {
+    "A": {
+      "item": "modulargolems:storm_construct"
+    },
+    "B": {
+      "item": "cataclysm:storm_eye"
+    },
+    "C": {
+      "item": "cataclysm:ceraunus"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    },
+    "E": {
+      "item": "cataclysm:astrape"
+    },
+    "F": {
+      "item": "cataclysm:music_disc_scylla"
+    }
+  },
+  "result": {
+    "item": "mgdp:scylla_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

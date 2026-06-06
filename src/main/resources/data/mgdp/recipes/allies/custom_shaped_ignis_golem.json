@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDC",
+    "AEA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:ignitium_block"
+    },
+    "B": {
+      "item": "cataclysm:flame_eye"
+    },
+    "C": {
+      "item": "cataclysm:the_incinerator"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    },
+    "E": {
+      "item": "cataclysm:music_disc_ignis"
+    }
+  },
+  "result": {
+    "item": "mgdp:ignis_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

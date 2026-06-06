@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    }
+  ],
+  "pattern": [
+    "ABC",
+    "DED",
+    "FGF"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:crossbow"
+    },
+    "B": {
+      "item": "minecraft:white_banner"
+    },
+    "C": {
+      "item": "minecraft:iron_axe"
+    },
+    "D": {
+      "item": "minecraft:saddle"
+    },
+    "E": {
+      "item": "golemdungeons:medal_of_conqueror"
+    },
+    "F": {
+      "item": "minecraft:iron_block"
+    },
+    "G": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "result": {
+    "item": "mgdp:illager_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

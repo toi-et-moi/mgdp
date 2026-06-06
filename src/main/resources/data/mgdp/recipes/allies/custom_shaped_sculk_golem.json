@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    }
+  ],
+  "pattern": [
+    "ABC",
+    "BDB",
+    "CBA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:diamond_block"
+    },
+    "B": {
+      "item": "minecraft:echo_shard"
+    },
+    "C": {
+      "item": "golemdungeons:sculk_golem_scythe"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    }
+  },
+  "result": {
+    "item": "mgdp:sculk_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

@@ -3,12 +3,15 @@ package src.toi_et_moi.mgdp.init;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import java.util.List;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import src.toi_et_moi.mgdp.Mgdp;
+import src.toi_et_moi.mgdp.item.GolemSummonItem;
 
 public class MGDPItems {
 
@@ -46,6 +49,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> FLARE;
 	public static final RegistryObject<SimpleUpgradeItem> UNDYING;
 	public static final RegistryObject<SimpleUpgradeItem> GRENADE;
+	public static final RegistryObject<SimpleUpgradeItem> UNBREAKABLE;
+	public static final RegistryObject<SimpleUpgradeItem> INFINITE_AMMO;
+	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
 	public static final RegistryObject<SimpleUpgradeItem> ECHO_TRIO;
@@ -59,6 +65,22 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
 	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
 	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
+
+	public static final RegistryObject<GolemSummonItem> REMNANT_GOLEM;
+	public static final RegistryObject<GolemSummonItem> ILLAGER_GOLEM;
+	public static final RegistryObject<GolemSummonItem> PIGLIN_GOLEM;
+	public static final RegistryObject<GolemSummonItem> SCULK_GOLEM;
+	public static final RegistryObject<GolemSummonItem> TWILIGHT_GOLEM;
+	public static final RegistryObject<GolemSummonItem> HARBINGER_GOLEM;
+	public static final RegistryObject<GolemSummonItem> MONSTROSITY_GOLEM;
+	public static final RegistryObject<GolemSummonItem> ENDER_GUARDIAN_GOLEM;
+	public static final RegistryObject<GolemSummonItem> IGNIS_GOLEM;
+	public static final RegistryObject<GolemSummonItem> SCYLLA_GOLEM;
+	public static final RegistryObject<GolemSummonItem> CARVED_GOLEM;
+	public static final RegistryObject<GolemSummonItem> ENHANCED_CARVED_GOLEM;
+	public static final RegistryObject<GolemSummonItem> QOAIKU_GOLEM;
+	public static final RegistryObject<GolemSummonItem> MEROR_GOLEM;
+	public static final RegistryObject<GolemSummonItem> REFINE_MEROR_GOLEM;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -141,6 +163,15 @@ public class MGDPItems {
 		GRENADE = Mgdp.ITEMS.register("hostility_grenade",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GRENADE.get(), 1, false));
 
+		UNBREAKABLE = Mgdp.ITEMS.register("unbreakable",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UNBREAKABLE.get(), 1, false));
+
+		INFINITE_AMMO = Mgdp.ITEMS.register("infinite_ammo",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.INFINITE_AMMO.get(), 1, false));
+
+		QUICK_STRIKE = Mgdp.ITEMS.register("quick_strike",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.QUICK_STRIKE.get(), 1, false));
+
 		ANGLER = Mgdp.ITEMS.register("angler",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ANGLER.get(), 1, false));
 
@@ -178,6 +209,67 @@ public class MGDPItems {
 
 		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
+
+
+			REMNANT_GOLEM = Mgdp.ITEMS.register("remnant_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("golemdungeons", "factory_remnant")));
+
+			ILLAGER_GOLEM = Mgdp.ITEMS.register("illager_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("golemdungeons", "illagers_creation")));
+
+			PIGLIN_GOLEM = Mgdp.ITEMS.register("piglin_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("golemdungeons", "piglin_legacy")));
+
+			SCULK_GOLEM = Mgdp.ITEMS.register("sculk_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("golemdungeons", "sculk_infestation")));
+
+			TWILIGHT_GOLEM = Mgdp.ITEMS.register("twilight_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("twilightforest", "twilight_invasion")));
+
+		HARBINGER_GOLEM = Mgdp.ITEMS.register("harbinger_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("cataclysm", "harbingers_revenge")));
+
+		MONSTROSITY_GOLEM = Mgdp.ITEMS.register("monstrosity_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("cataclysm", "monstrosity_expanded")));
+
+		ENDER_GUARDIAN_GOLEM = Mgdp.ITEMS.register("ender_guardian_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("cataclysm", "meknight_of_the_end")));
+
+		IGNIS_GOLEM = Mgdp.ITEMS.register("ignis_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("cataclysm", "resurgent_flame")));
+
+		SCYLLA_GOLEM = Mgdp.ITEMS.register("scylla_golem",
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+						new ResourceLocation("cataclysm", "heavenly_storm")));
+
+		CARVED_GOLEM = Mgdp.ITEMS.register("carved_golem",
+			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				new ResourceLocation("jerotes_village_golems", "villager_metal")));
+
+		ENHANCED_CARVED_GOLEM = Mgdp.ITEMS.register("enhanced_carved_golem",
+			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				new ResourceLocation("jerotes_village_golems", "enhanced_villager_metal")));
+
+		QOAIKU_GOLEM = Mgdp.ITEMS.register("qoaiku_golem",
+			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				new ResourceLocation("jerotes_village_golems", "qoaiku")));
+
+		MEROR_GOLEM = Mgdp.ITEMS.register("meror_golem",
+			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				new ResourceLocation("jerotes_village_golems", "meror")));
+
+		REFINE_MEROR_GOLEM = Mgdp.ITEMS.register("refine_meror_golem",
+			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				new ResourceLocation("jerotes_village_golems", "refine_meror")));
 
 		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
@@ -257,6 +349,9 @@ public class MGDPItems {
 				event.accept(FIREBALL.get());
 				event.accept(HERO.get());
 				event.accept(FLARE.get());
+				event.accept(UNBREAKABLE.get());
+				event.accept(INFINITE_AMMO.get());
+				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());
 				event.accept(ECHO_TRIO.get());

@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDE",
+    "AFA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:netherite_block"
+    },
+    "B": {
+      "item": "cataclysm:monstrous_eye"
+    },
+    "C": {
+      "item": "cataclysm:monstrous_horn"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    },
+    "E": {
+      "item": "cataclysm:infernal_forge"
+    },
+    "F": {
+      "item": "cataclysm:music_disc_netherite_monstrosity"
+    }
+  },
+  "result": {
+    "item": "mgdp:monstrosity_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

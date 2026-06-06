@@ -41,6 +41,9 @@ import src.toi_et_moi.mgdp.modifier.FlareModifier;
 import src.toi_et_moi.mgdp.modifier.AnglerModifier;
 import src.toi_et_moi.mgdp.modifier.UndyingModifier;
 import src.toi_et_moi.mgdp.modifier.GrenadeModifier;
+import src.toi_et_moi.mgdp.modifier.UnbreakableModifier;
+import src.toi_et_moi.mgdp.modifier.InfiniteAmmoModifier;
+import src.toi_et_moi.mgdp.modifier.QuickStrikeModifier;
 import src.toi_et_moi.mgdp.modifier.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
 
@@ -87,6 +90,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<AnglerModifier> ANGLER;
 	public static final RegistryEntry<UndyingModifier> UNDYING;
 	public static final RegistryEntry<GrenadeModifier> GRENADE;
+	public static final RegistryEntry<UnbreakableModifier> UNBREAKABLE;
+	public static final RegistryEntry<InfiniteAmmoModifier> INFINITE_AMMO;
+	public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
 	public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
 	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
 
@@ -246,6 +252,18 @@ public class MGDPModifiers {
 			GRENADE = reg("hostility_grenade", GrenadeModifier::new,
 				"Hostility Upgrade: Grenade",
 				"Shoots fast homing explosive grenades at targets within 40 blocks.");
+
+			UNBREAKABLE = reg("unbreakable", UnbreakableModifier::new,
+				"Unbreakable",
+				"Golem equipment takes no durability damage.");
+
+			INFINITE_AMMO = reg("infinite_ammo", InfiniteAmmoModifier::new,
+				"Infinite Ammo",
+				"Golem has unlimited ammunition for ranged weapons.");
+
+			QUICK_STRIKE = reg("quick_strike", QuickStrikeModifier::new,
+				"Quick Strike",
+				"Golem attacks instantly with no cooldown for both melee and ranged.");
 
 			DEATH_KNELL = reg("death_knell", DeathKnellModifier::new,
 				"Death Knell",

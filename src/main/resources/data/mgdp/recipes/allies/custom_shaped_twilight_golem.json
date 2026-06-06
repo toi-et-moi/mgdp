@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "pattern": [
+    "AAB",
+    "EDE",
+    "FGG"
+  ],
+  "key": {
+    "A": {
+      "item": "twilightforest:ironwood_block"
+    },
+    "B": {
+      "item": "twilightforest:knightmetal_block"
+    },
+    "D": {
+      "item": "golemdungeons:trial_medal"
+    },
+    "E": {
+      "item": "twilightforest:thorn_rose"
+    },
+    "F": {
+      "item": "twilightforest:fiery_block"
+    },
+    "G": {
+      "item": "twilightforest:steeleaf_block"
+    }
+  },
+  "result": {
+    "item": "mgdp:twilight_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

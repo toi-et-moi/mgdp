@@ -46,6 +46,9 @@
     "mgdp:echo_trio",
     "mgdp:angler",
     "mgdp:hostility_undying",
-    "mgdp:hostility_grenade"
+    "mgdp:hostility_grenade",
+    "mgdp:unbreakable",
+    "mgdp:infinite_ammo",
+    "mgdp:quick_strike"
   ]
 }

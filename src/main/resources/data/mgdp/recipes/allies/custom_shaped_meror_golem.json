@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jerotes_village_golems"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "jerotesvillage:meror_metal_block"
+    },
+    "B": {
+      "item": "jerotesvillage:refine_meror_metal_block"
+    },
+    "C": {
+      "item": "golemdungeons:trial_medal"
+    }
+  },
+  "result": {
+    "item": "mgdp:meror_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}

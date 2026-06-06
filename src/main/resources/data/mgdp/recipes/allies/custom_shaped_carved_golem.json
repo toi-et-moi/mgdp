@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "golemdungeons"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jerotes_village_golems"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "CDE",
+    "AFA"
+  ],
+  "key": {
+    "A": {
+      "item": "jerotesvillage:villager_metal_block"
+    },
+    "B": {
+      "item": "jerotesvillage:carved_flag"
+    },
+    "C": {
+      "item": "jerotes_village_golems:villager_metal_golem_spear"
+    },
+    "D": {
+      "item": "golemdungeons:medal_of_conqueror"
+    },
+    "E": {
+      "item": "jerotes_village_golems:villager_metal_golem_axe"
+    },
+    "F": {
+      "item": "jerotes_village_golems:villager_metal_golem_sword"
+    }
+  },
+  "result": {
+    "item": "mgdp:carved_golem",
+    "type": "forge:nbt",
+    "nbt": "{Damage:0}"
+  }
+}
