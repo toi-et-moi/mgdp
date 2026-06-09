@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -25,6 +26,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
@@ -52,6 +54,8 @@ public class Mgdp {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+
+	public static SimpleChannel PACKET_HANDLER;
 
 
 
@@ -132,6 +136,7 @@ public class Mgdp {
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
+							output.accept(MGDPItems.LORD.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
 						output.accept(MGDPItems.ILLAGER_GOLEM.get());
 						output.accept(MGDPItems.PIGLIN_GOLEM.get());
@@ -165,6 +170,7 @@ public class Mgdp {
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);
+			src.toi_et_moi.mgdp.init.MgdpMenus.MENUS.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
@@ -172,6 +178,7 @@ public class Mgdp {
 		MGDPItems.register();
 		InitTrigger.init();
 		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
+			PACKET_HANDLER = src.toi_et_moi.mgdp.network.MGDPNetwork.CHANNEL;
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 	}
 
@@ -180,16 +187,16 @@ public class Mgdp {
 	}
 
 	@SubscribeEvent
-	public void onLivingAttack(LivingAttackEvent event) {
-		if (IronCurtainItem.isProtected(event.getEntity())) {
-			event.setCanceled(true);
+	public void onLivingAttack(LivingAttackEvent evt) {
+		if (IronCurtainItem.isProtected(evt.getEntity())) {
+			evt.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void mgdp$lightningShieldRecharge(LivingAttackEvent event) {
-		if (event.getSource().is(DamageTypes.LIGHTNING_BOLT)
-				&& event.getEntity() instanceof AbstractGolemEntity<?, ?> golem
+	public void mgdp$lightningShieldRecharge(LivingAttackEvent evt) {
+		if (evt.getSource().is(DamageTypes.LIGHTNING_BOLT)
+				&& evt.getEntity() instanceof AbstractGolemEntity<?, ?> golem
 				&& golem.hasFlag(GolemFlags.THUNDER_IMMUNE)
 				&& golem.getModifiers().containsKey(MGDPModifiers.CHARGED_SHIELD.get())) {
 			int lv = golem.getModifiers().get(MGDPModifiers.CHARGED_SHIELD.get());
@@ -199,16 +206,16 @@ public class Mgdp {
 
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void mgdp$voidRescue(LivingAttackEvent event) {
-		if (!(event.getEntity() instanceof Player player)) return;
-		if (!event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
+	public void mgdp$voidRescue(LivingAttackEvent evt) {
+		if (!(evt.getEntity() instanceof Player player)) return;
+		if (!evt.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
 
 		AABB area = player.getBoundingBox().inflate(64);
 		for (var golem : player.level().getEntitiesOfClass(DogGolemEntity.class, area,
 				e -> e.isAlive() && (e.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
 						|| e.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())))) {
 			if (!golem.hasPassenger(player)) {
-				event.setCanceled(true);
+				evt.setCanceled(true);
 				player.startRiding(golem, true);
 				break;
 			}
@@ -216,6 +223,17 @@ public class Mgdp {
 	}
 
 
+
+	@SubscribeEvent
+	public void mgdp$startTracking(PlayerEvent.StartTracking evt) {
+		if (!(evt.getTarget() instanceof src.toi_et_moi.mgdp.jukebox.JukeboxGolem jb)) return;
+		if (!jb.mgdp$isPlaying()) return;
+		var disc = jb.mgdp$getDisc();
+		if (!disc.isEmpty() && disc.getItem() instanceof net.minecraft.world.item.RecordItem ri
+				&& evt.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) {
+			src.toi_et_moi.mgdp.jukebox.JukeboxPacket.playRecordForPlayer(sp, ri.getSound().getLocation(), evt.getTarget().getId());
+		}
+	}
 
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
@@ -227,6 +245,12 @@ public class Mgdp {
 
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
+			event.enqueueWork(() -> {
+			src.toi_et_moi.mgdp.jukebox.JukeboxClientRegister.register();
+			net.minecraft.client.gui.screens.MenuScreens.register(
+				src.toi_et_moi.mgdp.init.MgdpMenus.JUKEBOX.get(),
+				src.toi_et_moi.mgdp.jukebox.JukeboxScreen::new);
+		});
 		}
 
 		@SubscribeEvent

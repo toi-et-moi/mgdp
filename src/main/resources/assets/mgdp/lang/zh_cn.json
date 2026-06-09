@@ -194,5 +194,10 @@
   "advancements.mgdp.golems.god_of_war.title": "战神",
   "advancements.mgdp.golems.god_of_war.description": "指挥傀儡累积击败5000个敌人——真正的战场之神。",
   "advancements.mgdp.golems.deathless_king.title": "无命之王",
-  "advancements.mgdp.golems.deathless_king.description": "指挥傀儡累积击败10000个敌人——主宰战场，横行无忌。"
+  "advancements.mgdp.golems.deathless_king.description": "指挥傀儡累积击败10000个敌人——主宰战场，横行无忌。",
+  "gui.mgdp.jukebox": "唱片机",
+  "gui.mgdp.jukebox.disc_slot": "唱片槽位",
+  "item.mgdp.lord": "领主升级",
+  "modifier.modulargolems.lord": "领主",
+  "modifier.modulargolems.lord.desc": "傀儡显示Boss血条，展示其名称与生命值。与唱片机功能搭配更显风采。"
 }

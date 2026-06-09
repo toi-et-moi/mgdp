@@ -48,6 +48,7 @@ import src.toi_et_moi.mgdp.modifier.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
 import src.toi_et_moi.mgdp.modifier.ProsperityModifier;
 import src.toi_et_moi.mgdp.modifier.LiquidClearModifier;
+import src.toi_et_moi.mgdp.modifier.LordModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -99,6 +100,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
 	public static final RegistryEntry<ProsperityModifier> PROSPERITY;
 	public static final RegistryEntry<LiquidClearModifier> LIQUID_CLEAR;
+	public static final RegistryEntry<LordModifier> LORD;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -280,6 +282,10 @@ public class MGDPModifiers {
 			PROSPERITY = reg("prosperity", ProsperityModifier::new,
 				"Prosperity",
 				"Crop range +%s/level (current %s). Loot x(level+1).");
+
+			LORD = reg("lord", LordModifier::new,
+			"Lord",
+			"Golem displays a personal boss bar showing its name and health.");
 
 			LIQUID_CLEAR = reg("liquid_clear", LiquidClearModifier::new,
 				"Liquid Clear",

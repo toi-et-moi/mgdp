@@ -196,5 +196,10 @@
   "advancements.mgdp.golems.god_of_war.title": "God of War",
   "advancements.mgdp.golems.god_of_war.description": "A true deity of the battlefield with 10,000 kills.",
   "advancements.mgdp.golems.deathless_king.title": "Deathless King",
-  "advancements.mgdp.golems.deathless_king.description": "Rule the battlefield with 10,000 kills — none shall stand against you."
+  "advancements.mgdp.golems.deathless_king.description": "Rule the battlefield with 10,000 kills — none shall stand against you.",
+  "gui.mgdp.jukebox": "Jukebox",
+  "gui.mgdp.jukebox.disc_slot": "Disc Slot",
+  "item.mgdp.lord": "Lord Upgrade",
+  "modifier.modulargolems.lord": "Lord",
+  "modifier.modulargolems.lord.desc": "Golem displays a personal boss bar showing its name and health. Combine with the Jukebox feature for extra style."
 }

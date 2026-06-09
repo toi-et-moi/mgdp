@@ -53,6 +53,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> INFINITE_AMMO;
 	public static final RegistryObject<SimpleUpgradeItem> PROSPERITY;
 	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;
+	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
@@ -173,6 +174,9 @@ public class MGDPItems {
 
 		PROSPERITY = Mgdp.ITEMS.register("prosperity",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PROSPERITY.get(), 1, false));
+
+		LORD = Mgdp.ITEMS.register("lord",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LORD.get(), 1, false));
 
 		LIQUID_CLEAR = Mgdp.ITEMS.register("liquid_clear",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIQUID_CLEAR.get(), 1, false));
@@ -362,6 +366,7 @@ public class MGDPItems {
 				event.accept(INFINITE_AMMO.get());
 				event.accept(PROSPERITY.get());
 				event.accept(LIQUID_CLEAR.get());
+				event.accept(LORD.get());
 				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());

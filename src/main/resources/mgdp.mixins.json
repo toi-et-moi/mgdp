@@ -28,7 +28,8 @@
     "CrossbowAmmoMixin",
     "TridentHoldMixin",
     "CrossbowItemMixin",
-    "GenericBowItemMixin"
+    "GenericBowItemMixin",
+    "EntityJukeboxMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"
