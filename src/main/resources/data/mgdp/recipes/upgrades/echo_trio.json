@@ -1,11 +1,22 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {"item": "modulargolems:empty_upgrade"},
-    {"item": "minecraft:echo_shard"},
-    {"item": "minecraft:sculk_shrieker"}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CCC",
+    "ABA"
   ],
-  "result": {"item": "mgdp:echo_trio"},
-  "show_notification": true
+  "key": {
+    "A": {
+      "item": "minecraft:echo_shard"
+    },
+    "B": {
+      "item": "minecraft:sculk_sensor"
+    },
+    "C": {
+      "item": "mgdp:sonic_boom"
+    }
+  },
+  "result": {
+    "item": "mgdp:echo_trio"
+  }
 }

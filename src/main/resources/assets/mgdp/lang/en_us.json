@@ -179,5 +179,22 @@
   "item.mgdp.enhanced_carved_golem": "Enhanced Carved Golem Charm",
   "item.mgdp.qoaiku_golem": "Qoaiku Golem Charm",
   "item.mgdp.meror_golem": "Meror Golem Charm",
-  "item.mgdp.refine_meror_golem": "Refined Meror Golem Charm"
+  "item.mgdp.refine_meror_golem": "Refined Meror Golem Charm",
+  "item.mgdp.prosperity": "Prosperity Upgrade",
+  "modifier.modulargolems.prosperity": "Prosperity",
+  "modifier.modulargolems.prosperity.desc": "Crop range +%s/level (current %s). Loot x(level+1).",
+  "item.mgdp.liquid_clear": "Liquid Clear Upgrade",
+  "modifier.modulargolems.liquid_clear": "Liquid Clear",
+  "modifier.modulargolems.liquid_clear.desc": "Clear range +%s/level (current %s).",
+  "stat.mgdp.golem_kills": "Golems Defeated",
+  "advancements.mgdp.golems.first_tear.title": "First Tear",
+  "advancements.mgdp.golems.first_tear.description": "Command your golem to claim its first kill.",
+  "advancements.mgdp.golems.war_machine.title": "War Machine",
+  "advancements.mgdp.golems.war_machine.description": "Accumulate 100 kills with your golems.",
+  "advancements.mgdp.golems.unrivaled.title": "Peerless",
+  "advancements.mgdp.golems.unrivaled.description": "Reach 1,000 kills — an unstoppable force.",
+  "advancements.mgdp.golems.god_of_war.title": "God of War",
+  "advancements.mgdp.golems.god_of_war.description": "A true deity of the battlefield with 10,000 kills.",
+  "advancements.mgdp.golems.deathless_king.title": "Deathless King",
+  "advancements.mgdp.golems.deathless_king.description": "Rule the battlefield with 10,000 kills — none shall stand against you."
 }

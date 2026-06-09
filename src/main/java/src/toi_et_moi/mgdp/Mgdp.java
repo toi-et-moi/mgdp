@@ -29,8 +29,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import src.toi_et_moi.mgdp.init.MGDPItems;
+import src.toi_et_moi.mgdp.advancement.InitTrigger;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import src.toi_et_moi.mgdp.init.MGDPStats;
 import src.toi_et_moi.mgdp.modifier.ChargedShieldModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
@@ -50,6 +52,8 @@ public class Mgdp {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+
+
 
 	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_GOLEM_SPEAR = ITEMS.register("simple_golem_spear",
 			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), 10, 0, 10.0F, 2.0F));
@@ -126,6 +130,8 @@ public class Mgdp {
 						output.accept(MGDPItems.BRUSH.get());
 						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
+						output.accept(MGDPItems.PROSPERITY.get());
+						output.accept(MGDPItems.LIQUID_CLEAR.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
 						output.accept(MGDPItems.ILLAGER_GOLEM.get());
 						output.accept(MGDPItems.PIGLIN_GOLEM.get());
@@ -164,7 +170,8 @@ public class Mgdp {
 
 		MGDPModifiers.register();
 		MGDPItems.register();
-
+		InitTrigger.init();
+		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 	}
 

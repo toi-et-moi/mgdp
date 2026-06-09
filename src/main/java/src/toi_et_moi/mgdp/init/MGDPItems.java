@@ -51,6 +51,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> GRENADE;
 	public static final RegistryObject<SimpleUpgradeItem> UNBREAKABLE;
 	public static final RegistryObject<SimpleUpgradeItem> INFINITE_AMMO;
+	public static final RegistryObject<SimpleUpgradeItem> PROSPERITY;
+	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;
 	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
@@ -87,13 +89,13 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.HARVEST_CROP.get(), 1, false));
 
 		FLIGHT = Mgdp.ITEMS.register("flight",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FLIGHT.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.FLIGHT.get(), 1, true));
 
 		POTION_AURA = Mgdp.ITEMS.register("potion_aura",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.POTION_AURA.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.POTION_AURA.get(), 1, true));
 
 		REBIRTH = Mgdp.ITEMS.register("rebirth",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REBIRTH.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.REBIRTH.get(), 1, true));
 
 		UNSTOPPABLE = Mgdp.ITEMS.register("unstoppable",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UNSTOPPABLE.get(), 1, true));
@@ -143,7 +145,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.MAGIC_RES.get(), 1, false));
 
 		DAMAGE_CAP = Mgdp.ITEMS.register("damage_cap",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.DAMAGE_CAP.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.DAMAGE_CAP.get(), 1, true));
 
 		TOTEMIC = Mgdp.ITEMS.register("totemic",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TOTEMIC.get(), 1, false));
@@ -169,6 +171,13 @@ public class MGDPItems {
 		INFINITE_AMMO = Mgdp.ITEMS.register("infinite_ammo",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.INFINITE_AMMO.get(), 1, false));
 
+		PROSPERITY = Mgdp.ITEMS.register("prosperity",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PROSPERITY.get(), 1, false));
+
+		LIQUID_CLEAR = Mgdp.ITEMS.register("liquid_clear",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIQUID_CLEAR.get(), 1, false));
+
+
 		QUICK_STRIKE = Mgdp.ITEMS.register("quick_strike",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.QUICK_STRIKE.get(), 1, false));
 
@@ -176,10 +185,10 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ANGLER.get(), 1, false));
 
 		DEATH_KNELL = Mgdp.ITEMS.register("death_knell",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DEATH_KNELL.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.DEATH_KNELL.get(), 1, true));
 
 		ECHO_TRIO = Mgdp.ITEMS.register("echo_trio",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ECHO_TRIO.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.ECHO_TRIO.get(), 1, true));
 
 		ADAPTIVE = Mgdp.ITEMS.register("hostility_adaptive",
 				() -> new SimpleUpgradeItem(new Item.Properties(),
@@ -278,7 +287,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.INVISIBILITY.get(), 1, false));
 
 		EXECUTIONER = Mgdp.ITEMS.register("executioner",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.EXECUTIONER.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.EXECUTIONER.get(), 1, true));
 
 		FOCUSED_DEFENSE = Mgdp.ITEMS.register("focused_defense",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FOCUSED_DEFENSE.get(), 1, false));
@@ -293,7 +302,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.HYPOTHERMIA.get(), 1, false));
 
 		VERSATILITY = Mgdp.ITEMS.register("versatility",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.VERSATILITY.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.VERSATILITY.get(), 1, true));
 	}
 
 	public static void register() {
@@ -351,6 +360,8 @@ public class MGDPItems {
 				event.accept(FLARE.get());
 				event.accept(UNBREAKABLE.get());
 				event.accept(INFINITE_AMMO.get());
+				event.accept(PROSPERITY.get());
+				event.accept(LIQUID_CLEAR.get());
 				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());

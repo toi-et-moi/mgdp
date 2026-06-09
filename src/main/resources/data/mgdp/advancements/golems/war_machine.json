@@ -1,0 +1,32 @@
+{
+  "parent": "mgdp:golems/first_tear",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "threshold": 100
+      },
+      "trigger": "mgdp:golem_kill"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.golems.war_machine.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:stone_sword"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.golems.war_machine.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

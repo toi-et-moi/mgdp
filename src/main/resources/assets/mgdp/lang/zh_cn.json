@@ -177,5 +177,22 @@
   "item.mgdp.enhanced_carved_golem": "铜刻重工增援召唤器",
   "item.mgdp.qoaiku_golem": "渊海重械增援召唤器",
   "item.mgdp.meror_golem": "莫厄残存增援召唤器",
-  "item.mgdp.refine_meror_golem": "传奇之躯增援召唤器"
+  "item.mgdp.refine_meror_golem": "传奇之躯增援召唤器",
+  "item.mgdp.prosperity": "丰收之神升级",
+  "modifier.modulargolems.prosperity": "丰收",
+  "modifier.modulargolems.prosperity.desc": "加速每级%s格内农作物生长，且每级+1倍战利品。",
+  "item.mgdp.liquid_clear": "废液缸升级",
+  "modifier.modulargolems.liquid_clear": "清液",
+  "modifier.modulargolems.liquid_clear.desc": "清除每级%s格内的液体，一次最多清除256格。",
+  "stat.mgdp.golem_kills": "统御击败",
+  "advancements.mgdp.golems.first_tear.title": "第一滴泪",
+  "advancements.mgdp.golems.first_tear.description": "指挥傀儡完成首次击杀。",
+  "advancements.mgdp.golems.war_machine.title": "战争机器",
+  "advancements.mgdp.golems.war_machine.description": "指挥傀儡累积击败100个敌人。",
+  "advancements.mgdp.golems.unrivaled.title": "无双",
+  "advancements.mgdp.golems.unrivaled.description": "指挥傀儡累积击败1000个敌人——势不可挡。",
+  "advancements.mgdp.golems.god_of_war.title": "战神",
+  "advancements.mgdp.golems.god_of_war.description": "指挥傀儡累积击败5000个敌人——真正的战场之神。",
+  "advancements.mgdp.golems.deathless_king.title": "无命之王",
+  "advancements.mgdp.golems.deathless_king.description": "指挥傀儡累积击败10000个敌人——主宰战场，横行无忌。"
 }

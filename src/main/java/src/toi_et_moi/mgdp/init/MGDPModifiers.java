@@ -46,6 +46,8 @@ import src.toi_et_moi.mgdp.modifier.InfiniteAmmoModifier;
 import src.toi_et_moi.mgdp.modifier.QuickStrikeModifier;
 import src.toi_et_moi.mgdp.modifier.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
+import src.toi_et_moi.mgdp.modifier.ProsperityModifier;
+import src.toi_et_moi.mgdp.modifier.LiquidClearModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -95,6 +97,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
 	public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
 	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
+	public static final RegistryEntry<ProsperityModifier> PROSPERITY;
+	public static final RegistryEntry<LiquidClearModifier> LIQUID_CLEAR;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -273,7 +277,16 @@ public class MGDPModifiers {
 				"Echo Trio",
 				"Locks onto 3 targets within 35 blocks, fires sonic booms at them, and counter-attacks when damaged.");
 
-	}
+			PROSPERITY = reg("prosperity", ProsperityModifier::new,
+				"Prosperity",
+				"Crop range +%s/level (current %s). Loot x(level+1).");
+
+			LIQUID_CLEAR = reg("liquid_clear", LiquidClearModifier::new,
+				"Liquid Clear",
+				"Clear range +%s/level (current %s).");
+
+		}
+
 
 	public static void register() {
 	}

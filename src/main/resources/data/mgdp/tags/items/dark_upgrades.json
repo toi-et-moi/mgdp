@@ -29,6 +29,8 @@
     "mgdp:angler",
     "mgdp:unbreakable",
     "mgdp:infinite_ammo",
-    "mgdp:quick_strike"
+    "mgdp:quick_strike",
+    "mgdp:prosperity",
+    "mgdp:liquid_clear"
   ]
 }
