@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DDD"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "B": {
+      "item": "minecraft:redstone_torch"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "mgdp:lord"
+  }
+}
