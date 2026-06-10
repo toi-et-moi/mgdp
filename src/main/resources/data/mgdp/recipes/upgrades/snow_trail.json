@@ -2,24 +2,21 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " A ",
-    "BCD",
-    "   "
+    " B ",
+    " C "
   ],
   "key": {
     "A": {
-      "item": "minecraft:anvil"
+      "item": "minecraft:carved_pumpkin"
     },
     "B": {
-      "item": "minecraft:smithing_table"
+      "item": "minecraft:snow_block"
     },
     "C": {
       "item": "modulargolems:empty_upgrade"
-    },
-    "D": {
-      "item": "minecraft:grindstone"
     }
   },
   "result": {
-    "item": "mgdp:unbreakable"
+    "item": "mgdp:snow_trail"
   }
 }

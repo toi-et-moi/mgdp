@@ -19,4 +19,11 @@ public class MGDPKeyMappings {
 			GLFW.GLFW_KEY_LEFT_CONTROL,
 			"key.categories.mgdp"
 	);
+
+	public static final KeyMapping SWAP = new KeyMapping(
+			"key.mgdp.swap",
+			InputConstants.Type.KEYSYM,
+			GLFW.GLFW_KEY_R,
+			"key.categories.mgdp"
+	);
 }

@@ -1,0 +1,33 @@
+{
+  "parent": "modulargolems:golems/summon_mass",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "count": 100
+      },
+      "trigger": "modulargolems:mass_summon"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mgdp.golems.summon_ex.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "modulargolems:summon_wand",
+      "nbt": "{Damage:0,Enchantments:[{}],HideFlags:1}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.mgdp.golems.summon_ex.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

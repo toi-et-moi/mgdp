@@ -156,7 +156,6 @@ public class JukeboxPacket {
                     java.util.UUID key = java.util.UUID.randomUUID();
                     activeSoundKeys.put(packet.entityId, key);
                     mc.getSoundManager().play(SimpleSoundInstance.forMusic(event));
-                    // The tracking key is best-effort; we can't easily remove completed sounds
                 }
             });
         }

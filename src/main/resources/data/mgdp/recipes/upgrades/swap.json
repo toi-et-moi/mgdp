@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "B": {
+      "item": "modulargolems:recycle"
+    },
+    "C": {
+      "item": "minecraft:poppy"
+    },
+    "D": {
+      "item": "minecraft:ender_chest"
+    }
+  },
+  "result": {
+    "item": "mgdp:swap"
+  }
+}

@@ -1,11 +1,22 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {"item": "modulargolems:empty_upgrade"},
-    {"item": "minecraft:emerald"},
-    {"item": "minecraft:emerald"}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "AAA"
   ],
-  "result": {"item": "mgdp:hero"},
-  "show_notification": true
+  "key": {
+    "A": {
+      "item": "minecraft:emerald_block"
+    },
+    "B": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:hero"
+  }
 }

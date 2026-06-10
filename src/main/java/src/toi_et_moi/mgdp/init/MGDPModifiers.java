@@ -49,6 +49,8 @@ import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
 import src.toi_et_moi.mgdp.modifier.ProsperityModifier;
 import src.toi_et_moi.mgdp.modifier.LiquidClearModifier;
 import src.toi_et_moi.mgdp.modifier.LordModifier;
+import src.toi_et_moi.mgdp.modifier.SnowTrailModifier;
+import src.toi_et_moi.mgdp.modifier.SwapModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -101,6 +103,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<ProsperityModifier> PROSPERITY;
 	public static final RegistryEntry<LiquidClearModifier> LIQUID_CLEAR;
 	public static final RegistryEntry<LordModifier> LORD;
+	public static final RegistryEntry<SnowTrailModifier> SNOW_TRAIL;
+	public static final RegistryEntry<SwapModifier> SWAP;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -283,9 +287,18 @@ public class MGDPModifiers {
 				"Prosperity",
 				"Crop range +%s/level (current %s). Loot x(level+1).");
 
-			LORD = reg("lord", LordModifier::new,
-			"Lord",
-			"Golem displays a personal boss bar showing its name and health.");
+		LORD = reg("lord", LordModifier::new,
+				"Lord",
+				"Golem displays a personal boss bar showing its name and health.");
+
+			SNOW_TRAIL = reg("snow_trail", SnowTrailModifier::new,
+				"Snow Trail",
+				"Golem leaves a trail of snow and freezes water like Frost Walker as it moves.");
+
+			SWAP = reg("swap", SwapModifier::new,
+				"Swap",
+				"Press the swap key (default: R) to switch places with the golem. When taking fatal damage, passively swaps with a random golem with this upgrade. 10s cooldown.");
+
 
 			LIQUID_CLEAR = reg("liquid_clear", LiquidClearModifier::new,
 				"Liquid Clear",

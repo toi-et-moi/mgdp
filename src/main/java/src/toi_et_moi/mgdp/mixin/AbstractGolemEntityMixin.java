@@ -293,20 +293,9 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     private void mgdp$loadJukeboxData(CompoundTag tag, CallbackInfo ci) {
-        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
         mgdp$jukeboxDisc = ItemStack.of(tag.getCompound("mgdp_jukebox_disc"));
-        mgdp$setPlaying(tag.getBoolean("mgdp_jukebox_playing"));
+        mgdp$setPlaying(mgdp$jukeboxDisc.isEmpty() ? false : tag.getBoolean("mgdp_jukebox_playing"));
         mgdp$jukeboxTick = 0;
-
-        // Re-trigger sound if loaded while playing (e.g. golem retrieved and placed back)
-        if (!golem.level().isClientSide && mgdp$isPlaying() && !mgdp$jukeboxDisc.isEmpty()
-                && mgdp$jukeboxDisc.getItem() instanceof net.minecraft.world.item.RecordItem ri
-                && golem.getOwnerUUID() != null && golem.getServer() != null) {
-            var owner = golem.getServer().getPlayerList().getPlayer(golem.getOwnerUUID());
-            if (owner != null) {
-                src.toi_et_moi.mgdp.jukebox.JukeboxPacket.playRecordForPlayer(owner, ri.getSound().getLocation(), golem.getId());
-            }
-        }
     }
 
     @Inject(method = "aiStep", at = @At("TAIL"))

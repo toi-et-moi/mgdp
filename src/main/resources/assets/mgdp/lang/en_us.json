@@ -197,9 +197,19 @@
   "advancements.mgdp.golems.god_of_war.description": "A true deity of the battlefield with 10,000 kills.",
   "advancements.mgdp.golems.deathless_king.title": "Deathless King",
   "advancements.mgdp.golems.deathless_king.description": "Rule the battlefield with 10,000 kills — none shall stand against you.",
+  "advancements.mgdp.golems.summon_ex.title": "Million Heroes",
+  "advancements.mgdp.golems.summon_ex.description": "Tread through mountains, break all formations. You came, you saw, you conquered.",
   "gui.mgdp.jukebox": "Jukebox",
   "gui.mgdp.jukebox.disc_slot": "Disc Slot",
   "item.mgdp.lord": "Lord Upgrade",
   "modifier.modulargolems.lord": "Lord",
-  "modifier.modulargolems.lord.desc": "Golem displays a personal boss bar showing its name and health. Combine with the Jukebox feature for extra style."
+  "modifier.modulargolems.lord.desc": "Golem displays a personal boss bar showing its name and health. Combine with the Jukebox feature for extra style.",
+  "item.mgdp.snow_trail": "Snow Trail Upgrade",
+  "modifier.modulargolems.snow_trail": "Snow Trail",
+  "modifier.modulargolems.snow_trail.desc": "Golem leaves a trail of snow like a Snow Golem and freezes water like Frost Walker as it moves.",
+  "item.mgdp.swap": "Swap Upgrade",
+  "modifier.modulargolems.swap": "Swap",
+  "modifier.modulargolems.swap.line1": "Press R to swap places with the golem.",
+  "modifier.modulargolems.swap.line2": "Taking fatal damage triggers a passive swap. 10s cooldown.",
+  "key.mgdp.swap": "Swap Position with Golem"
 }

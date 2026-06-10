@@ -137,6 +137,8 @@ public class Mgdp {
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
 							output.accept(MGDPItems.LORD.get());
+							output.accept(MGDPItems.SNOW_TRAIL.get());
+							output.accept(MGDPItems.SWAP.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
 						output.accept(MGDPItems.ILLAGER_GOLEM.get());
 						output.accept(MGDPItems.PIGLIN_GOLEM.get());
@@ -236,6 +238,23 @@ public class Mgdp {
 	}
 
 	@SubscribeEvent
+	public void mgdp$onEntityJoin(net.minecraftforge.event.entity.EntityJoinLevelEvent evt) {
+		if (!(evt.getEntity() instanceof src.toi_et_moi.mgdp.jukebox.JukeboxGolem jb)) return;
+		if (evt.getLevel().isClientSide()) return;
+		if (!jb.mgdp$isPlaying()) return;
+		var disc = jb.mgdp$getDisc();
+		if (!disc.isEmpty() && disc.getItem() instanceof net.minecraft.world.item.RecordItem ri
+				&& evt.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem
+				&& golem.getOwnerUUID() != null && golem.getServer() != null) {
+			var owner = golem.getServer().getPlayerList().getPlayer(golem.getOwnerUUID());
+			if (owner != null) {
+				src.toi_et_moi.mgdp.jukebox.JukeboxPacket.playRecordForPlayer(
+						owner, ri.getSound().getLocation(), golem.getId());
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("MGDP server starting");
 	}
@@ -257,6 +276,17 @@ public class Mgdp {
 		public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
 			event.register(MGDPKeyMappings.FLIGHT_DESCEND);
 				event.register(MGDPKeyMappings.FLIGHT_SPRINT);
+				event.register(MGDPKeyMappings.SWAP);
+		}
+	}
+
+	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+	public static class ClientTickHandler {
+		@SubscribeEvent
+		public static void onClientTick(net.minecraftforge.event.TickEvent.ClientTickEvent event) {
+			if (MGDPKeyMappings.SWAP.consumeClick()) {
+				Mgdp.PACKET_HANDLER.sendToServer(new src.toi_et_moi.mgdp.modifier.SwapPacket());
+			}
 		}
 	}
 }

@@ -1,12 +1,31 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {"item": "modulargolems:empty_upgrade"},
-    {"item": "minecraft:vine"},
-    {"item": "minecraft:oak_sapling"},
-    {"item": "minecraft:bone_meal"}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
   ],
-  "result": {"item": "mgdp:death_knell"},
-  "show_notification": true
+  "key": {
+    "A": {
+      "item": "minecraft:wither_rose"
+    },
+    "B": {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    "C": {
+      "item": "minecraft:sculk_shrieker"
+    },
+    "D": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "E": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    },
+    "F": {
+      "item": "modulargolems:netherite_expansion_template"
+    }
+  },
+  "result": {
+    "item": "mgdp:death_knell"
+  }
 }

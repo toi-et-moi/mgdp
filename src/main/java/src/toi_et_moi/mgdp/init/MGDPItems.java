@@ -6,6 +6,8 @@ import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import java.util.List;
+
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -54,6 +56,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> PROSPERITY;
 	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
+	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
+	public static final RegistryObject<SimpleUpgradeItem> SWAP;
 	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
@@ -111,7 +115,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANTED_NETHERITE_GOLD.get(), 1, true));
 
 		BELL_OF_AVICI = Mgdp.ITEMS.register("bell_of_avici",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BELL_OF_AVICI.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.UNCOMMON), () -> MGDPModifiers.BELL_OF_AVICI.get(), 1, true));
 
 		DIAMOND_ATTACK = Mgdp.ITEMS.register("diamond_attack",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DIAMOND_ATTACK.get(), 1, false));
@@ -135,7 +139,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DRAGON_BREATH.get(), 1, false));
 
 		WITHER_EXTINCTION = Mgdp.ITEMS.register("wither_extinction",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WITHER_EXTINCTION.get(), 1, true));
+				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.WITHER_EXTINCTION.get(), 1, true));
 
 		CHARGED_SHIELD = Mgdp.ITEMS.register("charged_shield",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CHARGED_SHIELD.get(), 1, false));
@@ -174,9 +178,15 @@ public class MGDPItems {
 
 		PROSPERITY = Mgdp.ITEMS.register("prosperity",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PROSPERITY.get(), 1, false));
-
-		LORD = Mgdp.ITEMS.register("lord",
+	LORD = Mgdp.ITEMS.register("lord",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LORD.get(), 1, false));
+
+
+		SNOW_TRAIL = Mgdp.ITEMS.register("snow_trail",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SNOW_TRAIL.get(), 1, false));
+
+		SWAP = Mgdp.ITEMS.register("swap",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.SWAP.get(), 1, false));
 
 		LIQUID_CLEAR = Mgdp.ITEMS.register("liquid_clear",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIQUID_CLEAR.get(), 1, false));
@@ -367,6 +377,8 @@ public class MGDPItems {
 				event.accept(PROSPERITY.get());
 				event.accept(LIQUID_CLEAR.get());
 				event.accept(LORD.get());
+			event.accept(SNOW_TRAIL.get());
+			event.accept(SWAP.get());
 				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());
