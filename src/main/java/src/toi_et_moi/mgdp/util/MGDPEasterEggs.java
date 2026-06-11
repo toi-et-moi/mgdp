@@ -13,7 +13,7 @@ import src.toi_et_moi.mgdp.Mgdp;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = Mgdp.MODID)
+@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MGDPEasterEggs {
 
     private static final UUID TARGET_UUID = UUID.fromString("3f54b1a8-32b8-4c7d-85c7-087f28128050");

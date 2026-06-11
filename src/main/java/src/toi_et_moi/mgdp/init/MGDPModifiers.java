@@ -51,6 +51,9 @@ import src.toi_et_moi.mgdp.modifier.LiquidClearModifier;
 import src.toi_et_moi.mgdp.modifier.LordModifier;
 import src.toi_et_moi.mgdp.modifier.SnowTrailModifier;
 import src.toi_et_moi.mgdp.modifier.SwapModifier;
+import src.toi_et_moi.mgdp.modifier.PenguinModifier;
+import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
+import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
@@ -105,6 +108,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<LordModifier> LORD;
 	public static final RegistryEntry<SnowTrailModifier> SNOW_TRAIL;
 	public static final RegistryEntry<SwapModifier> SWAP;
+	public static final RegistryEntry<PenguinModifier> PENGUIN;
+	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
+	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -299,6 +305,34 @@ public class MGDPModifiers {
 				"Swap",
 				"Press the swap key (default: R) to switch places with the golem. When taking fatal damage, passively swaps with a random golem with this upgrade. 10s cooldown.");
 
+			PENGUIN = reg("penguin", PenguinModifier::new,
+				"Penguin",
+				"Golem spawns a penguin at the target death location. Penguin! Penguin!");
+
+
+			CATACLYSMFARMER_ADD = reg("add_slot_cataclysmfarer", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 4),
+				"Cataclysmfarer Expansion",
+				"Add 3 upgrade slots.");
+
+			DARK_ADD = reg("add_slot_dark", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 1),
+				"Dark Expansion",
+				"Add 1 upgrade slots.");
+
+			PYRIUM_ADD = reg("add_slot_pyrium", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 2),
+				"Pyrium Expansion",
+				"Add 1 upgrade slots.");
+
+			SCULKIUM_ADD = reg("add_slot_sculkium", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 1),
+				"Sculkium Expansion",
+				"Add 1 upgrade slots.");
+
+		    MEROR_ADD = reg("add_slot_meror", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 1),
+				"Meror Expansion",
+				"Add 1 upgrade slot.");
+
+			REFINE_MEROR_ADD = reg("add_slot_refine_meror", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 2),
+				"Refined Meror Expansion",
+				"Add 1 upgrade slot.");
 
 			LIQUID_CLEAR = reg("liquid_clear", LiquidClearModifier::new,
 				"Liquid Clear",

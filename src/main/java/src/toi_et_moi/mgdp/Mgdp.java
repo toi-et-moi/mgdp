@@ -136,9 +136,16 @@ public class Mgdp {
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.DARK_TEMPLATE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) output.accept(MGDPItems.SCULKIUM_TEMPLATE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotesvillage")) output.accept(MGDPItems.MEROR_TEMPLATE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotesvillage")) output.accept(MGDPItems.REFINE_MEROR_TEMPLATE.get());
 							output.accept(MGDPItems.LORD.get());
 							output.accept(MGDPItems.SNOW_TRAIL.get());
 							output.accept(MGDPItems.SWAP.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.PENGUIN.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
 						output.accept(MGDPItems.ILLAGER_GOLEM.get());
 						output.accept(MGDPItems.PIGLIN_GOLEM.get());

@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:lava_power_cell"
+    },
+    "B": {
+      "item": "cataclysm:ignitium_ingot"
+    },
+    "C": {
+      "item": "cataclysm:sandstorm_in_a_bottle"
+    },
+    "D": {
+      "item": "cataclysm:witherite_ingot"
+    },
+    "E": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    "F": {
+      "item": "cataclysm:essence_of_the_storm"
+    },
+    "G": {
+      "item": "cataclysm:tidal_claws"
+    },
+    "H": {
+      "item": "cataclysm:cursium_ingot"
+    },
+    "I": {
+      "item": "cataclysm:gauntlet_of_guard"
+    }
+  },
+  "result": {
+    "item": "mgdp:cataclysmfarer_expansion_template"
+  }
+}

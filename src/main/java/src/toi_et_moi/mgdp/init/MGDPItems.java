@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.init;
 
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
+import dev.xkmc.modulargolems.content.item.upgrade.AddSlotTemplate;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import net.minecraft.resources.ResourceLocation;
@@ -58,6 +59,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
 	public static final RegistryObject<SimpleUpgradeItem> SWAP;
+	public static final RegistryObject<SimpleUpgradeItem> PENGUIN;
 	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
@@ -88,6 +90,12 @@ public class MGDPItems {
 	public static final RegistryObject<GolemSummonItem> QOAIKU_GOLEM;
 	public static final RegistryObject<GolemSummonItem> MEROR_GOLEM;
 	public static final RegistryObject<GolemSummonItem> REFINE_MEROR_GOLEM;
+	public static final RegistryObject<AddSlotTemplate> CATACLYSMFARMER_TEMPLATE;
+	public static final RegistryObject<AddSlotTemplate> MEROR_TEMPLATE;
+	public static final RegistryObject<AddSlotTemplate> REFINE_MEROR_TEMPLATE;
+	public static final RegistryObject<AddSlotTemplate> DARK_TEMPLATE;
+	public static final RegistryObject<AddSlotTemplate> PYRIUM_TEMPLATE;
+	public static final RegistryObject<AddSlotTemplate> SCULKIUM_TEMPLATE;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -187,6 +195,9 @@ public class MGDPItems {
 
 		SWAP = Mgdp.ITEMS.register("swap",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.SWAP.get(), 1, false));
+
+		PENGUIN = Mgdp.ITEMS.register("penguin",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PENGUIN.get(), 1, false));
 
 		LIQUID_CLEAR = Mgdp.ITEMS.register("liquid_clear",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIQUID_CLEAR.get(), 1, false));
@@ -294,6 +305,24 @@ public class MGDPItems {
 			() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
 				new ResourceLocation("jerotes_village_golems", "refine_meror")));
 
+		CATACLYSMFARMER_TEMPLATE = Mgdp.ITEMS.register("cataclysmfarer_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.CATACLYSMFARMER_ADD.get()));
+
+		DARK_TEMPLATE = Mgdp.ITEMS.register("dark_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.DARK_ADD.get()));
+
+		PYRIUM_TEMPLATE = Mgdp.ITEMS.register("pyrium_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.PYRIUM_ADD.get()));
+
+		SCULKIUM_TEMPLATE = Mgdp.ITEMS.register("sculkium_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.SCULKIUM_ADD.get()));
+		MEROR_TEMPLATE = Mgdp.ITEMS.register("meror_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.MEROR_ADD.get()));
+
+		REFINE_MEROR_TEMPLATE = Mgdp.ITEMS.register("refine_meror_expansion_template",
+			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.REFINE_MEROR_ADD.get()));
+
+
 		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
 
@@ -352,6 +381,12 @@ public class MGDPItems {
 				event.accept(FOCUSED_DEFENSE.get());
 				event.accept(EXECUTIONER.get());
 				event.accept(INVISIBILITY.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(CATACLYSMFARMER_TEMPLATE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(DARK_TEMPLATE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) event.accept(PYRIUM_TEMPLATE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) event.accept(SCULKIUM_TEMPLATE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(MEROR_TEMPLATE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(REFINE_MEROR_TEMPLATE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
 				event.accept(TRUE_INVISIBILITY.get());
 				event.accept(ARMOR_PIERCE.get());
@@ -379,6 +414,7 @@ public class MGDPItems {
 				event.accept(LORD.get());
 			event.accept(SNOW_TRAIL.get());
 			event.accept(SWAP.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(PENGUIN.get());
 				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());
