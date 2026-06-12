@@ -29,7 +29,8 @@
     "TridentHoldMixin",
     "CrossbowItemMixin",
     "GenericBowItemMixin",
-    "EntityJukeboxMixin"
+    "EntityJukeboxMixin",
+    "FlameThrowerMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

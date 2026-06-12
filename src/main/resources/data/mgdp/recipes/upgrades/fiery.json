@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "twilightforest:fiery_block"
+    },
+    "B": {
+      "item": "modulargolems:fiery"
+    }
+  },
+  "result": {
+    "item": "mgdp:fiery"
+  }
+}

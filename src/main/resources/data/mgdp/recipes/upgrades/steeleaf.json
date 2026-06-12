@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "twilightforest:steeleaf_block"
+    },
+    "B": {
+      "item": "modulargolems:steeleaf"
+    }
+  },
+  "result": {
+    "item": "mgdp:steeleaf"
+  }
+}

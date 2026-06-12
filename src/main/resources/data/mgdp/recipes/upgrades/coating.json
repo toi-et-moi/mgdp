@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "create:zinc_block"
+    },
+    "B": {
+      "item": "modulargolems:coating"
+    }
+  },
+  "result": {
+    "item": "mgdp:coating"
+  }
+}

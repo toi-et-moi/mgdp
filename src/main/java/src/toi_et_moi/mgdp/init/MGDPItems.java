@@ -56,6 +56,13 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> INFINITE_AMMO;
 	public static final RegistryObject<SimpleUpgradeItem> PROSPERITY;
 	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;
+	public static final RegistryObject<SimpleUpgradeItem> MAGIC_IMMUNE;
+	public static final RegistryObject<SimpleUpgradeItem> IRONWOOD;
+	public static final RegistryObject<SimpleUpgradeItem> STEELEAF;
+	public static final RegistryObject<SimpleUpgradeItem> FIERY;
+	public static final RegistryObject<SimpleUpgradeItem> KNIGHTMETAL;
+	public static final RegistryObject<SimpleUpgradeItem> CARMINITE;
+	public static final RegistryObject<SimpleUpgradeItem> COATING;
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
 	public static final RegistryObject<SimpleUpgradeItem> SWAP;
@@ -201,6 +208,31 @@ public class MGDPItems {
 
 		LIQUID_CLEAR = Mgdp.ITEMS.register("liquid_clear",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LIQUID_CLEAR.get(), 1, false));
+		MAGIC_IMMUNE = Mgdp.ITEMS.register("magic_immune",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> dev.xkmc.modulargolems.init.registrate.GolemModifiers.MAGIC_IMMUNE.get(), 1, true));
+		IRONWOOD = Mgdp.ITEMS.register("ironwood",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) ? dev.xkmc.modulargolems.compat.materials.twilightforest.TFCompatRegistry.TF_HEALING.get() : null, 5, true));
+
+		STEELEAF = Mgdp.ITEMS.register("steeleaf",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) ? dev.xkmc.modulargolems.compat.materials.twilightforest.TFCompatRegistry.TF_DAMAGE.get() : null, 5, true));
+		FIERY = Mgdp.ITEMS.register("fiery",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest"))
+				? dev.xkmc.modulargolems.compat.materials.twilightforest.TFCompatRegistry.FIERY.get() : null, 5, true));
+
+		KNIGHTMETAL = Mgdp.ITEMS.register("knightmetal",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest"))
+				? dev.xkmc.modulargolems.init.registrate.GolemModifiers.THORN.get() : null, 5, true));
+		CARMINITE = Mgdp.ITEMS.register("carminite",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest"))
+				? dev.xkmc.modulargolems.compat.materials.twilightforest.TFCompatRegistry.CARMINITE.get() : null, 5, true));
+
+		COATING = Mgdp.ITEMS.register("coating",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("create"))
+				? dev.xkmc.modulargolems.compat.materials.create.CreateCompatRegistry.COATING.get() : null, 5, true));
+
+
+
+
 
 
 		QUICK_STRIKE = Mgdp.ITEMS.register("quick_strike",
@@ -411,6 +443,13 @@ public class MGDPItems {
 				event.accept(INFINITE_AMMO.get());
 				event.accept(PROSPERITY.get());
 				event.accept(LIQUID_CLEAR.get());
+			event.accept(MAGIC_IMMUNE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(IRONWOOD.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(STEELEAF.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(FIERY.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(KNIGHTMETAL.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(CARMINITE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(COATING.get());
 				event.accept(LORD.get());
 			event.accept(SNOW_TRAIL.get());
 			event.accept(SWAP.get());

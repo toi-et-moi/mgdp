@@ -136,6 +136,13 @@ public class Mgdp {
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
+							output.accept(MGDPItems.MAGIC_IMMUNE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.IRONWOOD.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.STEELEAF.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.FIERY.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.KNIGHTMETAL.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.CARMINITE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.DARK_TEMPLATE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());

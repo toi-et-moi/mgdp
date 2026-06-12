@@ -55,6 +55,12 @@
     "mgdp:lord",
     "mgdp:snow_trail",
     "mgdp:swap",
-    "mgdp:penguin"
+    "mgdp:penguin",
+    "mgdp:magic_immune",
+    "mgdp:ironwood",
+    "mgdp:steeleaf",
+    "mgdp:fiery",
+    "mgdp:knightmetal",
+    "mgdp:carminite"
   ]
 }
