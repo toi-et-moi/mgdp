@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import src.toi_et_moi.mgdp.modifier.DragonBreathModifier;
+import src.toi_et_moi.mgdp.modifier.combat.DragonBreathModifier;
 
 import java.util.UUID;
 

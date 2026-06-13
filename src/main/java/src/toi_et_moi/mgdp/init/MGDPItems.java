@@ -66,6 +66,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
 	public static final RegistryObject<SimpleUpgradeItem> SWAP;
+	public static final RegistryObject<SimpleUpgradeItem> WITCH;
+	public static final RegistryObject<SimpleUpgradeItem> CRONE;
+	public static final RegistryObject<SimpleUpgradeItem> BOTTLING;
 	public static final RegistryObject<SimpleUpgradeItem> PENGUIN;
 	public static final RegistryObject<SimpleUpgradeItem> QUICK_STRIKE;
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
@@ -202,6 +205,18 @@ public class MGDPItems {
 
 		SWAP = Mgdp.ITEMS.register("swap",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.SWAP.get(), 1, false));
+
+		WITCH = Mgdp.ITEMS.register("witch",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WITCH.get(), 1, false));
+
+		CRONE = Mgdp.ITEMS.register("crone",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("goety"))
+				? MGDPModifiers.CRONE.get() : null, 1, false));
+
+		BOTTLING = Mgdp.ITEMS.register("bottling",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("goety"))
+				? MGDPModifiers.BOTTLING.get() : null, 1, false));
+
 
 		PENGUIN = Mgdp.ITEMS.register("penguin",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PENGUIN.get(), 1, false));
@@ -449,10 +464,13 @@ public class MGDPItems {
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(FIERY.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(KNIGHTMETAL.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(CARMINITE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(CRONE.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(BOTTLING.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(COATING.get());
 				event.accept(LORD.get());
 			event.accept(SNOW_TRAIL.get());
 			event.accept(SWAP.get());
+			event.accept(WITCH.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(PENGUIN.get());
 				event.accept(QUICK_STRIKE.get());
 				event.accept(ANGLER.get());

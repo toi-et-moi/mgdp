@@ -30,7 +30,7 @@
     "CrossbowItemMixin",
     "GenericBowItemMixin",
     "EntityJukeboxMixin",
-    "FlameThrowerMixin"
+    "FlameThrowerMixin",
   ],
   "client": [
     "AbstractGolemRendererMixin"

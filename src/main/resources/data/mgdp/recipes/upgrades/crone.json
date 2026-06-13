@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "pattern": [
+    " B ",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "B": {
+      "item": "goety:crone_hat"
+    }
+  },
+  "result": {
+    "item": "mgdp:crone"
+  }
+}

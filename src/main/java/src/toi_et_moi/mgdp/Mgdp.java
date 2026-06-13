@@ -35,7 +35,7 @@ import src.toi_et_moi.mgdp.advancement.InitTrigger;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 import src.toi_et_moi.mgdp.init.MGDPStats;
-import src.toi_et_moi.mgdp.modifier.ChargedShieldModifier;
+import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import net.minecraft.world.entity.LivingEntity;
@@ -142,6 +142,8 @@ public class Mgdp {
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.FIERY.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.KNIGHTMETAL.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.CARMINITE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.CRONE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.BOTTLING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.DARK_TEMPLATE.get());
@@ -152,6 +154,7 @@ public class Mgdp {
 							output.accept(MGDPItems.LORD.get());
 							output.accept(MGDPItems.SNOW_TRAIL.get());
 							output.accept(MGDPItems.SWAP.get());
+							output.accept(MGDPItems.WITCH.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.PENGUIN.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
 						output.accept(MGDPItems.ILLAGER_GOLEM.get());

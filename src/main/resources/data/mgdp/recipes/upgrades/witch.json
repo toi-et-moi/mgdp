@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "B": {
+      "item": "minecraft:brewing_stand"
+    }
+  },
+  "result": {
+    "item": "mgdp:witch"
+  }
+}

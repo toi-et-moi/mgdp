@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "pattern": [
+    " A ",
+    "BCD",
+    " E "
+  ],
+  "key": {
+    "A": {
+      "tag": "goety:witches_hat"
+    },
+    "B": {
+      "item": "goety:cauldron_ladle"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "goety:refuse_bottle"
+    },
+    "E": [
+      {
+        "item": "goety:witch_robe"
+      },
+      {
+        "item": "goety:witch_robe_hedge"
+      }
+    ]
+  },
+  "result": {
+    "item": "mgdp:bottling"
+  }
+}

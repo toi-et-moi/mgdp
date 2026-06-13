@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.NetworkEvent;
 import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import src.toi_et_moi.mgdp.modifier.special.SwapModifier;
 
 import java.util.List;
 import java.util.function.Supplier;

@@ -2,56 +2,58 @@ package src.toi_et_moi.mgdp.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.modulargolems.content.modifier.base.PotionDefenseModifier;
-import src.toi_et_moi.mgdp.modifier.CompatUtil;
 import net.minecraft.world.effect.MobEffects;
-import src.toi_et_moi.mgdp.modifier.FlightModifier;
-import src.toi_et_moi.mgdp.modifier.HarvestCropModifier;
-import src.toi_et_moi.mgdp.modifier.PotionAuraModifier;
-import src.toi_et_moi.mgdp.modifier.RebirthModifier;
-import src.toi_et_moi.mgdp.modifier.EnchantedNetheriteGoldModifier;
-import src.toi_et_moi.mgdp.modifier.NetheriteGoldModifier;
-import src.toi_et_moi.mgdp.modifier.SpiritModifier;
-import src.toi_et_moi.mgdp.modifier.BellOfAviciModifier;
-import src.toi_et_moi.mgdp.modifier.ChargedShieldModifier;
-import src.toi_et_moi.mgdp.modifier.CrimsonAttackModifier;
-import src.toi_et_moi.mgdp.modifier.DiamondAttackModifier;
-import src.toi_et_moi.mgdp.modifier.DragonBreathModifier;
-import src.toi_et_moi.mgdp.modifier.EnchantedCrimsonAttackModifier;
-import src.toi_et_moi.mgdp.modifier.WitherExtinctionModifier;
-import src.toi_et_moi.mgdp.modifier.EnchantedDiamondAttackModifier;
-import src.toi_et_moi.mgdp.modifier.LightningStormModifier;
-import src.toi_et_moi.mgdp.modifier.RocketFlightModifier;
-import src.toi_et_moi.mgdp.modifier.UnstoppableModifier;
-import src.toi_et_moi.mgdp.modifier.HypothermiaModifier;
-import src.toi_et_moi.mgdp.modifier.SelfRepairModifier;
-import src.toi_et_moi.mgdp.modifier.ExecutionerModifier;
-import src.toi_et_moi.mgdp.modifier.FocusedDefenseModifier;
-import src.toi_et_moi.mgdp.modifier.SonicBoomModifier;
-import src.toi_et_moi.mgdp.modifier.VersatilityModifier;
-import src.toi_et_moi.mgdp.modifier.ProjectileDodgeModifier;
-import src.toi_et_moi.mgdp.modifier.DementorModifier;
-import src.toi_et_moi.mgdp.modifier.DrainModifier;
-import src.toi_et_moi.mgdp.modifier.ReprintModifier;
-import src.toi_et_moi.mgdp.modifier.BrushModifier;
-import src.toi_et_moi.mgdp.modifier.BombDisposalModifier;
-import src.toi_et_moi.mgdp.modifier.FireballModifier;
-import src.toi_et_moi.mgdp.modifier.TotemicModifier;
-import src.toi_et_moi.mgdp.modifier.HeroModifier;
-import src.toi_et_moi.mgdp.modifier.FlareModifier;
-import src.toi_et_moi.mgdp.modifier.AnglerModifier;
-import src.toi_et_moi.mgdp.modifier.UndyingModifier;
-import src.toi_et_moi.mgdp.modifier.GrenadeModifier;
-import src.toi_et_moi.mgdp.modifier.UnbreakableModifier;
-import src.toi_et_moi.mgdp.modifier.InfiniteAmmoModifier;
-import src.toi_et_moi.mgdp.modifier.QuickStrikeModifier;
-import src.toi_et_moi.mgdp.modifier.DeathKnellModifier;
-import src.toi_et_moi.mgdp.modifier.EchoTrioModifier;
-import src.toi_et_moi.mgdp.modifier.ProsperityModifier;
-import src.toi_et_moi.mgdp.modifier.LiquidClearModifier;
-import src.toi_et_moi.mgdp.modifier.LordModifier;
-import src.toi_et_moi.mgdp.modifier.SnowTrailModifier;
-import src.toi_et_moi.mgdp.modifier.SwapModifier;
-import src.toi_et_moi.mgdp.modifier.PenguinModifier;
+import src.toi_et_moi.mgdp.modifier.movement.FlightModifier;
+import src.toi_et_moi.mgdp.modifier.farming.HarvestCropModifier;
+import src.toi_et_moi.mgdp.modifier.special.PotionAuraModifier;
+import src.toi_et_moi.mgdp.modifier.buff.RebirthModifier;
+import src.toi_et_moi.mgdp.modifier.buff.EnchantedNetheriteGoldModifier;
+import src.toi_et_moi.mgdp.modifier.buff.NetheriteGoldModifier;
+import src.toi_et_moi.mgdp.modifier.movement.SpiritModifier;
+import src.toi_et_moi.mgdp.modifier.special.BellOfAviciModifier;
+import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
+import src.toi_et_moi.mgdp.modifier.combat.CrimsonAttackModifier;
+import src.toi_et_moi.mgdp.modifier.combat.DiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.combat.DragonBreathModifier;
+import src.toi_et_moi.mgdp.modifier.combat.EnchantedCrimsonAttackModifier;
+import src.toi_et_moi.mgdp.modifier.combat.WitherExtinctionModifier;
+import src.toi_et_moi.mgdp.modifier.combat.EnchantedDiamondAttackModifier;
+import src.toi_et_moi.mgdp.modifier.combat.LightningStormModifier;
+import src.toi_et_moi.mgdp.modifier.movement.RocketFlightModifier;
+import src.toi_et_moi.mgdp.modifier.movement.UnstoppableModifier;
+import src.toi_et_moi.mgdp.modifier.defense.HypothermiaModifier;
+import src.toi_et_moi.mgdp.modifier.buff.SelfRepairModifier;
+import src.toi_et_moi.mgdp.modifier.combat.ExecutionerModifier;
+import src.toi_et_moi.mgdp.modifier.defense.FocusedDefenseModifier;
+import src.toi_et_moi.mgdp.modifier.combat.SonicBoomModifier;
+import src.toi_et_moi.mgdp.modifier.special.VersatilityModifier;
+import src.toi_et_moi.mgdp.modifier.defense.ProjectileDodgeModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.DementorModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.DrainModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.ReprintModifier;
+import src.toi_et_moi.mgdp.modifier.farming.BrushModifier;
+import src.toi_et_moi.mgdp.modifier.defense.BombDisposalModifier;
+import src.toi_et_moi.mgdp.modifier.combat.FireballModifier;
+import src.toi_et_moi.mgdp.modifier.buff.TotemicModifier;
+import src.toi_et_moi.mgdp.modifier.farming.HeroModifier;
+import src.toi_et_moi.mgdp.modifier.farming.FlareModifier;
+import src.toi_et_moi.mgdp.modifier.farming.AnglerModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.UndyingModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
+import src.toi_et_moi.mgdp.modifier.defense.UnbreakableModifier;
+import src.toi_et_moi.mgdp.modifier.defense.InfiniteAmmoModifier;
+import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
+import src.toi_et_moi.mgdp.modifier.combat.DeathKnellModifier;
+import src.toi_et_moi.mgdp.modifier.combat.EchoTrioModifier;
+import src.toi_et_moi.mgdp.modifier.farming.ProsperityModifier;
+import src.toi_et_moi.mgdp.modifier.farming.LiquidClearModifier;
+import src.toi_et_moi.mgdp.modifier.special.LordModifier;
+import src.toi_et_moi.mgdp.modifier.buff.SnowTrailModifier;
+import src.toi_et_moi.mgdp.modifier.buff.WitchModifier;
+import src.toi_et_moi.mgdp.modifier.special.SwapModifier;
+import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
+import src.toi_et_moi.mgdp.modifier.buff.CroneModifier;
+import src.toi_et_moi.mgdp.modifier.buff.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
@@ -108,6 +110,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<LordModifier> LORD;
 	public static final RegistryEntry<SnowTrailModifier> SNOW_TRAIL;
 	public static final RegistryEntry<SwapModifier> SWAP;
+	public static final RegistryEntry<WitchModifier> WITCH;
+	public static final RegistryEntry<CroneModifier> CRONE;
+	public static final RegistryEntry<BottlingModifier> BOTTLING;
 	public static final RegistryEntry<PenguinModifier> PENGUIN;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
@@ -305,9 +310,22 @@ public class MGDPModifiers {
 				"Swap",
 				"Press the swap key (default: R) to switch places with the golem. When taking fatal damage, passively swaps with a random golem with this upgrade. 10s cooldown.");
 
+
+			WITCH = reg("witch", WitchModifier::new,
+				"Witch",
+				"Golem buffs itself and throws potions at enemies and allies like a witch.");
 			PENGUIN = reg("penguin", PenguinModifier::new,
-				"Penguin",
+			"Penguin",
 				"Golem spawns a penguin at the target death location. Penguin! Penguin!");
+
+
+			CRONE = reg("crone", CroneModifier::new,
+				"Crone",
+				"Golem attacks with Goety brew effects and buffs allies.");
+
+			BOTTLING = reg("bottling", BottlingModifier::new,
+				"Bottling",
+				"Golem applies bottling effect to its owner. Effect level equals upgrade level.");
 
 
 			CATACLYSMFARMER_ADD = reg("add_slot_cataclysmfarer", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 4),

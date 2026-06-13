@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
 import src.toi_et_moi.mgdp.jukebox.JukeboxPacket;
-import src.toi_et_moi.mgdp.modifier.LordModifier;
+import src.toi_et_moi.mgdp.modifier.special.LordModifier;
 
 @Mixin(Entity.class)
 public class EntityJukeboxMixin {

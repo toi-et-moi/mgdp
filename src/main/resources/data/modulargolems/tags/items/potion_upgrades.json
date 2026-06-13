@@ -2,6 +2,9 @@
   "values": [
     "mgdp:potion_aura",
     "mgdp:invisibility",
-    "mgdp:true_invisibility"
+    "mgdp:true_invisibility",
+    "mgdp:witch",
+    "mgdp:crone",
+    "mgdp:bottling"
   ]
 }
