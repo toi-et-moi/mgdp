@@ -29,7 +29,9 @@ public class JukeboxMenu extends BaseContainerMenu<JukeboxMenu> {
         this.golem = golem;
         this.player = plInv.player;
 
-        addSlot("disc", stack -> stack.getItem() instanceof RecordItem);
+        addSlot("disc", stack -> stack.getItem() instanceof RecordItem
+                || net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(stack.getItem())
+                        .equals(new net.minecraft.resources.ResourceLocation("netmusic", "music_cd")));
 
         // Initialize disc from golem data
         if (golem instanceof JukeboxGolem jb && !jb.mgdp$getDisc().isEmpty()) {
@@ -58,6 +60,12 @@ public class JukeboxMenu extends BaseContainerMenu<JukeboxMenu> {
                 jb.mgdp$setTick(0);
                 if (oldDisc.getItem() instanceof RecordItem ri) {
                     JukeboxPacket.stopRecordForTracking(golem, ri.getSound().getLocation());
+                } else if (src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isNetMusicDisc(oldDisc)) {
+                    var stopPacket = new src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket(
+                            src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket.Action.STOP,
+                            golem.getId(), "", 0, "");
+                    src.toi_et_moi.mgdp.Mgdp.PACKET_HANDLER.send(
+                            net.minecraftforge.network.PacketDistributor.TRACKING_ENTITY.with(() -> golem), stopPacket);
                 }
             }
         }

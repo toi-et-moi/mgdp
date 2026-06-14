@@ -23,6 +23,12 @@ public class JukeboxContainer extends BaseContainerMenu.BaseContainer<JukeboxMen
                 jb.mgdp$setTick(0);
                 if (oldDisc.getItem() instanceof RecordItem ri) {
                     JukeboxPacket.stopRecordForTracking(parent.golem, ri.getSound().getLocation());
+                } else if (src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isNetMusicDisc(oldDisc)) {
+                    var stopPacket = new src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket(
+                            src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket.Action.STOP,
+                            parent.golem.getId(), "", 0, "");
+                    src.toi_et_moi.mgdp.Mgdp.PACKET_HANDLER.send(
+                            net.minecraftforge.network.PacketDistributor.TRACKING_ENTITY.with(() -> parent.golem), stopPacket);
                 }
             }
         }

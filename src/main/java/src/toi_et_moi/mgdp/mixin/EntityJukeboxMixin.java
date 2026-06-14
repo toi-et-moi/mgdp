@@ -26,6 +26,18 @@ public class EntityJukeboxMixin {
         jb.mgdp$setTick(0);
 
         var disc = jb.mgdp$getDisc();
+        // Stop NetMusic sound if applicable
+        if (!disc.isEmpty() && src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isLoaded()
+                && src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isNetMusicDisc(disc)) {
+            var stopPacket = new src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket(
+                    src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket.Action.STOP, golem.getId(), "", 0, "");
+            for (var p : golem.getServer().getPlayerList().getPlayers()) {
+                if (p.distanceToSqr(golem) < 96 * 96) {
+                    src.toi_et_moi.mgdp.Mgdp.PACKET_HANDLER.send(
+                            net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> p), stopPacket);
+                }
+            }
+        }
         if (!disc.isEmpty() && disc.getItem() instanceof RecordItem ri) {
             var soundId = ri.getSound().getLocation();
             // Send to owner directly (TRACKING_ENTITY may not work during removal)

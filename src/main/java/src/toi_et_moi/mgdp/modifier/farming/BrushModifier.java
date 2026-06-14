@@ -32,6 +32,19 @@ public class BrushModifier extends GolemModifier {
 		if (golem.level().isClientSide()) return;
 		if (golem.tickCount % 10 != 0) return;
 
+		// Apply suspicious_smell if FruitsDelight is loaded
+		if (net.minecraftforge.fml.ModList.get().isLoaded("fruitsdelight")) {
+			var smell = net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getValue(
+					new net.minecraft.resources.ResourceLocation("fruitsdelight", "suspicious_smell"));
+			if (smell != null) {
+				var owner = golem.getOwner();
+				if (owner != null && owner.isAlive() && golem.distanceToSqr(owner) < 400
+						&& golem.tickCount % 20 == 0) {
+					owner.addEffect(new net.minecraft.world.effect.MobEffectInstance(smell, 40, 0));
+				}
+			}
+		}
+
 		int pickupLevel = 0;
 		for (var entry : golem.getModifiers().entrySet()) {
 			if (entry.getKey() instanceof PickupModifier) {

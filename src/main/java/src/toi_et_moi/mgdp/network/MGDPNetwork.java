@@ -6,6 +6,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.jukebox.JukeboxPacket;
 import src.toi_et_moi.mgdp.modifier.SwapPacket;
+import src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket;
 
 public class MGDPNetwork {
 
@@ -24,6 +25,8 @@ public class MGDPNetwork {
                 JukeboxPacket::encode, JukeboxPacket::decode, JukeboxPacket::handle);
         CHANNEL.registerMessage(id++, SwapPacket.class,
                 SwapPacket::encode, SwapPacket::decode, SwapPacket::handle);
+        CHANNEL.registerMessage(id++, NetMusicSoundPacket.class,
+                NetMusicSoundPacket::encode, NetMusicSoundPacket::decode, NetMusicSoundPacket::handle);
         return CHANNEL;
     }
 }

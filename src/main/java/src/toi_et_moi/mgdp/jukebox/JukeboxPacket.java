@@ -99,6 +99,19 @@ public class JukeboxPacket {
         golem.mgdp$setTick(0);
 
         ItemStack disc = golem.mgdp$getDisc();
+        // NetMusic CD: use NetMusic's own playback system
+        if (!disc.isEmpty() && src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isNetMusicDisc(disc)) {
+            if (nowPlaying && entity != null) {
+                src.toi_et_moi.mgdp.jukebox.NetMusicCompat.playForTracking(
+                        entity, disc);
+            } else if (entity != null) {
+                var stopPacket = new src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket(
+                        src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket.Action.STOP, packet.entityId, "", 0, "");
+                src.toi_et_moi.mgdp.Mgdp.PACKET_HANDLER.send(
+                        net.minecraftforge.network.PacketDistributor.TRACKING_ENTITY.with(() -> entity), stopPacket);
+            }
+            return;
+        }
         if (!disc.isEmpty() && disc.getItem() instanceof RecordItem ri) {
             ResourceLocation snd = ri.getSound().getLocation();
             if (nowPlaying) {
