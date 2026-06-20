@@ -38,6 +38,7 @@ import net.minecraft.client.Minecraft;
 
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import src.toi_et_moi.mgdp.init.IFlipData;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -47,7 +48,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractGolemEntity.class)
-public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGolem {
+public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGolem, IFlipData {
 
     protected AbstractGolemEntityMixin(EntityType<? extends Mob> type, Level level) {
         super(type, level);
@@ -153,6 +154,7 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
             armor.addPermanentModifier(new AttributeModifier(crimsonArmorId, "mgdp crimson armor", armorVal, AttributeModifier.Operation.MULTIPLY_BASE));
             tough.addPermanentModifier(new AttributeModifier(crimsonToughId, "mgdp crimson tough", toughVal, AttributeModifier.Operation.MULTIPLY_BASE));
         }
+        
     }
 
     @Inject(method = "canSwim", at = @At("RETURN"), cancellable = true, remap = false)
@@ -242,6 +244,9 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     @Unique
     private static final EntityDataAccessor<Boolean> mgdp$JUKEBOX_PLAYING =
             SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> mgdp$WINDMILL = SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Integer> mgdp$FLIP_PROGRESS =
+            SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.INT);
 
     @Unique
     private ItemStack mgdp$jukeboxDisc = ItemStack.EMPTY;
@@ -257,6 +262,26 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     @Override
     public void mgdp$setPlaying(boolean playing) {
         this.entityData.set(mgdp$JUKEBOX_PLAYING, playing);
+    }
+
+    @Unique
+    public int mgdp$getFlipProgress() {
+        return this.entityData.get(mgdp$FLIP_PROGRESS);
+    }
+
+    @Unique
+    public void mgdp$setFlipProgress(int progress) {
+        this.entityData.set(mgdp$FLIP_PROGRESS, progress);
+    }
+
+    @Unique
+    public float mgdp$getWindmill() {
+        return this.entityData.get(mgdp$WINDMILL);
+    }
+
+    @Unique
+    public void mgdp$setWindmill(float angle) {
+        this.entityData.set(mgdp$WINDMILL, angle);
     }
 
     @Override
@@ -282,6 +307,8 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
     private void mgdp$defineJukeboxData(CallbackInfo ci) {
         this.entityData.define(mgdp$JUKEBOX_PLAYING, false);
+        this.entityData.define(mgdp$FLIP_PROGRESS, 0);
+		this.entityData.define(mgdp$WINDMILL, 0.0F);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))

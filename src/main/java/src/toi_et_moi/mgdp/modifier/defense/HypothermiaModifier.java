@@ -82,7 +82,7 @@ public class HypothermiaModifier extends GolemModifier {
 			if (entity instanceof ItemEntity) continue;
 			if (entity instanceof AbstractGolemEntity) continue;
 			String sn = entity.getType().toShortString().toLowerCase();
-			if (sn.contains("fire") || sn.contains("blaze") || sn.contains("flame")) {
+			if (sn.contains("fire") || sn.contains("blaze") || sn.contains("flame") || sn.contains("cloud")) {
 				entity.discard();
 				if (!golem.level().isClientSide()) {
 					golem.level().addFreshEntity(new ItemEntity(golem.level(), entity.getX(), entity.getY(), entity.getZ(),

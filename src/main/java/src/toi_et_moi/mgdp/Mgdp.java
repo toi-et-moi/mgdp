@@ -100,6 +100,9 @@ public class Mgdp {
 						output.accept(SIMPLE_DIAMOND_GOLEM_SPEAR.get());
 						output.accept(IRON_CURTAIN.get());
 						output.accept(MGDPItems.HYPOTHERMIA.get());
+						output.accept(MGDPItems.CONDUIT.get());
+						output.accept(MGDPItems.OVERWORLD.get());
+						output.accept(MGDPItems.SUNLIGHT.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
 						output.accept(MGDPItems.SONIC_BOOM.get());
 						output.accept(MGDPItems.FOCUSED_DEFENSE.get());
@@ -119,6 +122,7 @@ public class Mgdp {
 							output.accept(MGDPItems.DEMENTOR.get());
 							output.accept(MGDPItems.DRAIN.get());
 							output.accept(MGDPItems.REPRINT.get());
+						output.accept(MGDPItems.SELF_DESTRUCT.get());
 						}
 						output.accept(MGDPItems.FIREBALL.get());
 						output.accept(MGDPItems.HERO.get());
@@ -129,13 +133,20 @@ public class Mgdp {
 						output.accept(MGDPItems.GRENADE.get());
 						output.accept(MGDPItems.UNDYING.get());
 						output.accept(MGDPItems.ANGLER.get());
+						output.accept(MGDPItems.ANVIL_SLAM.get());
+						output.accept(MGDPItems.TRIDENT_FESTIVAL.get());
+						output.accept(MGDPItems.IRON_UPGRADE.get());
+						output.accept(MGDPItems.RIPTIDE.get());
+						output.accept(MGDPItems.END_VOID.get());
 						output.accept(MGDPItems.DEATH_KNELL.get());
 						output.accept(MGDPItems.ECHO_TRIO.get());
 						output.accept(MGDPItems.BRUSH.get());
 						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
+						output.accept(MGDPItems.BACKSTEP.get());
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
+						output.accept(MGDPItems.BLAST_FURNACE.get());
 							output.accept(MGDPItems.MAGIC_IMMUNE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.IRONWOOD.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.STEELEAF.get());
@@ -145,6 +156,9 @@ public class Mgdp {
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.CRONE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.BOTTLING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_FORCE.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_MOBILITY.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.DARK_TEMPLATE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
@@ -154,6 +168,8 @@ public class Mgdp {
 							output.accept(MGDPItems.LORD.get());
 							output.accept(MGDPItems.SNOW_TRAIL.get());
 							output.accept(MGDPItems.SWAP.get());
+						output.accept(MGDPItems.BACKFLIP.get());
+						output.accept(MGDPItems.WINDMILL.get());
 							output.accept(MGDPItems.WITCH.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.PENGUIN.get());
 						output.accept(MGDPItems.REMNANT_GOLEM.get());
@@ -198,7 +214,8 @@ public class Mgdp {
 		InitTrigger.init();
 		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
 			PACKET_HANDLER = src.toi_et_moi.mgdp.network.MGDPNetwork.CHANNEL;
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
@@ -356,9 +373,32 @@ public class Mgdp {
             }
             pose.popPose();
         }
+        
+        @SubscribeEvent
+        public static void onRenderLivingPre(net.minecraftforge.client.event.RenderLivingEvent.Pre<?, ?> event) {
+            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
+            int progress = ((src.toi_et_moi.mgdp.init.IFlipData) golem).mgdp$getFlipProgress();
+            if (progress <= 0) return;
+            float angle = (float) java.lang.Math.toRadians(progress * 0.9f);
+            float yaw = (float) java.lang.Math.toRadians(-golem.yBodyRot);
+            var stack = event.getPoseStack();
+            stack.mulPose(new org.joml.Quaternionf().rotationY(yaw));
+            stack.mulPose(new org.joml.Quaternionf().rotationX(-angle));
+            stack.mulPose(new org.joml.Quaternionf().rotationY(-yaw));
+        }
+
+        @SubscribeEvent
+        public static void onRenderPre(net.minecraftforge.client.event.RenderLivingEvent.Pre<?, ?> event) {
+            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
+            float windmill = ((src.toi_et_moi.mgdp.init.IFlipData) golem).mgdp$getWindmill();
+            if (windmill <= 0) return;
+            event.getPoseStack().mulPose(new org.joml.Quaternionf().rotationY((float) java.lang.Math.toRadians(windmill)));
+        }
+
         @SubscribeEvent
         public static void onRenderOverlay(net.minecraftforge.client.event.RenderGuiOverlayEvent event) {
             if (event.getOverlay() != net.minecraftforge.client.gui.overlay.VanillaGuiOverlay.SUBTITLES.type()) return;
+            if (!src.toi_et_moi.mgdp.Config.golemHealthWarning) return;
             var mc = net.minecraft.client.Minecraft.getInstance();
             if (mc.player == null || mc.level == null) return;
             // Cache entity scan to every 10 ticks for performance
@@ -368,7 +408,7 @@ public class Mgdp {
                 Mgdp.ClientTickHandler.cachedLowHpGolems = mc.level.getEntitiesOfClass(
                     dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity.class,
                     mc.player.getBoundingBox().inflate(64),
-                    g -> g.isAlive() && g.getHealth() / g.getMaxHealth() < 0.25f);
+                    g -> g.isAlive() && !g.isHostile() && g.getHealth() / g.getMaxHealth() < 0.25f);
             }
             var cache = Mgdp.ClientTickHandler.cachedLowHpGolems;
             java.util.List<net.minecraft.network.chat.MutableComponent> lines = new java.util.ArrayList<>();

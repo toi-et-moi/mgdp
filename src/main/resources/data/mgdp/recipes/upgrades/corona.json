@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shaped","category": "misc","pattern": ["GGG","GEG","GGG"],"key": {"G": {"item": "minecraft:glowstone"},"E": {"item": "modulargolems:empty_upgrade"}},"result": {"item": "mgdp:corona"},"show_notification": true}

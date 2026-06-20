@@ -37,8 +37,7 @@ public class GrenadeModifier extends GolemModifier {
 		int level = golem.getModifiers().getOrDefault(MGDPModifiers.GRENADE.get(), 0);
 		if (level <= 0) return;
 
-		float atk = (float) golem.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		float total = event.getAmount() + atk + atk * 0.2F * level;
+		float total = 30.0F * level;
 
 		event.setCanceled(true);
 		event.getEntity().hurt(golem.damageSources().mobAttack(golem), total);

@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:grass_block"
+    },
+    "B": {
+      "item": "minecraft:stone"
+    },
+    "C": {
+      "item": "minecraft:sand"
+    },
+    "D": {
+      "item": "minecraft:moss_block"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "F": {
+      "item": "minecraft:deepslate"
+    },
+    "G": {
+      "item": "minecraft:mud"
+    },
+    "H": {
+      "item": "minecraft:pink_petals"
+    },
+    "I": {
+      "item": "minecraft:sea_pickle"
+    }
+  },
+  "result": {
+    "item": "mgdp:overworld"
+  }
+}

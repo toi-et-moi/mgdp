@@ -64,6 +64,19 @@
     "mgdp:carminite",
     "mgdp:witch",
     "mgdp:crone",
-    "mgdp:bottling"
+    "mgdp:bottling",
+    "mgdp:blast_furnace",
+    "mgdp:mechanical_engine",
+    "mgdp:mechanical_force",
+    "mgdp:mechanical_mobility",
+    "mgdp:anvil_slam",
+    "mgdp:backstep",
+    "mgdp:backflip",
+    "mgdp:trident_festival",
+    "mgdp:riptide",
+    "mgdp:self_destruct",
+    "mgdp:windmill",
+    "mgdp:iron_upgrade",
+    "mgdp:end_of_beginning"
   ]
 }

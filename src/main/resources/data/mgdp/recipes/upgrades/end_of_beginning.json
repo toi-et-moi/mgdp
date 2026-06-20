@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:lilac"
+    },
+    "B": {
+      "item": "minecraft:rose_bush"
+    },
+    "C": {
+      "item": "minecraft:peony"
+    },
+    "D": {
+      "item": "mgdp:overworld"
+    },
+    "E": {
+      "item": "mgdp:nether"
+    },
+    "F": {
+      "item": "mgdp:end_void"
+    },
+    "G": {
+      "item": "minecraft:brain_coral_block"
+    },
+    "H": {
+      "item": "minecraft:item_frame"
+    },
+    "I": {
+      "item": "minecraft:player_head"
+    }
+  },
+  "result": {
+    "item": "mgdp:end_of_beginning"
+  }
+}

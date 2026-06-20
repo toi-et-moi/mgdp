@@ -22,21 +22,28 @@ import src.toi_et_moi.mgdp.modifier.combat.LightningStormModifier;
 import src.toi_et_moi.mgdp.modifier.movement.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.movement.UnstoppableModifier;
 import src.toi_et_moi.mgdp.modifier.defense.HypothermiaModifier;
+import src.toi_et_moi.mgdp.modifier.defense.OverworldModifier;
+import src.toi_et_moi.mgdp.modifier.defense.NetherModifier;
+import src.toi_et_moi.mgdp.modifier.defense.ConduitModifier;
+import src.toi_et_moi.mgdp.modifier.defense.SunlightModifier;
 import src.toi_et_moi.mgdp.modifier.buff.SelfRepairModifier;
 import src.toi_et_moi.mgdp.modifier.combat.ExecutionerModifier;
 import src.toi_et_moi.mgdp.modifier.defense.FocusedDefenseModifier;
 import src.toi_et_moi.mgdp.modifier.combat.SonicBoomModifier;
 import src.toi_et_moi.mgdp.modifier.special.VersatilityModifier;
 import src.toi_et_moi.mgdp.modifier.defense.ProjectileDodgeModifier;
+import src.toi_et_moi.mgdp.modifier.defense.BackstepModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.DementorModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.DrainModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.ReprintModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.SelfDestructModifier;
 import src.toi_et_moi.mgdp.modifier.farming.BrushModifier;
 import src.toi_et_moi.mgdp.modifier.defense.BombDisposalModifier;
 import src.toi_et_moi.mgdp.modifier.combat.FireballModifier;
 import src.toi_et_moi.mgdp.modifier.buff.TotemicModifier;
 import src.toi_et_moi.mgdp.modifier.farming.HeroModifier;
 import src.toi_et_moi.mgdp.modifier.farming.FlareModifier;
+import src.toi_et_moi.mgdp.modifier.farming.BlastFurnaceModifier;
 import src.toi_et_moi.mgdp.modifier.farming.AnglerModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.UndyingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
@@ -45,13 +52,24 @@ import src.toi_et_moi.mgdp.modifier.defense.InfiniteAmmoModifier;
 import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
 import src.toi_et_moi.mgdp.modifier.combat.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.combat.EchoTrioModifier;
+import src.toi_et_moi.mgdp.modifier.combat.AnvilSlamModifier;
+import src.toi_et_moi.mgdp.modifier.combat.IronUpgradeModifier;
+import src.toi_et_moi.mgdp.modifier.combat.TridentFestivalModifier;
+import src.toi_et_moi.mgdp.modifier.combat.EndVoidModifier;
+import src.toi_et_moi.mgdp.modifier.combat.RiptideModifier;
 import src.toi_et_moi.mgdp.modifier.farming.ProsperityModifier;
 import src.toi_et_moi.mgdp.modifier.farming.LiquidClearModifier;
 import src.toi_et_moi.mgdp.modifier.special.LordModifier;
 import src.toi_et_moi.mgdp.modifier.buff.SnowTrailModifier;
 import src.toi_et_moi.mgdp.modifier.buff.WitchModifier;
 import src.toi_et_moi.mgdp.modifier.special.SwapModifier;
+import src.toi_et_moi.mgdp.modifier.special.BackflipModifier;
+import src.toi_et_moi.mgdp.modifier.special.WindmillModifier;
 import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
+import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
+import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
+import src.toi_et_moi.mgdp.modifier.daytime.CoronaModifier;
+import src.toi_et_moi.mgdp.modifier.nighttime.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.buff.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.buff.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
@@ -80,6 +98,10 @@ public class MGDPModifiers {
 	public static final RegistryEntry<WitherExtinctionModifier> WITHER_EXTINCTION;
 	public static final RegistryEntry<ChargedShieldModifier> CHARGED_SHIELD;
 	public static final RegistryEntry<VersatilityModifier> VERSATILITY;
+	public static final RegistryEntry<ConduitModifier> CONDUIT;
+	public static final RegistryEntry<OverworldModifier> OVERWORLD;
+	public static final RegistryEntry<NetherModifier> NETHER;
+	public static final RegistryEntry<SunlightModifier> SUNLIGHT;
 	public static final RegistryEntry<HypothermiaModifier> HYPOTHERMIA;
 	public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
 	public static final RegistryEntry<PotionDefenseModifier> TRUE_INVISIBILITY;
@@ -88,6 +110,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
 	public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
+	public static final RegistryEntry<BackstepModifier> BACKSTEP;
+	public static final RegistryEntry<SelfDestructModifier> SELF_DESTRUCT;
 	public static final RegistryEntry<DementorModifier> DEMENTOR;
 	public static final RegistryEntry<DrainModifier> DRAIN;
 	public static final RegistryEntry<ReprintModifier> REPRINT;
@@ -97,6 +121,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<TotemicModifier> TOTEMIC;
 	public static final RegistryEntry<HeroModifier> HERO;
 	public static final RegistryEntry<FlareModifier> FLARE;
+	public static final RegistryEntry<BlastFurnaceModifier> BLAST_FURNACE;
 	public static final RegistryEntry<AnglerModifier> ANGLER;
 	public static final RegistryEntry<UndyingModifier> UNDYING;
 	public static final RegistryEntry<GrenadeModifier> GRENADE;
@@ -105,15 +130,26 @@ public class MGDPModifiers {
 	public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
 	public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
 	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
+	public static final RegistryEntry<AnvilSlamModifier> ANVIL_SLAM;
+	public static final RegistryEntry<IronUpgradeModifier> IRON_UPGRADE;
+	public static final RegistryEntry<TridentFestivalModifier> TRIDENT_FESTIVAL;
+	public static final RegistryEntry<RiptideModifier> RIPTIDE;
+	public static final RegistryEntry<EndVoidModifier> END_VOID;
 	public static final RegistryEntry<ProsperityModifier> PROSPERITY;
 	public static final RegistryEntry<LiquidClearModifier> LIQUID_CLEAR;
 	public static final RegistryEntry<LordModifier> LORD;
 	public static final RegistryEntry<SnowTrailModifier> SNOW_TRAIL;
 	public static final RegistryEntry<SwapModifier> SWAP;
+	public static final RegistryEntry<BackflipModifier> BACKFLIP;
+	public static final RegistryEntry<WindmillModifier> WINDMILL;
 	public static final RegistryEntry<WitchModifier> WITCH;
 	public static final RegistryEntry<CroneModifier> CRONE;
 	public static final RegistryEntry<BottlingModifier> BOTTLING;
 	public static final RegistryEntry<PenguinModifier> PENGUIN;
+	public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
+	public static final RegistryEntry<CoronaModifier> CORONA;
+	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
+	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
 
@@ -214,6 +250,22 @@ public class MGDPModifiers {
 					"Self Repair",
 					"When idle for 10s, regenerates 1 HP per second and reduces forge count.");
 
+			CONDUIT = reg("conduit", ConduitModifier::new,
+				"Conduit",
+				"Golem grants Conduit Power to allies, gains attack and dodge in water/rain. Synergizes with Lightning Storm.");
+
+			OVERWORLD = reg("overworld", OverworldModifier::new,
+				"Primordial Earth",
+				"Golem receives double healing and ignores knockback in the Overworld, underground (Y≤0) deals double damage and takes 30% less damage.");
+
+			NETHER = reg("nether", NetherModifier::new,
+				"Blazing Inferno",
+				"Golem repairs once per second when on fire, in lava, or above Y=128 in the Nether, and deals double damage.");
+
+			SUNLIGHT = reg("sunlight", SunlightModifier::new,
+				"Radiance",
+				"Golem regenerates in bright areas and deals bonus damage in darkness.");
+
 			HYPOTHERMIA = reg("hypothermia", HypothermiaModifier::new,
 					"Hypothermia",
 					"Freezes enemies on hit and extinguishes fire in a 48-block radius.");
@@ -246,9 +298,17 @@ public class MGDPModifiers {
 				"Hostility Upgrade: Reprint",
 				"Deals bonus damage based on target's total enchantment levels.");
 
+			SELF_DESTRUCT = reg("self_destruct", SelfDestructModifier::new,
+				"Self Destruct",
+				"Golem explodes upon death or retrieval, dealing damage equal to max HP.");
+
 			PROJECTILE_DODGE = reg("projectile_dodge", ProjectileDodgeModifier::new,
 				"Projectile Dodge",
 				"Dodges incoming projectiles and fast-moving threats.");
+
+			BACKSTEP = reg("backstep", BackstepModifier::new,
+				"Backstep",
+				"Golem backsteps away when a target gets too close. If Backflip is also installed, the backstep is stylish.");
 
 			TOTEMIC = reg("totemic", TotemicModifier::new,
 				"Totemic Apple",
@@ -261,6 +321,10 @@ public class MGDPModifiers {
 			FLARE = reg("flare", FlareModifier::new,
 				"Illumination",
 				"Golem automatically places torches in nearby dark areas. Makes cave exploration safer.");
+
+			BLAST_FURNACE = reg("blast_furnace", BlastFurnaceModifier::new,
+				"Blast Furnace",
+				"Golem smelts ores in hand like a blast furnace.");
 
 			ANGLER = reg("angler", AnglerModifier::new,
 				"Angler",
@@ -294,6 +358,27 @@ public class MGDPModifiers {
 				"Echo Trio",
 				"Locks onto 3 targets within 35 blocks, fires sonic booms at them, and counter-attacks when damaged.");
 
+			ANVIL_SLAM = reg("anvil_slam", AnvilSlamModifier::new,
+				"Anvil Slam",
+				"Golem leaps toward the target and slams an anvil, dealing AOE damage to nearby enemies.");
+
+			IRON_UPGRADE = reg("iron_upgrade", IronUpgradeModifier::new,
+				"Iron Upgrade",
+				"Pure stat upgrade: +5 armor, +2 damage, +0.5 range, +0.5 sweep per level. Max level 2.");
+
+			TRIDENT_FESTIVAL = reg("trident_festival", TridentFestivalModifier::new,
+				"Trident Festival",
+				"Golem summons tridents that explode and strike lightning on impact.");
+
+			END_VOID = reg("end_void", EndVoidModifier::new,
+				"End Void",
+				"Golem deals void damage in The End and is healed by end crystals like the Ender Dragon.");
+
+			RIPTIDE = reg("riptide", RiptideModifier::new,
+				"Riptide",
+				"Golem with a Riptide trident launches toward targets in water or rain.");
+
+
 			PROSPERITY = reg("prosperity", ProsperityModifier::new,
 				"Prosperity",
 				"Crop range +%s/level (current %s). Loot x(level+1).");
@@ -310,6 +395,14 @@ public class MGDPModifiers {
 				"Swap",
 				"Press the swap key (default: R) to switch places with the golem. When taking fatal damage, passively swaps with a random golem with this upgrade. 10s cooldown.");
 
+			BACKFLIP = reg("backflip", BackflipModifier::new,
+				"Backflip",
+				"Golem does a stylish backflip while idling.");
+
+			WINDMILL = reg("windmill", WindmillModifier::new,
+				"Windmill",
+				"Golem spins constantly like a windmill. Pure cosmetic.");
+
 
 			WITCH = reg("witch", WitchModifier::new,
 				"Witch",
@@ -317,6 +410,22 @@ public class MGDPModifiers {
 			PENGUIN = reg("penguin", PenguinModifier::new,
 			"Penguin",
 				"Golem spawns a penguin at the target death location. Penguin! Penguin!");
+
+		END_OF_BEGINNING = reg("end_of_beginning", EndOfBeginningModifier::new,
+			"§6End of Beginning",
+			"§5Combines all 3 dimension upgrades. Effects work everywhere. Nearby End Crystals make the golem invulnerable and need 13 hits to destroy.");
+
+		CORONA = reg("corona", CoronaModifier::new,
+			"Corona",
+			"During the day, the golem ignores all negative potion effects.");
+
+		MOON_SHADOW = reg("moon_shadow", MoonShadowModifier::new,
+			"Moon Shadow",
+			"During the night, prevents hostile mob spawning within 32 blocks.");
+
+		TIME_AXIS = reg("time_axis", TimeAxisModifier::new,
+			"§6Time Axis",
+			"§5Combines Radiance, Corona, and Moon Shadow. Effects ignore light/time restrictions. Accelerates block growth and random ticks nearby.");
 
 
 			CRONE = reg("crone", CroneModifier::new,

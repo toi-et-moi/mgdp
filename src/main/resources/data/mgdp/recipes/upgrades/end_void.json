@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:chorus_flower"
+    },
+    "B": {
+      "item": "minecraft:dragon_head"
+    },
+    "C": {
+      "item": "minecraft:end_crystal"
+    },
+    "D": {
+      "item": "minecraft:torch"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "F": {
+      "item": "minecraft:obsidian"
+    },
+    "G": {
+      "item": "minecraft:ender_pearl"
+    },
+    "H": {
+      "item": "minecraft:end_stone_bricks"
+    },
+    "I": {
+      "item": "minecraft:shulker_shell"
+    }
+  },
+  "result": {
+    "item": "mgdp:end_void"
+  }
+}

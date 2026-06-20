@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "create:andesite_casing"
+    },
+    "B": {
+      "item": "create:steam_engine"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "create:blaze_burner"
+    }
+  },
+  "result": {
+    "item": "mgdp:mechanical_engine"
+  }
+}

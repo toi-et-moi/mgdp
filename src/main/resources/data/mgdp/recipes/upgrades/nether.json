@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:crimson_nylium"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "minecraft:warped_nylium"
+    },
+    "D": {
+      "item": "minecraft:soul_sand"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "F": {
+      "item": "minecraft:soul_soil"
+    },
+    "G": {
+      "item": "minecraft:ancient_debris"
+    },
+    "H": {
+      "item": "minecraft:gilded_blackstone"
+    },
+    "I": {
+      "item": "minecraft:basalt"
+    }
+  },
+  "result": {
+    "item": "mgdp:nether"
+  }
+}

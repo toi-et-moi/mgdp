@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    " E "
+  ],
+  "key": {
+    "C": {"item": "minecraft:conduit"},
+    "E": {"item": "modulargolems:empty_upgrade"}
+  },
+  "result": {"item": "mgdp:conduit"},
+  "show_notification": true
+}

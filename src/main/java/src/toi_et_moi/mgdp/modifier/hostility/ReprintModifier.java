@@ -91,9 +91,22 @@ public class ReprintModifier extends GolemModifier {
 							if (stack.isEmpty()) continue;
 							ItemStack modified = tryEnchantItem(stack.copy(), srcEnch);
 							if (!modified.equals(stack, false)) {
-								modified.setCount(stack.getCount());
-								handler.extractItem(i, stack.getCount(), false);
-								handler.insertItem(i, modified, false);
+								int count = stack.getCount();
+								int fitted = 0;
+								for (int j = 0; j < count; j++) {
+									ItemStack single = modified.copy();
+									single.setCount(1);
+									ItemStack left = net.minecraftforge.items.ItemHandlerHelper.insertItemStacked(handler, single, false);
+									if (left.isEmpty()) fitted++;
+								}
+								if (fitted > 0) {
+									handler.extractItem(i, count, false);
+									if (fitted < count) {
+										ItemStack drop = modified.copy();
+										drop.setCount(count - fitted);
+										golem.spawnAtLocation(drop);
+									}
+								}
 							}
 						}
 					});

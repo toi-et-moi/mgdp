@@ -37,6 +37,10 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> WITHER_EXTINCTION;
 	public static final RegistryObject<SimpleUpgradeItem> CHARGED_SHIELD;
 	public static final RegistryObject<SimpleUpgradeItem> VERSATILITY;
+	public static final RegistryObject<SimpleUpgradeItem> CONDUIT;
+	public static final RegistryObject<SimpleUpgradeItem> OVERWORLD;
+	public static final RegistryObject<SimpleUpgradeItem> NETHER;
+	public static final RegistryObject<SimpleUpgradeItem> SUNLIGHT;
 	public static final RegistryObject<SimpleUpgradeItem> HYPOTHERMIA;
 	public static final RegistryObject<SimpleUpgradeItem> SELF_REPAIR;
 	public static final RegistryObject<SimpleUpgradeItem> SONIC_BOOM;
@@ -66,6 +70,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
 	public static final RegistryObject<SimpleUpgradeItem> SWAP;
+	public static final RegistryObject<SimpleUpgradeItem> BACKFLIP;
+	public static final RegistryObject<SimpleUpgradeItem> WINDMILL;
 	public static final RegistryObject<SimpleUpgradeItem> WITCH;
 	public static final RegistryObject<SimpleUpgradeItem> CRONE;
 	public static final RegistryObject<SimpleUpgradeItem> BOTTLING;
@@ -74,7 +80,13 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
 	public static final RegistryObject<SimpleUpgradeItem> ECHO_TRIO;
+	public static final RegistryObject<SimpleUpgradeItem> ANVIL_SLAM;
+	public static final RegistryObject<SimpleUpgradeItem> IRON_UPGRADE;
+	public static final RegistryObject<SimpleUpgradeItem> TRIDENT_FESTIVAL;
+	public static final RegistryObject<SimpleUpgradeItem> RIPTIDE;
+	public static final RegistryObject<SimpleUpgradeItem> END_VOID;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> SELF_DESTRUCT;
 	public static final RegistryObject<SimpleUpgradeItem> DEMENTOR;
 	public static final RegistryObject<SimpleUpgradeItem> DRAIN;
 	public static final RegistryObject<SimpleUpgradeItem> REPRINT;
@@ -82,8 +94,14 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> BRUSH;
 	public static final RegistryObject<SimpleUpgradeItem> BOMB_DISPOSAL;
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
+	public static final RegistryObject<SimpleUpgradeItem> BACKSTEP;
 	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
 	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
+
+	public static final RegistryObject<SimpleUpgradeItem> MECHANICAL_ENGINE;
+	public static final RegistryObject<SimpleUpgradeItem> MECHANICAL_FORCE;
+	public static final RegistryObject<SimpleUpgradeItem> MECHANICAL_MOBILITY;
+	public static final RegistryObject<SimpleUpgradeItem> BLAST_FURNACE;
 
 	public static final RegistryObject<GolemSummonItem> REMNANT_GOLEM;
 	public static final RegistryObject<GolemSummonItem> ILLAGER_GOLEM;
@@ -106,6 +124,11 @@ public class MGDPItems {
 	public static final RegistryObject<AddSlotTemplate> DARK_TEMPLATE;
 	public static final RegistryObject<AddSlotTemplate> PYRIUM_TEMPLATE;
 	public static final RegistryObject<AddSlotTemplate> SCULKIUM_TEMPLATE;
+
+	public static final RegistryObject<SimpleUpgradeItem> END_OF_BEGINNING;
+	public static final RegistryObject<SimpleUpgradeItem> CORONA;
+	public static final RegistryObject<SimpleUpgradeItem> MOON_SHADOW;
+	public static final RegistryObject<SimpleUpgradeItem> TIME_AXIS;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -203,6 +226,12 @@ public class MGDPItems {
 		SNOW_TRAIL = Mgdp.ITEMS.register("snow_trail",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SNOW_TRAIL.get(), 1, false));
 
+		WINDMILL = Mgdp.ITEMS.register("windmill",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WINDMILL.get(), 1, false));
+
+		BACKFLIP = Mgdp.ITEMS.register("backflip",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BACKFLIP.get(), 1, false));
+
 		SWAP = Mgdp.ITEMS.register("swap",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.SWAP.get(), 1, false));
 
@@ -261,6 +290,20 @@ public class MGDPItems {
 
 		ECHO_TRIO = Mgdp.ITEMS.register("echo_trio",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.ECHO_TRIO.get(), 1, true));
+		END_VOID = Mgdp.ITEMS.register("end_void",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.END_VOID.get(), 1, false));
+
+		RIPTIDE = Mgdp.ITEMS.register("riptide",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.RIPTIDE.get(), 1, false));
+
+		IRON_UPGRADE = Mgdp.ITEMS.register("iron_upgrade",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.IRON_UPGRADE.get(), 1, false));
+
+		TRIDENT_FESTIVAL = Mgdp.ITEMS.register("trident_festival",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.TRIDENT_FESTIVAL.get(), 1, true));
+
+		ANVIL_SLAM = Mgdp.ITEMS.register("anvil_slam",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ANVIL_SLAM.get(), 1, false));
 
 		ADAPTIVE = Mgdp.ITEMS.register("hostility_adaptive",
 				() -> new SimpleUpgradeItem(new Item.Properties(),
@@ -269,6 +312,9 @@ public class MGDPItems {
 		DISPELL = Mgdp.ITEMS.register("hostility_dispell",
 				() -> new SimpleUpgradeItem(new Item.Properties(),
 				() -> net.minecraftforge.fml.ModList.get().isLoaded("l2hostility") ? dev.xkmc.modulargolems.compat.materials.l2hostility.LHCompatRegistry.LH_DISPELL.get() : null, 1, false));
+
+		SELF_DESTRUCT = Mgdp.ITEMS.register("self_destruct",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SELF_DESTRUCT.get(), 1, false));
 
 		DEMENTOR = Mgdp.ITEMS.register("hostility_dementor",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DEMENTOR.get(), 1, false));
@@ -288,8 +334,26 @@ public class MGDPItems {
 		BOMB_DISPOSAL = Mgdp.ITEMS.register("bomb_disposal",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BOMB_DISPOSAL.get(), 1, false));
 
+		BACKSTEP = Mgdp.ITEMS.register("backstep",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BACKSTEP.get(), 1, false));
+
 		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
+
+		MECHANICAL_ENGINE = Mgdp.ITEMS.register("mechanical_engine",
+				() -> new SimpleUpgradeItem(new Item.Properties(),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("create") ? dev.xkmc.modulargolems.compat.materials.create.CreateCompatRegistry.BODY.get() : null, 1, false));
+
+		MECHANICAL_FORCE = Mgdp.ITEMS.register("mechanical_force",
+				() -> new SimpleUpgradeItem(new Item.Properties(),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("create") ? dev.xkmc.modulargolems.compat.materials.create.CreateCompatRegistry.FORCE.get() : null, 1, false));
+
+		MECHANICAL_MOBILITY = Mgdp.ITEMS.register("mechanical_mobility",
+				() -> new SimpleUpgradeItem(new Item.Properties(),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("create") ? dev.xkmc.modulargolems.compat.materials.create.CreateCompatRegistry.MOBILE.get() : null, 1, false));
+
+		BLAST_FURNACE = Mgdp.ITEMS.register("blast_furnace",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BLAST_FURNACE.get(), 1, false));
 
 
 			REMNANT_GOLEM = Mgdp.ITEMS.register("remnant_golem",
@@ -388,11 +452,35 @@ public class MGDPItems {
 		SELF_REPAIR = Mgdp.ITEMS.register("self_repair",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SELF_REPAIR.get(), 1, false));
 
+		SUNLIGHT = Mgdp.ITEMS.register("sunlight",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SUNLIGHT.get(), 1, false));
+
+		OVERWORLD = Mgdp.ITEMS.register("overworld",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.OVERWORLD.get(), 1, false));
+
+		NETHER = Mgdp.ITEMS.register("nether",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.NETHER.get(), 1, false));
+
+		CONDUIT = Mgdp.ITEMS.register("conduit",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CONDUIT.get(), 1, false));
+
 		HYPOTHERMIA = Mgdp.ITEMS.register("hypothermia",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.HYPOTHERMIA.get(), 1, false));
 
 		VERSATILITY = Mgdp.ITEMS.register("versatility",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.VERSATILITY.get(), 1, true));
+
+		END_OF_BEGINNING = Mgdp.ITEMS.register("end_of_beginning",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.END_OF_BEGINNING.get(), 1, true));
+
+		CORONA = Mgdp.ITEMS.register("corona",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CORONA.get(), 1, false));
+
+		MOON_SHADOW = Mgdp.ITEMS.register("moon_shadow",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MOON_SHADOW.get(), 1, false));
+
+		TIME_AXIS = Mgdp.ITEMS.register("time_axis",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.TIME_AXIS.get(), 1, true));
 	}
 
 	public static void register() {
@@ -422,7 +510,11 @@ public class MGDPItems {
 				event.accept(DRAGON_BREATH.get());
 				event.accept(WITHER_EXTINCTION.get());
 				event.accept(CHARGED_SHIELD.get());
-				event.accept(HYPOTHERMIA.get());
+				event.accept(CONDUIT.get());
+			event.accept(OVERWORLD.get());
+			event.accept(NETHER.get());
+			event.accept(SUNLIGHT.get());
+			event.accept(HYPOTHERMIA.get());
 				event.accept(SELF_REPAIR.get());
 				event.accept(SONIC_BOOM.get());
 				event.accept(FOCUSED_DEFENSE.get());
@@ -451,10 +543,17 @@ public class MGDPItems {
 					event.accept(GRENADE.get());
 					event.accept(UNDYING.get());
 				}
+				event.accept(SELF_DESTRUCT.get());
 				event.accept(FIREBALL.get());
 				event.accept(HERO.get());
 				event.accept(FLARE.get());
 				event.accept(UNBREAKABLE.get());
+				event.accept(BLAST_FURNACE.get());
+				event.accept(ANVIL_SLAM.get());
+			event.accept(TRIDENT_FESTIVAL.get());
+			event.accept(IRON_UPGRADE.get());
+				event.accept(RIPTIDE.get());
+			event.accept(END_VOID.get());
 				event.accept(INFINITE_AMMO.get());
 				event.accept(PROSPERITY.get());
 				event.accept(LIQUID_CLEAR.get());
@@ -467,9 +566,14 @@ public class MGDPItems {
 			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(CRONE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(BOTTLING.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(COATING.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(MECHANICAL_ENGINE.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(MECHANICAL_FORCE.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(MECHANICAL_MOBILITY.get());
 				event.accept(LORD.get());
 			event.accept(SNOW_TRAIL.get());
 			event.accept(SWAP.get());
+			event.accept(BACKFLIP.get());
+			event.accept(WINDMILL.get());
 			event.accept(WITCH.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(PENGUIN.get());
 				event.accept(QUICK_STRIKE.get());
@@ -479,6 +583,11 @@ public class MGDPItems {
 				event.accept(BRUSH.get());
 				event.accept(BOMB_DISPOSAL.get());
 				event.accept(PROJECTILE_DODGE.get());
+			event.accept(BACKSTEP.get());
+			event.accept(END_OF_BEGINNING.get());
+			event.accept(CORONA.get());
+			event.accept(MOON_SHADOW.get());
+			event.accept(TIME_AXIS.get());
 			}
 		}
 	}

@@ -27,15 +27,17 @@
     "mgdp:death_knell",
     "mgdp:echo_trio",
     "mgdp:angler",
-    "mgdp:unbreakable",
-    "mgdp:infinite_ammo",
     "mgdp:quick_strike",
     "mgdp:prosperity",
     "mgdp:liquid_clear",
-    "mgdp:lord",
     "mgdp:snow_trail",
     "mgdp:swap",
-    "mgdp:penguin",
-    "mgdp:magic_immune"
+    "mgdp:magic_immune",
+    "mgdp:blast_furnace",
+    "mgdp:anvil_slam",
+    "mgdp:backstep",
+    "mgdp:trident_festival",
+    "mgdp:riptide",
+    "mgdp:self_destruct"
   ]
 }

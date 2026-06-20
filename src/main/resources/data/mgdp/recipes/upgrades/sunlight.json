@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "GEG",
+    " G "
+  ],
+  "key": {
+    "G": {"item": "minecraft:glowstone"},
+    "E": {"item": "modulargolems:empty_upgrade"}
+  },
+  "result": {"item": "mgdp:sunlight"},
+  "show_notification": true
+}

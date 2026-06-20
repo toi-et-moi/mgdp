@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "CDC",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:storage_blocks/coal"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "minecraft:blast_furnace"
+    },
+    "D": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:blast_furnace"
+  }
+}

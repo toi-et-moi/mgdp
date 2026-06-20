@@ -68,16 +68,24 @@ public class JukeboxPacket {
 
     public static void handle(JukeboxPacket packet, Supplier<NetworkEvent.Context> ctx) {
         NetworkEvent.Context context = ctx.get();
-        switch (packet.action) {
-            case OPEN_MENU -> handleOpenMenu(packet, context);
-            case TOGGLE_PLAY -> handleTogglePlay(packet, context);
-            case PLAY_RECORD -> ClientHandler.handlePlayRecord(packet);
-            case STOP_RECORD -> ClientHandler.handleStopRecord(packet);
-        }
+        context.enqueueWork(() -> {
+            if (context.getDirection().getReceptionSide().isClient()) {
+                ClientHandler.handle(packet);
+            } else {
+                handleServer(packet, context);
+            }
+        });
         context.setPacketHandled(true);
     }
 
     // ===== Server-side handlers =====
+
+    private static void handleServer(JukeboxPacket packet, NetworkEvent.Context ctx) {
+        switch (packet.action) {
+            case OPEN_MENU -> handleOpenMenu(packet, ctx);
+            case TOGGLE_PLAY -> handleTogglePlay(packet, ctx);
+        }
+    }
 
     private static void handleOpenMenu(JukeboxPacket packet, NetworkEvent.Context ctx) {
         ServerPlayer player = ctx.getSender();
@@ -99,16 +107,14 @@ public class JukeboxPacket {
         golem.mgdp$setTick(0);
 
         ItemStack disc = golem.mgdp$getDisc();
-        // NetMusic CD: use NetMusic's own playback system
         if (!disc.isEmpty() && src.toi_et_moi.mgdp.jukebox.NetMusicCompat.isNetMusicDisc(disc)) {
             if (nowPlaying && entity != null) {
-                src.toi_et_moi.mgdp.jukebox.NetMusicCompat.playForTracking(
-                        entity, disc);
+                src.toi_et_moi.mgdp.jukebox.NetMusicCompat.playForTracking(entity, disc);
             } else if (entity != null) {
                 var stopPacket = new src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket(
                         src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket.Action.STOP, packet.entityId, "", 0, "");
-                src.toi_et_moi.mgdp.Mgdp.PACKET_HANDLER.send(
-                        net.minecraftforge.network.PacketDistributor.TRACKING_ENTITY.with(() -> entity), stopPacket);
+                Mgdp.PACKET_HANDLER.send(
+                        PacketDistributor.TRACKING_ENTITY.with(() -> entity), stopPacket);
             }
             return;
         }
@@ -124,25 +130,21 @@ public class JukeboxPacket {
 
     // ===== Helpers for server-side use =====
 
-    /** Send play to all players tracking this entity */
     public static void playRecordForTracking(Entity entity, ResourceLocation soundId) {
         Mgdp.PACKET_HANDLER.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity),
                 new JukeboxPacket(Action.PLAY_RECORD, entity.getId(), soundId));
     }
 
-    /** Send stop to all players tracking this entity */
     public static void stopRecordForTracking(Entity entity, ResourceLocation soundId) {
         Mgdp.PACKET_HANDLER.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity),
                 new JukeboxPacket(Action.STOP_RECORD, entity.getId(), soundId));
     }
 
-    /** Send play to a specific player */
     public static void playRecordForPlayer(ServerPlayer player, ResourceLocation soundId, int entityId) {
         Mgdp.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> player),
                 new JukeboxPacket(Action.PLAY_RECORD, entityId, soundId));
     }
 
-    /** Send stop to a specific player */
     public static void stopRecordForPlayer(ServerPlayer player, ResourceLocation soundId, int entityId) {
         Mgdp.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> player),
                 new JukeboxPacket(Action.STOP_RECORD, entityId, soundId));
@@ -155,11 +157,17 @@ public class JukeboxPacket {
 
         private static final java.util.Map<Integer, java.util.UUID> activeSoundKeys = new java.util.HashMap<>();
 
+        static void handle(JukeboxPacket packet) {
+            switch (packet.action) {
+                case PLAY_RECORD -> handlePlayRecord(packet);
+                case STOP_RECORD -> handleStopRecord(packet);
+            }
+        }
+
         static void handlePlayRecord(JukeboxPacket packet) {
             if (packet.soundId == null) return;
             Minecraft mc = Minecraft.getInstance();
             mc.execute(() -> {
-                // Stop any existing sound for this entity first
                 if (activeSoundKeys.containsKey(packet.entityId)) {
                     mc.getSoundManager().stop(packet.soundId, SoundSource.MUSIC);
                     activeSoundKeys.remove(packet.entityId);
