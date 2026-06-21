@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.registries.ForgeRegistries;
+import src.toi_et_moi.mgdp.Config;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class GolemNetMusicSound extends AbstractTickableSoundInstance {
         super(getSoundEvent(), SoundSource.RECORDS, SoundInstance.createUnseededRandom());
         this.entity = entity;
         this.tickTimes = timeSecond * 20;
-        this.volume = 4.0f;
+        this.volume = (float) Config.jukeboxVolume;
         this.tick = 0;
         this.songName = songName;
         activeEntityId = entity.getId();

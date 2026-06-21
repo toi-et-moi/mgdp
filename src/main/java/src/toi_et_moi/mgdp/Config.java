@@ -43,9 +43,14 @@ public class Config {
             .comment("Show low-HP golem warning on screen (default: true)")
             .define("golemHealthWarning", true);
 
+    private static final ForgeConfigSpec.DoubleValue JUKEBOX_VOLUME = CLIENT_BUILDER
+            .comment("Jukebox music volume (default: 4.0, range: 0.0 - 16.0)")
+            .defineInRange("jukeboxVolume", 4.0, 0.0, 16.0);
+
     static final ForgeConfigSpec CLIENT_SPEC = CLIENT_BUILDER.build();
 
     public static boolean golemHealthWarning;
+    public static double jukeboxVolume;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -56,6 +61,7 @@ public class Config {
             timeAxisSpeed = TIME_AXIS_SPEED.get();
         } else if (event.getConfig().getSpec() == CLIENT_SPEC) {
             golemHealthWarning = HEALTH_WARNING.get();
+            jukeboxVolume = JUKEBOX_VOLUME.get();
         }
     }
 }

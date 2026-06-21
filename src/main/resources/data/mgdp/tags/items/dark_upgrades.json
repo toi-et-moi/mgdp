@@ -38,6 +38,11 @@
     "mgdp:backstep",
     "mgdp:trident_festival",
     "mgdp:riptide",
-    "mgdp:self_destruct"
+    "mgdp:self_destruct",
+    "mgdp:disarm",
+    {
+      "id": "mgdp:void_echo",
+      "required": false
+    }
   ]
 }

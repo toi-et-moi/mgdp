@@ -126,6 +126,8 @@ public class MGDPItems {
 	public static final RegistryObject<AddSlotTemplate> SCULKIUM_TEMPLATE;
 
 	public static final RegistryObject<SimpleUpgradeItem> END_OF_BEGINNING;
+	public static final RegistryObject<SimpleUpgradeItem> VOID_ECHO;
+	public static final RegistryObject<SimpleUpgradeItem> DISARM;
 	public static final RegistryObject<SimpleUpgradeItem> CORONA;
 	public static final RegistryObject<SimpleUpgradeItem> MOON_SHADOW;
 	public static final RegistryObject<SimpleUpgradeItem> TIME_AXIS;
@@ -241,6 +243,10 @@ public class MGDPItems {
 		CRONE = Mgdp.ITEMS.register("crone",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("goety"))
 				? MGDPModifiers.CRONE.get() : null, 1, false));
+
+		VOID_ECHO = Mgdp.ITEMS.register("void_echo",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("goety"))
+				? MGDPModifiers.VOID_ECHO.get() : null, 1, true));
 
 		BOTTLING = Mgdp.ITEMS.register("bottling",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> (net.minecraftforge.fml.ModList.get().isLoaded("goety"))
@@ -470,6 +476,9 @@ public class MGDPItems {
 		VERSATILITY = Mgdp.ITEMS.register("versatility",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.VERSATILITY.get(), 1, true));
 
+		DISARM = Mgdp.ITEMS.register("disarm",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.DISARM.get(), 1, false));
+
 		END_OF_BEGINNING = Mgdp.ITEMS.register("end_of_beginning",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.END_OF_BEGINNING.get(), 1, true));
 
@@ -565,6 +574,7 @@ public class MGDPItems {
 			if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) event.accept(CARMINITE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(CRONE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(BOTTLING.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(VOID_ECHO.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(COATING.get());
 				if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(MECHANICAL_ENGINE.get());
 				if (net.minecraftforge.fml.ModList.get().isLoaded("create")) event.accept(MECHANICAL_FORCE.get());
@@ -585,6 +595,7 @@ public class MGDPItems {
 				event.accept(PROJECTILE_DODGE.get());
 			event.accept(BACKSTEP.get());
 			event.accept(END_OF_BEGINNING.get());
+			event.accept(DISARM.get());
 			event.accept(CORONA.get());
 			event.accept(MOON_SHADOW.get());
 			event.accept(TIME_AXIS.get());

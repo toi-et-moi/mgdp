@@ -50,6 +50,7 @@ import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
 import src.toi_et_moi.mgdp.modifier.defense.UnbreakableModifier;
 import src.toi_et_moi.mgdp.modifier.defense.InfiniteAmmoModifier;
 import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
+import src.toi_et_moi.mgdp.modifier.combat.DisarmModifier;
 import src.toi_et_moi.mgdp.modifier.combat.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.combat.EchoTrioModifier;
 import src.toi_et_moi.mgdp.modifier.combat.AnvilSlamModifier;
@@ -72,6 +73,7 @@ import src.toi_et_moi.mgdp.modifier.daytime.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.nighttime.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.buff.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.buff.BottlingModifier;
+import src.toi_et_moi.mgdp.modifier.buff.VoidEchoModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
@@ -145,8 +147,10 @@ public class MGDPModifiers {
 	public static final RegistryEntry<WitchModifier> WITCH;
 	public static final RegistryEntry<CroneModifier> CRONE;
 	public static final RegistryEntry<BottlingModifier> BOTTLING;
+	public static final RegistryEntry<VoidEchoModifier> VOID_ECHO;
 	public static final RegistryEntry<PenguinModifier> PENGUIN;
 	public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
+	public static final RegistryEntry<DisarmModifier> DISARM;
 	public static final RegistryEntry<CoronaModifier> CORONA;
 	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
 	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
@@ -411,6 +415,10 @@ public class MGDPModifiers {
 			"Penguin",
 				"Golem spawns a penguin at the target death location. Penguin! Penguin!");
 
+		DISARM = reg("disarm", DisarmModifier::new,
+			"Disarm",
+			"Golem strips random equipment from targets on hit. Level = items per hit.");
+
 		END_OF_BEGINNING = reg("end_of_beginning", EndOfBeginningModifier::new,
 			"§6End of Beginning",
 			"§5Combines all 3 dimension upgrades. Effects work everywhere. Nearby End Crystals make the golem invulnerable and need 13 hits to destroy.");
@@ -435,6 +443,10 @@ public class MGDPModifiers {
 			BOTTLING = reg("bottling", BottlingModifier::new,
 				"Bottling",
 				"Golem applies bottling effect to its owner. Effect level equals upgrade level.");
+
+			VOID_ECHO = reg("void_echo", VoidEchoModifier::new,
+				"Void Echo",
+				"Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap.");
 
 
 			CATACLYSMFARMER_ADD = reg("add_slot_cataclysmfarer", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 4),

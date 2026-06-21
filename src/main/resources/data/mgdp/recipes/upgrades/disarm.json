@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "BCD",
+    " E "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:slime_ball"
+    },
+    "B": {
+      "item": "minecraft:lead"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "minecraft:fishing_rod"
+    },
+    "E": {
+      "item": "minecraft:item_frame"
+    }
+  },
+  "result": {
+    "item": "mgdp:disarm"
+  }
+}

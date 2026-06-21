@@ -301,5 +301,11 @@
   "modifier.modulargolems.moon_shadow.desc": "夜晚时阻止周围64格内的敌对生物刷新。",
   "item.mgdp.time_axis": "§6时光升级",
   "modifier.modulargolems.time_axis": "§6时光摇篮",
-  "modifier.modulargolems.time_axis.desc": "§5整合光芒、日冕、月影全部效果且无视光照/时间限制。停留模式加速周围方块的随机刻。"
+  "modifier.modulargolems.time_axis.desc": "§5整合光芒、日冕、月影全部效果且无视光照/时间限制。停留模式加速周围方块的随机刻。",
+  "item.mgdp.disarm": "岂曰无甲升级",
+  "modifier.modulargolems.disarm": "除你武器！",
+  "modifier.modulargolems.disarm.desc": "傀儡攻击时卸下目标随机装备（护甲、武器、饰品），掉落在傀儡身旁。等级=每次攻击卸下的数量。",
+  "item.mgdp.void_echo": "虚空回响升级",
+  "modifier.modulargolems.void_echo": "虚空回响",
+  "modifier.modulargolems.void_echo.desc": "傀儡攻击施加虚空之触效果并吸血。可使用末影守望者的多种技能。"
 }

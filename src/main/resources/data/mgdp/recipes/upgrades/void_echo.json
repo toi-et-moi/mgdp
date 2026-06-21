@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "category": "misc",
+  "pattern":
+   [" V ",
+    "VEV",
+    " V "],
+  "key":
+   {
+     "V": {"item": "goety:void_echo"},
+     "E": {"item": "modulargolems:empty_upgrade"}
+   },
+     "result": {"item": "mgdp:void_echo"},
+     "show_notification": true
+}

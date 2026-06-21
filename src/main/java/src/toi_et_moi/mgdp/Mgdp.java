@@ -16,9 +16,9 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -38,12 +38,8 @@ import src.toi_et_moi.mgdp.init.MGDPStats;
 import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageTypes;
 import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
-import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
 
 @Mod(Mgdp.MODID)
 public class Mgdp {
@@ -155,6 +151,7 @@ public class Mgdp {
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.CARMINITE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.CRONE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.BOTTLING.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_FORCE.get());
@@ -239,25 +236,6 @@ public class Mgdp {
 			ChargedShieldModifier.recharge(golem, lv);
 		}
 	}
-
-
-	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void mgdp$voidRescue(LivingAttackEvent evt) {
-		if (!(evt.getEntity() instanceof Player player)) return;
-		if (!evt.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
-
-		AABB area = player.getBoundingBox().inflate(64);
-		for (var golem : player.level().getEntitiesOfClass(DogGolemEntity.class, area,
-				e -> e.isAlive() && (e.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
-						|| e.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())))) {
-			if (!golem.hasPassenger(player)) {
-				evt.setCanceled(true);
-				player.startRiding(golem, true);
-				break;
-			}
-		}
-	}
-
 
 
 	@SubscribeEvent

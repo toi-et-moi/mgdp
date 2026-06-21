@@ -304,5 +304,11 @@
   "modifier.modulargolems.moon_shadow.desc": "During the night, prevents hostile mob spawning within 64 blocks.",
   "item.mgdp.time_axis": "§6Time Axis Upgrade",
   "modifier.modulargolems.time_axis": "§6Time Axis",
-  "modifier.modulargolems.time_axis.desc": "§5Combines Radiance, Corona, and Moon Shadow without light/time restrictions. Accelerates block growth and random ticks nearby."
+  "modifier.modulargolems.time_axis.desc": "§5Combines Radiance, Corona, and Moon Shadow without light/time restrictions. Accelerates block growth and random ticks nearby.",
+  "item.mgdp.disarm": "Disarm Upgrade",
+  "modifier.modulargolems.disarm": "Disarm",
+  "modifier.modulargolems.disarm.desc": "Golem strips random equipment (armor, weapons, curios) from targets on hit. Drops items at the golem's feet. Level = items stripped per hit.",
+  "item.mgdp.void_echo": "Void Echo Upgrade",
+  "modifier.modulargolems.void_echo": "Void Echo",
+  "modifier.modulargolems.void_echo.desc": "Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap."
 }

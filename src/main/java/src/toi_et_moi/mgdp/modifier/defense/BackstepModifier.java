@@ -20,20 +20,12 @@ public class BackstepModifier extends GolemModifier {
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
 		if (golem.level().isClientSide) return;
 
-		// Time trigger: every 3 seconds, backstep when locked on a target
-		if (golem.tickCount % 60 == 0 && golem.getTarget() != null) {
-			Vec3 look = golem.getLookAngle();
-			golem.setDeltaMovement(-look.x * 2.4, 1.0, -look.z * 2.4);
-			golem.hasImpulse = true;
-			triggerFlip(golem);
-		}
-
-		// Distance trigger: every 10 ticks, backstep when target is too close
+		// Distance trigger: every 10 ticks, backstep when target is within 6 blocks
 		if (golem.tickCount % 10 == 0) {
 			LivingEntity target = golem.getTarget();
-			if (target != null && golem.distanceToSqr(target) <= 9.0) {
+			if (target != null && golem.distanceToSqr(target) <= 36.0) {
 				Vec3 away = golem.position().subtract(target.position()).normalize();
-				golem.setDeltaMovement(away.x * 1.2, 0.5, away.z * 1.2);
+				golem.setDeltaMovement(away.x * 1.5, 0.5, away.z * 1.5);
 				golem.hasImpulse = true;
 				triggerFlip(golem);
 			}

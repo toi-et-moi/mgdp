@@ -4,6 +4,14 @@
     {
       "id": "twilightforest:glass_sword",
       "required": false
+    },
+    {
+      "id": "goety:blade_of_ender",
+      "required": false
+    },
+    {
+      "id": "goety_revelation:ender_keeper_sword",
+      "required": false
     }
   ]
 }

@@ -3,11 +3,6 @@
     "mgdp:fireball",
     "mgdp:bomb_disposal",
     "mgdp:brush",
-    "mgdp:hostility_reprint",
-    "mgdp:hostility_drain",
-    "mgdp:hostility_dementor",
-    "mgdp:hostility_dispell",
-    "mgdp:hostility_adaptive",
     "mgdp:projectile_dodge",
     "mgdp:enchanted_totemic",
     "mgdp:totemic",
@@ -37,7 +32,6 @@
     "mgdp:armor_pierce",
     "mgdp:magic_resistance",
     "mgdp:invisibility",
-    "mgdp:true_invisibility",
     "mgdp:focused_defense",
     "mgdp:executioner",
     "mgdp:hero",
@@ -45,8 +39,6 @@
     "mgdp:death_knell",
     "mgdp:echo_trio",
     "mgdp:angler",
-    "mgdp:hostility_undying",
-    "mgdp:hostility_grenade",
     "mgdp:unbreakable",
     "mgdp:infinite_ammo",
     "mgdp:quick_strike",
@@ -55,20 +47,9 @@
     "mgdp:lord",
     "mgdp:snow_trail",
     "mgdp:swap",
-    "mgdp:penguin",
     "mgdp:magic_immune",
-    "mgdp:ironwood",
-    "mgdp:steeleaf",
-    "mgdp:fiery",
-    "mgdp:knightmetal",
-    "mgdp:carminite",
     "mgdp:witch",
-    "mgdp:crone",
-    "mgdp:bottling",
     "mgdp:blast_furnace",
-    "mgdp:mechanical_engine",
-    "mgdp:mechanical_force",
-    "mgdp:mechanical_mobility",
     "mgdp:anvil_slam",
     "mgdp:backstep",
     "mgdp:backflip",
@@ -77,6 +58,87 @@
     "mgdp:self_destruct",
     "mgdp:windmill",
     "mgdp:iron_upgrade",
-    "mgdp:end_of_beginning"
+    "mgdp:end_of_beginning",
+    "mgdp:disarm",
+    {
+      "id": "mgdp:hostility_reprint",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_drain",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_dementor",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_dispell",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_adaptive",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_undying",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_grenade",
+      "required": false
+    },
+    {
+      "id": "mgdp:penguin",
+      "required": false
+    },
+    {
+      "id": "mgdp:ironwood",
+      "required": false
+    },
+    {
+      "id": "mgdp:steeleaf",
+      "required": false
+    },
+    {
+      "id": "mgdp:fiery",
+      "required": false
+    },
+    {
+      "id": "mgdp:knightmetal",
+      "required": false
+    },
+    {
+      "id": "mgdp:carminite",
+      "required": false
+    },
+    {
+      "id": "mgdp:crone",
+      "required": false
+    },
+    {
+      "id": "mgdp:bottling",
+      "required": false
+    },
+    {
+      "id": "mgdp:mechanical_engine",
+      "required": false
+    },
+    {
+      "id": "mgdp:mechanical_force",
+      "required": false
+    },
+    {
+      "id": "mgdp:mechanical_mobility",
+      "required": false
+    },
+    {
+      "id": "mgdp:void_echo",
+      "required": false
+    },
+    {
+      "id": "mgdp:true_invisibility",
+      "required": false
+    }
   ]
 }
