@@ -34,7 +34,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.function.Predicate;
 
-import net.minecraft.client.Minecraft;
 
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
@@ -80,15 +79,21 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         LivingEntity rider = golem.isControlledByLocalInstance() && golem.isVehicle()
                 ? (LivingEntity) golem.getControllingPassenger() : null;
         if (rider != null) {
-            Minecraft mc = Minecraft.getInstance();
             float yya = 0;
-            if (mc.options.keyJump.isDown()) yya = 1.0F;
-            else if (MGDPKeyMappings.FLIGHT_DESCEND.isDown()) yya = -1.0F;
+            try {
+                Class<?> cls = Class.forName("src.toi_et_moi.mgdp.client.ClientFlightInput");
+                yya = (float) cls.getMethod("getVerticalInput").invoke(null);
+            } catch (Exception ignored) {}
             travelVector = new Vec3(rider.xxa, yya, rider.zza);
         }
         float friction = 0.08F;
-        if (rider != null && MGDPKeyMappings.FLIGHT_SPRINT.isDown()) {
-            friction = 0.16F;
+        if (rider != null) {
+            try {
+                Class<?> cls = Class.forName("src.toi_et_moi.mgdp.client.ClientFlightInput");
+                if ((boolean) cls.getMethod("isSprinting").invoke(null)) {
+                    friction = 0.16F;
+                }
+            } catch (Exception ignored) {}
         }
         golem.moveRelative(friction, travelVector);
         golem.move(MoverType.SELF, golem.getDeltaMovement());

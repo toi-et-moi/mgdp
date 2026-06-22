@@ -115,6 +115,8 @@ public class Mgdp {
 						if (net.minecraftforge.fml.ModList.get().isLoaded("l2hostility")) {
 							output.accept(MGDPItems.ADAPTIVE.get());
 							output.accept(MGDPItems.DISPELL.get());
+							output.accept(MGDPItems.PULLING.get());
+							output.accept(MGDPItems.REPELLING.get());
 							output.accept(MGDPItems.DEMENTOR.get());
 							output.accept(MGDPItems.DRAIN.get());
 							output.accept(MGDPItems.REPRINT.get());

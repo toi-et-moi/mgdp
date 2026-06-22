@@ -87,6 +87,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> END_VOID;
 	public static final RegistryObject<SimpleUpgradeItem> ENCHANTED_TOTEMIC;
 	public static final RegistryObject<SimpleUpgradeItem> SELF_DESTRUCT;
+	public static final RegistryObject<SimpleUpgradeItem> PULLING;
+	public static final RegistryObject<SimpleUpgradeItem> REPELLING;
 	public static final RegistryObject<SimpleUpgradeItem> DEMENTOR;
 	public static final RegistryObject<SimpleUpgradeItem> DRAIN;
 	public static final RegistryObject<SimpleUpgradeItem> REPRINT;
@@ -209,6 +211,12 @@ public class MGDPItems {
 
 		UNDYING = Mgdp.ITEMS.register("hostility_undying",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UNDYING.get(), 1, false));
+
+		PULLING = Mgdp.ITEMS.register("hostility_pulling",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PULLING.get(), 1, false));
+
+		REPELLING = Mgdp.ITEMS.register("hostility_repelling",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REPELLING.get(), 1, false));
 
 		GRENADE = Mgdp.ITEMS.register("hostility_grenade",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GRENADE.get(), 1, false));
@@ -546,6 +554,8 @@ public class MGDPItems {
 				if (net.minecraftforge.fml.ModList.get().isLoaded("l2hostility")) {
 					event.accept(ADAPTIVE.get());
 					event.accept(DISPELL.get());
+					event.accept(PULLING.get());
+					event.accept(REPELLING.get());
 					event.accept(DEMENTOR.get());
 					event.accept(DRAIN.get());
 					event.accept(REPRINT.get());

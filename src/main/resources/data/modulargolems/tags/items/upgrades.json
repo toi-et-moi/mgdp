@@ -139,6 +139,14 @@
     {
       "id": "mgdp:true_invisibility",
       "required": false
+    },
+    {
+      "id": "mgdp:hostility_pulling",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_repelling",
+      "required": false
     }
   ]
 }

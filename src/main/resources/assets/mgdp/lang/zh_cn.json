@@ -307,5 +307,11 @@
   "modifier.modulargolems.disarm.desc": "傀儡攻击时卸下目标随机装备（护甲、武器、饰品），掉落在傀儡身旁。等级=每次攻击卸下的数量。",
   "item.mgdp.void_echo": "虚空回响升级",
   "modifier.modulargolems.void_echo": "虚空回响",
-  "modifier.modulargolems.void_echo.desc": "傀儡攻击施加虚空之触效果并吸血。可使用末影守望者的多种技能。"
+  "modifier.modulargolems.void_echo.desc": "傀儡攻击施加虚空之触效果并吸血。可使用末影守望者的多种技能。",
+  "item.mgdp.hostility_pulling": "恶意升级：吸引",
+  "modifier.modulargolems.hostility_pulling": "恶意词条：吸引",
+  "modifier.modulargolems.hostility_pulling.desc": "傀儡像磁铁一样将周围敌人吸向自己。",
+  "item.mgdp.hostility_repelling": "恶意升级：排斥",
+  "modifier.modulargolems.hostility_repelling": "恶意词条：排斥",
+  "modifier.modulargolems.hostility_repelling.desc": "傀儡将周围敌人弹开，且免疫弹射物。"
 }

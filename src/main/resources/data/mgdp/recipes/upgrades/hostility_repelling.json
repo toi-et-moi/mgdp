@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "l2hostility"
+    }
+  ],
+  "key": {
+    "A": {
+      "item": "l2complements:force_field"
+    },
+    "B": {
+      "item": "l2hostility:repelling"
+    },
+    "E": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "AEA",
+    "BAB"
+  ],
+  "result": {
+    "item": "mgdp:hostility_repelling"
+  },
+  "show_notification": true
+}

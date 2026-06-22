@@ -310,5 +310,11 @@
   "modifier.modulargolems.disarm.desc": "Golem strips random equipment (armor, weapons, curios) from targets on hit. Drops items at the golem's feet. Level = items stripped per hit.",
   "item.mgdp.void_echo": "Void Echo Upgrade",
   "modifier.modulargolems.void_echo": "Void Echo",
-  "modifier.modulargolems.void_echo.desc": "Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap."
+  "modifier.modulargolems.void_echo.desc": "Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap.",
+  "item.mgdp.hostility_pulling": "Hostility Upgrade: Pulling",
+  "modifier.modulargolems.hostility_pulling": "Hostility Upgrade: Pulling",
+  "modifier.modulargolems.hostility_pulling.desc": "Golem pulls nearby enemies toward itself like a magnet.",
+  "item.mgdp.hostility_repelling": "Hostility Upgrade: Repelling",
+  "modifier.modulargolems.hostility_repelling": "Hostility Upgrade: Repelling",
+  "modifier.modulargolems.hostility_repelling.desc": "Golem pushes nearby enemies away and is immune to projectiles."
 }

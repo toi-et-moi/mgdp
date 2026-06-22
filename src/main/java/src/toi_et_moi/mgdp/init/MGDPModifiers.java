@@ -47,6 +47,8 @@ import src.toi_et_moi.mgdp.modifier.farming.BlastFurnaceModifier;
 import src.toi_et_moi.mgdp.modifier.farming.AnglerModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.UndyingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.PullingModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.RepellingModifier;
 import src.toi_et_moi.mgdp.modifier.defense.UnbreakableModifier;
 import src.toi_et_moi.mgdp.modifier.defense.InfiniteAmmoModifier;
 import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
@@ -127,6 +129,8 @@ public class MGDPModifiers {
 	public static final RegistryEntry<AnglerModifier> ANGLER;
 	public static final RegistryEntry<UndyingModifier> UNDYING;
 	public static final RegistryEntry<GrenadeModifier> GRENADE;
+	public static final RegistryEntry<PullingModifier> PULLING;
+	public static final RegistryEntry<RepellingModifier> REPELLING;
 	public static final RegistryEntry<UnbreakableModifier> UNBREAKABLE;
 	public static final RegistryEntry<InfiniteAmmoModifier> INFINITE_AMMO;
 	public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
@@ -341,6 +345,14 @@ public class MGDPModifiers {
 			GRENADE = reg("hostility_grenade", GrenadeModifier::new,
 				"Hostility Upgrade: Grenade",
 				"Shoots fast homing explosive grenades at targets within 40 blocks.");
+
+			PULLING = reg("hostility_pulling", PullingModifier::new,
+				"Hostility Upgrade: Pulling",
+				"Golem pulls nearby enemies toward itself like a magnet.");
+
+			REPELLING = reg("hostility_repelling", RepellingModifier::new,
+				"Hostility Upgrade: Repelling",
+				"Golem pushes nearby enemies away and is immune to projectiles.");
 
 			UNBREAKABLE = reg("unbreakable", UnbreakableModifier::new,
 				"Unbreakable",

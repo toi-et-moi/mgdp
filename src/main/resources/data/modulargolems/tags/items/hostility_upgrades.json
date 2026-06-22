@@ -27,6 +27,14 @@
     {
       "id": "mgdp:hostility_grenade",
       "required": false
+    },
+    {
+      "id": "mgdp:hostility_pulling",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_repelling",
+      "required": false
     }
   ]
 }
