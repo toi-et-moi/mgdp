@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "youkaishomecoming"
+    }
+  ],
+  "pattern": [
+    " A ",
+    "BCB",
+    " B "
+  ],
+  "key": {
+    "A": {
+      "item": "youkaishomecoming:moon_lantern"
+    },
+    "B": {
+      "item": "youkaishomecoming:udumbara_flower"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:phantom"
+  }
+}

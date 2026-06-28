@@ -147,6 +147,54 @@
     {
       "id": "mgdp:hostility_repelling",
       "required": false
+    },
+    {
+      "id": "mgdp:phantom",
+      "required": false
+    },
+    {
+      "id": "mgdp:last_line",
+      "required": false
+    },
+    {
+      "id": "mgdp:reality_suppression",
+      "required": false
+    },
+    {
+      "id": "mgdp:mana_overload",
+      "required": false
+    },
+    {
+      "id": "mgdp:mind_control",
+      "required": false
+    },
+    {
+      "id": "mgdp:creative_slot",
+      "required": false
+    },
+    {
+      "id": "mgdp:creative_slot_100",
+      "required": false
+    },
+    {
+      "id": "mgdp:harbinger_beam",
+      "required": false
+    },
+    {
+      "id": "mgdp:harbinger_missile",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_attack",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_fireball",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_jump",
+      "required": false
     }
   ]
 }

@@ -12,18 +12,21 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Mgdp;
+import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+@Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class VoidEchoModifier extends GolemModifier {
 
 	private static final String TAG_BURST = "mgdp_void_burst";
@@ -37,7 +40,6 @@ public class VoidEchoModifier extends GolemModifier {
 		} catch (Exception e) {
 			throw new RuntimeException("Failed to init VoidEchoModifier", e);
 		}
-
 	}
 
 	private static Method findMethod(Class<?> cls, String deobf, String srg, Class<?>... params) throws Exception {
@@ -52,19 +54,36 @@ public class VoidEchoModifier extends GolemModifier {
 		super(StatFilterType.HEALTH, 1);
 	}
 
-	@Override
-	public void onHurtTarget(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+	@SubscribeEvent
+	public static void onHurtTarget(LivingHurtEvent event) {
+		if (!(event.getSource().getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
+		if (!golem.getModifiers().containsKey(MGDPModifiers.VOID_ECHO.get())) return;
 		LivingEntity target = event.getEntity();
 
 		int lastSlash = golem.getPersistentData().getInt("mgdp_void_slash");
+		if (lastSlash > golem.tickCount) lastSlash = 0;
 		if (golem.tickCount - lastSlash >= 10) {
 			golem.getPersistentData().putInt("mgdp_void_slash", golem.tickCount);
 			fireVoidSlash(golem, target);
 		}
-
-		float heal = event.getAmount() * 0.25f;
-		if (heal > 0) golem.heal(heal);
+		if (event.getSource().getDirectEntity() == golem &&
+					!(golem instanceof dev.xkmc.modulargolems.content.entity.common.SweepGolemEntity<?, ?> sweep && sweep.hasRangeAttack())) {
+			golem.heal(golem.getMaxHealth() * 0.1f);
+			// Teleport behind target every 3s on melee hit
+			int lastTp = golem.getPersistentData().getInt("mgdp_void_tp");
+			if (lastTp > golem.tickCount) lastTp = golem.tickCount - 60;
+			if (golem.tickCount - lastTp >= 60) {
+				golem.getPersistentData().putInt("mgdp_void_tp", golem.tickCount);
+				Vec3 dir = target.getLookAngle().normalize();
+				Vec3 pos = target.position().add(dir.scale(-3));
+				golem.teleportTo(pos.x, pos.y, pos.z);
+				var shadowWalk = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "shadow_walk"));
+				if (shadowWalk != null) {
+					golem.addEffect(new MobEffectInstance(shadowWalk, 20, 0));
+				}
+			}
+		}
 
 		var voidEffect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "void_touched"));
 		if (voidEffect != null) {
@@ -80,39 +99,21 @@ public class VoidEchoModifier extends GolemModifier {
 
 		CompoundTag data = golem.getPersistentData();
 
-		// Teleport behind target every 3s when in melee range
-		if (golem.tickCount % 60 == 0) {
-			// Only teleport if wielding a melee weapon (not bow/crossbow)
-			var weapon = golem.getMainHandItem();
-			boolean isRanged = weapon.getItem() instanceof net.minecraft.world.item.BowItem
-					|| weapon.getItem() instanceof net.minecraft.world.item.CrossbowItem;
+		// Proactive teleport every 3s when not in ranged mode
+		int lastTp = data.getInt("mgdp_void_tp");
+		if (lastTp > golem.tickCount || golem.tickCount - lastTp >= 60) {
+			data.putInt("mgdp_void_tp", golem.tickCount);
+			boolean isRanged = golem instanceof dev.xkmc.modulargolems.content.entity.common.SweepGolemEntity<?, ?> s && s.hasRangeAttack();
 			if (!isRanged) {
-				int last = data.getInt("mgdp_void_tp");
-				if (golem.tickCount - last >= 60) {
-					data.putInt("mgdp_void_tp", golem.tickCount);
-					Vec3 dir = target.getLookAngle().normalize();
-					Vec3 pos = target.position().add(dir.scale(-3));
-					golem.teleportTo(pos.x, pos.y, pos.z);
-
-					if (target instanceof Mob mob) {
-						mob.setTarget(null);
-						mob.setLastHurtByMob(null);
-						mob.setLastHurtByPlayer(null);
-						try {
-							for (var entry : mob.targetSelector.getAvailableGoals()) {
-								if (entry.getGoal() instanceof TargetGoal tg) {
-									var f = TargetGoal.class.getDeclaredField("targetMob");
-									f.setAccessible(true);
-									f.set(tg, null);
-								}
-							}
-						} catch (Exception ignored) {}
-					}
-				}
+				Vec3 dir = target.getLookAngle().normalize();
+				Vec3 pos = target.position().add(dir.scale(-3));
+				golem.teleportTo(pos.x, pos.y, pos.z);
+				var sw = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "shadow_walk"));
+				if (sw != null) golem.addEffect(new MobEffectInstance(sw, 20, 0));
 			}
 		}
 
-		// Burst logic
+
 		int burst = data.getInt(TAG_BURST);
 		if (burst > 0) {
 			if (data.getBoolean(TAG_TYPE)) {
@@ -130,8 +131,6 @@ public class VoidEchoModifier extends GolemModifier {
 		}
 	}
 
-
-
 	@Override
 	public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
 		if (golem.level().isClientSide()) return;
@@ -139,7 +138,7 @@ public class VoidEchoModifier extends GolemModifier {
 		if (event.getAmount() > cap) event.setAmount(cap);
 	}
 
-	private void fireVoidSlash(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
+	private static void fireVoidSlash(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
 		try {
 			Class<?> cls = Class.forName("com.Polarice3.Goety.common.entities.projectiles.VoidSlash");
 			Constructor<?> ctor = cls.getConstructor(net.minecraft.world.level.Level.class, LivingEntity.class);
@@ -158,7 +157,7 @@ public class VoidEchoModifier extends GolemModifier {
 		}
 	}
 
-	private void fireVoidShock(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
+	private static void fireVoidShock(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
 		try {
 			Class<?> cls = Class.forName("com.Polarice3.Goety.common.entities.projectiles.VoidShock");
 			Constructor<?> ctor = cls.getConstructor(LivingEntity.class, LivingEntity.class, net.minecraft.world.level.Level.class);
@@ -176,7 +175,7 @@ public class VoidEchoModifier extends GolemModifier {
 		}
 	}
 
-	private void fireVoidShockBomb(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
+	private static void fireVoidShockBomb(AbstractGolemEntity<?, ?> golem, LivingEntity target) {
 		try {
 			Class<?> cls = Class.forName("com.Polarice3.Goety.common.entities.projectiles.VoidShockBomb");
 			Constructor<?> ctor = cls.getConstructor(LivingEntity.class, net.minecraft.world.level.Level.class);
@@ -186,13 +185,12 @@ public class VoidEchoModifier extends GolemModifier {
 			cls.getMethod("setBaseDamage", float.class)
 					.invoke(bomb, (float) golem.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE));
 			try {
-					cls.getMethod("shootFromRotation", Entity.class, float.class, float.class, float.class, float.class, float.class)
-							.invoke(bomb, golem, golem.getXRot(), golem.getYRot(), 0.0f, 0.8f, 1.0f);
-				} catch (NoSuchMethodException sfrEx) {
-					try {
-						// Might need different name in production
-					} catch (Exception ignored) {}
-				}
+				cls.getMethod("shootFromRotation", Entity.class, float.class, float.class, float.class, float.class, float.class)
+						.invoke(bomb, golem, golem.getXRot(), golem.getYRot(), 0.0f, 0.8f, 1.0f);
+			} catch (NoSuchMethodException sfrEx) {
+				try {
+				} catch (Exception ignored) {}
+			}
 
 			golem.level().addFreshEntity((net.minecraft.world.entity.Entity) bomb);
 		} catch (Exception e) {

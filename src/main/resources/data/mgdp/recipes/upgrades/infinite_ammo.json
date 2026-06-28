@@ -6,14 +6,12 @@
       "item": "modulargolems:empty_upgrade"
     },
     {
-      "item": "minecraft:arrow"
-    },
-    {
-      "item": "minecraft:dispenser"
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:infinity",
+      "min_level": 1
     }
   ],
   "result": {
     "item": "mgdp:infinite_ammo"
-  },
-  "show_notification": true
+  }
 }

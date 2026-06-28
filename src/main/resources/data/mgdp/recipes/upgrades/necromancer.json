@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "pattern": [
+    " A ",
+    "BCD"
+  ],
+  "key": {
+    "A": {
+      "item": "goety:necro_crown"
+    },
+    "B": {
+      "item": "goety:rotting_focus"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "goety:osseous_focus"
+    }
+  },
+  "result": {
+    "item": "mgdp:necromancer"
+  }
+}

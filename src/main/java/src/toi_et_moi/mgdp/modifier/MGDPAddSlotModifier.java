@@ -15,13 +15,13 @@ public class MGDPAddSlotModifier extends AddSlotModifier {
 
     @Override
     public int addSlot(List<IUpgradeItem> list, int lv) {
-        return slots;
+        return slots * lv;
     }
 
     @Override
     public List<net.minecraft.network.chat.MutableComponent> getDetail(int v) {
         return List.of(net.minecraft.network.chat.Component.translatable(
-                getDescriptionId() + ".desc", slots)
+                getDescriptionId() + ".desc", slots * v)
                 .withStyle(net.minecraft.ChatFormatting.GREEN));
     }
 }

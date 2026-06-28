@@ -98,7 +98,11 @@ public class Mgdp {
 						output.accept(MGDPItems.HYPOTHERMIA.get());
 						output.accept(MGDPItems.CONDUIT.get());
 						output.accept(MGDPItems.OVERWORLD.get());
+						output.accept(MGDPItems.NETHER.get());
 						output.accept(MGDPItems.SUNLIGHT.get());
+						output.accept(MGDPItems.CORONA.get());
+						output.accept(MGDPItems.MOON_SHADOW.get());
+						output.accept(MGDPItems.TIME_AXIS.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
 						output.accept(MGDPItems.SONIC_BOOM.get());
 						output.accept(MGDPItems.FOCUSED_DEFENSE.get());
@@ -134,10 +138,22 @@ public class Mgdp {
 						output.accept(MGDPItems.ANVIL_SLAM.get());
 						output.accept(MGDPItems.TRIDENT_FESTIVAL.get());
 						output.accept(MGDPItems.IRON_UPGRADE.get());
+						output.accept(MGDPItems.DISARM.get());
 						output.accept(MGDPItems.RIPTIDE.get());
 						output.accept(MGDPItems.END_VOID.get());
+						output.accept(MGDPItems.END_OF_BEGINNING.get());
 						output.accept(MGDPItems.DEATH_KNELL.get());
 						output.accept(MGDPItems.ECHO_TRIO.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) {
+							output.accept(MGDPItems.HARBINGER_BEAM.get());
+							output.accept(MGDPItems.HARBINGER_MISSILE.get());
+							output.accept(MGDPItems.IGNIS_ATTACK.get());
+							output.accept(MGDPItems.IGNIS_FIREBALL.get());
+							output.accept(MGDPItems.IGNIS_JUMP.get());
+						}
+						output.accept(MGDPItems.MIND_CONTROL.get());
+						output.accept(MGDPItems.CREATIVE_SLOT.get());
+						output.accept(MGDPItems.CREATIVE_SLOT_100.get());
 						output.accept(MGDPItems.BRUSH.get());
 						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
@@ -153,6 +169,14 @@ public class Mgdp {
 							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.CARMINITE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.CRONE.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.BOTTLING.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.NECROMANCER.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")) output.accept(MGDPItems.PHANTOM.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest"))
+							output.accept(MGDPItems.LAST_LINE.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("curseofpandora"))
+							output.accept(MGDPItems.REALITY_SUPPRESSION.get());
+						if (net.minecraftforge.fml.ModList.get().isLoaded("golemmagicka"))
+							output.accept(MGDPItems.MANA_OVERLOAD.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_ENGINE.get());

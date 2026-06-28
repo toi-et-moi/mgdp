@@ -9,6 +9,14 @@
     {
       "id": "mgdp:penguin",
       "required": false
+    },
+    {
+      "id": "mgdp:creative_slot",
+      "required": false
+    },
+    {
+      "id": "mgdp:creative_slot_100",
+      "required": false
     }
   ]
 }

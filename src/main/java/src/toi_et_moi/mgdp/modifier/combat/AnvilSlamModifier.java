@@ -31,7 +31,7 @@ public class AnvilSlamModifier extends GolemModifier {
 	private static final int MAX_ANVIL_TICKS = 100; // 5 second timeout
 
 	public AnvilSlamModifier() {
-		super(StatFilterType.MASS, 1);
+		super(StatFilterType.ATTACK, 1);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class AnvilSlamModifier extends GolemModifier {
 		if (dist < 3 || dist > 20) return;
 
 		double hFactor = 0.15;
-		double vy = 1.5 + 0.2 * level;
+		double vy = 1.0 + 0.2 * level;
 		golem.setDeltaMovement(dx * hFactor, vy, dz * hFactor);
 		golem.hasImpulse = true;
 		data.putBoolean(TAG_JUMPING, true);

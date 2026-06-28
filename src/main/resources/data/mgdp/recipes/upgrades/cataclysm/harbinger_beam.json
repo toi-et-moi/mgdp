@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "ACA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:witherite_ingot"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:harbinger_beam"
+  }
+}

@@ -17,6 +17,10 @@
     {
       "id": "mgdp:bottling",
       "required": false
+    },
+    {
+      "id": "mgdp:phantom",
+      "required": false
     }
   ]
 }

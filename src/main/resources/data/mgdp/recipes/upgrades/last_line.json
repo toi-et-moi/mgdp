@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "twilightforest:deadrock"
+    },
+    "B": {
+      "item": "twilightforest:castle_brick"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:last_line"
+  }
+}

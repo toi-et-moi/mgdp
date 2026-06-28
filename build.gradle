@@ -194,15 +194,11 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:l2-complements:${l2complements_version}")
     compileOnly files("libs/l2archery-2.5.0.jar")
 
-    implementation fg.deobf(jarJar("dev.xkmc.l2modularblock:l2modularblock:1.1.0")) {
-        transitive = false
-        jarJar.ranged(it, "[1.1.0,)")
-    }
-
     // Create mod is an optional dependency — players install it in the mods folder.
     // Our code uses reflection (CreateCompat.java), so no compile/runtime Maven dep needed.
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
 
 }
 

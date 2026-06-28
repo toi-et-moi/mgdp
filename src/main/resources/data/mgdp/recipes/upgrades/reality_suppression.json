@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "curseofpandora"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "modulargolems:empty_upgrade"
+    },
+    {
+      "tag": "curseofpandora:pandora_curse"
+    }
+  ],
+  "result": {
+    "item": "mgdp:reality_suppression"
+  }
+}

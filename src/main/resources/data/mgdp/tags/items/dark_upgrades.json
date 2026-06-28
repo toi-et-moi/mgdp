@@ -43,6 +43,30 @@
     {
       "id": "mgdp:void_echo",
       "required": false
+    },
+    {
+      "id": "mgdp:mana_overload",
+      "required": false
+    },
+    {
+      "id": "mgdp:harbinger_beam",
+      "required": false
+    },
+    {
+      "id": "mgdp:harbinger_missile",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_attack",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_fireball",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_jump",
+      "required": false
     }
   ]
 }

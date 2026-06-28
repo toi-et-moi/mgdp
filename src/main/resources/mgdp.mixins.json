@@ -35,7 +35,10 @@
     "ThrownTridentTagMixin",
     "GolemHolderMixin",
     "TridentBlockHitMixin",
-	    "EndCrystalProtectionMixin"
+    "EndCrystalProtectionMixin",
+    "NecromancerArrowMixin",
+    "UpgradeItemMixin",
+    "GolemPartMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

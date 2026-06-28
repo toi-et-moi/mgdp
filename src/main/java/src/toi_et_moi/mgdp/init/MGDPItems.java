@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import src.toi_et_moi.mgdp.Mgdp;
+import src.toi_et_moi.mgdp.item.ConditionalUpgradeItem;
 import src.toi_et_moi.mgdp.item.GolemSummonItem;
 
 public class MGDPItems {
@@ -80,6 +81,19 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> ANGLER;
 	public static final RegistryObject<SimpleUpgradeItem> DEATH_KNELL;
 	public static final RegistryObject<SimpleUpgradeItem> ECHO_TRIO;
+	public static final RegistryObject<SimpleUpgradeItem> MIND_CONTROL;
+	public static final RegistryObject<SimpleUpgradeItem> NECROMANCER;
+	public static final RegistryObject<SimpleUpgradeItem> PHANTOM;
+	public static final RegistryObject<SimpleUpgradeItem> LAST_LINE;
+	public static final RegistryObject<SimpleUpgradeItem> REALITY_SUPPRESSION;
+	public static final RegistryObject<SimpleUpgradeItem> MANA_OVERLOAD;
+	public static final RegistryObject<SimpleUpgradeItem> CREATIVE_SLOT_100;
+	public static final RegistryObject<SimpleUpgradeItem> CREATIVE_SLOT;
+	public static final RegistryObject<Item> HARBINGER_BEAM;
+	public static final RegistryObject<Item> HARBINGER_MISSILE;
+	public static final RegistryObject<Item> IGNIS_ATTACK;
+	public static final RegistryObject<Item> IGNIS_FIREBALL;
+	public static final RegistryObject<Item> IGNIS_JUMP;
 	public static final RegistryObject<SimpleUpgradeItem> ANVIL_SLAM;
 	public static final RegistryObject<SimpleUpgradeItem> IRON_UPGRADE;
 	public static final RegistryObject<SimpleUpgradeItem> TRIDENT_FESTIVAL;
@@ -448,6 +462,51 @@ public class MGDPItems {
 			() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.REFINE_MEROR_ADD.get()));
 
 
+		CREATIVE_SLOT_100 = Mgdp.ITEMS.register("creative_slot_100",
+			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), () -> MGDPModifiers.CREATIVE_SLOT_100.get(), 1, false));
+
+		CREATIVE_SLOT = Mgdp.ITEMS.register("creative_slot",
+			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), () -> MGDPModifiers.CREATIVE_SLOT.get(), 1, false));
+
+		MIND_CONTROL = Mgdp.ITEMS.register("mind_control",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.MIND_CONTROL.get(), 1, false));
+
+		PHANTOM = Mgdp.ITEMS.register("phantom",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming") ? MGDPModifiers.PHANTOM.get() : null, 1, false));
+
+		NECROMANCER = Mgdp.ITEMS.register("necromancer",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.NECROMANCER.get(), 1, false));
+
+		LAST_LINE = Mgdp.ITEMS.register("last_line",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LAST_LINE.get(), 1, false));
+
+		REALITY_SUPPRESSION = Mgdp.ITEMS.register("reality_suppression",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.REALITY_SUPPRESSION.get(), 1, false));
+
+		MANA_OVERLOAD = Mgdp.ITEMS.register("mana_overload",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MANA_OVERLOAD.get(), 1, false));
+
+		HARBINGER_BEAM = Mgdp.ITEMS.register("harbinger_beam",
+			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.HARBINGER_BEAM.get() : null, 1, false));
+
+		HARBINGER_MISSILE = Mgdp.ITEMS.register("harbinger_missile",
+			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.HARBINGER_MISSILE.get() : null, 1, false));
+
+		IGNIS_ATTACK = Mgdp.ITEMS.register("ignis_attack",
+			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.IGNIS_ATTACK.get() : null, 1, false));
+
+		IGNIS_FIREBALL = Mgdp.ITEMS.register("ignis_fireball",
+			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.IGNIS_FIREBALL.get() : null, 1, false));
+
+		IGNIS_JUMP = Mgdp.ITEMS.register("ignis_jump",
+			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.IGNIS_JUMP.get() : null, 1, false));
+
+
 		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
 
@@ -538,6 +597,11 @@ public class MGDPItems {
 				event.accept(EXECUTIONER.get());
 				event.accept(INVISIBILITY.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(CATACLYSMFARMER_TEMPLATE.get());
+		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(HARBINGER_BEAM.get());
+		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(HARBINGER_MISSILE.get());
+		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_ATTACK.get());
+		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_FIREBALL.get());
+		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_JUMP.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(DARK_TEMPLATE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) event.accept(PYRIUM_TEMPLATE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) event.accept(SCULKIUM_TEMPLATE.get());
@@ -600,6 +664,10 @@ public class MGDPItems {
 				event.accept(ANGLER.get());
 				event.accept(DEATH_KNELL.get());
 				event.accept(ECHO_TRIO.get());
+				event.accept(MIND_CONTROL.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")) event.accept(PHANTOM.get());
+				event.accept(CREATIVE_SLOT.get());
+				event.accept(CREATIVE_SLOT_100.get());
 				event.accept(BRUSH.get());
 				event.accept(BOMB_DISPOSAL.get());
 				event.accept(PROJECTILE_DODGE.get());

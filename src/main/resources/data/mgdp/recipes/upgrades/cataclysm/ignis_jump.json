@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DAD"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:ignitium_ingot"
+    },
+    "B": {
+      "item": "cataclysm:the_incinerator"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "D": {
+      "item": "cataclysm:blazing_grips"
+    }
+  },
+  "result": {
+    "item": "mgdp:ignis_jump"
+  }
+}

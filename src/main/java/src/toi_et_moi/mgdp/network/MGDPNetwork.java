@@ -7,6 +7,7 @@ import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.jukebox.JukeboxPacket;
 import src.toi_et_moi.mgdp.modifier.SwapPacket;
 import src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket;
+import src.toi_et_moi.mgdp.network.GolemRecallPacket;
 
 public class MGDPNetwork {
 
@@ -27,6 +28,8 @@ public class MGDPNetwork {
                 SwapPacket::encode, SwapPacket::decode, SwapPacket::handle);
         CHANNEL.registerMessage(id++, NetMusicSoundPacket.class,
                 NetMusicSoundPacket::encode, NetMusicSoundPacket::decode, NetMusicSoundPacket::handle);
+        CHANNEL.registerMessage(id++, GolemRecallPacket.class,
+                GolemRecallPacket::encode, GolemRecallPacket::decode, GolemRecallPacket::handle);
         return CHANNEL;
     }
 }

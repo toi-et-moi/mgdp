@@ -55,6 +55,7 @@ import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
 import src.toi_et_moi.mgdp.modifier.combat.DisarmModifier;
 import src.toi_et_moi.mgdp.modifier.combat.DeathKnellModifier;
 import src.toi_et_moi.mgdp.modifier.combat.EchoTrioModifier;
+import src.toi_et_moi.mgdp.modifier.combat.MindControlModifier;
 import src.toi_et_moi.mgdp.modifier.combat.AnvilSlamModifier;
 import src.toi_et_moi.mgdp.modifier.combat.IronUpgradeModifier;
 import src.toi_et_moi.mgdp.modifier.combat.TridentFestivalModifier;
@@ -76,6 +77,11 @@ import src.toi_et_moi.mgdp.modifier.nighttime.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.buff.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.buff.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.buff.VoidEchoModifier;
+import src.toi_et_moi.mgdp.modifier.buff.PhantomModifier;
+import src.toi_et_moi.mgdp.modifier.buff.NecromancerModifier;
+import src.toi_et_moi.mgdp.modifier.buff.RealitySuppressionModifier;
+import src.toi_et_moi.mgdp.modifier.defense.LastLineModifier;
+import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
@@ -136,6 +142,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
 	public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
 	public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
+	public static final RegistryEntry<MindControlModifier> MIND_CONTROL;
 	public static final RegistryEntry<AnvilSlamModifier> ANVIL_SLAM;
 	public static final RegistryEntry<IronUpgradeModifier> IRON_UPGRADE;
 	public static final RegistryEntry<TridentFestivalModifier> TRIDENT_FESTIVAL;
@@ -152,14 +159,21 @@ public class MGDPModifiers {
 	public static final RegistryEntry<CroneModifier> CRONE;
 	public static final RegistryEntry<BottlingModifier> BOTTLING;
 	public static final RegistryEntry<VoidEchoModifier> VOID_ECHO;
+	public static final RegistryEntry<PhantomModifier> PHANTOM;
+	public static final RegistryEntry<NecromancerModifier> NECROMANCER;
 	public static final RegistryEntry<PenguinModifier> PENGUIN;
 	public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
 	public static final RegistryEntry<DisarmModifier> DISARM;
 	public static final RegistryEntry<CoronaModifier> CORONA;
 	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
 	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
+	public static final RegistryEntry<LastLineModifier> LAST_LINE;
+	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
+	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
+	public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT_100;
+	public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT;
 
 	static {
 		HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
@@ -374,6 +388,10 @@ public class MGDPModifiers {
 				"Echo Trio",
 				"Locks onto 3 targets within 35 blocks, fires sonic booms at them, and counter-attacks when damaged.");
 
+		MIND_CONTROL = reg("mind_control", MindControlModifier::new,
+				"Mind Control",
+				"On hit, may redirect the target to attack your current target instead.");
+
 			ANVIL_SLAM = reg("anvil_slam", AnvilSlamModifier::new,
 				"Anvil Slam",
 				"Golem leaps toward the target and slams an anvil, dealing AOE damage to nearby enemies.");
@@ -456,6 +474,14 @@ public class MGDPModifiers {
 				"Bottling",
 				"Golem applies bottling effect to its owner. Effect level equals upgrade level.");
 
+			NECROMANCER = reg("necromancer", NecromancerModifier::new,
+				"Necromancer",
+				"Golem periodically summons zombie/skeleton minions to fight alongside it.");
+
+			PHANTOM = reg("phantom", PhantomModifier::new,
+				"Phantom",
+				"Golem gains Phantom effect every second. Level = effect level.");
+
 			VOID_ECHO = reg("void_echo", VoidEchoModifier::new,
 				"Void Echo",
 				"Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap.");
@@ -485,9 +511,29 @@ public class MGDPModifiers {
 				"Refined Meror Expansion",
 				"Add 1 upgrade slot.");
 
+			CREATIVE_SLOT_100 = reg("creative_slot_100", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(999, 100),
+				"Creative +100 Slots",
+				"Add 100 upgrade slots. Creative only.");
+
+			CREATIVE_SLOT = reg("creative_slot", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(999, 1),
+				"Creative +1 Slot",
+				"Add 1 upgrade slot. Creative only.");
+
 			LIQUID_CLEAR = reg("liquid_clear", LiquidClearModifier::new,
 				"Liquid Clear",
 				"Clear range +%s/level (current %s).");
+
+			LAST_LINE = reg("last_line", LastLineModifier::new,
+				"Last Line of Defence",
+				"In the Final Plateau, reduces damage from non-golem, non-Twilight-Forest entities by 99%%.");
+
+			REALITY_SUPPRESSION = reg("reality_suppression", RealitySuppressionModifier::new,
+				"Reality Suppression",
+				"Each level provides 1 point of Reality Index. Max level 7.");
+
+			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
+				"Mana Overload",
+				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
 
 		}
 

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cataclysm"
+    }
+  ],
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:gunpowder"
+    },
+    "B": {
+      "item": "cataclysm:witherite_ingot"
+    },
+    "C": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:harbinger_missile"
+  }
+}
