@@ -3,8 +3,7 @@
   "category": "misc",
   "pattern": [
     " A ",
-    "AEA",
-    " A "
+    " E "
   ],
   "key": {
     "A": {"item": "minecraft:anvil"},

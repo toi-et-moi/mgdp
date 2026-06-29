@@ -6,16 +6,11 @@
     "mgdp:lord",
     "mgdp:unbreakable",
     "mgdp:infinite_ammo",
+    "mgdp:conqueror",
+    "mgdp:creative_slot",
+    "mgdp:creative_slot_100",
     {
       "id": "mgdp:penguin",
-      "required": false
-    },
-    {
-      "id": "mgdp:creative_slot",
-      "required": false
-    },
-    {
-      "id": "mgdp:creative_slot_100",
       "required": false
     }
   ]

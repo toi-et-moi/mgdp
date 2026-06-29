@@ -60,6 +60,7 @@
     "mgdp:iron_upgrade",
     "mgdp:end_of_beginning",
     "mgdp:disarm",
+    "mgdp:conqueror",
     {
       "id": "mgdp:hostility_reprint",
       "required": false

@@ -82,6 +82,7 @@ import src.toi_et_moi.mgdp.modifier.buff.NecromancerModifier;
 import src.toi_et_moi.mgdp.modifier.buff.RealitySuppressionModifier;
 import src.toi_et_moi.mgdp.modifier.defense.LastLineModifier;
 import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
+import src.toi_et_moi.mgdp.modifier.conqueror.ConquerorModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
@@ -170,6 +171,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<LastLineModifier> LAST_LINE;
 	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
 	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
+	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT_100;
@@ -534,6 +536,10 @@ public class MGDPModifiers {
 			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
 				"Mana Overload",
 				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
+
+			CONQUEROR = reg("conqueror", ConquerorModifier::new,
+				"Veterancy",
+				"Golem gains conqueror XP by killing mobs. Higher star rating unlocks more bonuses.");
 
 		}
 

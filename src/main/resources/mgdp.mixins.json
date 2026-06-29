@@ -38,7 +38,8 @@
     "EndCrystalProtectionMixin",
     "NecromancerArrowMixin",
     "UpgradeItemMixin",
-    "GolemPartMixin"
+    "GolemPartMixin",
+    "ConquerorDataMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

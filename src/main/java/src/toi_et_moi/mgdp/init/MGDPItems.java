@@ -110,6 +110,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> BRUSH;
 	public static final RegistryObject<SimpleUpgradeItem> BOMB_DISPOSAL;
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
+	public static final RegistryObject<SimpleUpgradeItem> CONQUEROR;
 	public static final RegistryObject<SimpleUpgradeItem> BACKSTEP;
 	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
 	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
@@ -364,6 +365,9 @@ public class MGDPItems {
 
 		BACKSTEP = Mgdp.ITEMS.register("backstep",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BACKSTEP.get(), 1, false));
+
+		CONQUEROR = Mgdp.ITEMS.register("conqueror",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CONQUEROR.get(), 1, false));
 
 		PROJECTILE_DODGE = Mgdp.ITEMS.register("projectile_dodge",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant(), () -> MGDPModifiers.PROJECTILE_DODGE.get(), 1, true));
@@ -671,6 +675,7 @@ public class MGDPItems {
 				event.accept(BRUSH.get());
 				event.accept(BOMB_DISPOSAL.get());
 				event.accept(PROJECTILE_DODGE.get());
+				event.accept(CONQUEROR.get());
 			event.accept(BACKSTEP.get());
 			event.accept(END_OF_BEGINNING.get());
 			event.accept(DISARM.get());

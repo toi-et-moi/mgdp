@@ -157,6 +157,7 @@ public class Mgdp {
 						output.accept(MGDPItems.BRUSH.get());
 						output.accept(MGDPItems.BOMB_DISPOSAL.get());
 						output.accept(MGDPItems.PROJECTILE_DODGE.get());
+						output.accept(MGDPItems.CONQUEROR.get());
 						output.accept(MGDPItems.BACKSTEP.get());
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());

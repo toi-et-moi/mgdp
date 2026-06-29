@@ -354,5 +354,9 @@
   "modifier.modulargolems.creative_slot.desc": "Adds 1 upgrade slot per level. Creative debug item.",
   "item.mgdp.creative_slot_100": "Creative +100 Slots",
   "modifier.modulargolems.creative_slot_100": "Creative +100 Slots",
-  "modifier.modulargolems.creative_slot_100.desc": "Adds 100 upgrade slots per level. Creative debug item."
+  "modifier.modulargolems.creative_slot_100.desc": "Adds 100 upgrade slots per level. Creative debug item.",
+  "item.mgdp.conqueror": "Conqueror Upgrade",
+  "modifier.modulargolems.conqueror": "Conqueror",
+  "modifier.modulargolems.conqueror.desc": "Golem gains conqueror XP by killing mobs. Higher star rating unlocks more bonuses.",
+  "message.mgdp.conqueror_upgrade": "§6⚡ %s upgraded to %s-star!"
 }

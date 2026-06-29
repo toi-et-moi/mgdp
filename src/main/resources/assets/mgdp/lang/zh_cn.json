@@ -341,5 +341,9 @@
   "modifier.modulargolems.creative_slot.desc": "每级增加1个升级槽。创造模式调试用品。",
   "item.mgdp.creative_slot_100": "创造升级槽+100",
   "modifier.modulargolems.creative_slot_100": "创造升级槽+100",
-  "modifier.modulargolems.creative_slot_100.desc": "每级增加100个升级槽。创造模式调试用品。"
+  "modifier.modulargolems.creative_slot_100.desc": "每级增加100个升级槽。创造模式调试用品。",
+  "item.mgdp.conqueror": "征服者升级",
+  "modifier.modulargolems.conqueror": "征服者",
+  "modifier.modulargolems.conqueror.desc": "傀儡获得经验值系统，可提升星级以获得更强的能力。",
+  "message.mgdp.conqueror_upgrade": "§6⚡ %s 升星至 %s 星！"
 }
