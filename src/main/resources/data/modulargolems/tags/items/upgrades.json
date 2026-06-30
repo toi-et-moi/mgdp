@@ -196,6 +196,10 @@
     {
       "id": "mgdp:ignis_jump",
       "required": false
+    },
+    {
+      "id": "mgdp:frost_burst",
+      "required": false
     }
   ]
 }

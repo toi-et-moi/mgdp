@@ -58,7 +58,7 @@ public class EntityJukeboxMixin {
         if (self.level().isClientSide) return;
         if (self instanceof AbstractGolemEntity<?, ?> golem) {
             LordModifier.onGolemRemoved(golem);
-            src.toi_et_moi.mgdp.modifier.hostility.SelfDestructModifier.explode(golem);
+            src.toi_et_moi.mgdp.modifier.combat.SelfDestructModifier.explode(golem);
         }
     }
 }

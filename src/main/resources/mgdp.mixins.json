@@ -39,7 +39,8 @@
     "NecromancerArrowMixin",
     "UpgradeItemMixin",
     "GolemPartMixin",
-    "ConquerorDataMixin"
+    "ConquerorDataMixin",
+    "GolemMaterialMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

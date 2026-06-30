@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "smc"
+    }
+  ],
+  "pattern": [
+    "ABC",
+    "ADC",
+    "ABC"
+  ],
+  "key": {
+    "A": {
+      "item": "smc:perkin_ingot"
+    },
+    "B": {
+      "item": "smc:golden_broccoli"
+    },
+    "C": {
+      "item": "smc:frostium_ingot"
+    },
+    "D": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:frost_burst"
+  }
+}

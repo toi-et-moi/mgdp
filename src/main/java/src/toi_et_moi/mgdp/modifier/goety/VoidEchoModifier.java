@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.buff;
+package src.toi_et_moi.mgdp.modifier.goety;
 
 import dev.xkmc.l2damagetracker.contents.attack.CreateSourceEvent;
 import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;

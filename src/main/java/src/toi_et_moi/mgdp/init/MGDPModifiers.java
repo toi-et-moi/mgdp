@@ -36,7 +36,7 @@ import src.toi_et_moi.mgdp.modifier.defense.BackstepModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.DementorModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.DrainModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.ReprintModifier;
-import src.toi_et_moi.mgdp.modifier.hostility.SelfDestructModifier;
+import src.toi_et_moi.mgdp.modifier.combat.SelfDestructModifier;
 import src.toi_et_moi.mgdp.modifier.farming.BrushModifier;
 import src.toi_et_moi.mgdp.modifier.defense.BombDisposalModifier;
 import src.toi_et_moi.mgdp.modifier.combat.FireballModifier;
@@ -72,16 +72,17 @@ import src.toi_et_moi.mgdp.modifier.special.WindmillModifier;
 import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
 import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
-import src.toi_et_moi.mgdp.modifier.daytime.CoronaModifier;
-import src.toi_et_moi.mgdp.modifier.nighttime.MoonShadowModifier;
-import src.toi_et_moi.mgdp.modifier.buff.CroneModifier;
-import src.toi_et_moi.mgdp.modifier.buff.BottlingModifier;
-import src.toi_et_moi.mgdp.modifier.buff.VoidEchoModifier;
+import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
+import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
+import src.toi_et_moi.mgdp.modifier.goety.CroneModifier;
+import src.toi_et_moi.mgdp.modifier.goety.BottlingModifier;
+import src.toi_et_moi.mgdp.modifier.goety.VoidEchoModifier;
 import src.toi_et_moi.mgdp.modifier.buff.PhantomModifier;
-import src.toi_et_moi.mgdp.modifier.buff.NecromancerModifier;
+import src.toi_et_moi.mgdp.modifier.goety.NecromancerModifier;
 import src.toi_et_moi.mgdp.modifier.buff.RealitySuppressionModifier;
 import src.toi_et_moi.mgdp.modifier.defense.LastLineModifier;
 import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
+import src.toi_et_moi.mgdp.modifier.buff.FrostBurstModifier;
 import src.toi_et_moi.mgdp.modifier.conqueror.ConquerorModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
@@ -171,6 +172,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<LastLineModifier> LAST_LINE;
 	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
 	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
+	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
@@ -536,6 +538,10 @@ public class MGDPModifiers {
 			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
 				"Mana Overload",
 				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
+
+			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
+				"Frost Burst",
+				"Accumulate frost stacks on attack. Burst deals damage when timer expires.");
 
 			CONQUEROR = reg("conqueror", ConquerorModifier::new,
 				"Veterancy",

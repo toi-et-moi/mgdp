@@ -29,94 +29,89 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class ProsperityModifier extends GolemModifier {
 
-    public ProsperityModifier() {
-        super(StatFilterType.MASS, 3);
-    }
+	public ProsperityModifier() {
+		super(StatFilterType.MASS, 5);
+	}
 
-    // ———— Loot doubling ————
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public static void onLivingDrops(LivingDropsEvent event) {
+		if (event.getEntity().level().isClientSide()) return;
+		if (!(event.getSource().getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
+		int level = golem.getModifiers().getOrDefault(MGDPModifiers.PROSPERITY.get(), 0);
+		if (level <= 0) return;
+		for (ItemEntity drop : event.getDrops()) {
+			if (drop != null && !drop.getItem().isEmpty()) {
+				drop.getItem().grow(drop.getItem().getCount() * level);
+			}
+		}
+	}
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onLivingDrops(LivingDropsEvent event) {
-        if (!(event.getSource().getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
-        if (golem.level().isClientSide()) return;
-        int level = golem.getModifiers().getOrDefault(MGDPModifiers.PROSPERITY.get(), 0);
-        if (level <= 0) return;
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public static void onExperienceDrop(LivingExperienceDropEvent event) {
+		var lastSrc = event.getEntity().getLastDamageSource();
+		if (lastSrc == null || !(lastSrc.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
+		if (golem.level().isClientSide()) return;
+		int level = golem.getModifiers().getOrDefault(MGDPModifiers.PROSPERITY.get(), 0);
+		if (level <= 0) return;
+		event.setDroppedExperience(event.getOriginalExperience() * (level + 1));
+	}
 
-        for (ItemEntity drop : event.getDrops()) {
-            if (drop != null && !drop.getItem().isEmpty()) {
-                drop.getItem().grow(drop.getItem().getCount() * level);
-            }
-        }
-    }
+	@Override
+	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
+		if (golem.level().isClientSide()) return;
+		if (golem.tickCount % 40 != 0) return;
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onExperienceDrop(LivingExperienceDropEvent event) {
-        var lastSrc = event.getEntity().getLastDamageSource();
-        if (lastSrc == null || !(lastSrc.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
-        if (golem.level().isClientSide()) return;
-        int level = golem.getModifiers().getOrDefault(MGDPModifiers.PROSPERITY.get(), 0);
-        if (level <= 0) return;
-        event.setDroppedExperience(event.getOriginalExperience() * (level + 1));
-    }
+		double range = level * 4.0;
+		if (!(golem.level() instanceof ServerLevel sl)) return;
+		AABB area = golem.getBoundingBox().inflate(range);
+		BlockPos.betweenClosedStream(area)
+				.filter(pos -> {
+					BlockState state = sl.getBlockState(pos);
+					Block block = state.getBlock();
+					if (block instanceof net.minecraft.world.level.block.CropBlock
+							|| block instanceof net.minecraft.world.level.block.StemBlock
+							|| block instanceof net.minecraft.world.level.block.SweetBerryBushBlock
+							|| block instanceof net.minecraft.world.level.block.CocoaBlock) {
+						if (block instanceof BonemealableBlock g && g.isValidBonemealTarget(sl, pos, state, false))
+							return true;
+						return isAgeableCrop(state);
+					}
+					return isAgeableCrop(state);
+				})
+				.forEach(pos -> {
+					BlockState state = sl.getBlockState(pos);
+					Block block = state.getBlock();
+					if (block instanceof BonemealableBlock growable
+							&& growable.isValidBonemealTarget(sl, pos, state, false)) {
+						growable.performBonemeal(sl, sl.random, pos, state);
+						sl.levelEvent(1505, pos, 0);
+					} else {
+						for (int i = 0; i < 3; i++) {
+							block.randomTick(state, sl, pos, sl.random);
+						}
+					}
+				});
+	}
 
-    // ———— Crop growth ————
+	private static boolean isAgeableCrop(BlockState state) {
+		Block block = state.getBlock();
+		if (block instanceof NetherWartBlock) return true;
+		for (Property<?> prop : state.getProperties()) {
+			if (prop instanceof IntegerProperty ip
+					&& (ip.getName().equals("age") || ip.getName().equals("stage"))) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    @Override
-    public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
-        if (golem.tickCount % 100 != 0) return;
-
-        double range = level * 4.0;
-        if (!(golem.level() instanceof ServerLevel sl)) return;
-        AABB area = golem.getBoundingBox().inflate(range);
-        BlockPos.betweenClosedStream(area)
-                .filter(pos -> {
-                    BlockState state = sl.getBlockState(pos);
-                    Block block = state.getBlock();
-                    if (block instanceof net.minecraft.world.level.block.CropBlock
-                            || block instanceof net.minecraft.world.level.block.StemBlock
-                            || block instanceof net.minecraft.world.level.block.SweetBerryBushBlock
-                            || block instanceof net.minecraft.world.level.block.CocoaBlock) {
-                        if (block instanceof BonemealableBlock g && g.isValidBonemealTarget(sl, pos, state, false))
-                            return true;
-                        return isAgeableCrop(state);
-                    }
-                    return isAgeableCrop(state);
-                })
-                .forEach(pos -> {
-                    BlockState state = sl.getBlockState(pos);
-                    Block block = state.getBlock();
-                    if (block instanceof BonemealableBlock growable
-                            && growable.isValidBonemealTarget(sl, pos, state, false)) {
-                        growable.performBonemeal(sl, sl.random, pos, state);
-                        sl.levelEvent(1505, pos, 0);
-                    } else {
-                        for (int i = 0; i < 3; i++) {
-                            block.randomTick(state, sl, pos, sl.random);
-                        }
-                    }
-                });
-    }
-
-    private static boolean isAgeableCrop(BlockState state) {
-        Block block = state.getBlock();
-        if (block instanceof NetherWartBlock) return true;
-        for (Property<?> prop : state.getProperties()) {
-            if (prop instanceof IntegerProperty ip
-                    && (ip.getName().equals("age") || ip.getName().equals("stage"))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public List<MutableComponent> getDetail(int v) {
-        int perLevel = 4;
-        int totalRange = v * 4;
-        return List.of(
-                Component.translatable(getDescriptionId() + ".desc",
-                        perLevel, totalRange).withStyle(ChatFormatting.GREEN)
-        );
-    }
+	@Override
+	public List<MutableComponent> getDetail(int v) {
+		int perLevel = 4;
+		int totalRange = v * 4;
+		return List.of(
+				Component.translatable(getDescriptionId() + ".desc",
+						perLevel, totalRange).withStyle(ChatFormatting.GREEN)
+		);
+	}
 }

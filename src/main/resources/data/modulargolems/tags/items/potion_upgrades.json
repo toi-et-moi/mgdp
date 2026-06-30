@@ -21,6 +21,10 @@
     {
       "id": "mgdp:phantom",
       "required": false
+    },
+    {
+      "id": "mgdp:frost_burst",
+      "required": false
     }
   ]
 }

@@ -345,5 +345,8 @@
   "item.mgdp.conqueror": "征服者升级",
   "modifier.modulargolems.conqueror": "征服者",
   "modifier.modulargolems.conqueror.desc": "傀儡获得经验值系统，可提升星级以获得更强的能力。",
-  "message.mgdp.conqueror_upgrade": "§6⚡ %s 升星至 %s 星！"
+  "message.mgdp.conqueror_upgrade": "§6⚡ %s 升星至 %s 星！",
+  "item.mgdp.frost_burst": "药水升级：霜冻爆发",
+  "modifier.modulargolems.frost_burst": "药水升级：霜冻爆发",
+  "modifier.modulargolems.frost_burst.desc": "攻击/被攻击时，对目标/攻击者施加：霜冻爆发（00:10）。"
 }

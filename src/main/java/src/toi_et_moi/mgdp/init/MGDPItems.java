@@ -48,6 +48,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> FOCUSED_DEFENSE;
 	public static final RegistryObject<SimpleUpgradeItem> EXECUTIONER;
 	public static final RegistryObject<SimpleUpgradeItem> INVISIBILITY;
+	public static final RegistryObject<SimpleUpgradeItem> FROST_BURST;
 	public static final RegistryObject<SimpleUpgradeItem> TRUE_INVISIBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
@@ -511,7 +512,10 @@ public class MGDPItems {
 				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.IGNIS_JUMP.get() : null, 1, false));
 
 
-		TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
+		FROST_BURST = Mgdp.ITEMS.register("frost_burst",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE), () -> net.minecraftforge.fml.ModList.get().isLoaded("smc") ? MGDPModifiers.FROST_BURST.get() : null, 1, false));
+
+			TRUE_INVISIBILITY = Mgdp.ITEMS.register("true_invisibility",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.TRUE_INVISIBILITY.get(), 1, false));
 
 		INVISIBILITY = Mgdp.ITEMS.register("invisibility",
@@ -613,6 +617,7 @@ public class MGDPItems {
 			if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(REFINE_MEROR_TEMPLATE.get());
 			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
 				event.accept(TRUE_INVISIBILITY.get());
+				if (net.minecraftforge.fml.ModList.get().isLoaded("smc")) event.accept(FROST_BURST.get());
 				event.accept(ARMOR_PIERCE.get());
 				event.accept(MAGIC_RESISTANCE.get());
 				event.accept(VERSATILITY.get());

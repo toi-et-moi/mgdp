@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.daytime;
+package src.toi_et_moi.mgdp.modifier.common;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;

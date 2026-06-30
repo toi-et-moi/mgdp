@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.buff;
+package src.toi_et_moi.mgdp.modifier.goety;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;

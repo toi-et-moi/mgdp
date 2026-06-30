@@ -358,5 +358,8 @@
   "item.mgdp.conqueror": "Conqueror Upgrade",
   "modifier.modulargolems.conqueror": "Conqueror",
   "modifier.modulargolems.conqueror.desc": "Golem gains conqueror XP by killing mobs. Higher star rating unlocks more bonuses.",
-  "message.mgdp.conqueror_upgrade": "§6⚡ %s upgraded to %s-star!"
+  "message.mgdp.conqueror_upgrade": "§6⚡ %s upgraded to %s-star!",
+  "item.mgdp.frost_burst": "Potion Upgrade: Frost Burst",
+  "modifier.modulargolems.frost_burst": "Frost Burst",
+  "modifier.modulargolems.frost_burst.desc": "Stack frost on attack. Burst deals AoE damage after 10s."
 }

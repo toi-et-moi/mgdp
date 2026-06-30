@@ -4,6 +4,8 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -13,32 +15,37 @@ import java.util.List;
 
 public class RepellingModifier extends GolemModifier {
 
-	private static final double RANGE = 10.0;
-	private static final double STRENGTH = 0.15;
-
 	public RepellingModifier() {
-		super(StatFilterType.HEALTH, 1);
+		super(StatFilterType.HEALTH, 3);
 	}
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
 		if (golem.level().isClientSide()) return;
 
+		double range = 10.0 + level * 5.0;
+		double strength = 0.15 + (level - 1) * 0.15;
+
 		List<LivingEntity> targets = golem.level().getEntitiesOfClass(LivingEntity.class,
-				golem.getBoundingBox().inflate(RANGE),
+				golem.getBoundingBox().inflate(range),
 				e -> e.isAlive() && isValidTarget(golem, e));
 
 		for (LivingEntity target : targets) {
 			double dist = target.distanceTo(golem);
-			if (dist > RANGE) continue;
-			double factor = (1 - dist / RANGE) * STRENGTH;
+			if (dist > range) continue;
+			double factor = (1 - dist / range) * strength;
 			Vec3 dir = target.position().subtract(golem.position()).normalize();
 			target.push(dir.x * factor, dir.y * factor, dir.z * factor);
 			target.hurtMarked = true;
+
+			// Level 2+: slow on repel
+			if (level >= 2) {
+				target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, level - 2, false, false));
+			}
 		}
 	}
 
-	// Projectile immunity (like the original Repelling trait)
+	// Projectile immunity
 	@Override
 	public void onAttacked(AbstractGolemEntity<?, ?> golem, LivingAttackEvent event, int level) {
 		if (golem.level().isClientSide()) return;

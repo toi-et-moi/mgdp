@@ -110,6 +110,7 @@ public class Mgdp {
 						output.accept(MGDPItems.INVISIBILITY.get());
 						if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
 							output.accept(MGDPItems.TRUE_INVISIBILITY.get());
+							if (net.minecraftforge.fml.ModList.get().isLoaded("smc")) output.accept(MGDPItems.FROST_BURST.get());
 						output.accept(MGDPItems.ARMOR_PIERCE.get());
 						output.accept(MGDPItems.MAGIC_RESISTANCE.get());
 						output.accept(MGDPItems.VERSATILITY.get());
@@ -349,6 +350,7 @@ public class Mgdp {
         @SubscribeEvent
         public static void onRenderLivingPost(net.minecraftforge.client.event.RenderLivingEvent.Post<?, ?> event) {
             if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity)) return;
+            if (!net.minecraftforge.fml.ModList.get().isLoaded("netmusic")) return;
             int eid = event.getEntity().getId();
             if (eid != src.toi_et_moi.mgdp.jukebox.packet.GolemNetMusicSound.activeEntityId) return;
             String lyric = src.toi_et_moi.mgdp.jukebox.packet.GolemNetMusicSound.currentLyricLine;
