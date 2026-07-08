@@ -15,8 +15,9 @@ public class CleaverCompatHandler {
 
 	@SubscribeEvent
 	public static void onCommonSetup(FMLCommonSetupEvent event) {
-		TagKey<Item> tagDD = TagKey.create(Registries.ITEM, new ResourceLocation("dungeonsdelight", "cleavers"));
+		if (!net.minecraftforge.fml.ModList.get().isLoaded("dungeonsdelight")) return;
 
+		TagKey<Item> tagDD = TagKey.create(Registries.ITEM, new ResourceLocation("dungeonsdelight", "cleavers"));
 		dev.xkmc.mob_weapon_api.registry.RangedStatusPredicate pred =
 				(net.minecraft.world.item.ItemStack s) -> s.is(tagDD)
 						? java.util.Optional.of(dev.xkmc.mob_weapon_api.registry.WeaponStatus.RANGED)

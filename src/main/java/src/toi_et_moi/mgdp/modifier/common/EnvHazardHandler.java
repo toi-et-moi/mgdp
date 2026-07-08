@@ -26,7 +26,7 @@ public class EnvHazardHandler {
 	private static final String TAG_TIME = "mgdp_hazard_time";
 	private static final String TAG_MEMORY = "mgdp_hazard_memory";
 	private static final int COOLDOWN = 60;
-	private static final int MEMORY_TICKS = 200; // remember hazard for 10 seconds
+	private static final int MEMORY_TICKS = 200;
 	private static final int SEARCH_RADIUS = 8;
 	private static final int MIN_ESCAPE_DIST = 4;
 
@@ -62,11 +62,9 @@ public class EnvHazardHandler {
 		if (golem.level().isClientSide()) return;
 
 		var data = golem.getPersistentData();
-		// Check active flee
 		if (data.contains(TAG_TIME)) {
 			tickFlee(golem, data);
 		}
-		// Check memory-based avoidance
 		if (data.contains(TAG_MEMORY)) {
 			tickMemory(golem, data);
 		}
@@ -75,7 +73,6 @@ public class EnvHazardHandler {
 	private static void tickFlee(AbstractGolemEntity<?, ?> golem, net.minecraft.nbt.CompoundTag data) {
 		int hazardTime = data.getInt(TAG_TIME);
 		if (golem.tickCount - hazardTime > COOLDOWN) {
-			// Flee period over → move into memory for continued avoidance
 			data.putInt(TAG_MEMORY, golem.tickCount);
 			clearTags(data, TAG_X, TAG_Y, TAG_Z, TAG_FLEE_X, TAG_FLEE_Y, TAG_FLEE_Z, TAG_TIME);
 			return;
@@ -83,7 +80,6 @@ public class EnvHazardHandler {
 
 		BlockPos from = new BlockPos(data.getInt(TAG_X), data.getInt(TAG_Y), data.getInt(TAG_Z));
 		if (golem.blockPosition().distSqr(from) > MIN_ESCAPE_DIST * MIN_ESCAPE_DIST) {
-			// Escaped → move to memory
 			data.putInt(TAG_MEMORY, golem.tickCount);
 			clearTags(data, TAG_X, TAG_Y, TAG_Z, TAG_FLEE_X, TAG_FLEE_Y, TAG_FLEE_Z, TAG_TIME);
 			return;
@@ -99,20 +95,13 @@ public class EnvHazardHandler {
 		}
 
 		if (data.contains(TAG_FLEE_X)) {
-			// Push toward owner when possible, fallback away from hazard
-			LivingEntity owner = golem.getOwner();
-			double dx, dz;
-			if (owner != null) {
-				dx = owner.getX() - golem.getX();
-				dz = owner.getZ() - golem.getZ();
-			} else {
-				dx = golem.getX() - (from.getX() + 0.5);
-				dz = golem.getZ() - (from.getZ() + 0.5);
-			}
+			double dx = data.getInt(TAG_FLEE_X) + 0.5 - golem.getX();
+			double dz = data.getInt(TAG_FLEE_Z) + 0.5 - golem.getZ();
 			double len = Math.sqrt(dx * dx + dz * dz);
 			if (len > 0.1) {
-				double cross = golem.getRandom().nextBoolean() ? 0.3 : -0.3;
-				Vec3 push = new Vec3((dx + cross * dz) / len * 0.2, 0.1, (dz - cross * dx) / len * 0.2);
+				double angle = golem.getRandom().nextDouble() * 2 * Math.PI;
+				double cross = Math.sin(angle) * 0.4;
+				Vec3 push = new Vec3((dx + cross * dz) / len * 0.25, 0.1, (dz - cross * dx) / len * 0.25);
 				Vec3 vel = golem.getDeltaMovement();
 				if (Math.abs(vel.x + push.x) < 100 && Math.abs(vel.z + push.z) < 100) {
 					golem.setDeltaMovement(vel.add(push));
@@ -133,20 +122,14 @@ public class EnvHazardHandler {
 		BlockPos safe = findSafeSpot(golem, hazardPos);
 		if (safe == null) return;
 
-		// If still very close, also add a velocity push to get unstuck fast
 		if (golem.blockPosition().distSqr(hazardPos) < 9.0) {
-			LivingEntity owner = golem.getOwner();
-			double dx, dz;
-			if (owner != null) {
-				dx = owner.getX() - golem.getX();
-				dz = owner.getZ() - golem.getZ();
-			} else {
-				dx = golem.getX() - (hazardPos.getX() + 0.5);
-				dz = golem.getZ() - (hazardPos.getZ() + 0.5);
-			}
+			double dx = safe.getX() + 0.5 - golem.getX();
+			double dz = safe.getZ() + 0.5 - golem.getZ();
 			double len = Math.sqrt(dx * dx + dz * dz);
 			if (len > 0.1) {
-				Vec3 push = new Vec3(dx / len * 0.2, 0.1, dz / len * 0.2);
+				double angle = golem.getRandom().nextDouble() * 2 * Math.PI;
+				double side = Math.sin(angle) * 0.3;
+				Vec3 push = new Vec3((dx + side * dz) / len * 0.25, 0.1, (dz - side * dx) / len * 0.25);
 				Vec3 vel = golem.getDeltaMovement();
 				if (Math.abs(vel.x + push.x) < 100 && Math.abs(vel.z + push.z) < 100) {
 					golem.setDeltaMovement(vel.add(push));
@@ -179,7 +162,6 @@ public class EnvHazardHandler {
 						if (!isSafe(golem, pos)) continue;
 
 						double score = pos.distSqr(from);
-						// Run toward owner, away from target
 						if (target != null) {
 							score += target.blockPosition().distSqr(pos) * 0.3;
 						}

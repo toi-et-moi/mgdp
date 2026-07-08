@@ -12,6 +12,14 @@
     {
       "id": "goety_revelation:ender_keeper_sword",
       "required": false
+    },
+    {
+      "id": "smc:excalibur",
+      "required": false
+    },
+    {
+      "id": "smc:calibur",
+      "required": false
     }
   ]
 }

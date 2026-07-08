@@ -348,5 +348,8 @@
   "message.mgdp.conqueror_upgrade": "§6⚡ %s 升星至 %s 星！",
   "item.mgdp.frost_burst": "药水升级：霜冻爆发",
   "modifier.modulargolems.frost_burst": "药水升级：霜冻爆发",
-  "modifier.modulargolems.frost_burst.desc": "攻击/被攻击时，对目标/攻击者施加：霜冻爆发（00:10）。"
+  "modifier.modulargolems.frost_burst.desc": "攻击/被攻击时，对目标/攻击者施加：霜冻爆发（00:10）。",
+  "item.mgdp.guardian_laser": "守卫者升级",
+  "modifier.modulargolems.guardian_laser": "守卫者",
+  "modifier.modulargolems.guardian_laser.desc": "傀儡蓄力后会向目标发射激光束。"
 }

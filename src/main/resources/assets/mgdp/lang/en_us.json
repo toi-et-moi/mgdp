@@ -361,5 +361,8 @@
   "message.mgdp.conqueror_upgrade": "§6⚡ %s upgraded to %s-star!",
   "item.mgdp.frost_burst": "Potion Upgrade: Frost Burst",
   "modifier.modulargolems.frost_burst": "Frost Burst",
-  "modifier.modulargolems.frost_burst.desc": "Stack frost on attack. Burst deals AoE damage after 10s."
+  "modifier.modulargolems.frost_burst.desc": "Stack frost on attack. Burst deals AoE damage after 10s.",
+  "item.mgdp.guardian_laser": "Guardian Upgrade",
+  "modifier.modulargolems.guardian_laser": "Guardian",
+  "modifier.modulargolems.guardian_laser.desc": "Charges a laser beam dealing line damage."
 }

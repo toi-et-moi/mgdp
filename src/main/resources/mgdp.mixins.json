@@ -40,7 +40,9 @@
     "UpgradeItemMixin",
     "GolemPartMixin",
     "ConquerorDataMixin",
-    "GolemMaterialMixin"
+    "GolemMaterialMixin",
+    "SMCExcaliburMixin",
+    "SMCCaliburMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin"

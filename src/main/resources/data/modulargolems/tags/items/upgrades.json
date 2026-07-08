@@ -200,6 +200,10 @@
     {
       "id": "mgdp:frost_burst",
       "required": false
+    },
+    {
+      "id": "mgdp:guardian_laser",
+      "required": false
     }
   ]
 }
