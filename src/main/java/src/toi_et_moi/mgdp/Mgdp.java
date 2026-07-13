@@ -103,6 +103,9 @@ public class Mgdp {
 						output.accept(MGDPItems.CORONA.get());
 						output.accept(MGDPItems.MOON_SHADOW.get());
 						output.accept(MGDPItems.TIME_AXIS.get());
+						output.accept(MGDPItems.UPSIDE_DOWN.get());
+						output.accept(MGDPItems.REVERSE.get());
+						output.accept(MGDPItems.GHOST.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
 						output.accept(MGDPItems.SONIC_BOOM.get());
 						output.accept(MGDPItems.FOCUSED_DEFENSE.get());

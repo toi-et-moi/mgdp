@@ -61,6 +61,9 @@
     "mgdp:end_of_beginning",
     "mgdp:disarm",
     "mgdp:conqueror",
+    "mgdp:upside_down",
+    "mgdp:reverse",
+    "mgdp:ghost",
     {
       "id": "mgdp:hostility_reprint",
       "required": false

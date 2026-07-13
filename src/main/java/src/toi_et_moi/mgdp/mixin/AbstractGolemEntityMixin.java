@@ -36,6 +36,7 @@ import java.util.function.Predicate;
 
 
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
+import src.toi_et_moi.mgdp.Config;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 import src.toi_et_moi.mgdp.init.IFlipData;
 
@@ -43,6 +44,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -358,5 +360,28 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     public boolean isBoss() {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
         return golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.LORD.get());
+    }
+
+    // === Auto-aggro per-mob cooldown: each mob can be re-targeted at most once per 100 ticks ===
+    private static final java.util.Map<java.util.UUID, Long> aaggroLast = new java.util.HashMap<>();
+    private static int aaggroCleanTick; // counter for periodic cleanup
+
+    @Redirect(method = "setTarget",
+              at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setTarget(Lnet/minecraft/world/entity/LivingEntity;)V"))
+    private void mgdp$redirectAutoAggro(Mob mob, LivingEntity target) {
+        if (!Config.mobAutoAggro) return;
+
+        long now = this.level().getGameTime();
+        Long last = aaggroLast.get(mob.getUUID());
+        if (last != null && now - last < 100) return;
+
+        aaggroLast.put(mob.getUUID(), now);
+
+        // Periodically purge entries older than 10s (200 ticks)
+        if (++aaggroCleanTick % 100 == 0) {
+            aaggroLast.values().removeIf(v -> now - v > 200);
+        }
+
+        mob.setTarget(target);
     }
 }

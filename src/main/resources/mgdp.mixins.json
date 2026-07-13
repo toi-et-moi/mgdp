@@ -6,6 +6,7 @@
   "refmap": "mgdp.refmap.json",
   "mixins": [
     "EntityAccessor",
+    "EntityRendererAccessor",
     "AbstractGolemEntityMixin",
     "GolemSwimMoveControlMixin",
     "PotionAttackModifierAccessor",
@@ -42,10 +43,13 @@
     "ConquerorDataMixin",
     "GolemMaterialMixin",
     "SMCExcaliburMixin",
-    "SMCCaliburMixin"
+    "SMCCaliburMixin",
+    "SMCMeowmereMixin",
+    "SMCBowMixin"
   ],
   "client": [
-    "AbstractGolemRendererMixin"
+    "AbstractGolemRendererMixin",
+    "LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

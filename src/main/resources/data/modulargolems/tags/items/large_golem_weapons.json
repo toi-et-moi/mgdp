@@ -20,6 +20,14 @@
     {
       "id": "smc:calibur",
       "required": false
+    },
+    {
+      "id": "smc:perkin_spear",
+      "required": false
+    },
+    {
+      "id": "smc:meowmere",
+      "required": false
     }
   ]
 }

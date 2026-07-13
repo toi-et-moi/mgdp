@@ -74,6 +74,9 @@ import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
+import src.toi_et_moi.mgdp.modifier.common.UpsideDownModifier;
+import src.toi_et_moi.mgdp.modifier.common.ReverseModifier;
+import src.toi_et_moi.mgdp.modifier.common.GhostModifier;
 import src.toi_et_moi.mgdp.modifier.goety.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.goety.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.goety.VoidEchoModifier;
@@ -168,6 +171,9 @@ public class MGDPModifiers {
 	public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
 	public static final RegistryEntry<DisarmModifier> DISARM;
 	public static final RegistryEntry<CoronaModifier> CORONA;
+	public static final RegistryEntry<UpsideDownModifier> UPSIDE_DOWN;
+	public static final RegistryEntry<ReverseModifier> REVERSE;
+	public static final RegistryEntry<GhostModifier> GHOST;
 	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
 	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
 	public static final RegistryEntry<LastLineModifier> LAST_LINE;
@@ -463,8 +469,18 @@ public class MGDPModifiers {
 			"Corona",
 			"During the day, the golem ignores all negative potion effects.");
 
-		MOON_SHADOW = reg("moon_shadow", MoonShadowModifier::new,
-			"Moon Shadow",
+			UPSIDE_DOWN = reg("upside_down", UpsideDownModifier::new,
+		"Upside Down",
+"Flips the golem upside down.");
+
+			REVERSE = reg("reverse", ReverseModifier::new,
+				"Reverse",
+				"Reverses the golem's front and back.");
+
+			GHOST = reg("ghost", GhostModifier::new,
+				"Ghost",
+				"Makes the golem's model and shadow invisible.");
+			MOON_SHADOW = reg("moon_shadow", MoonShadowModifier::new,
 			"During the night, prevents hostile mob spawning within 32 blocks.");
 
 		TIME_AXIS = reg("time_axis", TimeAxisModifier::new,

@@ -28,12 +28,17 @@ public class Config {
             .comment("Time Axis block acceleration multiplier (default: 8, 0 = disabled)")
             .defineInRange("timeAxisSpeed", 8, 0, 256);
 
+    private static final ForgeConfigSpec.BooleanValue MOB_AUTO_AGGRO = COMMON_BUILDER
+            .comment("Mobs target by golems automatically target the golem back (default: true)")
+            .define("mobAutoAggro", true);
+
     static final ForgeConfigSpec COMMON_SPEC = COMMON_BUILDER.build();
 
     public static int swapCooldown;
     public static int liquidClearRangePerLevel;
     public static boolean destructionMode;
     public static int timeAxisSpeed;
+    public static boolean mobAutoAggro;
 
     // --- Client Config ---
 
@@ -59,6 +64,7 @@ public class Config {
             liquidClearRangePerLevel = LIQUID_CLEAR_RANGE.get();
             destructionMode = DESTRUCTION_MODE.get();
             timeAxisSpeed = TIME_AXIS_SPEED.get();
+            mobAutoAggro = MOB_AUTO_AGGRO.get();
         } else if (event.getConfig().getSpec() == CLIENT_SPEC) {
             golemHealthWarning = HEALTH_WARNING.get();
             jukeboxVolume = JUKEBOX_VOLUME.get();

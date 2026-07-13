@@ -150,6 +150,9 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> CORONA;
 	public static final RegistryObject<SimpleUpgradeItem> MOON_SHADOW;
 	public static final RegistryObject<SimpleUpgradeItem> TIME_AXIS;
+	public static final RegistryObject<SimpleUpgradeItem> UPSIDE_DOWN;
+	public static final RegistryObject<SimpleUpgradeItem> REVERSE;
+	public static final RegistryObject<SimpleUpgradeItem> GHOST;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -569,6 +572,15 @@ public class MGDPItems {
 
 		TIME_AXIS = Mgdp.ITEMS.register("time_axis",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.TIME_AXIS.get(), 1, true));
+
+		UPSIDE_DOWN = Mgdp.ITEMS.register("upside_down",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.UPSIDE_DOWN.get(), 1, false));
+
+		REVERSE = Mgdp.ITEMS.register("reverse",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REVERSE.get(), 1, false));
+
+		GHOST = Mgdp.ITEMS.register("ghost",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GHOST.get(), 1, false));
 	}
 
 	public static void register() {
@@ -691,6 +703,9 @@ public class MGDPItems {
 			event.accept(CORONA.get());
 			event.accept(MOON_SHADOW.get());
 			event.accept(TIME_AXIS.get());
+			event.accept(UPSIDE_DOWN.get());
+			event.accept(REVERSE.get());
+			event.accept(GHOST.get());
 			}
 		}
 	}
