@@ -45,7 +45,7 @@
     "SMCExcaliburMixin",
     "SMCCaliburMixin",
     "SMCMeowmereMixin",
-    "SMCBowMixin"
+    "FrostInfinityMixin"
   ],
   "client": [
     "AbstractGolemRendererMixin",

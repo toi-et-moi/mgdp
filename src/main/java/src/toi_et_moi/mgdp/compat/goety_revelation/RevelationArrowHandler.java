@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.combat;
+package src.toi_et_moi.mgdp.compat.goety_revelation;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -59,7 +59,7 @@ public class RevelationArrowHandler {
             addEffect("goety", "stunned");
             addEffect("goety", "soul_hunger");
             addEffect("goety", "ender_ground");
-            addEffect("goety", "ender_flux");
+            addEffect("goety", "flammable");
             addEffect("goety", "nyctophobia");
             addEffect("goety", "arrowmantic");
             addEffect("goety", "plunge");
@@ -91,27 +91,31 @@ public class RevelationArrowHandler {
         if (type == null || !type.getNamespace().equals("goety") || !type.getPath().equals("death_arrow"))
             return;
 
-        // Double the arrow's base damage (the customArrow redirect might be overwritten by bow logic)
+        // Apply final damage multiplier on top of RevelationBowBehavior's 2.5x
         if (projectile instanceof net.minecraft.world.entity.projectile.AbstractArrow aa) {
-            // Check persistent data for Ascension Halo flag (set by SMCBowMixin)
-            boolean halo = projectile.getPersistentData().getBoolean("mgdp_revelation_halo");
-            double dmg = aa.getBaseDamage() * 2.5;
-            if (halo) dmg *= 2.0;
+            double dmg = aa.getBaseDamage() * 2.0;
+            if (projectile.getPersistentData().getBoolean("mgdp_revelation_halo")) {
+                dmg *= 2.0;
+            }
             aa.setBaseDamage(dmg);
         }
 
         // Ignore projectile invulnerability frames
         living.invulnerableTime = 0;
 
-        // Forced random negative effect (always applies)
+        // Random negative effect (always applies)
         loadEffects();
         if (!NEGATIVE_EFFECTS.isEmpty()) {
+            boolean halo = projectile.getPersistentData().getBoolean("mgdp_revelation_halo");
             var rng = living.level().random;
             var chosen = NEGATIVE_EFFECTS.get(rng.nextInt(NEGATIVE_EFFECTS.size()));
             var effect = ForgeRegistries.MOB_EFFECTS.getValue(chosen);
             if (effect != null) {
-                int level = rng.nextInt(4); // 0-3 representing levels 1-4
-                living.addEffect(new MobEffectInstance(effect, 80, level));
+                if (halo) {
+                    living.addEffect(new MobEffectInstance(effect, 240, 4)); // 5级12秒
+                } else {
+                    living.addEffect(new MobEffectInstance(effect, 80, rng.nextInt(4))); // 1-4级4秒
+                }
             }
         }
     }

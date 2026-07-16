@@ -96,6 +96,13 @@ public class SwapModifier extends GolemModifier {
             golem.addEffect(effect);
         }
 
+        // Also transfer fire ticks to golem
+        int fire = player.getRemainingFireTicks();
+        if (fire > 0) {
+            golem.setRemainingFireTicks(fire);
+            player.setRemainingFireTicks(0);
+        }
+
         player.teleportTo(gPos.x, gPos.y, gPos.z);
         golem.teleportTo(pPos.x, pPos.y, pPos.z);
         player.level().playSound(null, pPos.x, pPos.y, pPos.z,

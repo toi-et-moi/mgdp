@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.goety;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -88,7 +89,7 @@ public class NecromancerModifier extends GolemModifier {
 		else if (biome.getBaseTemperature() > 1.0f) id = skele ? "goety:skeleton_servant" : "goety:husk_servant";
 		else id = skele ? "goety:skeleton_servant" : "goety:zombie_servant";
 
-		EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(id));
+		EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(id));
 		if (type == null) return null;
 
 		Mob mob = (Mob) type.create(level);

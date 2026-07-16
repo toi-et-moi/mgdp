@@ -12,6 +12,7 @@
     "mgdp:upside_down",
     "mgdp:reverse",
     "mgdp:ghost",
+    "mgdp:vision_range",
     {
       "id": "mgdp:penguin",
       "required": false

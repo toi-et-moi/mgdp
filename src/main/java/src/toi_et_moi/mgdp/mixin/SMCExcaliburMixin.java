@@ -1,4 +1,5 @@
 package src.toi_et_moi.mgdp.mixin;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -29,8 +30,8 @@ public abstract class SMCExcaliburMixin {
 
 		if (!mgdp$smcChecked) {
 			mgdp$smcChecked = true;
-			mgdp$auraType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation("smc", "sword_aura"));
-			mgdp$excaliburItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("smc", "excalibur"));
+			mgdp$auraType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("smc", "sword_aura"));
+			mgdp$excaliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "excalibur"));
 		}
 		if (mgdp$auraType == null || mgdp$excaliburItem == null) return;
 		if (!golem.getMainHandItem().is(mgdp$excaliburItem)) return;

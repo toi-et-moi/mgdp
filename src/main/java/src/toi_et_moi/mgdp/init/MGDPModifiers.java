@@ -77,6 +77,7 @@ import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.UpsideDownModifier;
 import src.toi_et_moi.mgdp.modifier.common.ReverseModifier;
 import src.toi_et_moi.mgdp.modifier.common.GhostModifier;
+import src.toi_et_moi.mgdp.modifier.common.SpyglassModifier;
 import src.toi_et_moi.mgdp.modifier.goety.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.goety.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.goety.VoidEchoModifier;
@@ -84,6 +85,8 @@ import src.toi_et_moi.mgdp.modifier.buff.PhantomModifier;
 import src.toi_et_moi.mgdp.modifier.goety.NecromancerModifier;
 import src.toi_et_moi.mgdp.modifier.buff.RealitySuppressionModifier;
 import src.toi_et_moi.mgdp.modifier.defense.LastLineModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.PyreLordModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.WitchKingModifier;
 import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
 import src.toi_et_moi.mgdp.modifier.buff.FrostBurstModifier;
 import src.toi_et_moi.mgdp.modifier.combat.GuardianLaserModifier;
@@ -174,11 +177,14 @@ public class MGDPModifiers {
 	public static final RegistryEntry<UpsideDownModifier> UPSIDE_DOWN;
 	public static final RegistryEntry<ReverseModifier> REVERSE;
 	public static final RegistryEntry<GhostModifier> GHOST;
+	public static final RegistryEntry<SpyglassModifier> SPYGLASS;
 	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
 	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
 	public static final RegistryEntry<LastLineModifier> LAST_LINE;
 	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
 	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
+	public static final RegistryEntry<PyreLordModifier> THE_PYRE_LORD;
+	public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
@@ -480,8 +486,12 @@ public class MGDPModifiers {
 			GHOST = reg("ghost", GhostModifier::new,
 				"Ghost",
 				"Makes the golem's model and shadow invisible.");
+			SPYGLASS = reg("spyglass", SpyglassModifier::new,
+				"Vision Range",
+				"Doubles the golem's follow/target range.");
 			MOON_SHADOW = reg("moon_shadow", MoonShadowModifier::new,
-			"During the night, prevents hostile mob spawning within 32 blocks.");
+				"Moon Shadow",
+				"During the night, prevents hostile mob spawning within 32 blocks.");
 
 		TIME_AXIS = reg("time_axis", TimeAxisModifier::new,
 			"§6Time Axis",
@@ -556,6 +566,12 @@ public class MGDPModifiers {
 			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
 				"Mana Overload",
 				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
+			THE_PYRE_LORD = reg("the_pyre_lord", PyreLordModifier::new,
+				"Blast Lord",
+				"Apostle title: summons nether meteors, 4x fire/explosion damage.");
+			THE_WITCH_KING = reg("the_witch_king", WitchKingModifier::new,
+				"§cThe Witch King",
+				"§5Apostle Title: applies all potion effects to allies/enemies, cleanses allies.");
 
 			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
 				"Frost Burst",

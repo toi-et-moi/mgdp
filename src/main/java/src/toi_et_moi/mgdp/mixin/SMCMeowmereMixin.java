@@ -1,4 +1,5 @@
 package src.toi_et_moi.mgdp.mixin;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -25,8 +26,8 @@ public abstract class SMCMeowmereMixin {
         LivingEntity target = golem.getTarget();
         if (target == null || !target.isAlive()) return;
 
-        var type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation("smc", "meow_ball"));
-        var item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("smc", "meowmere"));
+        var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("smc", "meow_ball"));
+        var item = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "meowmere"));
         if (type == null || item == null) return;
         if (!golem.getMainHandItem().is(item)) return;
 
@@ -46,7 +47,7 @@ public abstract class SMCMeowmereMixin {
             try { e.getClass().getMethod("setOwner", LivingEntity.class).invoke(e, golem); } catch (Exception ignored) {}
 
             // Set rendering item: try rainbow_cookie like SMC does, fallback to meowmere
-            var renderItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("smc", "rainbow_cookie"));
+            var renderItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "rainbow_cookie"));
             if (e instanceof ThrowableItemProjectile tip) {
                 tip.setItem(new ItemStack(renderItem != null ? renderItem : item));
             }

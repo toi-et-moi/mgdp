@@ -61,7 +61,7 @@ public class FireballModifier extends GolemModifier {
 			if (volleyTargets.isEmpty()) return;
 
 			if (!golem.isSilent()) {
-				golem.level().playSound(null, golem.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.HOSTILE, 0.3F, 1.0F);
+				golem.level().playSound(null, golem.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.NEUTRAL, 0.3F, 1.0F);
 			}
 		}
 

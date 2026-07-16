@@ -89,7 +89,7 @@ public class EchoTrioModifier extends GolemModifier {
 
 		if (n >= 3 && golem.tickCount % 40 == 0) {
 			golem.level().playSound(null, golem.blockPosition(), SoundEvents.WARDEN_HEARTBEAT,
-					SoundSource.HOSTILE, 5.0F, 1.0F);
+					SoundSource.NEUTRAL, 5.0F, 1.0F);
 		}
 
 		AABB area = golem.getBoundingBox().inflate(35);
@@ -109,7 +109,7 @@ public class EchoTrioModifier extends GolemModifier {
 
 		golem.getPersistentData().putBoolean("mgdp_echo_self", true);
 		golem.level().playSound(null, golem.blockPosition(), SoundEvents.WARDEN_SONIC_BOOM,
-				SoundSource.HOSTILE, 0.5F, 1.0F);
+				SoundSource.NEUTRAL, 0.5F, 1.0F);
 
 		int count = 0;
 		for (LivingEntity target : targets) {

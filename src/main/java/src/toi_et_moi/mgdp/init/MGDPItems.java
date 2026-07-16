@@ -89,6 +89,8 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LAST_LINE;
 	public static final RegistryObject<SimpleUpgradeItem> REALITY_SUPPRESSION;
 	public static final RegistryObject<SimpleUpgradeItem> MANA_OVERLOAD;
+	public static final RegistryObject<SimpleUpgradeItem> THE_PYRE_LORD;
+	public static final RegistryObject<SimpleUpgradeItem> THE_WITCH_KING;
 	public static final RegistryObject<SimpleUpgradeItem> CREATIVE_SLOT_100;
 	public static final RegistryObject<SimpleUpgradeItem> CREATIVE_SLOT;
 	public static final RegistryObject<Item> HARBINGER_BEAM;
@@ -153,6 +155,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> UPSIDE_DOWN;
 	public static final RegistryObject<SimpleUpgradeItem> REVERSE;
 	public static final RegistryObject<SimpleUpgradeItem> GHOST;
+	public static final RegistryObject<SimpleUpgradeItem> SPYGLASS;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -495,6 +498,12 @@ public class MGDPItems {
 		MANA_OVERLOAD = Mgdp.ITEMS.register("mana_overload",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MANA_OVERLOAD.get(), 1, false));
 
+
+		THE_PYRE_LORD = Mgdp.ITEMS.register("the_pyre_lord",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.THE_PYRE_LORD.get(), 1, false));
+
+		THE_WITCH_KING = Mgdp.ITEMS.register("the_witch_king",
+			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.THE_WITCH_KING.get(), 1, false));
 		HARBINGER_BEAM = Mgdp.ITEMS.register("harbinger_beam",
 			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
 				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.HARBINGER_BEAM.get() : null, 1, false));
@@ -579,10 +588,12 @@ public class MGDPItems {
 		REVERSE = Mgdp.ITEMS.register("reverse",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.REVERSE.get(), 1, false));
 
-		GHOST = Mgdp.ITEMS.register("ghost",
-			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GHOST.get(), 1, false));
-	}
+			GHOST = Mgdp.ITEMS.register("ghost",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.GHOST.get(), 1, false));
 
+			SPYGLASS = Mgdp.ITEMS.register("spyglass",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SPYGLASS.get(), 1, false));
+		}
 	public static void register() {
 	}
 
@@ -660,6 +671,8 @@ public class MGDPItems {
 				event.accept(ANVIL_SLAM.get());
 			event.accept(TRIDENT_FESTIVAL.get());
 			event.accept(IRON_UPGRADE.get());
+			event.accept(THE_PYRE_LORD.get());
+			event.accept(THE_WITCH_KING.get());
 				event.accept(RIPTIDE.get());
 			event.accept(END_VOID.get());
 				event.accept(INFINITE_AMMO.get());
@@ -706,6 +719,7 @@ public class MGDPItems {
 			event.accept(UPSIDE_DOWN.get());
 			event.accept(REVERSE.get());
 			event.accept(GHOST.get());
+			event.accept(SPYGLASS.get());
 			}
 		}
 	}

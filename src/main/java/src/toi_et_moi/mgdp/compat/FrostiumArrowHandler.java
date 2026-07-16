@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.combat;
+package src.toi_et_moi.mgdp.compat;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;

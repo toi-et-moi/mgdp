@@ -33,7 +33,7 @@ public class PenguinModifier extends GolemModifier {
                 && golem.getModifiers().containsKey(MGDPModifiers.PENGUIN.get())) {
             LivingEntity target = event.getEntity();
             var level = target.level();
-            var type = net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getValue(
+            var type = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.get(
                     new ResourceLocation("twilightforest", "penguin"));
             if (type != null) {
                 var penguin = type.create(level);

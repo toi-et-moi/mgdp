@@ -64,6 +64,7 @@
     "mgdp:upside_down",
     "mgdp:reverse",
     "mgdp:ghost",
+    "mgdp:vision_range",
     {
       "id": "mgdp:hostility_reprint",
       "required": false
@@ -206,6 +207,14 @@
     },
     {
       "id": "mgdp:guardian_laser",
+      "required": false
+    },
+    {
+      "id": "mgdp:the_pyre_lord",
+      "required": false
+    },
+    {
+      "id": "mgdp:the_witch_king",
       "required": false
     }
   ]

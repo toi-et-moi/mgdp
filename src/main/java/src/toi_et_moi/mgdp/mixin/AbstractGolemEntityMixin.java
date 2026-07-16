@@ -116,6 +116,7 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         boolean hasFlight = mgdp$isFlying(golem);
         boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
         ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
+
         java.util.UUID diamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_diamond_attack");
         java.util.UUID enchDiamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_diamond_attack");
         java.util.UUID crimsonId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_attack");
@@ -360,6 +361,15 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     public boolean isBoss() {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
         return golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.LORD.get());
+    }
+
+    // When golem clears its target, also clear the auto-aggro cooldown for that mob
+    @Inject(method = "setTarget", at = @At("HEAD"))
+    private void mgdp$clearAggroOnLoseTarget(LivingEntity target, CallbackInfo ci) {
+        if (target != null) return;
+        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+        LivingEntity old = golem.getTarget();
+        if (old != null) aaggroLast.remove(old.getUUID());
     }
 
     // === Auto-aggro per-mob cooldown: each mob can be re-targeted at most once per 100 ticks ===

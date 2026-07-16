@@ -106,6 +106,7 @@ public class Mgdp {
 						output.accept(MGDPItems.UPSIDE_DOWN.get());
 						output.accept(MGDPItems.REVERSE.get());
 						output.accept(MGDPItems.GHOST.get());
+						output.accept(MGDPItems.SPYGLASS.get());
 						output.accept(MGDPItems.SELF_REPAIR.get());
 						output.accept(MGDPItems.SONIC_BOOM.get());
 						output.accept(MGDPItems.FOCUSED_DEFENSE.get());
@@ -183,6 +184,8 @@ public class Mgdp {
 							output.accept(MGDPItems.REALITY_SUPPRESSION.get());
 						if (net.minecraftforge.fml.ModList.get().isLoaded("golemmagicka"))
 							output.accept(MGDPItems.MANA_OVERLOAD.get());
+						output.accept(MGDPItems.THE_PYRE_LORD.get());
+						output.accept(MGDPItems.THE_WITCH_KING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_ENGINE.get());

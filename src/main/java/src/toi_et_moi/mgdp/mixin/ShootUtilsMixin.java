@@ -28,6 +28,6 @@ public class ShootUtilsMixin {
 
 		return target.position()
 				.add(targetVel.scale(flightTime))
-				.add(0, flightTime * flightTime * 0.5, 0);
+				.add(0, 0.025 * flightTime * flightTime, 0);
 	}
 }

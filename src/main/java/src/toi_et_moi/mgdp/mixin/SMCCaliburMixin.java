@@ -28,7 +28,7 @@ public abstract class SMCCaliburMixin {
 
 		if (!mgdp$smcCalChecked) {
 			mgdp$smcCalChecked = true;
-			mgdp$caliburItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("smc", "calibur"));
+			mgdp$caliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "calibur"));
 			mgdp$caliburBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("smc", "calibur_block"));
 		}
 		if (mgdp$caliburItem == null) return;
@@ -119,7 +119,7 @@ public abstract class SMCCaliburMixin {
 	}
 
 	private void dualAwaken(AbstractGolemEntity<?, ?> holder, AbstractGolemEntity<?, ?> empty) {
-		var excaliburItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("smc", "excalibur"));
+		var excaliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "excalibur"));
 		if (excaliburItem != null)
 			holder.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(excaliburItem));
 		empty.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,

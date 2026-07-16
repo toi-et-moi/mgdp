@@ -1,4 +1,5 @@
 package src.toi_et_moi.mgdp.modifier.combat;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.example.behavior.ThrowableBehavior;
@@ -17,7 +18,7 @@ public class PerkinSpearThrowBehavior extends ThrowableBehavior {
         if (!net.minecraftforge.fml.ModList.get().isLoaded("smc")) return null;
 
         try {
-            var type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation("smc", "thrown_spear"));
+            var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("smc", "thrown_spear"));
             if (type == null) return null;
 
             Class<?> cls = Class.forName("com.starmeow.smc.entities.projectiles.ThrownSpear");

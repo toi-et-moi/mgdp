@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.combat;
+package src.toi_et_moi.mgdp.compat;
 
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import net.minecraft.core.registries.Registries;
