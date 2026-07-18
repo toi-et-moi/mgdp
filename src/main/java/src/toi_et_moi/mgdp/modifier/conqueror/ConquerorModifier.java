@@ -97,16 +97,8 @@ public class ConquerorModifier extends GolemModifier {
 
 		if (newStar != oldStar) {
 			data.mgdp$setVetStar(newStar);
-			if (newStar > oldStar) {
-				var owner = golem.getOwner();
-				if (owner != null) {
-					owner.sendSystemMessage(Component.translatable(
-							"message.mgdp.conqueror_upgrade",
-							golem.getDisplayName(), newStar));
-				}
-			}
-		}
 
+			}
 		if (newStar >= 3) {
 			golem.getActiveEffects().stream()
 					.filter(e -> !e.getEffect().isBeneficial())
@@ -121,7 +113,7 @@ public class ConquerorModifier extends GolemModifier {
 				}
 			}
 		}
-	}
+		}
 
 	@Override
 	public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {

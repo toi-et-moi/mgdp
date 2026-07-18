@@ -64,7 +64,9 @@
     "mgdp:upside_down",
     "mgdp:reverse",
     "mgdp:ghost",
-    "mgdp:vision_range",
+    "mgdp:spyglass",
+    "mgdp:shrink",
+    "mgdp:shield_block",
     {
       "id": "mgdp:hostility_reprint",
       "required": false

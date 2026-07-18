@@ -39,7 +39,7 @@ public class TotemicModifier extends GolemModifier {
 		if (now - last < interval) return;
 		data.putLong(key, now);
 
-		float absorption = golem.getMaxHealth() * 0.1f * level;
+		float absorption = golem.getMaxHealth() * 0.2f * level;
 		golem.setAbsorptionAmount(absorption);
 	}
 }

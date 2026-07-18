@@ -55,17 +55,6 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         super(type, level);
     }
 
-    @Inject(method = "aiStep", at = @At("TAIL"))
-    private void mgdp$onAiStep(CallbackInfo ci) {
-        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        if (!golem.level().isClientSide && ModList.get().isLoaded("create")
-                && golem.getMode() == GolemModes.STAND) {
-            try {
-                Class<?> cc = Class.forName("src.toi_et_moi.mgdp.compat.CreateCompat");
-                cc.getMethod("tryDriveHandCrank", AbstractGolemEntity.class).invoke(null, golem);
-            } catch (Exception ignored) {}
-        }
-    }
 
     private boolean mgdp$isFlying(AbstractGolemEntity<?, ?> golem) {
         return golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
@@ -194,51 +183,6 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         }
     }
 
-    @Inject(method = "aiStep", at = @At("TAIL"))
-    private void mgdp$unstoppableLockSpeed(CallbackInfo ci) {
-        if (!mgdp$hasUnstoppable()) return;
-        var attr = this.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (attr == null || attr.getValue() >= attr.getBaseValue()) return;
-        var toRemove = attr.getModifiers().stream()
-                .filter(m -> m.getAmount() < 0)
-                .map(AttributeModifier::getId)
-                .toList();
-        toRemove.forEach(attr::removeModifier);
-    }
-
-    @Inject(method = "aiStep", at = @At("TAIL"))
-    private void mgdp$dodgeProjectiles(CallbackInfo ci) {
-        try {
-            AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-            if (golem.level().isClientSide()) return;
-            if (!golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.PROJECTILE_DODGE.get())) return;
-            Vec3 golemPos = golem.position();
-            for (Entity e : golem.level().getEntitiesOfClass(Entity.class,
-                    golem.getBoundingBox().inflate(10))) {
-                if (e == golem) continue;
-                if (e instanceof AbstractArrow && e.tickCount > 100) continue;
-                Vec3 vel = e.getDeltaMovement();
-                if (vel.lengthSqr() < (e instanceof Projectile ? 0.01 : 0.5)) continue;
-                Entity owner = e instanceof Projectile ? ((Projectile)e).getOwner() : null;
-                if (owner == golem || owner == golem.getOwner()) continue;
-                Vec3 rel = golemPos.subtract(e.position());
-                double t = rel.dot(vel) / vel.lengthSqr();
-                if (t < 0 || t > 15) continue;
-                Vec3 closest = e.position().add(vel.scale(t));
-                if (closest.distanceToSqr(golemPos) > 9) continue;
-                Vec3 dodge = vel.cross(new Vec3(0, 1, 0)).normalize();
-                if (dodge.lengthSqr() < 0.5) dodge = new Vec3(1, 0, 0);
-                float strength = t < 5 ? 1.0f : 0.5f;
-                Vec3 newVel = golem.getDeltaMovement().add(dodge.scale(strength));
-                if (Math.abs(newVel.x) < 100 && Math.abs(newVel.z) < 100) {
-                    golem.setDeltaMovement(newVel);
-                }
-                break;
-            }
-        } catch (Exception ignored) {}
-    }
-
-    // --- Ride: allow golems to mount larger entities ---
     @Inject(method = "checkRide", at = @At("HEAD"), cancellable = true, remap = false)
     private void mgdp$checkRide(LivingEntity target, CallbackInfo ci) {
         if (target != null) {
@@ -255,6 +199,12 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     private static final EntityDataAccessor<Float> mgdp$WINDMILL = SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> mgdp$FLIP_PROGRESS =
             SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> mgdp$SB_SHIELDS =
+            SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> mgdp$SB_HP =
+            SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> mgdp$CS_SHIELDS =
+            SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.INT);
 
     @Unique
     private ItemStack mgdp$jukeboxDisc = ItemStack.EMPTY;
@@ -264,33 +214,97 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
 
     @Override
     public boolean mgdp$isPlaying() {
-        return this.entityData.get(mgdp$JUKEBOX_PLAYING);
+        try {
+            return this.entityData.get(mgdp$JUKEBOX_PLAYING);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public void mgdp$setPlaying(boolean playing) {
-        this.entityData.set(mgdp$JUKEBOX_PLAYING, playing);
+        try {
+            this.entityData.set(mgdp$JUKEBOX_PLAYING, playing);
+        } catch (Exception ignored) {}
     }
 
     @Unique
     public int mgdp$getFlipProgress() {
-        return this.entityData.get(mgdp$FLIP_PROGRESS);
+        try {
+            return this.entityData.get(mgdp$FLIP_PROGRESS);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Unique
     public void mgdp$setFlipProgress(int progress) {
-        this.entityData.set(mgdp$FLIP_PROGRESS, progress);
+        try {
+            this.entityData.set(mgdp$FLIP_PROGRESS, progress);
+        } catch (Exception ignored) {}
     }
 
     @Unique
     public float mgdp$getWindmill() {
-        return this.entityData.get(mgdp$WINDMILL);
+        try {
+            return this.entityData.get(mgdp$WINDMILL);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Unique
     public void mgdp$setWindmill(float angle) {
-        this.entityData.set(mgdp$WINDMILL, angle);
+        try {
+            this.entityData.set(mgdp$WINDMILL, angle);
+        } catch (Exception ignored) {}
     }
+	@Unique
+	public int mgdp$getSbShields() {
+		try {
+			return this.entityData.get(mgdp$SB_SHIELDS);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	@Unique
+	public void mgdp$setSbShields(int shields) {
+		try {
+			this.entityData.set(mgdp$SB_SHIELDS, shields);
+		} catch (Exception ignored) {}
+	}
+
+	@Unique
+	public int mgdp$getSbHp() {
+		try {
+			return this.entityData.get(mgdp$SB_HP);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	@Unique
+	public void mgdp$setSbHp(int hp) {
+		try {
+			this.entityData.set(mgdp$SB_HP, hp);
+		} catch (Exception ignored) {}
+	}
+	@Unique
+	public int mgdp$getCsShields() {
+		try {
+			return this.entityData.get(mgdp$CS_SHIELDS);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	@Unique
+	public void mgdp$setCsShields(int shields) {
+		try {
+			this.entityData.set(mgdp$CS_SHIELDS, shields);
+		} catch (Exception ignored) {}
+	}
 
     @Override
     public ItemStack mgdp$getDisc() {
@@ -317,6 +331,9 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         this.entityData.define(mgdp$JUKEBOX_PLAYING, false);
         this.entityData.define(mgdp$FLIP_PROGRESS, 0);
 		this.entityData.define(mgdp$WINDMILL, 0.0F);
+		this.entityData.define(mgdp$SB_SHIELDS, 0);
+		this.entityData.define(mgdp$SB_HP, 0);
+		this.entityData.define(mgdp$CS_SHIELDS, 0);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
@@ -331,67 +348,38 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         mgdp$jukeboxDisc = ItemStack.of(tag.getCompound("mgdp_jukebox_disc"));
         mgdp$setPlaying(mgdp$jukeboxDisc.isEmpty() ? false : tag.getBoolean("mgdp_jukebox_playing"));
         mgdp$jukeboxTick = 0;
+	}
+
+	// When golem clears its target, also clear the auto-aggro cooldown for that mob
+	@Inject(method = "setTarget", at = @At("HEAD"))
+	private void mgdp$clearAggroOnLoseTarget(LivingEntity target, CallbackInfo ci) {
+		if (target != null) return;
+		AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+		LivingEntity old = golem.getTarget();
+		if (old != null) aaggroLast.remove(old.getUUID());
+	}
+
+	// === Auto-aggro per-mob cooldown: each mob can be re-targeted at most once per 100 ticks ===
+	private static final java.util.Map<java.util.UUID, Long> aaggroLast = new java.util.HashMap<>();
+	private static int aaggroCleanTick;
+
+	@Redirect(method = "setTarget",
+			  at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setTarget(Lnet/minecraft/world/entity/LivingEntity;)V"))
+	private void mgdp$redirectAutoAggro(Mob mob, LivingEntity target) {
+		if (!Config.mobAutoAggro) return;
+
+		long now = this.level().getGameTime();
+		Long last = aaggroLast.get(mob.getUUID());
+		if (last != null && now - last < 100) return;
+
+		aaggroLast.put(mob.getUUID(), now);
+
+		// Periodically purge entries older than 10s (200 ticks)
+		if (++aaggroCleanTick % 100 == 0) {
+			aaggroLast.values().removeIf(v -> now - v > 200);
+		}
+
+		mob.setTarget(target);
+	}
     }
 
-    @Inject(method = "aiStep", at = @At("TAIL"))
-    private void mgdp$jukeboxTick(CallbackInfo ci) {
-        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        if (golem.level().isClientSide) return;
-
-        // Auto-stop if disc removed while playing
-        if (mgdp$isPlaying() && mgdp$jukeboxDisc.isEmpty()) {
-            mgdp$setPlaying(false);
-            mgdp$jukeboxTick = 0;
-            golem.level().levelEvent(null, 1011, golem.blockPosition(), 0);
-            return;
-        }
-
-        if (!mgdp$isPlaying()) return;
-        mgdp$jukeboxTick++;
-
-        // Safety auto-stop after ~5 minutes
-        if (mgdp$jukeboxTick > 20 * 60 * 5) {
-            mgdp$setPlaying(false);
-            mgdp$jukeboxTick = 0;
-            golem.level().levelEvent(null, 1011, golem.blockPosition(), 0);
-        }
-    }
-
-    /** Make golem act as a boss entity when it has the Lord upgrade */
-    public boolean isBoss() {
-        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        return golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.LORD.get());
-    }
-
-    // When golem clears its target, also clear the auto-aggro cooldown for that mob
-    @Inject(method = "setTarget", at = @At("HEAD"))
-    private void mgdp$clearAggroOnLoseTarget(LivingEntity target, CallbackInfo ci) {
-        if (target != null) return;
-        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
-        LivingEntity old = golem.getTarget();
-        if (old != null) aaggroLast.remove(old.getUUID());
-    }
-
-    // === Auto-aggro per-mob cooldown: each mob can be re-targeted at most once per 100 ticks ===
-    private static final java.util.Map<java.util.UUID, Long> aaggroLast = new java.util.HashMap<>();
-    private static int aaggroCleanTick; // counter for periodic cleanup
-
-    @Redirect(method = "setTarget",
-              at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setTarget(Lnet/minecraft/world/entity/LivingEntity;)V"))
-    private void mgdp$redirectAutoAggro(Mob mob, LivingEntity target) {
-        if (!Config.mobAutoAggro) return;
-
-        long now = this.level().getGameTime();
-        Long last = aaggroLast.get(mob.getUUID());
-        if (last != null && now - last < 100) return;
-
-        aaggroLast.put(mob.getUUID(), now);
-
-        // Periodically purge entries older than 10s (200 ticks)
-        if (++aaggroCleanTick % 100 == 0) {
-            aaggroLast.values().removeIf(v -> now - v > 200);
-        }
-
-        mob.setTarget(target);
-    }
-}

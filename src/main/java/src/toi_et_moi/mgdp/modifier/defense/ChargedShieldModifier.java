@@ -3,6 +3,7 @@ package src.toi_et_moi.mgdp.modifier.defense;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
+import src.toi_et_moi.mgdp.init.IFlipData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -64,9 +65,11 @@ public class ChargedShieldModifier extends GolemModifier {
         if (!tag.contains(TAG_SHIELDS)) {
             tag.putInt(TAG_SHIELDS, maxShields);
             tag.putLong(TAG_REGEN, golem.level().getGameTime());
+            syncCsData(golem, tag);
             return;
         }
         int shields = tag.getInt(TAG_SHIELDS);
+        syncCsData(golem, tag);
         if (shields >= maxShields) return;
 
         long lastRegen = tag.getLong(TAG_REGEN);
@@ -77,7 +80,13 @@ public class ChargedShieldModifier extends GolemModifier {
             shields = Math.min(maxShields, shields + toAdd);
             tag.putInt(TAG_SHIELDS, shields);
             tag.putLong(TAG_REGEN, now - (elapsed % interval));
+            syncCsData(golem, tag);
         golem.level().playSound(null, golem.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
         }
+    }
+
+    private static void syncCsData(AbstractGolemEntity<?, ?> golem, CompoundTag tag) {
+        if (!(golem instanceof IFlipData data)) return;
+        data.mgdp$setCsShields(tag.getInt(TAG_SHIELDS));
     }
 }

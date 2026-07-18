@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.mixin;
+package src.toi_et_moi.mgdp.compat;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.core.BlockPos;
@@ -6,49 +6,48 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import src.toi_et_moi.mgdp.Mgdp;
 
-@Mixin(AbstractGolemEntity.class)
-public abstract class SMCCaliburMixin {
+@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class SMCCaliburHandler {
 
-	@Unique private static net.minecraft.world.item.Item mgdp$caliburItem;
-	@Unique private static Block mgdp$caliburBlock;
-	@Unique private static boolean mgdp$smcCalChecked;
+	private static net.minecraft.world.item.Item mgdp$caliburItem;
+	private static net.minecraft.world.level.block.Block mgdp$caliburBlock;
+	private static boolean mgdp$checked;
 
-	@Inject(method = "aiStep", at = @At("TAIL"))
-	private void mgdp$caliburCompat(CallbackInfo ci) {
-		AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+	@SubscribeEvent
+	public static void onGolemTick(LivingEvent.LivingTickEvent event) {
+		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
+		if (!ModList.get().isLoaded("smc")) return;
 
-		if (!mgdp$smcCalChecked) {
-			mgdp$smcCalChecked = true;
-			mgdp$caliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "calibur"));
-			mgdp$caliburBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("smc", "calibur_block"));
+		if (!mgdp$checked) {
+			mgdp$checked = true;
+			mgdp$caliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(
+					new ResourceLocation("smc", "calibur"));
+			mgdp$caliburBlock = ForgeRegistries.BLOCKS.getValue(
+					new ResourceLocation("smc", "calibur_block"));
 		}
 		if (mgdp$caliburItem == null) return;
 
 		ItemStack hand = golem.getMainHandItem();
+		double atk = golem.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
 
-		// Suppress Calibur debuff for strong golems
-		if (hand.is(mgdp$caliburItem)) {
-			double atk = golem.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
-			if (atk >= 30) {
-				golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, 4, false, false));
-			}
+		// Debuff suppression: grant DAMAGE_BOOST when holding Calibur with sufficient attack
+		if (hand.is(mgdp$caliburItem) && atk >= 30) {
+			golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, 4, false, false));
 		}
 
-		// Dual-golem awakening: two golems (attack >= 30), one with Calibur + one empty-handed
-		if (hand.is(mgdp$caliburItem) && golem.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE) >= 30) {
+		// Dual-golem awakening
+		if (hand.is(mgdp$caliburItem) && atk >= 30) {
 			for (var other : golem.level().getEntitiesOfClass(AbstractGolemEntity.class,
 					golem.getBoundingBox().inflate(3),
-					g -> g != golem && g.isAlive() && g.getMainHandItem().isEmpty()
-							)) {
+					g -> g != golem && g.isAlive() && g.getMainHandItem().isEmpty())) {
 				int paired = golem.getPersistentData().getInt("mgdp_calibur_paired");
 				paired++;
 				if (paired >= 200) {
@@ -75,10 +74,8 @@ public abstract class SMCCaliburMixin {
 			golem.getPersistentData().putInt("mgdp_calibur_paired", 0);
 		}
 
-		// Pull Calibur from block (attack >= 30 + 5s countdown)
-		if (mgdp$caliburBlock != null
-				&& golem.getMainHandItem().isEmpty()
-				&& golem.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE) >= 30) {
+		// Pull Calibur from block
+		if (mgdp$caliburBlock != null && hand.isEmpty() && atk >= 30) {
 			BlockPos pos = golem.blockPosition();
 			BlockPos found = null;
 			for (int dx = -2; dx <= 2; dx++)
@@ -112,24 +109,24 @@ public abstract class SMCCaliburMixin {
 		}
 	}
 
-	private void pullCalibur(AbstractGolemEntity<?, ?> golem, BlockPos pos) {
+	private static void pullCalibur(AbstractGolemEntity<?, ?> golem, BlockPos pos) {
 		golem.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(mgdp$caliburItem));
 		caliburEffects(golem, pos);
 		golem.level().destroyBlock(pos, false);
 	}
 
-	private void dualAwaken(AbstractGolemEntity<?, ?> holder, AbstractGolemEntity<?, ?> empty) {
-		var excaliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation("smc", "excalibur"));
+	private static void dualAwaken(AbstractGolemEntity<?, ?> holder, AbstractGolemEntity<?, ?> empty) {
+		var excaliburItem = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(
+				new ResourceLocation("smc", "excalibur"));
 		if (excaliburItem != null)
 			holder.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(excaliburItem));
 		empty.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,
 				new ItemStack(net.minecraft.world.item.Items.STONE_SLAB));
 		holder.getPersistentData().putInt("mgdp_calibur_paired", 0);
-
 		caliburEffects(holder, holder.blockPosition());
 	}
 
-	private void caliburEffects(AbstractGolemEntity<?, ?> golem, BlockPos pos) {
+	private static void caliburEffects(AbstractGolemEntity<?, ?> golem, BlockPos pos) {
 		var bolt = new net.minecraft.world.entity.LightningBolt(
 				net.minecraft.world.entity.EntityType.LIGHTNING_BOLT, golem.level());
 		bolt.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);

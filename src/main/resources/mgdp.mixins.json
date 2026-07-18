@@ -42,9 +42,6 @@
     "GolemPartMixin",
     "ConquerorDataMixin",
     "GolemMaterialMixin",
-    "SMCExcaliburMixin",
-    "SMCCaliburMixin",
-    "SMCMeowmereMixin",
     "FrostInfinityMixin"
   ],
   "client": [

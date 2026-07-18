@@ -4,7 +4,7 @@
   "key": {
     "A": { "item": "modulargolems:thunder_immune" },
     "B": { "item": "minecraft:netherite_ingot" },
-    "C": { "item": "modulargolems:diamond" }
+    "C": { "item": "mgdp:shield_block" }
   },
   "pattern": [
     "ABA",

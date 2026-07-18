@@ -50,6 +50,7 @@ import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.PullingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.RepellingModifier;
 import src.toi_et_moi.mgdp.modifier.defense.UnbreakableModifier;
+import src.toi_et_moi.mgdp.modifier.defense.ShieldBlockModifier;
 import src.toi_et_moi.mgdp.modifier.defense.InfiniteAmmoModifier;
 import src.toi_et_moi.mgdp.modifier.combat.QuickStrikeModifier;
 import src.toi_et_moi.mgdp.modifier.combat.DisarmModifier;
@@ -72,6 +73,7 @@ import src.toi_et_moi.mgdp.modifier.special.WindmillModifier;
 import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
 import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
+import src.toi_et_moi.mgdp.modifier.special.ShrinkModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.UpsideDownModifier;
@@ -129,6 +131,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
 	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
 	public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
+	public static final RegistryEntry<ShieldBlockModifier> SHIELD_BLOCK;
 	public static final RegistryEntry<BackstepModifier> BACKSTEP;
 	public static final RegistryEntry<SelfDestructModifier> SELF_DESTRUCT;
 	public static final RegistryEntry<DementorModifier> DEMENTOR;
@@ -188,6 +191,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
+	public static final RegistryEntry<ShrinkModifier> SHRINK;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> MEROR_ADD, REFINE_MEROR_ADD;
 	public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT_100;
@@ -345,6 +349,9 @@ public class MGDPModifiers {
 			PROJECTILE_DODGE = reg("projectile_dodge", ProjectileDodgeModifier::new,
 				"Projectile Dodge",
 				"Dodges incoming projectiles and fast-moving threats.");
+			SHIELD_BLOCK = reg("shield_block", ShieldBlockModifier::new,
+				"Shield Block",
+				"Block 5 shield-blockable hits. Fully refreshes every %ss.");
 
 			BACKSTEP = reg("backstep", BackstepModifier::new,
 				"Backstep",
@@ -584,6 +591,10 @@ public class MGDPModifiers {
 			CONQUEROR = reg("conqueror", ConquerorModifier::new,
 				"Veterancy",
 				"Golem gains conqueror XP by killing mobs. Higher star rating unlocks more bonuses.");
+
+			SHRINK = reg("shrink", ShrinkModifier::new,
+				"Shrink",
+				"Shrink golem size by 20%% per level. Max level 4.");
 
 		}
 

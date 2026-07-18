@@ -115,6 +115,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> BOMB_DISPOSAL;
 	public static final RegistryObject<SimpleUpgradeItem> PROJECTILE_DODGE;
 	public static final RegistryObject<SimpleUpgradeItem> CONQUEROR;
+    public static final RegistryObject<SimpleUpgradeItem> SHIELD_BLOCK;
 	public static final RegistryObject<SimpleUpgradeItem> BACKSTEP;
 	public static final RegistryObject<SimpleUpgradeItem> ADAPTIVE;
 	public static final RegistryObject<SimpleUpgradeItem> DISPELL;
@@ -156,6 +157,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> REVERSE;
 	public static final RegistryObject<SimpleUpgradeItem> GHOST;
 	public static final RegistryObject<SimpleUpgradeItem> SPYGLASS;
+	public static final RegistryObject<SimpleUpgradeItem> SHRINK;
 
 	static {
 		HARVEST_CROP = Mgdp.ITEMS.register("harvest_crop",
@@ -593,6 +595,12 @@ public class MGDPItems {
 
 			SPYGLASS = Mgdp.ITEMS.register("spyglass",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SPYGLASS.get(), 1, false));
+
+			SHRINK = Mgdp.ITEMS.register("shrink",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SHRINK.get(), 1, false));
+			SHIELD_BLOCK = Mgdp.ITEMS.register("shield_block",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SHIELD_BLOCK.get(), 1, false));
+
 		}
 	public static void register() {
 	}
@@ -637,14 +645,14 @@ public class MGDPItems {
 		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_ATTACK.get());
 		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_FIREBALL.get());
 		if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) event.accept(IGNIS_JUMP.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(DARK_TEMPLATE.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) event.accept(PYRIUM_TEMPLATE.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) event.accept(SCULKIUM_TEMPLATE.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(MEROR_TEMPLATE.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(REFINE_MEROR_TEMPLATE.get());
-			if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
+        if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) event.accept(DARK_TEMPLATE.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) event.accept(PYRIUM_TEMPLATE.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) event.accept(SCULKIUM_TEMPLATE.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(MEROR_TEMPLATE.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) event.accept(REFINE_MEROR_TEMPLATE.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
 				event.accept(GUARDIAN_LASER.get());
-				if (net.minecraftforge.fml.ModList.get().isLoaded("smc")) event.accept(FROST_BURST.get());
+        if (net.minecraftforge.fml.ModList.get().isLoaded("smc")) event.accept(FROST_BURST.get());
 				event.accept(ARMOR_PIERCE.get());
 				event.accept(MAGIC_RESISTANCE.get());
 				event.accept(VERSATILITY.get());
@@ -671,8 +679,10 @@ public class MGDPItems {
 				event.accept(ANVIL_SLAM.get());
 			event.accept(TRIDENT_FESTIVAL.get());
 			event.accept(IRON_UPGRADE.get());
-			event.accept(THE_PYRE_LORD.get());
-			event.accept(THE_WITCH_KING.get());
+			if (net.minecraftforge.fml.ModList.get().isLoaded("goety_revelation")) {
+				event.accept(THE_PYRE_LORD.get());
+				event.accept(THE_WITCH_KING.get());
+			}
 				event.accept(RIPTIDE.get());
 			event.accept(END_VOID.get());
 				event.accept(INFINITE_AMMO.get());
@@ -709,6 +719,7 @@ public class MGDPItems {
 				event.accept(BRUSH.get());
 				event.accept(BOMB_DISPOSAL.get());
 				event.accept(PROJECTILE_DODGE.get());
+			event.accept(SHIELD_BLOCK.get());
 				event.accept(CONQUEROR.get());
 			event.accept(BACKSTEP.get());
 			event.accept(END_OF_BEGINNING.get());
@@ -720,6 +731,7 @@ public class MGDPItems {
 			event.accept(REVERSE.get());
 			event.accept(GHOST.get());
 			event.accept(SPYGLASS.get());
+			event.accept(SHRINK.get());
 			}
 		}
 	}

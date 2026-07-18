@@ -54,6 +54,11 @@ public class MGDPEasterEggs {
         if (wand != null) {
             giveItem(player, new ItemStack(wand));
         }
+        var workbench = net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(
+                new ResourceLocation("modulargolems", "golem_workbench"));
+        if (workbench != null) {
+            giveItem(player, new ItemStack(workbench));
+        }
     }
 
     private static void giveItem(ServerPlayer player, ItemStack stack) {

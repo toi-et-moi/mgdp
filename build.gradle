@@ -189,7 +189,7 @@ dependencies {
     implementation fg.deobf("dev.xkmc.l2itemselector:l2itemselector:0.1.9")
     implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:0.3.7")
     implementation fg.deobf("dev.xkmc.mob_weapon_api:mob_weapon_api:0.2.14")
-    implementation fg.deobf("dev.xkmc.modulargolems:modulargolems:${modulargolems_version}-slim")
+    implementation fg.deobf("dev.xkmc.modulargolems:modulargolems:2.6.36-slim")
 
     compileOnly fg.deobf("maven.modrinth:l2-complements:${l2complements_version}")
     compileOnly files("libs/l2archery-2.5.0.jar")
