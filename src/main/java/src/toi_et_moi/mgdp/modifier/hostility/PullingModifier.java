@@ -2,6 +2,7 @@ package src.toi_et_moi.mgdp.modifier.hostility;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -56,9 +57,6 @@ public class PullingModifier extends GolemModifier {
 	}
 
 	private static boolean isValidTarget(AbstractGolemEntity<?, ?> golem, LivingEntity e) {
-		if (e == golem) return false;
-		if (e == golem.getOwner()) return false;
-		if (e instanceof Player p && (p.isCreative() || p.isSpectator())) return false;
-		return !golem.isAlliedTo(e);
+		return e != golem && golem.canAttack(e) && TargetManager.wantsToAttack(golem, e);
 	}
 }

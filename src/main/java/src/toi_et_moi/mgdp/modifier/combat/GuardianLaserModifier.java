@@ -78,7 +78,7 @@ public class GuardianLaserModifier extends GolemModifier {
 			double r = 2.0;
 			for (LivingEntity e : sl.getEntitiesOfClass(LivingEntity.class,
 					new AABB(pos.x - r, pos.y - r, pos.z - r, pos.x + r, pos.y + r, pos.z + r),
-					e -> e.isAlive() && !golem.isAlliedTo(e) && e != golem)) {
+					e -> e.isAlive() && golem.canAttack(e) && !golem.isAlliedTo(e) && e != golem)) {
 				if (hit.add(e)) {
 					e.hurt(e.damageSources().explosion(golem, golem), baseDamage);
 					e.hurt(echoDamage(golem), 7);
@@ -91,7 +91,7 @@ public class GuardianLaserModifier extends GolemModifier {
 		for (LivingEntity e : sl.getEntitiesOfClass(LivingEntity.class,
 				new AABB(end.x - impactR, end.y - impactR, end.z - impactR,
 						end.x + impactR, end.y + impactR, end.z + impactR),
-				e -> e.isAlive() && !golem.isAlliedTo(e) && e != golem)) {
+				e -> e.isAlive() && golem.canAttack(e) && !golem.isAlliedTo(e) && e != golem)) {
 			if (hit.add(e)) {
 				e.hurt(e.damageSources().explosion(golem, golem), baseDamage * 0.5f);
 				e.hurt(echoDamage(golem), 7);

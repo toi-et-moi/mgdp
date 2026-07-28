@@ -34,8 +34,7 @@ public class FrostBurstModifier extends GolemModifier {
 	private void apply(AbstractGolemEntity<?, ?> golem, LivingEntity target, int level) {
 		if (target.level().isClientSide()) return;
 		if (target == golem || target == golem.getOwner()) return;
-		if (target instanceof Player p && (p.isCreative() || p.isSpectator())) return;
-		if (golem.isAlliedTo(target)) return;
+		if (!golem.canAttack(target) || golem.isAlliedTo(target)) return;
 
 		MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("smc", "frost_burst"));
 		if (effect == null) return;

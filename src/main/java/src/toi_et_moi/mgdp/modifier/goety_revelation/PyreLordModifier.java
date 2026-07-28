@@ -64,7 +64,7 @@ public class PyreLordModifier extends GolemModifier {
             var box = golem.getBoundingBox().inflate(35);
             for (var target : golem.level().getEntitiesOfClass(LivingEntity.class, box,
                     e -> e.isAlive() && !e.equals(golem)
-                            && dev.xkmc.modulargolems.content.entity.targeting.TargetManager.wantsToAttack(golem, e))) {
+                            && golem.canAttack(e) && dev.xkmc.modulargolems.content.entity.targeting.TargetManager.wantsToAttack(golem, e))) {
                 target.addEffect(new net.minecraft.world.effect.MobEffectInstance(hex, 1200, 4));
             }
         }

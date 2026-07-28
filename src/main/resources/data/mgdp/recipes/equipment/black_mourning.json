@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCC",
+    "DAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "B": {
+      "item": "modulargolems:beacon_cannon"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "D": {
+      "item": "minecraft:netherite_block"
+    }
+  },
+  "result": {
+    "item": "mgdp:black_mourning"
+  }
+}

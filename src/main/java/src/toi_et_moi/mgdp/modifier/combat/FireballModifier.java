@@ -47,7 +47,7 @@ public class FireballModifier extends GolemModifier {
 
 			AABB area = golem.getBoundingBox().inflate(15.0);
 			List<LivingEntity> allTargets = golem.level().getEntitiesOfClass(LivingEntity.class, area,
-					e -> e.isAlive() && e != golem && golem.getSensing().hasLineOfSight(e)
+					e -> e.isAlive() && e != golem && golem.canAttack(e) && golem.getSensing().hasLineOfSight(e)
 							&& (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
 			allTargets.sort((a, b) -> {

@@ -6,7 +6,6 @@
   "refmap": "mgdp.refmap.json",
   "mixins": [
     "EntityAccessor",
-    "EntityRendererAccessor",
     "AbstractGolemEntityMixin",
     "GolemSwimMoveControlMixin",
     "PotionAttackModifierAccessor",
@@ -29,7 +28,6 @@
     "CrossbowAmmoMixin",
     "TridentHoldMixin",
     "CrossbowItemMixin",
-    "GenericBowItemMixin",
     "EntityJukeboxMixin",
     "FlameThrowerMixin",
     "IAnimatedBossFixMixin",
@@ -42,9 +40,11 @@
     "GolemPartMixin",
     "ConquerorDataMixin",
     "GolemMaterialMixin",
-    "FrostInfinityMixin"
+    "FrostInfinityMixin",
+    "GenericBowItemMixin"
   ],
   "client": [
+    "EntityRendererAccessor",
     "AbstractGolemRendererMixin",
     "LivingEntityRendererMixin"
   ],

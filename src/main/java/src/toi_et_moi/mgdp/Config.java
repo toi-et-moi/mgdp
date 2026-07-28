@@ -32,6 +32,10 @@ public class Config {
             .comment("Mobs target by golems automatically target the golem back (default: true)")
             .define("mobAutoAggro", true);
 
+    private static final ForgeConfigSpec.IntValue DOG_FALL_DISTANCE = COMMON_BUILDER
+            .comment("Minimum fall distance for dog golem to rescue player (default: 5)")
+            .defineInRange("dogFallDistance", 5, 1, 50);
+
     static final ForgeConfigSpec COMMON_SPEC = COMMON_BUILDER.build();
 
     public static int swapCooldown;
@@ -39,6 +43,7 @@ public class Config {
     public static boolean destructionMode;
     public static int timeAxisSpeed;
     public static boolean mobAutoAggro;
+    public static int dogFallDistance;
 
     // --- Client Config ---
 
@@ -65,6 +70,7 @@ public class Config {
             destructionMode = DESTRUCTION_MODE.get();
             timeAxisSpeed = TIME_AXIS_SPEED.get();
             mobAutoAggro = MOB_AUTO_AGGRO.get();
+            dogFallDistance = DOG_FALL_DISTANCE.get();
         } else if (event.getConfig().getSpec() == CLIENT_SPEC) {
             golemHealthWarning = HEALTH_WARNING.get();
             jukeboxVolume = JUKEBOX_VOLUME.get();

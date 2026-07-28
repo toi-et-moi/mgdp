@@ -76,6 +76,7 @@ public class TridentFestivalModifier extends GolemModifier {
 		Entity owner = trident.getOwner();
 		if (owner == null) owner = trident;
 
+		final net.minecraft.world.entity.Entity finalOwner = owner;
 		// Visual explosion + block destruction (if enabled)
 		sl.explode(owner, pos.getX(), pos.getY(), pos.getZ(), 6.0f,
 				src.toi_et_moi.mgdp.Config.destructionMode
@@ -86,7 +87,8 @@ public class TridentFestivalModifier extends GolemModifier {
 		for (net.minecraft.world.entity.LivingEntity target : sl.getEntitiesOfClass(
 				net.minecraft.world.entity.LivingEntity.class,
 				(new net.minecraft.world.phys.AABB(pos).inflate(6.0)),
-				e -> e.isAlive() && !e.isSpectator())) {
+				e -> e.isAlive() && !e.isSpectator() && finalOwner instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity<?, ?> g
+						&& g.canAttack(e))) {
 			double dist = target.distanceToSqr(pos.getX(), pos.getY(), pos.getZ());
 			float factor = (float) Math.max(0.0, 1.0 - dist / 36.0);
 			target.invulnerableTime = 0;

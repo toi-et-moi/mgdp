@@ -10,6 +10,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import src.toi_et_moi.mgdp.Config;
 import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
@@ -43,7 +44,7 @@ public class GolemFallHandler {
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.isPassenger()) return;
 		if (player.onGround()) return;
-		if (player.fallDistance <= 3.0 && player.getDeltaMovement().y >= -1.5) return;
+		if ((double)player.fallDistance <= Config.dogFallDistance && player.getDeltaMovement().y >= -1.5) return;
 
 		// Skip if player already has fall immunity
 		if (player.isCreative() || player.isSpectator()) return;

@@ -85,7 +85,7 @@ public class PotionAuraModifier extends GolemModifier {
     private void applyToEnemies(AbstractGolemEntity<?, ?> golem, List<MobEffectInstance> effects) {
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<LivingEntity> nearby = golem.level().getEntitiesOfClass(LivingEntity.class, area,
-                e -> e != golem && e.isAlive() && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
+                e -> e != golem && e.isAlive() && golem.canAttack(e) && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
         for (LivingEntity entity : nearby) {
             for (MobEffectInstance src : effects) {

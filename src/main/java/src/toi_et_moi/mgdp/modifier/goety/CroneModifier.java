@@ -54,7 +54,8 @@ public class CroneModifier extends GolemModifier {
             new MobEffectInstance(goety("leeching"), 1000, 1),
             new MobEffectInstance(goety("climbing"), 1000, 0),
             new MobEffectInstance(goety("radiance"), 1000, 0),
-            new MobEffectInstance(goety("corpse_eater"), 1000, 1)
+            new MobEffectInstance(goety("corpse_eater"), 1000, 1),
+            new MobEffectInstance(goety("swirling"), 1000, 1)
     );
 
     private static final List<MobEffectInstance> ATTACK_LIST;

@@ -94,7 +94,7 @@ public class EchoTrioModifier extends GolemModifier {
 
 		AABB area = golem.getBoundingBox().inflate(35);
 		List<LivingEntity> targets = golem.level().getEntitiesOfClass(LivingEntity.class, area,
-				e -> e.isAlive() && e != golem && golem.getSensing().hasLineOfSight(e)
+				e -> e.isAlive() && e != golem && golem.canAttack(e) && golem.getSensing().hasLineOfSight(e)
 						&& (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
 		if (targets.isEmpty()) return;

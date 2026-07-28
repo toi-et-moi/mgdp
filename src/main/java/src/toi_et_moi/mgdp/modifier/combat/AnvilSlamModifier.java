@@ -142,7 +142,7 @@ public class AnvilSlamModifier extends GolemModifier {
 
 		AABB area = golem.getBoundingBox().inflate(range, 1, range);
 		for (LivingEntity target : levelWorld.getEntitiesOfClass(LivingEntity.class, area,
-				e -> e.isAlive() && golem.predicateTarget(e))) {
+				e -> golem.canAttack(e) && e.isAlive() && golem.predicateTarget(e))) {
 			target.hurt(levelWorld.damageSources().anvil(golem), damage);
 			target.push(0, 0.5, 0);
 		}

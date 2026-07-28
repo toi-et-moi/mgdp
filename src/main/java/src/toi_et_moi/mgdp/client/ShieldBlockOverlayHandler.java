@@ -24,10 +24,8 @@ public class ShieldBlockOverlayHandler {
 			int shields = sbData.mgdp$getSbShields();
 			int hp = sbData.mgdp$getSbHp();
 			int maxHp = Math.max(10, (int) (golem.getMaxHealth() * 0.05f));
-			ChatFormatting color = shields <= 0 ? ChatFormatting.RED
-					: (double) hp / maxHp < 0.3 ? ChatFormatting.YELLOW : ChatFormatting.GREEN;
 			event.addLine(Component.translatable("modifier.modulargolems.shield_block.info", shields, hp, maxHp)
-					.withStyle(color));
+					.withStyle(ChatFormatting.GRAY));
 		}
 
 		// 充能护盾
@@ -35,10 +33,8 @@ public class ShieldBlockOverlayHandler {
 				&& golem instanceof IFlipData csData) {
 			int totalShields = golem.getModifiers().get(MGDPModifiers.CHARGED_SHIELD.get()) * 5;
 			int shields = csData.mgdp$getCsShields();
-			ChatFormatting color = shields <= 0 ? ChatFormatting.RED
-					: (double) shields / totalShields < 0.3 ? ChatFormatting.YELLOW : ChatFormatting.GREEN;
 			event.addLine(Component.translatable("modifier.modulargolems.charged_shield.info", shields, totalShields)
-					.withStyle(color));
+					.withStyle(ChatFormatting.AQUA));
 		}
 
 		// 征服者星级

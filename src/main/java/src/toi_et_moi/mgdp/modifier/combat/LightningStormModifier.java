@@ -91,6 +91,6 @@ public class LightningStormModifier extends GolemModifier {
     private static boolean shouldStrike(AbstractGolemEntity<?, ?> golem, LivingEntity e) {
         if (e instanceof AbstractGolemEntity<?, ?> eg && eg.hasFlag(GolemFlags.THUNDER_IMMUNE))
             return golem.isAlliedTo(eg);
-        return e == golem.getTarget() || TargetManager.wantsToAttack(golem, e);
+        return e == golem.getTarget() || (golem.canAttack(e) && TargetManager.wantsToAttack(golem, e));
     }
 }

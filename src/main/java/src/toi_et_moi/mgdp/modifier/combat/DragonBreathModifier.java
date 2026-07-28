@@ -47,7 +47,7 @@ public class DragonBreathModifier extends GolemModifier {
         ServerLevel sl = (ServerLevel) golem.level();
         AABB area = golem.getBoundingBox().inflate(40.0);
         List<LivingEntity> allTargets = sl.getEntitiesOfClass(LivingEntity.class, area,
-                e -> e.isAlive() && e != golem && (e == golem.getTarget() || (golem.getSensing().hasLineOfSight(e) && TargetManager.wantsToAttack(golem, e))));
+                e -> e.isAlive() && e != golem && (e == golem.getTarget() || (golem.canAttack(e) && golem.getSensing().hasLineOfSight(e) && TargetManager.wantsToAttack(golem, e))));
 
         List<LivingEntity> selected = allTargets.stream()
                 .sorted((a, b) -> {

@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -40,6 +42,8 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import net.minecraft.world.damagesource.DamageTypes;
 import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
+import src.toi_et_moi.mgdp.init.BlackMourningItem;
+import src.toi_et_moi.mgdp.entity.MourningBeamEntity;
 
 @Mod(Mgdp.MODID)
 public class Mgdp {
@@ -48,6 +52,7 @@ public class Mgdp {
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -66,6 +71,13 @@ public class Mgdp {
 
 		public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
 				() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+		public static final RegistryObject<BlackMourningItem> BLACK_MOURNING = ITEMS.register("black_mourning",
+				() -> new BlackMourningItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+		public static final RegistryObject<EntityType<MourningBeamEntity>> MOURNING_BEAM = ENTITIES.register("mourning_beam",
+				() -> EntityType.Builder.<MourningBeamEntity>of(MourningBeamEntity::new, MobCategory.MISC)
+						.fireImmune().noSave().noSummon().sized(0, 0).build("mourning_beam"));
 
 	public static final RegistryObject<CreativeModeTab> MGDP_TAB = CREATIVE_MODE_TABS.register("mgdp_tab",
 			() -> CreativeModeTab.builder()
@@ -103,6 +115,7 @@ public class Mgdp {
 						output.accept(MGDPItems.CORONA.get());
 						output.accept(MGDPItems.MOON_SHADOW.get());
 						output.accept(MGDPItems.TIME_AXIS.get());
+						output.accept(Mgdp.BLACK_MOURNING.get());
 						output.accept(MGDPItems.UPSIDE_DOWN.get());
 						output.accept(MGDPItems.REVERSE.get());
 						output.accept(MGDPItems.GHOST.get());
@@ -239,6 +252,7 @@ public class Mgdp {
 		modEventBus.addListener(this::commonSetup);
 
 		BLOCKS.register(modEventBus);
+		ENTITIES.register(modEventBus);
 		ITEMS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);
 			src.toi_et_moi.mgdp.init.MgdpMenus.MENUS.register(modEventBus);
@@ -337,6 +351,9 @@ public class Mgdp {
 			net.minecraft.client.gui.screens.MenuScreens.register(
 				src.toi_et_moi.mgdp.init.MgdpMenus.JUKEBOX.get(),
 				src.toi_et_moi.mgdp.jukebox.JukeboxScreen::new);
+			net.minecraft.client.renderer.entity.EntityRenderers.register(
+					Mgdp.MOURNING_BEAM.get(),
+					src.toi_et_moi.mgdp.entity.MourningBeamRenderer::new);
 		});
 		}
 

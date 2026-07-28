@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -43,12 +44,12 @@ public class WitchKingModifier extends GolemModifier {
                 goety("repulsive"), goety("photosynthesis"), goety("iron_hide"),
                 goety("rallying"), goety("shielding"), goety("deflective"),
                 goety("leeching"), goety("climbing"), goety("radiance"),
-                goety("corpse_eater")
+                goety("corpse_eater"), goety("swirling")
         )) {
             if (e != null) POSITIVE_EFFECTS.add(e);
         }
 
-        // Negative effects: Witch ATTACK + Crone ATTACK (excluding speed slowdown)
+        // Negative effects: Witch ATTACK + Crone ATTACK
         for (var e : List.of(
                 MobEffects.POISON, MobEffects.WEAKNESS, MobEffects.WITHER,
                 MobEffects.MOVEMENT_SLOWDOWN,
@@ -60,42 +61,56 @@ public class WitchKingModifier extends GolemModifier {
             if (e != null) NEGATIVE_EFFECTS.add(e);
         }
     }
+@Override
+	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
+		if (golem.level().isClientSide()) return;
+		if (golem.tickCount % 20 != 0) return;
 
-    @Override
-    public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
-        if (golem.tickCount % 20 != 0) return;
+		ensureEffects();
 
-        ensureEffects();
+		// Self and ally buffing (every 3 seconds)
+		if (golem.tickCount % 60 == 0) {
+			var box = golem.getBoundingBox().inflate(RANGE);
+			for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
+				if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
+				if (entity != golem && !entity.isAlliedTo(golem) && entity != golem.getOwner() && !isOwnedBy(golem, entity))
+					continue;
+				// Remove negative effects from allies
+				for (var effect : new java.util.ArrayList<>(entity.getActiveEffects())) {
+					if (!effect.getEffect().isBeneficial()) {
+						entity.removeEffect(effect.getEffect());
+					}
+				}
+				// Apply all positive effects
+				for (var eff : POSITIVE_EFFECTS) {
+					entity.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
+				}
+			}
+		}
+	}
 
-        var box = golem.getBoundingBox().inflate(RANGE);
-        var levelAccess = golem.level();
+	@Override
+	public void onHurtTarget(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+		if (golem.level().isClientSide()) return;
+		var target = event.getEntity();
+	if (!golem.canAttack(target)) return;
+		if (target == golem || target == golem.getOwner()) return;
 
-        // Find all entities in range (including self for positive effects)
-        for (var entity : levelAccess.getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
-            if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
+		ensureEffects();
 
-            if (entity == golem || entity.isAlliedTo(golem) || entity == golem.getOwner() || isOwnedBy(golem, entity)) {
-                // Remove negative/neutral effects from allies and self
-                for (var effect : new java.util.ArrayList<>(entity.getActiveEffects())) {
-                    if (!effect.getEffect().isBeneficial()) {
-                        entity.removeEffect(effect.getEffect());
-                    }
-                }
-                if (golem.tickCount % 60 == 0) {
-                    // Apply all positive effects (except speed) every 3 seconds
-                    for (var eff : POSITIVE_EFFECTS) {
-                        entity.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
-                    }
-                }
-            } else if (dev.xkmc.modulargolems.content.entity.targeting.TargetManager.wantsToAttack(golem, entity)) {
-                // Apply all negative effects to enemies
-                for (var eff : NEGATIVE_EFFECTS) {
-                    entity.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
-                }
-            }
-        }
-    }
+		// Apply all negative effects to the target
+		for (var eff : NEGATIVE_EFFECTS) {
+			target.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
+		}
+
+		// Steal all positive effects from target
+		for (var effect : new java.util.ArrayList<>(target.getActiveEffects())) {
+			if (effect.getEffect().isBeneficial()) {
+				target.removeEffect(effect.getEffect());
+				golem.addEffect(new MobEffectInstance(effect.getEffect(), effect.getDuration(), effect.getAmplifier()));
+			}
+		}
+	}
 
     private static boolean isOwnedBy(AbstractGolemEntity<?, ?> golem, LivingEntity entity) {
         var ownerUUID = golem.getOwnerUUID();

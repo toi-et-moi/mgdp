@@ -85,7 +85,7 @@ public class WitchModifier extends GolemModifier {
             if (targets > 0) {
                 for (var other : golem.level().getEntitiesOfClass(LivingEntity.class,
                         golem.getBoundingBox().inflate(30),
-                        e -> e != target && e != golem && e.isAlive() && !e.isAlliedTo(golem)
+                        e -> e != target && e != golem && golem.canAttack(e) && e.isAlive() && !e.isAlliedTo(golem)
                                 && e.distanceToSqr(golem) < 900)) {
                     if (targets >= 3) break;
                     throwPotion(golem, other.position().add(0, other.getBbHeight() * 0.5, 0),

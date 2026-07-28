@@ -10,7 +10,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.AABB;
 
 import java.util.List;
@@ -59,7 +63,7 @@ public class WitherExtinctionModifier extends GolemModifier {
 
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<LivingEntity> targets = sl.getEntitiesOfClass(LivingEntity.class, area,
-                e -> e.isAlive() && e != golem
+                e -> e.isAlive() && e != golem && golem.canAttack(e)
                         && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
         if (!targets.isEmpty()) {
@@ -71,7 +75,7 @@ public class WitherExtinctionModifier extends GolemModifier {
     private void detonate(ServerLevel sl, AbstractGolemEntity<?, ?> golem) {
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<LivingEntity> targets = sl.getEntitiesOfClass(LivingEntity.class, area,
-                e -> e.isAlive() && e != golem
+                e -> e.isAlive() && e != golem && golem.canAttack(e)
                         && (e == golem.getTarget() || TargetManager.wantsToAttack(golem, e)));
 
 		var witherType = sl.registryAccess()
@@ -99,4 +103,12 @@ public class WitherExtinctionModifier extends GolemModifier {
             target.hurt(explosionDmg, target.getMaxHealth());
         }
     }
+	@Override
+	public void onKillTarget(AbstractGolemEntity<?, ?> golem, LivingEntity entity, LivingDeathEvent event, int level) {
+		if (golem.level().isClientSide()) return;
+		if (!(golem.level() instanceof ServerLevel sl)) return;
+		var rose = new net.minecraft.world.entity.item.ItemEntity(sl, entity.getX(), entity.getY(), entity.getZ(),
+				new ItemStack(Items.WITHER_ROSE));
+		sl.addFreshEntity(rose);
+	}
 }
