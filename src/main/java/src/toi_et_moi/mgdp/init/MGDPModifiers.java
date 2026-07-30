@@ -74,6 +74,7 @@ import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
 import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
 import src.toi_et_moi.mgdp.modifier.special.ShrinkModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.TheCruelModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.UpsideDownModifier;
@@ -110,6 +111,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
 	public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
 	public static final RegistryEntry<DiamondAttackModifier> DIAMOND_ATTACK;
+public static final RegistryEntry<TheCruelModifier> THE_CRUEL;
 	public static final RegistryEntry<EnchantedDiamondAttackModifier> ENCHANTED_DIAMOND_ATTACK;
 	public static final RegistryEntry<CrimsonAttackModifier> CRIMSON_ATTACK;
 	public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
@@ -579,6 +581,9 @@ public class MGDPModifiers {
 			THE_WITCH_KING = reg("the_witch_king", WitchKingModifier::new,
 				"§cThe Witch King",
 				"§5Apostle Title: applies all potion effects to allies/enemies, cleanses allies.");
+            THE_CRUEL = reg("the_cruel", TheCruelModifier::new,
+                "§cThe Cruel",
+                "Frost aura, ice spear/storm/chunk attacks, +300% frost damage, freeze immunity.");
 
 			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
 				"Frost Burst",

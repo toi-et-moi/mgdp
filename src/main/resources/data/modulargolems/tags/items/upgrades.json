@@ -218,6 +218,10 @@
     {
       "id": "mgdp:the_witch_king",
       "required": false
+    },
+    {
+      "id": "mgdp:the_cruel",
+      "required": false
     }
   ]
 }

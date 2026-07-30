@@ -1,8 +1,11 @@
 package src.toi_et_moi.mgdp.compat.goety_revelation;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -86,18 +89,28 @@ public class RevelationArrowHandler {
         if (projectile.getOwner() == hit.getEntity()) return;
 
         // Check if this is a DeathArrow shot by a golem using the Revelation Bow
-        // All DeathArrows fired by golems from the Revelation Bow get random negative effects
         var type = ForgeRegistries.ENTITY_TYPES.getKey(projectile.getType());
         if (type == null || !type.getNamespace().equals("goety") || !type.getPath().equals("death_arrow"))
             return;
 
-        // Apply final damage multiplier on top of RevelationBowBehavior's 2.5x
-        if (projectile instanceof net.minecraft.world.entity.projectile.AbstractArrow aa) {
-            double dmg = aa.getBaseDamage() * 2.0;
-            if (projectile.getPersistentData().getBoolean("mgdp_revelation_halo")) {
-                dmg *= 2.0;
+        // Cancel vanilla arrow hit (uses IS_PROJECTILE damage type)
+        event.setCanceled(true);
+
+        // Calculate final damage (bow's 2.5x + handler's 2x = 5x base)
+        double dmg = projectile instanceof AbstractArrow aa ? aa.getBaseDamage() * 2.0 : 0;
+        if (projectile.getPersistentData().getBoolean("mgdp_revelation_halo")) {
+            dmg *= 2.0;
+        }
+
+        // Apply damage with golem as direct source (bypasses projectile immunity)
+        if (dmg > 0) {
+            var owner = projectile.getOwner();
+            if (owner != null) {
+                var source = new DamageSource(living.level().registryAccess()
+                        .lookupOrThrow(Registries.DAMAGE_TYPE)
+                        .getOrThrow(net.minecraft.world.damagesource.DamageTypes.MOB_ATTACK), owner, owner);
+                living.hurt(source, (float) dmg);
             }
-            aa.setBaseDamage(dmg);
         }
 
         // Ignore projectile invulnerability frames

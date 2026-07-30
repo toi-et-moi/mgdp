@@ -20,6 +20,9 @@ public class NecromancerArrowMixin {
 			if (arrow.getOwner() != null && arrow.getOwner().getPersistentData().getBoolean("mgdp_necromancer_minion")) {
 				arrow.discard();
 			}
+			if (arrow.getPersistentData().getBoolean("mgdp_cruel_barrage")) {
+				arrow.discard();
+			}
 		}
 	}
 }

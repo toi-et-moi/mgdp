@@ -201,6 +201,7 @@ public class Mgdp {
 							output.accept(MGDPItems.MANA_OVERLOAD.get());
 						if (net.minecraftforge.fml.ModList.get().isLoaded("goety_revelation")) {
 							output.accept(MGDPItems.THE_PYRE_LORD.get());
+					output.accept(MGDPItems.THE_CRUEL.get());
 							output.accept(MGDPItems.THE_WITCH_KING.get());
 						}
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
