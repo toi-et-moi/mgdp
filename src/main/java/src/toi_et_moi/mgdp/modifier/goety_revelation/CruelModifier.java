@@ -4,7 +4,6 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -21,14 +20,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
-public class TheCruelModifier extends GolemModifier {
+public class CruelModifier extends GolemModifier {
 
 	private static final int RANGE = 35;
 	private static final int DURATION = 200;
 	private static final int AMP = 4;
 	private static final String TAG_BARRAGE = "mgdp_cruel_barrage";
 
-	public TheCruelModifier() {
+	public CruelModifier() {
 		super(StatFilterType.ATTACK, 1);
 	}
 

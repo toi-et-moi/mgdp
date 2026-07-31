@@ -222,6 +222,10 @@
     {
       "id": "mgdp:the_cruel",
       "required": false
+    },
+    {
+      "id": "mgdp:the_great_shadow",
+      "required": false
     }
   ]
 }

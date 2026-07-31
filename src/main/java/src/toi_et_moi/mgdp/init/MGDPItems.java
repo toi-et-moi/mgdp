@@ -155,6 +155,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> TIME_AXIS;
 	public static final RegistryObject<SimpleUpgradeItem> UPSIDE_DOWN;
     public static final RegistryObject<SimpleUpgradeItem> THE_CRUEL;
+    public static final RegistryObject<SimpleUpgradeItem> THE_GREAT_SHADOW;
 	public static final RegistryObject<SimpleUpgradeItem> REVERSE;
 	public static final RegistryObject<SimpleUpgradeItem> GHOST;
 	public static final RegistryObject<SimpleUpgradeItem> SPYGLASS;
@@ -511,6 +512,9 @@ public class MGDPItems {
         THE_CRUEL = Mgdp.ITEMS.register("the_cruel",
                 () -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.THE_CRUEL.get(), 1, false));
 
+        THE_GREAT_SHADOW = Mgdp.ITEMS.register("the_great_shadow",
+                () -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.EPIC), () -> MGDPModifiers.THE_GREAT_SHADOW.get(), 1, false));
+
 		HARBINGER_BEAM = Mgdp.ITEMS.register("harbinger_beam",
 			() -> new ConditionalUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC),
 				() -> net.minecraftforge.fml.ModList.get().isLoaded("cataclysm") ? dev.xkmc.modulargolems.compat.materials.cataclysm.CataCompatRegistry.HARBINGER_BEAM.get() : null, 1, false));
@@ -688,6 +692,7 @@ public class MGDPItems {
 				event.accept(THE_PYRE_LORD.get());
 				event.accept(THE_WITCH_KING.get());
 		        event.accept(THE_CRUEL.get());
+		        event.accept(THE_GREAT_SHADOW.get());
 			}
 				event.accept(RIPTIDE.get());
 			event.accept(END_VOID.get());
