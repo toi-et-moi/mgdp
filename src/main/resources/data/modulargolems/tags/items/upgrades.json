@@ -226,6 +226,10 @@
     {
       "id": "mgdp:the_great_shadow",
       "required": false
+    },
+    {
+      "id": "mgdp:the_defiler",
+      "required": false
     }
   ]
 }

@@ -203,6 +203,8 @@ public class Mgdp {
 							output.accept(MGDPItems.THE_PYRE_LORD.get());
 					output.accept(MGDPItems.THE_CRUEL.get());
 							output.accept(MGDPItems.THE_WITCH_KING.get());
+					output.accept(MGDPItems.THE_GREAT_SHADOW.get());
+					output.accept(MGDPItems.THE_DEFILER.get());
 						}
 							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
 							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());

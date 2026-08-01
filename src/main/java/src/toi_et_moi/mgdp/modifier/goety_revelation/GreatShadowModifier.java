@@ -162,15 +162,40 @@ public class GreatShadowModifier extends GolemModifier {
 		if (!golem.canAttack(target)) return;
 		if (target == golem || target == golem.getOwner()) return;
 
-		// +300% damage: magic damage, or undead target, or target debuffed by the aura
+		// +300% damage: magic damage and undead/debuffed target bonuses stack multiplicatively
 		var source = event.getSource();
 		boolean isMagic = source.is(ResourceKey.create(Registries.DAMAGE_TYPE,
 				new ResourceLocation("goety", "magic_bolt")))
 				|| source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC);
 		boolean isUndead = target.getMobType() == MobType.UNDEAD;
 		boolean isDebuffed = target.hasEffect(MobEffects.DARKNESS) || target.hasEffect(MobEffects.BLINDNESS);
-		if (isMagic || isUndead || isDebuffed) {
-			event.setAmount(event.getAmount() * 4.0F);
+
+		float mult = 1.0F;
+		if (isMagic) mult += 3.0F;
+		if (isUndead || isDebuffed) mult += 3.0F;
+		event.setAmount(event.getAmount() * mult);
+	}
+
+	@Override
+	public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+		if (golem.level().isClientSide()) return;
+		var source = event.getSource();
+
+		// -80% damage from undead attackers
+		var attacker = source.getEntity();
+		if (attacker == null) attacker = source.getDirectEntity();
+		boolean fromUndead = attacker instanceof LivingEntity le && le.getMobType() == MobType.UNDEAD;
+
+		// -80% magic damage (vanilla magic + goety magic types)
+		boolean isMagic = source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)
+				|| source.is(DamageTypes.WITHER)
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_bolt")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_fire")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_fireball")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "no_owner_magic_fireball")));
+
+		if (fromUndead || isMagic) {
+			event.setAmount(event.getAmount() * 0.2F);
 		}
 	}
 }

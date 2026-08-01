@@ -75,6 +75,7 @@ import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
 import src.toi_et_moi.mgdp.modifier.special.ShrinkModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.CruelModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.DefilerModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.GreatShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
@@ -192,6 +193,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<PyreLordModifier> THE_PYRE_LORD;
 	public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
 	public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
+	public static final RegistryEntry<DefilerModifier> THE_DEFILER;
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
@@ -589,6 +591,9 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
             THE_GREAT_SHADOW = reg("the_great_shadow", GreatShadowModifier::new,
                 "§cThe Great Shadow",
                 "Darkness/blindness aura, magic bolt barrages, +300% damage vs magic/undead/debuffed.");
+            THE_DEFILER = reg("the_defiler", DefilerModifier::new,
+                "§cThe Defiler",
+                "Venom aura, acid pools, entangle vines, piercing poison quills, +300% damage vs debuffed/arthropods.");
 
 			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
 				"Frost Burst",
