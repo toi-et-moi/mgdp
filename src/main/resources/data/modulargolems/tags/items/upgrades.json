@@ -230,6 +230,10 @@
     {
       "id": "mgdp:the_defiler",
       "required": false
+    },
+    {
+      "id": "mgdp:the_dark",
+      "required": false
     }
   ]
 }

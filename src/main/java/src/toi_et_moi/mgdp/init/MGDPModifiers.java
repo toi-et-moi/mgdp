@@ -75,6 +75,7 @@ import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
 import src.toi_et_moi.mgdp.modifier.special.ShrinkModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.CruelModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.DarkModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.DefilerModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.GreatShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
@@ -194,6 +195,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
 	public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
 	public static final RegistryEntry<DefilerModifier> THE_DEFILER;
+	public static final RegistryEntry<DarkModifier> THE_DARK;
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
@@ -594,6 +596,9 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
             THE_DEFILER = reg("the_defiler", DefilerModifier::new,
                 "§cThe Defiler",
                 "Venom aura, acid pools, entangle vines, piercing poison quills, +300% damage vs debuffed/arthropods.");
+            THE_DARK = reg("the_dark", DarkModifier::new,
+                "§cThe Pitch-Black Shadow",
+                "Wane aura, giant scythe slashes, +300% damage vs waned/dark targets, shadow walk in darkness.");
 
 			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
 				"Frost Burst",
