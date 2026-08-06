@@ -186,7 +186,7 @@ dependencies {
     implementation fg.deobf("dev.xkmc.l2serial:l2serial:1.2.2")
     implementation fg.deobf("dev.xkmc.l2screentracker:l2screentracker:0.1.4")
     implementation fg.deobf("dev.xkmc.l2tabs:l2tabs:0.3.3")
-    implementation fg.deobf("dev.xkmc.l2itemselector:l2itemselector:0.1.9")
+    implementation fg.deobf("dev.xkmc.l2itemselector:l2itemselector:0.2.1")
     implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:0.3.7")
     implementation fg.deobf("dev.xkmc.mob_weapon_api:mob_weapon_api:0.2.22")
     implementation fg.deobf("dev.xkmc.modulargolems:modulargolems:2.7.2-slim")

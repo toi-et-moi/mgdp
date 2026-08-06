@@ -381,7 +381,7 @@
   "item.mgdp.ignis_attack": "焰魔之刃升级",
   "item.mgdp.ignis_fireball": "焰魔火球升级",
   "item.mgdp.ignis_jump": "烈焰轰击升级",
-  "key.mgdp.recall": "召回傀儡",
+  "key.mgdp.recall": "召回跟随傀儡",
   "item.mgdp.creative_slot": "创造升级槽+1",
   "modifier.modulargolems.creative_slot": "创造升级槽+1",
   "modifier.modulargolems.creative_slot.desc": "每级增加1个升级槽。创造模式调试用品。",

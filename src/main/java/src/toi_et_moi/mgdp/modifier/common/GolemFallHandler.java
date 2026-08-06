@@ -29,7 +29,8 @@ public class GolemFallHandler {
 		AABB area = player.getBoundingBox().inflate(64);
 		for (var golem : player.level().getEntitiesOfClass(DogGolemEntity.class, area,
 				e -> e.isAlive() && (e.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
-						|| e.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())))) {
+						|| e.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get()))
+						&& e.getMode() == dev.xkmc.modulargolems.content.entity.mode.GolemModes.FOLLOW)) {
 			if (!golem.hasPassenger(player)) {
 				evt.setCanceled(true);
 				player.startRiding(golem, true);
@@ -58,6 +59,7 @@ public class GolemFallHandler {
 				DogGolemEntity.class,
 				player.getBoundingBox().inflate(MAX_DIST),
 				g -> !g.isVehicle() && g.isAlive() && player.getUUID().equals(g.getOwnerUUID())
+						&& g.getMode() == dev.xkmc.modulargolems.content.entity.mode.GolemModes.FOLLOW
 		)) {
 			double dist = player.distanceToSqr(golem);
 			if (dist < bestDist) {
