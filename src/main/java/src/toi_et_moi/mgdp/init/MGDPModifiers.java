@@ -74,9 +74,12 @@ import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
 import src.toi_et_moi.mgdp.modifier.special.EndOfBeginningModifier;
 import src.toi_et_moi.mgdp.modifier.special.TimeAxisModifier;
 import src.toi_et_moi.mgdp.modifier.special.ShrinkModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.GenesisModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.CruelModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.DarkModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.DefilerModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.ApocalypseModifier;
+import src.toi_et_moi.mgdp.modifier.goety_revelation.GloriousModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.GreatShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.CoronaModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
@@ -196,6 +199,9 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
 	public static final RegistryEntry<DefilerModifier> THE_DEFILER;
 	public static final RegistryEntry<DarkModifier> THE_DARK;
+	public static final RegistryEntry<GloriousModifier> THE_GLORIOUS;
+	public static final RegistryEntry<GenesisModifier> THE_GENESIS;
+	public static final RegistryEntry<ApocalypseModifier> THE_APOCALYPSE;
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
@@ -599,6 +605,15 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
             THE_DARK = reg("the_dark", DarkModifier::new,
                 "§cThe Pitch-Black Shadow",
                 "Wane aura, giant scythe slashes, +300% damage vs waned/dark targets, shadow walk in darkness.");
+            THE_GLORIOUS = reg("the_glorious", GloriousModifier::new,
+                "§cThe Glorious",
+                "Resistance aura for allies, +300% damage vs bosses.");
+            THE_GENESIS = reg("the_genesis", GenesisModifier::new,
+                "§cThe Genesis",
+                "Empowers all other apostle titles, x1.5 damage, immune while not targeting.");
+            THE_APOCALYPSE = reg("the_apocalypse", ApocalypseModifier::new,
+                "§cThe Apocalypse",
+                "Void frame damage, doom/erosion/curse aura, strips target buffs, -50% damage taken.");
 
 			FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
 				"Frost Burst",

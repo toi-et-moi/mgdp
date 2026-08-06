@@ -234,6 +234,18 @@
     {
       "id": "mgdp:the_dark",
       "required": false
+    },
+    {
+      "id": "mgdp:the_glorious",
+      "required": false
+    },
+    {
+      "id": "mgdp:the_genesis",
+      "required": false
+    },
+    {
+      "id": "mgdp:the_apocalypse",
+      "required": false
     }
   ]
 }

@@ -1,6 +1,8 @@
 {
   "values": [
     "minecraft:flint_and_steel",
+    "minecraft:cod",
+    "minecraft:cooked_cod",
     {
       "id": "twilightforest:glass_sword",
       "required": false
@@ -27,6 +29,10 @@
     },
     {
       "id": "smc:meowmere",
+      "required": false
+    },
+    {
+      "id": "goety_revelation:ascension_halo",
       "required": false
     }
   ]

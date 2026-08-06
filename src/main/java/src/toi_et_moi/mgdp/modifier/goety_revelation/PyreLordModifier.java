@@ -15,6 +15,7 @@ import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import java.util.function.Consumer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 public class PyreLordModifier extends GolemModifier {
 
@@ -22,7 +23,7 @@ public class PyreLordModifier extends GolemModifier {
     private static final int FALLBACK_MIN = 8;
 
     public PyreLordModifier() {
-        super(StatFilterType.HEALTH, 1);
+        super(StatFilterType.ATTACK, 1);
     }
 
     /** Spawn Y: default 32 blocks above golem; if blocked, find highest open space >=8 */
@@ -53,7 +54,8 @@ public class PyreLordModifier extends GolemModifier {
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
         if (golem.level().isClientSide()) return;
-        if (golem.tickCount % 20 != 0) return; // every second
+        boolean all = golem.getModifiers().containsKey(MGDPModifiers.THE_GENESIS.get());
+        if (golem.tickCount % (all ? 10 : 20) != 0) return; // 万众归一: meteor rate doubled
         if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 
         // Remove burn_hex from self (immunity)
@@ -156,13 +158,14 @@ public class PyreLordModifier extends GolemModifier {
     @Override
     public void onHurtTarget(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
         var source = event.getSource();
-        // 4x fire/explosion/hellfire damage
+        // 4x fire/explosion/hellfire damage (8x with 万众归一)
         if (source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.IN_FIRE)
                 || source.is(DamageTypes.LAVA) || source.is(DamageTypes.EXPLOSION)
                 || source.is(DamageTypes.PLAYER_EXPLOSION) || source.is(DamageTypes.FIREBALL)
                 || source.is(DamageTypes.UNATTRIBUTED_FIREBALL)
                 || source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "hellfire")))) {
-            event.setAmount(event.getAmount() * 4.0F);
+            boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+            event.setAmount(event.getAmount() * (all ? 8.0F : 4.0F));
         }
     }
 }

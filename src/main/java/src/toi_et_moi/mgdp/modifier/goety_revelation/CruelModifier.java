@@ -142,7 +142,8 @@ public class CruelModifier extends GolemModifier {
 			int choice = rng.nextInt(3);
 
 			if (choice == 0) {
-				data.putInt(TAG_BARRAGE, 8 * mult);
+				boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+				data.putInt(TAG_BARRAGE, (all ? 12 : 8) * mult);
 			} else if (choice == 1) {
 				var chunkType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "ice_chunk"));
 				if (chunkType != null) {
@@ -211,9 +212,13 @@ public class CruelModifier extends GolemModifier {
 		var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.IceSpear")
 				.getConstructor(LivingEntity.class, net.minecraft.world.level.Level.class);
 		double dx = target.getX() - golem.getX();
+		double dyEye = target.getEyeY() - (golem.getEyeY() - 0.3);
 		double dz = target.getZ() - golem.getZ();
 		double baseYaw = Math.atan2(dz, dx);
 		double dist = Math.sqrt(dx * dx + dz * dz);
+		// Ice spears are arrows: aim at the target's eye height with ballistic drop compensation (v = 2.0, g = 0.05)
+		double drop = 0.05 * dist * dist / (2.0 * 2.0 * 2.0);
+		double basePitch = Math.atan2(dyEye + drop, dist);
 
 		int count = 4 + rng.nextInt(2);
 		for (int i = 0; i < count; i++) {
@@ -221,9 +226,9 @@ public class CruelModifier extends GolemModifier {
 			spear.getClass().getMethod("setExtraDamage", float.class).invoke(spear, atk * 0.25F);
 			double spread = (rng.nextDouble() - 0.5) * 0.8;
 			double yaw = baseYaw + spread;
-			double pitch = 0.075 + rng.nextDouble() * 0.125;
+			double pitch = basePitch + (rng.nextDouble() - 0.5) * 0.15;
 			spear.setPos(golem.getX(), golem.getEyeY() - 0.3 + (rng.nextDouble() - 0.5) * 0.5, golem.getZ());
-			spear.setDeltaMovement(Math.cos(yaw) * 2.0, pitch * 2.0, Math.sin(yaw) * 2.0);
+			spear.setDeltaMovement(Math.cos(yaw) * Math.cos(pitch) * 2.0, Math.sin(pitch) * 2.0, Math.sin(yaw) * Math.cos(pitch) * 2.0);
 			spear.hasImpulse = true;
 			spear.getPersistentData().putBoolean("mgdp_cruel_barrage", true);
 			golem.level().addFreshEntity(spear);
@@ -274,6 +279,8 @@ public class CruelModifier extends GolemModifier {
 				multiplier = 10.99F;
 			}
 		}
+		boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+		if (all) multiplier *= 1.5F;
 		event.setAmount(event.getAmount() * multiplier);
 	}
 

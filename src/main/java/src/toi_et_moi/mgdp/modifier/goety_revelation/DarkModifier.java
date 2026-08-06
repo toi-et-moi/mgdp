@@ -37,14 +37,15 @@ public class DarkModifier extends GolemModifier {
 		if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 		if (golem.tickCount % 20 != 0) return;
 
-		// Wane V aura on enemies
+		// Wane V aura on enemies (VI with 万众归一)
 		var wane = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "wane"));
+		int amp = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? AMP + 1 : AMP;
 		var box = golem.getBoundingBox().inflate(RANGE);
 		for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 			if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
 			if (entity == golem || entity.isAlliedTo(golem) || entity == golem.getOwner()) continue;
 			if (golem.canAttack(entity) && TargetManager.wantsToAttack(golem, entity)) {
-				entity.addEffect(new MobEffectInstance(wane, DURATION, AMP));
+				entity.addEffect(new MobEffectInstance(wane, DURATION, amp));
 			}
 		}
 
@@ -72,7 +73,8 @@ public class DarkModifier extends GolemModifier {
 					// The 7-arg constructor leaves totalLife at 0 (discards on first tick) and no owner
 					slash.getClass().getMethod("setTotalLife", int.class).invoke(slash, 60);
 					((AbstractHurtingProjectile) slash).setOwner(golem);
-					slash.getClass().getMethod("setDamage", float.class).invoke(slash, atk * 3.0F);
+					boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+					slash.getClass().getMethod("setDamage", float.class).invoke(slash, atk * (all ? 5.0F : 3.0F));
 					slash.setDeltaMovement(nx * 2.0, ny * 2.0, nz * 2.0);
 					slash.hasImpulse = true;
 					golem.level().addFreshEntity(slash);
@@ -103,7 +105,8 @@ public class DarkModifier extends GolemModifier {
 		boolean waned = wane != null && target.hasEffect(wane);
 		boolean inDark = isDark(target.level(), target.blockPosition());
 		if (waned || inDark) {
-			event.setAmount(event.getAmount() * 4.0F);
+			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			event.setAmount(event.getAmount() * (all ? 5.5F : 4.0F));
 		}
 	}
 

@@ -30,7 +30,12 @@ public class DeathKnellModifier extends GolemModifier {
 		if (level <= 0) return;
 
 		float extra = event.getEntity().getMaxHealth() * 0.02f;
-		event.setAmount(event.getAmount() + extra);
+		if (golem.getModifiers().containsKey(MGDPModifiers.THE_APOCALYPSE.get())) {
+			// 末日终结 synergy: the 2% max HP bonus lands as true void damage
+			event.getEntity().hurt(event.getEntity().damageSources().fellOutOfWorld(), extra);
+		} else {
+			event.setAmount(event.getAmount() + extra);
+		}
 	}
 
 	@Override

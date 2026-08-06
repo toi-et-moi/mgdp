@@ -70,6 +70,7 @@ public class WitchKingModifier extends GolemModifier {
 
 		// Self and ally buffing (every 3 seconds)
 		if (golem.tickCount % 60 == 0) {
+			int amp = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? AMPLIFIER + 1 : AMPLIFIER;
 			var box = golem.getBoundingBox().inflate(RANGE);
 			for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 				if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
@@ -83,7 +84,7 @@ public class WitchKingModifier extends GolemModifier {
 				}
 				// Apply all positive effects
 				for (var eff : POSITIVE_EFFECTS) {
-					entity.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
+					entity.addEffect(new MobEffectInstance(eff, DURATION, amp));
 				}
 			}
 		}

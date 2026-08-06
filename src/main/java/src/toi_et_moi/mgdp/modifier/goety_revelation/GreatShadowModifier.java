@@ -123,7 +123,8 @@ public class GreatShadowModifier extends GolemModifier {
 
 			Projectile bolt = createProjectile(golem, vx, vy, vz, type);
 			if (bolt == null) continue;
-			bolt.getClass().getMethod("setExtraDamage", float.class).invoke(bolt, atk * 0.15F);
+			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			bolt.getClass().getMethod("setExtraDamage", float.class).invoke(bolt, atk * (all ? 0.25F : 0.15F));
 			bolt.setPos(sx, sy, sz);
 			bolt.setDeltaMovement(vx * 1.1, vy * 1.1, vz * 1.1);
 			bolt.hasImpulse = true;
@@ -170,9 +171,10 @@ public class GreatShadowModifier extends GolemModifier {
 		boolean isUndead = target.getMobType() == MobType.UNDEAD;
 		boolean isDebuffed = target.hasEffect(MobEffects.DARKNESS) || target.hasEffect(MobEffects.BLINDNESS);
 
+		float boost = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? 4.5F : 3.0F;
 		float mult = 1.0F;
-		if (isMagic) mult += 3.0F;
-		if (isUndead || isDebuffed) mult += 3.0F;
+		if (isMagic) mult += boost;
+		if (isUndead || isDebuffed) mult += boost;
 		event.setAmount(event.getAmount() * mult);
 	}
 

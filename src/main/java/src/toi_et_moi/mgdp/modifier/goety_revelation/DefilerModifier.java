@@ -103,8 +103,9 @@ public class DefilerModifier extends GolemModifier {
 			quill.setPos(golem.getX(), golem.getEyeY() - 0.3, golem.getZ());
 			quill.setDeltaMovement(vx * 2.5, vy * 2.5, vz * 2.5);
 			quill.hasImpulse = true;
-			quill.getClass().getMethod("setExtraDamage", float.class).invoke(quill, atk * 0.35F);
-			quill.getClass().getMethod("setDuration", int.class).invoke(quill, 5);
+			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			quill.getClass().getMethod("setExtraDamage", float.class).invoke(quill, atk * (all ? 0.45F : 0.35F));
+			quill.getClass().getMethod("setDuration", int.class).invoke(quill, all ? 8 : 5);
 			quill.getClass().getMethod("setSpear", boolean.class, int.class).invoke(quill, true, 2);
 			golem.level().addFreshEntity(quill);
 		}
@@ -124,7 +125,8 @@ public class DefilerModifier extends GolemModifier {
 				var pos = golem.blockPosition().offset(rng.nextInt(13) - 10, 0, rng.nextInt(13) - 10);
 				((Entity) pool).setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 				pool.getClass().getMethod("setRadius", float.class).invoke(pool, 3.0F + rng.nextFloat());
-				pool.getClass().getMethod("setDamage", float.class).invoke(pool, atk * 0.5F);
+				boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+				pool.getClass().getMethod("setDamage", float.class).invoke(pool, atk * (all ? 0.75F : 0.5F));
 				pool.getClass().getMethod("setDuration", int.class).invoke(pool, 60);
 				pool.getClass().getMethod("setOwner", LivingEntity.class).invoke(pool, golem);
 				golem.level().addFreshEntity((Entity) pool);
@@ -147,7 +149,8 @@ public class DefilerModifier extends GolemModifier {
 					var thornCtor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.BlossomThorn")
 							.getConstructor(Level.class, double.class, double.class, double.class, int.class, LivingEntity.class);
 					var thorn = thornCtor.newInstance(golem.level(), tgt.getX(), tgt.getY(), tgt.getZ(), 20, golem);
-					thorn.getClass().getMethod("setExtraDamage", float.class).invoke(thorn, atk * 0.6F);
+					boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+					thorn.getClass().getMethod("setExtraDamage", float.class).invoke(thorn, atk * (all ? 0.9F : 0.6F));
 					golem.level().addFreshEntity((Entity) thorn);
 				}
 
@@ -182,7 +185,8 @@ public class DefilerModifier extends GolemModifier {
 			}
 		}
 		if (isArthropod || hasDebuff) {
-			event.setAmount(event.getAmount() * 4.0F);
+			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			event.setAmount(event.getAmount() * (all ? 5.5F : 4.0F));
 		}
 	}
 }
