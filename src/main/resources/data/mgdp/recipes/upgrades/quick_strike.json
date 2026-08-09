@@ -1,19 +1,20 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABC"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:bow"
+    },
+    "B": {
       "item": "modulargolems:empty_upgrade"
     },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:redstone"
+    "C": {
+      "item": "minecraft:brown_dye"
     }
-  ],
+  },
   "result": {
     "item": "mgdp:quick_strike"
-  },
-  "show_notification": true
+  }
 }
