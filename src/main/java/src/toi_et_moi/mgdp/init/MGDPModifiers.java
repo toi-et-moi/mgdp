@@ -308,7 +308,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 					"Self Repair",
 					"When idle for 10s, regenerates 1 HP per second and reduces forge count.");
 
-			CONDUIT = reg("conduit", ConduitModifier::new,
+			CONDUIT = reg("heart_of_the_sea", ConduitModifier::new,
 				"Conduit",
 				"Golem grants Conduit Power to allies, gains attack and dodge in water/rain. Synergizes with Lightning Storm.");
 

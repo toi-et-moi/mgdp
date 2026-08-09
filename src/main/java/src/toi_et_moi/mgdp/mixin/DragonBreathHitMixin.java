@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DragonFireball.class)
 public class DragonBreathHitMixin {
 
-    @Inject(method = "onHit", at = @At("HEAD"))
+    @Inject(method = "onHit", at = @At("HEAD"), cancellable = true)
     private void mgdp$dragonHit(HitResult result, CallbackInfo ci) {
         DragonFireball self = (DragonFireball) (Object) this;
         if (!(self.level() instanceof ServerLevel sl)) return;
@@ -21,10 +21,15 @@ public class DragonBreathHitMixin {
         var tag = self.getPersistentData();
         if (!tag.contains("mgdp_atk")) return;
 
-        float atkDmg = tag.getFloat("mgdp_atk");
         float explosionDmg = tag.getFloat("mgdp_explosion");
 
         sl.explode(self, self.getX(), self.getY(), self.getZ(),
                 explosionDmg, net.minecraft.world.level.Level.ExplosionInteraction.NONE);
+
+        // Skip the vanilla hit handling entirely: no lingering dragon breath cloud,
+        // but keep the hit visual/sound. The fireball is discarded here.
+        sl.levelEvent(2006, self.blockPosition(), 0);
+        self.discard();
+        ci.cancel();
     }
 }

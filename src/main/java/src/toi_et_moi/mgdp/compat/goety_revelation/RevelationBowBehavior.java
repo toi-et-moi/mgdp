@@ -32,41 +32,45 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
         var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "death_arrow"));
         if (type == null) return super.shootArrow(ctx, power, bowStack, hand);
 
+        // Apocalypse modifier => volley of 3 death arrows (otherwise 1)
+        int arrowCount = 1;
+        boolean apocalypse = user instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golemApoc
+                && golemApoc.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_APOCALYPSE.get());
+        if (apocalypse) arrowCount = 3;
+
         try {
             var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.DeathArrow")
                     .getConstructor(net.minecraft.world.entity.EntityType.class, net.minecraft.world.level.Level.class);
-            AbstractArrow arrow = (AbstractArrow) ctor.newInstance(type, level);
-            arrow.setPos(user.getX(), user.getEyeY() - 0.3, user.getZ());
-            arrow.setOwner(user);
-            // 2.5x base damage
-            arrow.setBaseDamage(arrow.getBaseDamage() * 2.5);
-            // Apply Power enchantment
-            int powerLv = net.minecraft.world.item.enchantment.EnchantmentHelper
-                    .getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.POWER_ARROWS, bowStack);
-            if (powerLv > 0) {
-                arrow.setBaseDamage(arrow.getBaseDamage() + powerLv * 0.5 + 0.5);
-            }
 
             // Check for Ascension Halo in curios
             boolean hasHalo = hasAscensionHalo(user);
-            if (hasHalo) {
-                arrow.getPersistentData().putBoolean("mgdp_revelation_halo", true);
-            }
 
-            // Aim toward target with prediction
+            // Resolve target + base aim once
             net.minecraft.world.entity.Mob mob = user instanceof net.minecraft.world.entity.Mob m ? m : null;
             LivingEntity tgt = mob != null ? mob.getTarget() : null;
+            Vec3 baseAim;
+            boolean hasAim;
             if (tgt != null) {
-                Vec3 aim = SMCBowBehavior.predictPos(user, tgt, power * 12.0).subtract(user.getEyePosition(1.0F));
-                double d = aim.length();
-                if (d > 0.01) {
-                    arrow.setDeltaMovement(aim.scale(power * 12.0F / d));
-                    arrow.hasImpulse = true;
-                }
+                baseAim = SMCBowBehavior.predictPos(user, tgt, power * 12.0).subtract(user.getEyePosition(1.0F));
+                hasAim = baseAim.lengthSqr() > 1e-4;
             } else {
-                arrow.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0F, power * 12.0F, 1.0F);
+                float xr = user.getXRot();
+                float yr = user.getYRot();
+                double radY = Math.toRadians(yr);
+                double radX = Math.toRadians(xr);
+                baseAim = new Vec3(
+                        -Math.sin(radY) * Math.cos(radX),
+                        -Math.sin(radX),
+                         Math.cos(radY) * Math.cos(radX)
+                );
+                hasAim = true;
             }
-            // Play apostle shoot sound
+
+            // Power enchantment read once
+            int powerLv = net.minecraft.world.item.enchantment.EnchantmentHelper
+                    .getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.POWER_ARROWS, bowStack);
+
+            // Play apostle shoot sound once
             try {
                 var sound = net.minecraftforge.registries.ForgeRegistries.SOUND_EVENTS.getValue(
                         new ResourceLocation("goety", "apostle_shoot"));
@@ -75,7 +79,50 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
                             sound, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 }
             } catch (Exception ignored) {}
-            level.addFreshEntity(arrow);
+
+            // Volley: fan arrows across the horizontal plane around the base aim direction
+            // 3 arrows => -10°, 0°, +10° (in radians at the user); wider spread for more arrows if ever added
+            float fanHalf = arrowCount > 1 ? 10.0F : 0.0F;
+            for (int i = 0; i < arrowCount; i++) {
+                AbstractArrow arrow = (AbstractArrow) ctor.newInstance(type, level);
+                arrow.setPos(user.getX(), user.getEyeY() - 0.3, user.getZ());
+                arrow.setOwner(user);
+                // 2.5x base damage
+                arrow.setBaseDamage(arrow.getBaseDamage() * 2.5);
+                // Apply Power enchantment
+                if (powerLv > 0) {
+                    arrow.setBaseDamage(arrow.getBaseDamage() + powerLv * 0.5 + 0.5);
+                }
+                if (hasHalo) {
+                    arrow.getPersistentData().putBoolean("mgdp_revelation_halo", true);
+                }
+
+                // Compute spread: i in [0, n) maps to a symmetric fan
+                float spreadDeg = arrowCount > 1
+                        ? -fanHalf + (2.0F * fanHalf) * i / (arrowCount - 1)
+                        : 0.0F;
+                double rad = Math.toRadians(spreadDeg);
+                double cos = Math.cos(rad);
+                double sin = Math.sin(rad);
+
+                if (hasAim) {
+                    // Rotate base aim around the vertical axis (yaw)
+                    Vec3 aim = new Vec3(
+                            baseAim.x * cos - baseAim.z * sin,
+                            baseAim.y,
+                            baseAim.x * sin + baseAim.z * cos
+                    );
+                    double d = aim.length();
+                    if (d > 0.01) {
+                        arrow.setDeltaMovement(aim.scale(power * 12.0F / d));
+                        arrow.hasImpulse = true;
+                    }
+                } else {
+                    arrow.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0F, power * 12.0F, 1.0F);
+                }
+                level.addFreshEntity(arrow);
+            }
+
             return user instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity g
                     && g.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.QUICK_STRIKE.get()) ? 4 : 20;
         } catch (Exception e) {

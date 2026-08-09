@@ -37,9 +37,29 @@ public abstract class DragonFireballMixin {
             return;
         }
 
-        Vec3 dir = target.position().subtract(self.position()).normalize();
-        self.xPower = dir.x * 0.3;
-        self.yPower = dir.y * 0.3;
-        self.zPower = dir.z * 0.3;
+        // Smooth homing with target leading:
+        // - acceleration is blended toward the aim point (limited turn per tick -> no sharp corners)
+        // - the aim point leads the target's movement, so fast flyers like phantoms get hit
+        Vec3 center = target.position().add(0, target.getBbHeight() * 0.5, 0);
+        Vec3 toTarget = center.subtract(self.position());
+        double dist = toTarget.length();
+        if (dist < 0.01) return;
+
+        // Lead: aim ahead of the target's velocity for roughly the flight time (clamped to avoid overleading)
+        double leadTicks = net.minecraft.util.Mth.clamp(dist / 2.5, 0, 15);
+        Vec3 aim = center.add(target.getDeltaMovement().scale(leadTicks));
+        Vec3 desired = aim.subtract(self.position()).normalize().scale(0.5);
+
+        Vec3 oldAccel = new Vec3(self.xPower, self.yPower, self.zPower);
+        double oldLen = oldAccel.length();
+        if (oldLen > 0.5) {
+            oldAccel = oldAccel.scale(0.5 / oldLen);
+        }
+        // Far away: steer harder; close up: steer gentler so the fireball doesn't orbit the target
+        double blend = net.minecraft.util.Mth.clamp(dist / 25.0, 0.04, 0.25);
+        Vec3 newAccel = oldAccel.scale(1 - blend).add(desired.scale(blend));
+        self.xPower = newAccel.x;
+        self.yPower = newAccel.y;
+        self.zPower = newAccel.z;
     }
 }

@@ -589,7 +589,7 @@ public class MGDPItems {
 		NETHER = Mgdp.ITEMS.register("nether",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.NETHER.get(), 1, false));
 
-		CONDUIT = Mgdp.ITEMS.register("conduit",
+		CONDUIT = Mgdp.ITEMS.register("heart_of_the_sea",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.CONDUIT.get(), 1, false));
 
 		HYPOTHERMIA = Mgdp.ITEMS.register("hypothermia",

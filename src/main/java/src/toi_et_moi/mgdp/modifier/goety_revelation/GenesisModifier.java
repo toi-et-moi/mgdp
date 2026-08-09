@@ -51,7 +51,10 @@ public class GenesisModifier extends GolemModifier {
 			// Invulnerable: refresh the window, heal the damage value, reflect 7x
 			data.putInt(TAG_INVULN, INVULN_TICKS);
 			golem.heal(amount);
-			if (event.getSource().getEntity() instanceof LivingEntity attacker) {
+			if (event.getSource().getEntity() instanceof LivingEntity attacker
+					// Never reflect onto another Genesis golem: its reflection would bounce back forever
+					&& !(attacker instanceof AbstractGolemEntity<?, ?> ag
+							&& ag.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()))) {
 				attacker.hurt(attacker.damageSources().thorns(golem), amount * 7.0F);
 			}
 			event.setCanceled(true);

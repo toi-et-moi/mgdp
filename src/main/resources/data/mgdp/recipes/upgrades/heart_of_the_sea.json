@@ -9,6 +9,6 @@
     "C": {"item": "minecraft:conduit"},
     "E": {"item": "modulargolems:empty_upgrade"}
   },
-  "result": {"item": "mgdp:conduit"},
+  "result": {"item": "mgdp:heart_of_the_sea"},
   "show_notification": true
 }
