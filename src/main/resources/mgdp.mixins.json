@@ -41,7 +41,9 @@
     "ConquerorDataMixin",
     "GolemMaterialMixin",
     "FrostInfinityMixin",
-    "GenericBowItemMixin"
+    "GenericBowItemMixin",
+    "EnderTeleportModifierMixin",
+    "RangedGoalFlightMixin"
   ],
   "client": [
     "EntityRendererAccessor",

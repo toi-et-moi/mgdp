@@ -16,7 +16,6 @@ import src.toi_et_moi.mgdp.Mgdp;
  * branches in hurt/postHurt/untrackRemoved, plus our additive DISCARDED
  * mixin. Active retrieval via toItem() does NOT post this event, so it
  * naturally avoids the "false alarm" case.
- *
  * Localisation lives under {@code mgdp.recycle.recovered} in both zh_cn and
  * en_us (placeholder {0} = the golem's display name). Colour is applied via
  * withStyle so the language strings stay free of {@code §}-codes.
