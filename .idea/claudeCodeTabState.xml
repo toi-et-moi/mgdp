@@ -13,6 +13,7 @@
             <TabSessionState>
               <option name="provider" value="claude" />
               <option name="sessionId" value="22d9406e-aa1b-487a-8ab5-a571da6b5442" />
+              <option name="cwd" value="$PROJECT_DIR$" />
               <option name="model" value="claude-opus-4-8[1m]" />
               <option name="permissionMode" value="acceptEdits" />
             </TabSessionState>
