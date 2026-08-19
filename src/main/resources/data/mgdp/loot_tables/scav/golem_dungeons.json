@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "golemdungeons:trial_medal", "weight": 15},
+        { "type": "minecraft:item", "name": "golemdungeons:medal_of_conqueror", "weight": 5},
+        { "type": "minecraft:item", "name": "golemdungeons:ancient_forge", "weight": 5},
+        { "type": "minecraft:item", "name": "golemdungeons:flame_sword", "weight": 3},
+        { "type": "minecraft:item", "name": "golemdungeons:sculk_golem_scythe", "weight": 1},
+        { "type": "minecraft:item", "name": "modulargolems:recycle", "weight": 4},
+        { "type": "minecraft:item", "name": "modulargolems:swim", "weight": 4},
+        { "type": "minecraft:item", "name": "modulargolems:metal_golem_template", "weight": 15},
+        { "type": "minecraft:item", "name": "modulargolems:diamond_expansion_template", "weight": 2},
+        { "type": "minecraft:item", "name": "modulargolems:netherite_expansion_template", "weight": 1},
+        { "type": "minecraft:item", "name": "modulargolems:talented", "weight": 1},
+        { "type": "minecraft:item", "name": "modulargolems:cauldron", "weight": 1}
+      ]
+    }
+  ]
+}

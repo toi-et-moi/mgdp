@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:oak_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:birch_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:spruce_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:jungle_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:acacia_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:dark_oak_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:cherry_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:mangrove_log", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:oak_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:birch_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:spruce_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:jungle_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:acacia_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:dark_oak_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:cherry_sapling", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:mangrove_propagule", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:azalea", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:flowering_azalea", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:bamboo", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 12.0, "max": 64.0 } }] }
+      ]
+    }
+  ]
+}

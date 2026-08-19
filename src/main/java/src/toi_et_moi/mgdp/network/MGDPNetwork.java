@@ -30,6 +30,8 @@ public class MGDPNetwork {
                 NetMusicSoundPacket::encode, NetMusicSoundPacket::decode, NetMusicSoundPacket::handle);
         CHANNEL.registerMessage(id++, GolemRecallPacket.class,
                 GolemRecallPacket::encode, GolemRecallPacket::decode, GolemRecallPacket::handle);
+        CHANNEL.registerMessage(id++, ScavStatusPacket.class,
+                ScavStatusPacket::encode, ScavStatusPacket::decode, ScavStatusPacket::handle);
         return CHANNEL;
     }
 }

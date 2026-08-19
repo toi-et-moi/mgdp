@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "goety:magic_emerald", "weight": 10, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "goety:jade", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "goety:unholy_blood", "weight": 1},
+        { "type": "minecraft:item", "name": "goety:soul_ruby", "weight": 1},
+        { "type": "minecraft:item", "name": "goety:shadow_essence", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 4.0 } }] },
+        { "type": "minecraft:item", "name": "goety:witch_hat", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:crone_hat", "weight": 2},
+        { "type": "minecraft:item", "name": "goety:ominous_shard", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:corpse_blossom", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:treasure_pouch", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:void_echo", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "goety:forbidden_piece", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "goety:forbidden_fragment", "weight": 1},
+        { "type": "minecraft:item", "name": "goety:malefic_helm", "weight": 2},
+        { "type": "minecraft:item", "name": "goety:infernal_tome", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:warlock_sash", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:soul_emerald", "weight": 7, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "goety:ominous_orb", "weight": 1},
+        { "type": "minecraft:item", "name": "goety:withered_manuscript", "weight": 2},
+        { "type": "minecraft:item", "name": "goety:shrouded_blueprint", "weight": 1}
+      ]
+    }
+  ]
+}

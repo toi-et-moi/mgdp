@@ -37,6 +37,7 @@ public class ApocalypseConversionHandler {
 	public static void onDoomApplied(MobEffectEvent.Added event) {
 		if (event.getEntity().level().isClientSide()) return;
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
+		if (MGDPItems.THE_APOCALYPSE == null) return; // goety_revelation not installed
 
 		MobEffect doom = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "doom"));
 		if (doom == null || event.getEffectInstance().getEffect() != doom) return;
@@ -54,6 +55,7 @@ public class ApocalypseConversionHandler {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide) return;
 		if (golem.tickCount % 40 != 0) return;
+		if (MGDPItems.THE_GENESIS == null) return; // goety_revelation not installed
 
 		var data = golem.getPersistentData();
 		int convertStart = data.getInt(TAG_GENESIS_CONVERT);

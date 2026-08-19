@@ -19,21 +19,30 @@ public abstract class UpgradeItemMixin {
 
 	@Inject(method = "appendHoverText", at = @At("HEAD"), cancellable = true)
 	private void mgdp$nullCheckTooltip(ItemStack stack, Level level, List<Component> list, TooltipFlag flag, CallbackInfo ci) {
-		for (var ins : ((UpgradeItem) (Object) this).get()) {
-			if (ins.mod() == null) {
-				ci.cancel();
-				return;
+		try {
+			for (var ins : ((UpgradeItem) (Object) this).get()) {
+				if (ins.mod() == null) {
+					ci.cancel();
+					return;
+				}
 			}
+		} catch (Exception e) {
+			// A missing/broken modifier must never crash the creative tab search tree
+			ci.cancel();
 		}
 	}
 
 	@Inject(method = "fitsOn", at = @At("HEAD"), cancellable = true, remap = false)
 	private void mgdp$nullCheckFitsOn(GolemType<?, ?> type, CallbackInfoReturnable<Boolean> cir) {
-		for (var ins : ((UpgradeItem) (Object) this).get()) {
-			if (ins.mod() == null) {
-				cir.setReturnValue(false);
-				return;
+		try {
+			for (var ins : ((UpgradeItem) (Object) this).get()) {
+				if (ins.mod() == null) {
+					cir.setReturnValue(false);
+					return;
+				}
 			}
+		} catch (Exception e) {
+			cir.setReturnValue(false);
 		}
 	}
 }

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:angler_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:archer_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:arms_up_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:blade_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:brewer_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:burn_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:danger_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:explorer_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:friend_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:heart_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:heartbreak_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:howl_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:miner_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:mourner_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:plenty_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:prize_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:sheaf_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:shelter_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:skull_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:snort_pottery_sherd", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:sniffer_egg", "weight": 1 },
+        { "type": "minecraft:item", "name": "minecraft:diamond", "weight": 1 },
+        { "type": "minecraft:item", "name": "minecraft:emerald", "weight": 1 }
+      ]
+    }
+  ]
+}

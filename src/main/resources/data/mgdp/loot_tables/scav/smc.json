@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "smc:frostium_ingot", "weight": 10, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "smc:perkin_ingot", "weight": 10, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "smc:golden_broccoli", "weight": 5, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "smc:rainbow_chip", "weight": 5, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "smc:fox_fur", "weight": 5, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "smc:snow_fox_fur", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "smc:pure_fox_fur", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "smc:calibur", "weight": 1},
+        { "type": "minecraft:item", "name": "smc:meowmere", "weight": 1},
+        { "type": "minecraft:item", "name": "smc:easter_bunny_egg", "weight": 1},
+        { "type": "minecraft:item", "name": "smc:chicken_harvester_egg", "weight": 3},
+        { "type": "minecraft:item", "name": "smc:giant_carrot", "weight": 3},
+        { "type": "minecraft:item", "name": "smc:ice_tea", "weight": 8, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 8.0, "max": 24.0 } }] },
+        { "type": "minecraft:item", "name": "smc:cloud", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 4.0, "max": 16.0 } }] }
+      ]
+    }
+  ]
+}

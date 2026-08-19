@@ -67,6 +67,8 @@
     "mgdp:spyglass",
     "mgdp:shrink",
     "mgdp:shield_block",
+    "mgdp:mine",
+    "mgdp:scav_box",
     {
       "id": "mgdp:hostility_reprint",
       "required": false
@@ -153,6 +155,10 @@
     },
     {
       "id": "mgdp:hostility_repelling",
+      "required": false
+    },
+    {
+      "id": "mgdp:hostility_killer_aura",
       "required": false
     },
     {
@@ -246,6 +252,8 @@
     {
       "id": "mgdp:the_apocalypse",
       "required": false
-    }
+    },
+    "mgdp:scav_box",
+    "mgdp:lumberjack"
   ]
 }

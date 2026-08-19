@@ -27,6 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
+import src.toi_et_moi.mgdp.compat.L2Compat;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -37,7 +38,10 @@ import java.util.*;
 
 public class HarvestCropModifier extends GolemModifier {
 
-	private static final int SCAN_INTERVAL = 100; // 5 seconds
+	private static final int SCAN_INTERVAL = 100; // Full cycle target length: scan the whole range in ~5 seconds / 全周期目标长度：约 5 秒扫完整个范围
+	private static final int Y_MIN = -1;
+	private static final int Y_MAX = 25;
+	private static final Map<UUID, Integer> COLUMN_CURSORS = new WeakHashMap<>();
 
 	public HarvestCropModifier() {
 		super(StatFilterType.MASS, 1);
@@ -60,7 +64,6 @@ public class HarvestCropModifier extends GolemModifier {
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int modifierLevel) {
 		if (golem.level().isClientSide()) return;
-		if (golem.tickCount % SCAN_INTERVAL != 0) return;
 
 		int pickupLevel = 0;
 		for (var entry : golem.getModifiers().entrySet()) {
@@ -76,100 +79,21 @@ public class HarvestCropModifier extends GolemModifier {
 		Level level = golem.level();
 		ServerLevel sl = (ServerLevel) level;
 
-		int yMin = -1;
-		int yMax = 25;
+		// 滚动列扫描：每 tick 只扫 columnsPerTick 列（每列整条 Y 从底到顶），
+		// 全周期约 SCAN_INTERVAL tick，把原来每 5 秒一次的全量扫描尖峰摊平到每个 tick。
+		int side = range * 2 + 1;
+		int totalColumns = side * side;
+		int columnsPerTick = Math.max(1, (totalColumns + SCAN_INTERVAL - 1) / SCAN_INTERVAL);
 
 		// First pass: harvest dead chorus flowers individually
 		List<BlockPos> harvestedFlowers = new ArrayList<>();
 
-		for (int dx = -range; dx <= range; dx++) {
-			for (int dz = -range; dz <= range; dz++) {
-				for (int dy = yMin; dy <= yMax; dy++) {
-					BlockPos pos = center.offset(dx, dy, dz);
-					if (!level.isLoaded(pos)) continue;
-					BlockState state = level.getBlockState(pos);
-					Block block = state.getBlock();
-
-					if (block instanceof ChorusFlowerBlock && state.getValue(ChorusFlowerBlock.AGE) >= 5) {
-						List<ItemStack> drops = Block.getDrops(state, sl, pos, level.getBlockEntity(pos));
-						drops.add(new ItemStack(Items.CHORUS_FLOWER));
-						level.removeBlock(pos, false);
-						for (ItemStack drop : drops) {
-							Block.popResource(level, pos, drop);
-						}
-						harvestedFlowers.add(pos);
-					} else if (tryHarvestPineapple(level, pos, state, block)) {
-						// handled: FruitsDelight pineapple
-					} else if (tryHarvestMushroomColony(level, pos, state, block)) {
-						// handled: FarmersDelight mushroom colony
-					} else if (tryHarvestModCrop(level, pos, state)) {
-						// handled by L2Harvester HarvestableBlock API
-					} else if (isAgeBasedCrop(block) && isMature(state, block)) {
-						Block.dropResources(state, level, pos);
-						level.setBlock(pos, getReplantState(state, block), Block.UPDATE_CLIENTS);
-					} else if (isTowerCrop(block) && level.getBlockState(pos.below()).getBlock() == block) {
-						Block.dropResources(state, level, pos);
-						level.removeBlock(pos, false);
-					} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
-							&& (block instanceof GrowingPlantHeadBlock
-								|| block instanceof VineBlock
-								|| block instanceof GrowingPlantBodyBlock)) {
-						Block.dropResources(state, level, pos, null, golem, golem.getMainHandItem());
-						level.levelEvent(2001, pos, Block.getId(state));
-						level.removeBlock(pos, false);
-					} else if (block instanceof AmethystClusterBlock && block == Blocks.AMETHYST_CLUSTER) {
-						Direction facing = state.getValue(AmethystClusterBlock.FACING);
-						if (level.getBlockState(pos.relative(facing.getOpposite())).is(Blocks.BUDDING_AMETHYST)) {
-							level.destroyBlock(pos, true);
-						}
-					} else if (block instanceof StemGrownBlock) {
-						if (isAttachedToStem(level, pos)) {
-							level.destroyBlock(pos, true);
-						}
-					} else if ((block instanceof SculkSensorBlock || block instanceof SculkShriekerBlock)
-							&& golem.getMainHandItem().getItem() instanceof HoeItem) {
-						level.levelEvent(2001, pos, Block.getId(state));
-						Block.dropResources(state, level, pos, null, golem, golem.getMainHandItem());
-						level.removeBlock(pos, false);
-					} else if (golem.getMainHandItem().getItem() instanceof AxeItem
-							&& (state.is(BlockTags.LOGS) || state.is(BlockTags.LEAVES))) {
-						ItemStack tool = golem.getMainHandItem();
-						boolean dualWield = golem.getOffhandItem().getItem() instanceof AxeItem;
-						if (state.is(BlockTags.LOGS) && !isTreeLog(level, pos, dualWield)) {
-							continue;
-						}
-						if (state.is(BlockTags.LEAVES) && !dualWield) {
-							boolean adjProtected = false;
-							for (Direction dir : Direction.values()) {
-								BlockPos n = pos.relative(dir);
-								if (level.getBlockState(n).is(BlockTags.LOGS) && !isTreeLog(level, n, false)) {
-									adjProtected = true;
-									break;
-								}
-							}
-							if (adjProtected) continue;
-						}
-						Block.dropResources(state, level, pos, null, golem, tool);
-						level.levelEvent(2001, pos, Block.getId(state));
-						level.removeBlock(pos, false);
-					} else if (block instanceof BushBlock && tryRightClickHarvest(level, pos, state, golem)) {
-						// handled by FakePlayer right-click simulation
-					} else if (golem.getMainHandItem().getItem() instanceof SwordItem
-							&& block == Blocks.COBWEB) {
-						ItemStack tool = golem.getMainHandItem();
-						Block.dropResources(state, level, pos, null, golem, tool);
-						level.levelEvent(2001, pos, Block.getId(state));
-						level.removeBlock(pos, false);
-					} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
-							&& state.is(BlockTags.FLOWERS)) {
-						ItemStack tool = golem.getMainHandItem();
-						Block.dropResources(state, level, pos, null, golem, tool);
-						level.levelEvent(2001, pos, Block.getId(state));
-						level.removeBlock(pos, false);
-					}
-				}
-			}
+		UUID id = golem.getUUID();
+		int cursor = COLUMN_CURSORS.getOrDefault(id, 0);
+		for (int i = 0; i < columnsPerTick; i++) {
+			scanColumn(golem, level, sl, center, range, (cursor + i) % totalColumns, harvestedFlowers);
 		}
+		COLUMN_CURSORS.put(id, (cursor + columnsPerTick) % totalColumns);
 
 		// Second pass: clear and replant flowerless plants, each plant once
 		Set<BlockPos> processedStems = new HashSet<>();
@@ -192,6 +116,96 @@ public class HarvestCropModifier extends GolemModifier {
 			if (!hasFlower) {
 				clearAndReplant(level, plantBlocks);
 			}
+		}
+	}
+
+	/**
+	 * 扫描一列（列序号 col -> dx/dz）从底到顶的全部方块。
+	 * 以列为粒度切分，保证塔状/纵向结构（竹子、海带、甘蔗、仙人掌、紫颂等）
+	 * 在同一次处理内原子完成；紫颂两遍逻辑中的 BFS 均实时读取世界状态，
+	 * 跨列结构不受切片影响。
+	 */
+	private void scanColumn(AbstractGolemEntity<?, ?> golem, Level level, ServerLevel sl,
+			BlockPos center, int range, int col, List<BlockPos> harvestedFlowers) {
+		int side = range * 2 + 1;
+		int dx = col % side - range;
+		int dz = col / side - range;
+		for (int dy = Y_MIN; dy <= Y_MAX; dy++) {
+			BlockPos pos = center.offset(dx, dy, dz);
+			if (!level.isLoaded(pos)) continue;
+			BlockState state = level.getBlockState(pos);
+			if (state.isAir()) continue;
+			Block block = state.getBlock();
+
+			if (block instanceof ChorusFlowerBlock && state.getValue(ChorusFlowerBlock.AGE) >= 5) {
+				List<ItemStack> drops = Block.getDrops(state, sl, pos, level.getBlockEntity(pos));
+				drops.add(new ItemStack(Items.CHORUS_FLOWER));
+				level.removeBlock(pos, false);
+				for (ItemStack drop : drops) {
+					Block.popResource(level, pos, drop);
+				}
+				harvestedFlowers.add(pos);
+			} else if (tryHarvestPineapple(level, pos, state, block)) {
+				// handled: FruitsDelight pineapple
+			} else if (tryHarvestMushroomColony(level, pos, state, block)) {
+				// handled: FarmersDelight mushroom colony
+			} else if (tryHarvestModCrop(level, pos, state)) {
+				// handled by L2Harvester HarvestableBlock API
+			} else if (isAgeBasedCrop(block) && isMature(state, block)) {
+				Block.dropResources(state, level, pos);
+				level.setBlock(pos, getReplantState(state, block), Block.UPDATE_CLIENTS);
+			} else if (isTowerCrop(block) && level.getBlockState(pos.below()).getBlock() == block) {
+				dropWithSmelt(level, sl, pos, state, golem, golem.getMainHandItem());
+				level.removeBlock(pos, false);
+			} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
+					&& (block instanceof GrowingPlantHeadBlock
+						|| block instanceof VineBlock
+						|| block instanceof GrowingPlantBodyBlock)) {
+				dropWithSmelt(level, sl, pos, state, golem, golem.getMainHandItem());
+				level.levelEvent(2001, pos, Block.getId(state));
+				level.removeBlock(pos, false);
+			} else if (block instanceof AmethystClusterBlock && block == Blocks.AMETHYST_CLUSTER) {
+				Direction facing = state.getValue(AmethystClusterBlock.FACING);
+				if (level.getBlockState(pos.relative(facing.getOpposite())).is(Blocks.BUDDING_AMETHYST)) {
+					level.destroyBlock(pos, true);
+				}
+			} else if (block instanceof StemGrownBlock) {
+				if (isAttachedToStem(level, pos)) {
+					level.destroyBlock(pos, true);
+				}
+			} else if ((block instanceof SculkSensorBlock || block instanceof SculkShriekerBlock)
+					&& golem.getMainHandItem().getItem() instanceof HoeItem) {
+				level.levelEvent(2001, pos, Block.getId(state));
+				dropWithSmelt(level, sl, pos, state, golem, golem.getMainHandItem());
+				level.removeBlock(pos, false);
+			} else if (block instanceof BushBlock && tryRightClickHarvest(level, pos, state, golem)) {
+				// handled by FakePlayer right-click simulation
+			} else if (golem.getMainHandItem().getItem() instanceof SwordItem
+					&& block == Blocks.COBWEB) {
+				ItemStack tool = golem.getMainHandItem();
+				dropWithSmelt(level, sl, pos, state, golem, tool);
+				level.levelEvent(2001, pos, Block.getId(state));
+				level.removeBlock(pos, false);
+			} else if (golem.getMainHandItem().getItem() instanceof ShearsItem
+					&& state.is(BlockTags.FLOWERS)) {
+				ItemStack tool = golem.getMainHandItem();
+				dropWithSmelt(level, sl, pos, state, golem, tool);
+				level.levelEvent(2001, pos, Block.getId(state));
+				level.removeBlock(pos, false);
+			}
+		}
+	}
+
+	/**
+	 * 掉落 + 自动冶炼（莱特兰扩充 smelt 附魔）：
+	 * 带自动冶炼附魔的工具收获时，掉落物按熔炉配方转换（原木→木炭、甘蔗→糖等）。
+	 */
+	private void dropWithSmelt(Level level, ServerLevel sl, BlockPos pos, BlockState state,
+			AbstractGolemEntity<?, ?> golem, ItemStack tool) {
+		List<ItemStack> drops = Block.getDrops(state, sl, pos, null, golem, tool);
+		L2Compat.tryAutoSmelt(sl, tool, drops);
+		for (ItemStack drop : drops) {
+			Block.popResource(level, pos, drop);
 		}
 	}
 
@@ -346,34 +360,6 @@ public class HarvestCropModifier extends GolemModifier {
 		}
 	}
 
-
-	// --- Tree detection: BFS over connected logs, checks horizontal count and nearby leaves ---
-
-	private static boolean isTreeLog(Level level, BlockPos pos, boolean dualWield) {
-		if (dualWield) return true; // dual-wielding axes bypasses all safety checks
-		Set<BlockPos> visited = new HashSet<>();
-		Queue<BlockPos> queue = new LinkedList<>();
-		queue.add(pos);
-		visited.add(pos);
-		int horizontalCount = 0;
-		boolean hasLeaves = false;
-		while (!queue.isEmpty()) {
-			BlockPos current = queue.poll();
-			for (Direction dir : Direction.values()) {
-				BlockPos neighbor = current.relative(dir);
-				if (visited.contains(neighbor)) continue;
-				if (!level.isLoaded(neighbor)) continue;
-				BlockState state = level.getBlockState(neighbor);
-				if (state.is(BlockTags.LEAVES)) hasLeaves = true;
-				if (state.is(BlockTags.LOGS) && visited.size() < 64) {
-					visited.add(neighbor);
-					queue.add(neighbor);
-					if (dir.getAxis() != Direction.Axis.Y) horizontalCount++;
-				}
-			}
-		}
-		return hasLeaves && horizontalCount <= 10;
-	}
 
 	// --- FakePlayer right-click harvest fallback (兼容支持右键收获的模组作物) ---
 

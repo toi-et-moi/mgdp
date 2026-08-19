@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "goety_revelation:spider_fang", "weight": 30, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "goety_revelation:soul_of_obsidian", "weight": 7},
+        { "type": "minecraft:item", "name": "goety:heart_of_the_night", "weight": 4},
+        { "type": "minecraft:item", "name": "goety:ominous_orb", "weight": 4},
+        { "type": "minecraft:item", "name": "goety:withered_manuscript", "weight": 4},
+        { "type": "minecraft:item", "name": "goety:shrouded_blueprint", "weight": 4},
+        { "type": "minecraft:item", "name": "goety_revelation:god_forging_scroll", "weight": 1},
+        { "type": "minecraft:item", "name": "goety_revelation:ascension_halo", "weight": 1},
+        { "type": "minecraft:item", "name": "goety_revelation:broken_halo", "weight": 1},
+        { "type": "minecraft:item", "name": "goety_revelation:quietus_star", "weight": 2},
+        { "type": "minecraft:item", "name": "goety_revelation:broken_ender_keeper", "weight": 1},
+        { "type": "minecraft:item", "name": "goety_revelation:bow_of_revelation", "weight": 1},
+        { "type": "minecraft:item", "name": "goety_revelation:frostbloom_staff", "weight": 1}
+      ]
+    }
+  ]
+}

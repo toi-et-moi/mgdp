@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "bonus_rolls": 0,
+      "entries": [
+        { "type": "minecraft:item", "name": "twilightforest:ironwood_ingot", "weight": 8, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:steeleaf_ingot", "weight": 8, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:experiment_115", "weight": 4, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 8.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:thorn_rose", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:triple_bow", "weight": 1},
+        { "type": "minecraft:item", "name": "twilightforest:seeker_bow", "weight": 1},
+        { "type": "minecraft:item", "name": "twilightforest:ice_bow", "weight": 2},
+        { "type": "minecraft:item", "name": "twilightforest:ender_bow", "weight": 2},
+        { "type": "minecraft:item", "name": "twilightforest:ore_magnet", "weight": 2},
+        { "type": "minecraft:item", "name": "twilightforest:fiery_ingot", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:knightmetal_ingot", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:carminite", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:glass_sword", "weight": 1},
+        { "type": "minecraft:item", "name": "twilightforest:naga_scale", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:hydra_chop", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 5.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:charm_of_life_1", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 } }] },
+        { "type": "minecraft:item", "name": "twilightforest:charm_of_keeping_1", "weight": 3, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 } }] }
+      ]
+    }
+  ]
+}

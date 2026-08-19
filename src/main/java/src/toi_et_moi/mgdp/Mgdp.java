@@ -126,34 +126,33 @@ public class Mgdp {
 						output.accept(MGDPItems.FOCUSED_DEFENSE.get());
 						output.accept(MGDPItems.EXECUTIONER.get());
 						output.accept(MGDPItems.INVISIBILITY.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks"))
+						if (MGDPItems.TRUE_INVISIBILITY != null)
 							output.accept(MGDPItems.TRUE_INVISIBILITY.get());
 							output.accept(MGDPItems.GUARDIAN_LASER.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("smc")) output.accept(MGDPItems.FROST_BURST.get());
+							if (MGDPItems.FROST_BURST != null) output.accept(MGDPItems.FROST_BURST.get());
 						output.accept(MGDPItems.ARMOR_PIERCE.get());
 						output.accept(MGDPItems.MAGIC_RESISTANCE.get());
 						output.accept(MGDPItems.VERSATILITY.get());
 						output.accept(MGDPItems.DAMAGE_CAP.get());
 						output.accept(MGDPItems.TOTEMIC.get());
 						output.accept(MGDPItems.ENCHANTED_TOTEMIC.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("l2hostility")) {
-							output.accept(MGDPItems.ADAPTIVE.get());
-							output.accept(MGDPItems.DISPELL.get());
-							output.accept(MGDPItems.PULLING.get());
-							output.accept(MGDPItems.REPELLING.get());
-							output.accept(MGDPItems.DEMENTOR.get());
-							output.accept(MGDPItems.DRAIN.get());
-							output.accept(MGDPItems.REPRINT.get());
+						if (MGDPItems.ADAPTIVE != null) output.accept(MGDPItems.ADAPTIVE.get());
+						if (MGDPItems.DISPELL != null) output.accept(MGDPItems.DISPELL.get());
+						if (MGDPItems.PULLING != null) output.accept(MGDPItems.PULLING.get());
+						if (MGDPItems.REPELLING != null) output.accept(MGDPItems.REPELLING.get());
+						if (MGDPItems.DEMENTOR != null) output.accept(MGDPItems.DEMENTOR.get());
+						if (MGDPItems.DRAIN != null) output.accept(MGDPItems.DRAIN.get());
+						if (MGDPItems.REPRINT != null) output.accept(MGDPItems.REPRINT.get());
 						output.accept(MGDPItems.SELF_DESTRUCT.get());
-						}
 						output.accept(MGDPItems.FIREBALL.get());
 						output.accept(MGDPItems.HERO.get());
 						output.accept(MGDPItems.FLARE.get());
 						output.accept(MGDPItems.UNBREAKABLE.get());
 						output.accept(MGDPItems.INFINITE_AMMO.get());
 						output.accept(MGDPItems.QUICK_STRIKE.get());
-						output.accept(MGDPItems.GRENADE.get());
-						output.accept(MGDPItems.UNDYING.get());
+						if (MGDPItems.GRENADE != null) output.accept(MGDPItems.GRENADE.get());
+						if (MGDPItems.KILLER_AURA != null) output.accept(MGDPItems.KILLER_AURA.get());
+						if (MGDPItems.UNDYING != null) output.accept(MGDPItems.UNDYING.get());
 						output.accept(MGDPItems.ANGLER.get());
 						output.accept(MGDPItems.ANVIL_SLAM.get());
 						output.accept(MGDPItems.TRIDENT_FESTIVAL.get());
@@ -164,13 +163,11 @@ public class Mgdp {
 						output.accept(MGDPItems.END_OF_BEGINNING.get());
 						output.accept(MGDPItems.DEATH_KNELL.get());
 						output.accept(MGDPItems.ECHO_TRIO.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) {
-							output.accept(MGDPItems.HARBINGER_BEAM.get());
-							output.accept(MGDPItems.HARBINGER_MISSILE.get());
-							output.accept(MGDPItems.IGNIS_ATTACK.get());
-							output.accept(MGDPItems.IGNIS_FIREBALL.get());
-							output.accept(MGDPItems.IGNIS_JUMP.get());
-						}
+						if (MGDPItems.HARBINGER_BEAM != null) output.accept(MGDPItems.HARBINGER_BEAM.get());
+						if (MGDPItems.HARBINGER_MISSILE != null) output.accept(MGDPItems.HARBINGER_MISSILE.get());
+						if (MGDPItems.IGNIS_ATTACK != null) output.accept(MGDPItems.IGNIS_ATTACK.get());
+						if (MGDPItems.IGNIS_FIREBALL != null) output.accept(MGDPItems.IGNIS_FIREBALL.get());
+						if (MGDPItems.IGNIS_JUMP != null) output.accept(MGDPItems.IGNIS_JUMP.get());
 						output.accept(MGDPItems.MIND_CONTROL.get());
 						output.accept(MGDPItems.CREATIVE_SLOT.get());
 						output.accept(MGDPItems.CREATIVE_SLOT_100.get());
@@ -183,67 +180,68 @@ public class Mgdp {
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
 						output.accept(MGDPItems.BLAST_FURNACE.get());
+						output.accept(MGDPItems.MINER.get());
+						output.accept(MGDPItems.SCAV_BOX.get());
+						output.accept(MGDPItems.LUMBERJACK.get());
 							output.accept(MGDPItems.MAGIC_IMMUNE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.IRONWOOD.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.STEELEAF.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.FIERY.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.KNIGHTMETAL.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.CARMINITE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.CRONE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.BOTTLING.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.NECROMANCER.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")) output.accept(MGDPItems.PHANTOM.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest"))
+							if (MGDPItems.IRONWOOD != null) output.accept(MGDPItems.IRONWOOD.get());
+							if (MGDPItems.STEELEAF != null) output.accept(MGDPItems.STEELEAF.get());
+							if (MGDPItems.FIERY != null) output.accept(MGDPItems.FIERY.get());
+							if (MGDPItems.KNIGHTMETAL != null) output.accept(MGDPItems.KNIGHTMETAL.get());
+							if (MGDPItems.CARMINITE != null) output.accept(MGDPItems.CARMINITE.get());
+							if (MGDPItems.CRONE != null) output.accept(MGDPItems.CRONE.get());
+							if (MGDPItems.BOTTLING != null) output.accept(MGDPItems.BOTTLING.get());
+							if (MGDPItems.NECROMANCER != null) output.accept(MGDPItems.NECROMANCER.get());
+							if (MGDPItems.PHANTOM != null) output.accept(MGDPItems.PHANTOM.get());
+						if (MGDPItems.LAST_LINE != null)
 							output.accept(MGDPItems.LAST_LINE.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("curseofpandora"))
+						if (MGDPItems.REALITY_SUPPRESSION != null)
 							output.accept(MGDPItems.REALITY_SUPPRESSION.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("golemmagicka"))
+						if (MGDPItems.MANA_OVERLOAD != null)
 							output.accept(MGDPItems.MANA_OVERLOAD.get());
-						if (net.minecraftforge.fml.ModList.get().isLoaded("goety_revelation")) {
-							output.accept(MGDPItems.THE_PYRE_LORD.get());
-					output.accept(MGDPItems.THE_CRUEL.get());
-							output.accept(MGDPItems.THE_WITCH_KING.get());
-					output.accept(MGDPItems.THE_GREAT_SHADOW.get());
-					output.accept(MGDPItems.THE_DEFILER.get());
-					output.accept(MGDPItems.THE_DARK.get());
-					output.accept(MGDPItems.THE_GLORIOUS.get());
-					output.accept(MGDPItems.THE_GENESIS.get());
-					output.accept(MGDPItems.THE_APOCALYPSE.get());
-						}
-							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.VOID_ECHO.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.COATING.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_FORCE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("create")) output.accept(MGDPItems.MECHANICAL_MOBILITY.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("goety")) output.accept(MGDPItems.DARK_TEMPLATE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("l2complements")) output.accept(MGDPItems.SCULKIUM_TEMPLATE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotesvillage")) output.accept(MGDPItems.MEROR_TEMPLATE.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotesvillage")) output.accept(MGDPItems.REFINE_MEROR_TEMPLATE.get());
+						if (MGDPItems.THE_PYRE_LORD != null) output.accept(MGDPItems.THE_PYRE_LORD.get());
+					if (MGDPItems.THE_CRUEL != null) output.accept(MGDPItems.THE_CRUEL.get());
+						if (MGDPItems.THE_WITCH_KING != null) output.accept(MGDPItems.THE_WITCH_KING.get());
+					if (MGDPItems.THE_GREAT_SHADOW != null) output.accept(MGDPItems.THE_GREAT_SHADOW.get());
+					if (MGDPItems.THE_DEFILER != null) output.accept(MGDPItems.THE_DEFILER.get());
+					if (MGDPItems.THE_DARK != null) output.accept(MGDPItems.THE_DARK.get());
+					if (MGDPItems.THE_GLORIOUS != null) output.accept(MGDPItems.THE_GLORIOUS.get());
+					if (MGDPItems.THE_GENESIS != null) output.accept(MGDPItems.THE_GENESIS.get());
+					if (MGDPItems.THE_APOCALYPSE != null) output.accept(MGDPItems.THE_APOCALYPSE.get());
+							if (MGDPItems.VOID_ECHO != null) output.accept(MGDPItems.VOID_ECHO.get());
+							if (MGDPItems.COATING != null) output.accept(MGDPItems.COATING.get());
+							if (MGDPItems.MECHANICAL_ENGINE != null) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
+							if (MGDPItems.MECHANICAL_FORCE != null) output.accept(MGDPItems.MECHANICAL_FORCE.get());
+							if (MGDPItems.MECHANICAL_MOBILITY != null) output.accept(MGDPItems.MECHANICAL_MOBILITY.get());
+							if (MGDPItems.CATACLYSMFARMER_TEMPLATE != null) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
+							if (MGDPItems.DARK_TEMPLATE != null) output.accept(MGDPItems.DARK_TEMPLATE.get());
+							if (MGDPItems.PYRIUM_TEMPLATE != null) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
+							if (MGDPItems.SCULKIUM_TEMPLATE != null) output.accept(MGDPItems.SCULKIUM_TEMPLATE.get());
+							if (MGDPItems.MEROR_TEMPLATE != null) output.accept(MGDPItems.MEROR_TEMPLATE.get());
+							if (MGDPItems.REFINE_MEROR_TEMPLATE != null) output.accept(MGDPItems.REFINE_MEROR_TEMPLATE.get());
 							output.accept(MGDPItems.LORD.get());
 							output.accept(MGDPItems.SNOW_TRAIL.get());
 							output.accept(MGDPItems.SWAP.get());
 						output.accept(MGDPItems.BACKFLIP.get());
 						output.accept(MGDPItems.WINDMILL.get());
 							output.accept(MGDPItems.WITCH.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) output.accept(MGDPItems.PENGUIN.get());
-						output.accept(MGDPItems.REMNANT_GOLEM.get());
-						output.accept(MGDPItems.ILLAGER_GOLEM.get());
-						output.accept(MGDPItems.PIGLIN_GOLEM.get());
-						output.accept(MGDPItems.SCULK_GOLEM.get());
-							if (net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")) {
+							if (MGDPItems.PENGUIN != null) output.accept(MGDPItems.PENGUIN.get());
+						if (MGDPItems.REMNANT_GOLEM != null) output.accept(MGDPItems.REMNANT_GOLEM.get());
+						if (MGDPItems.ILLAGER_GOLEM != null) output.accept(MGDPItems.ILLAGER_GOLEM.get());
+						if (MGDPItems.PIGLIN_GOLEM != null) output.accept(MGDPItems.PIGLIN_GOLEM.get());
+						if (MGDPItems.SCULK_GOLEM != null) output.accept(MGDPItems.SCULK_GOLEM.get());
+							if (MGDPItems.TWILIGHT_GOLEM != null) {
 								output.accept(MGDPItems.TWILIGHT_GOLEM.get());
 							}
 
-							if (net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")) {
+							if (MGDPItems.HARBINGER_GOLEM != null) {
 								output.accept(MGDPItems.HARBINGER_GOLEM.get());
 								output.accept(MGDPItems.MONSTROSITY_GOLEM.get());
 								output.accept(MGDPItems.ENDER_GUARDIAN_GOLEM.get());
 								output.accept(MGDPItems.IGNIS_GOLEM.get());
 								output.accept(MGDPItems.SCYLLA_GOLEM.get());
 							}
-							if (net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")) {
+							if (MGDPItems.CARVED_GOLEM != null) {
 								output.accept(MGDPItems.CARVED_GOLEM.get());
 								output.accept(MGDPItems.ENHANCED_CARVED_GOLEM.get());
 								output.accept(MGDPItems.QOAIKU_GOLEM.get());
@@ -413,6 +411,54 @@ public class Mgdp {
                 font.drawInBatch(trans, tw, tY, 0xFFFFAA, false, pose.last().pose(), buf,
                         net.minecraft.client.gui.Font.DisplayMode.NORMAL, bgColor, 0xF000F0);
             }
+            pose.popPose();
+        }
+
+        /**
+         * 拾荒箱头顶状态公告板渲染（与歌词同款）：服务器经 ScavStatusPacket 推送状态，
+         * 这里画在傀儡头顶。不占用 customName，与玩家自定义名称互不干扰。
+         */
+        @SubscribeEvent
+        public static void onRenderScavCountdown(net.minecraftforge.client.event.RenderLivingEvent.Post<?, ?> event) {
+            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
+            if (!golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.SCAV_BOX.get())) return;
+            long[] st = src.toi_et_moi.mgdp.network.ScavStatusPacket.CLIENT_STATUS.get(event.getEntity().getId());
+            if (st == null) return;
+            var level = net.minecraft.client.Minecraft.getInstance().level;
+            if (level == null) return;
+            if (level.getGameTime() - st[2] > 60) {
+                src.toi_et_moi.mgdp.network.ScavStatusPacket.CLIENT_STATUS.remove(event.getEntity().getId());
+                return;
+            }
+            String text;
+            byte state = (byte) st[0];
+            if (state == src.toi_et_moi.mgdp.network.ScavStatusPacket.STATE_COUNTING) {
+                long sec = Math.max(0, st[1]);
+                text = net.minecraft.network.chat.Component
+                        .translatable("mgdp.scav.countdown", String.format("%d:%02d", sec / 60, sec % 60))
+                        .getString();
+            } else if (state == src.toi_et_moi.mgdp.network.ScavStatusPacket.STATE_COMBAT) {
+                text = net.minecraft.network.chat.Component
+                        .translatable("mgdp.scav.waiting", golem.getDisplayName()).getString();
+            } else if (state == src.toi_et_moi.mgdp.network.ScavStatusPacket.STATE_NO_MODE) {
+                text = net.minecraft.network.chat.Component
+                        .translatable("mgdp.scav.mode", golem.getDisplayName()).getString();
+            } else {
+                return;
+            }
+            if (text.isEmpty()) return;
+            var pose = event.getPoseStack();
+            var camera = net.minecraft.client.Minecraft.getInstance().getBlockEntityRenderDispatcher().camera;
+            var font = net.minecraft.client.Minecraft.getInstance().font;
+            int bgColor = (int)(net.minecraft.client.Minecraft.getInstance().options.getBackgroundOpacity(0.25F) * 255) << 24;
+            var buf = event.getMultiBufferSource();
+            pose.pushPose();
+            pose.translate(0, event.getEntity().getBbHeight() + 0.5, 0);
+            pose.mulPose(camera.rotation());
+            pose.scale(-0.025F, -0.025F, 0.025F);
+            float w = (float) (-font.width(text) / 2);
+            font.drawInBatch(text, w, 0, 0xFFFFFF, false, pose.last().pose(), buf,
+                    net.minecraft.client.gui.Font.DisplayMode.NORMAL, bgColor, 0xF000F0);
             pose.popPose();
         }
         

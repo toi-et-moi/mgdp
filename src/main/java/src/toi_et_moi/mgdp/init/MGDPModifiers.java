@@ -5,6 +5,9 @@ import dev.xkmc.modulargolems.content.modifier.base.PotionDefenseModifier;
 import net.minecraft.world.effect.MobEffects;
 import src.toi_et_moi.mgdp.modifier.movement.FlightModifier;
 import src.toi_et_moi.mgdp.modifier.farming.HarvestCropModifier;
+import src.toi_et_moi.mgdp.modifier.farming.MinerModifier;
+import src.toi_et_moi.mgdp.modifier.farming.ScavBoxModifier;
+import src.toi_et_moi.mgdp.modifier.farming.LumberjackModifier;
 import src.toi_et_moi.mgdp.modifier.special.PotionAuraModifier;
 import src.toi_et_moi.mgdp.modifier.buff.RebirthModifier;
 import src.toi_et_moi.mgdp.modifier.buff.EnchantedNetheriteGoldModifier;
@@ -47,6 +50,7 @@ import src.toi_et_moi.mgdp.modifier.farming.BlastFurnaceModifier;
 import src.toi_et_moi.mgdp.modifier.farming.AnglerModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.UndyingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
+import src.toi_et_moi.mgdp.modifier.hostility.KillerAuraModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.PullingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.RepellingModifier;
 import src.toi_et_moi.mgdp.modifier.defense.UnbreakableModifier;
@@ -153,8 +157,12 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<FlareModifier> FLARE;
 	public static final RegistryEntry<BlastFurnaceModifier> BLAST_FURNACE;
 	public static final RegistryEntry<AnglerModifier> ANGLER;
+	public static final RegistryEntry<MinerModifier> MINER;
+	public static final RegistryEntry<ScavBoxModifier> SCAV_BOX;
+	public static final RegistryEntry<LumberjackModifier> LUMBERJACK;
 	public static final RegistryEntry<UndyingModifier> UNDYING;
 	public static final RegistryEntry<GrenadeModifier> GRENADE;
+	public static final RegistryEntry<KillerAuraModifier> KILLER_AURA;
 	public static final RegistryEntry<PullingModifier> PULLING;
 	public static final RegistryEntry<RepellingModifier> REPELLING;
 	public static final RegistryEntry<UnbreakableModifier> UNBREAKABLE;
@@ -391,6 +399,18 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 				"Angler",
 				"Golem automatically fishes when holding a fishing rod near water.");
 
+			MINER = reg("mine", MinerModifier::new,
+				"Mining",
+				"Holding a pickaxe, the golem automatically mines ores within 6/12/18 blocks. Requires Pickup. Level 3 unlocks chain mining.");
+
+			SCAV_BOX = reg("scav_box", ScavBoxModifier::new,
+				"Scav Box",
+				"After a cooldown, the golem scavenges structure chest loot and finds special items from installed linked mods.");
+
+			LUMBERJACK = reg("lumberjack", LumberjackModifier::new,
+				"Lumberjack",
+				"Holding an axe, the golem automatically fells trees within 4/8/12 blocks (clears leaves from level 2; Auto Smelt applies).");
+
 			UNDYING = reg("hostility_undying", UndyingModifier::new,
 				"Hostility Upgrade: Undying",
 				"When the golem would die, it instead revives with full health. Cannot bypass creative/kill damage.");
@@ -398,6 +418,10 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 			GRENADE = reg("hostility_grenade", GrenadeModifier::new,
 				"Hostility Upgrade: Grenade",
 				"Shoots fast homing explosive grenades at targets within 40 blocks.");
+
+			KILLER_AURA = reg("hostility_killer_aura", KillerAuraModifier::new,
+				"Hostility Upgrade: Killer Aura",
+				"+3 range and +3 sweep attack per level. Ranged hits splash the same damage to other enemies within 6/9/12 blocks.");
 
 			PULLING = reg("hostility_pulling", PullingModifier::new,
 				"Hostility Upgrade: Pulling",

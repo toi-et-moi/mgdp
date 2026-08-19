@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "BCD",
+    "EFG"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:experience_bottle"
+    },
+    "B": {
+      "item": "minecraft:enchanted_book"
+    },
+    "C": {
+      "item": "modulargolems:pickup"
+    },
+    "D": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "minecraft:emerald_block"
+    },
+    "F": {
+      "item": "minecraft:compass"
+    },
+    "G": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "result": {
+    "item": "mgdp:scav_box"
+  }
+}

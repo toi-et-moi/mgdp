@@ -35,6 +35,10 @@
     {
       "id": "mgdp:hostility_repelling",
       "required": false
+    },
+    {
+      "id": "mgdp:hostility_killer_aura",
+      "required": false
     }
   ]
 }
