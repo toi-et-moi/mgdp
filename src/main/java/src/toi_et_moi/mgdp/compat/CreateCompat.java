@@ -9,6 +9,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.InteractionHand;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.Field;
@@ -83,6 +84,7 @@ public class CreateCompat {
 				notify.setAccessible(true);
 				notify.invoke(be, capacity);
 			}
+			golem.swing(InteractionHand.MAIN_HAND);
 		} catch (Exception ignored) {
 		}
 	}

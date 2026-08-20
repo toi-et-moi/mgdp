@@ -12,8 +12,8 @@
         { "type": "minecraft:item", "name": "minecraft:redstone", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 10.0, "max": 32.0 } }] },
         { "type": "minecraft:item", "name": "minecraft:amethyst_shard", "weight": 2, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 10.0, "max": 32.0 } }] },
         { "type": "minecraft:item", "name": "minecraft:raw_gold", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3.0, "max": 12.0 } }] },
-        { "type": "minecraft:item", "name": "minecraft:emerald", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 6.0 } }] },
-        { "type": "minecraft:item", "name": "minecraft:diamond", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 6.0 } }] }
+        { "type": "minecraft:item", "name": "minecraft:emerald", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] },
+        { "type": "minecraft:item", "name": "minecraft:diamond", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 } }] }
       ]
     }
   ]

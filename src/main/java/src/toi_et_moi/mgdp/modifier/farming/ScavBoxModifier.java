@@ -209,7 +209,8 @@ public class ScavBoxModifier extends GolemModifier {
 		}
 		if (miner) {
 			rollTableTimes(haul, sl, MINE_TABLE, origin, mult);
-			haul.addAll(tagRolls(sl, 2 * mult, 1, 3, Tags.Items.ORES));
+			// 标签抽取：矿石 2~6 个/次（与表内绿宝石/钻石同一数量级），模组矿石自动进池
+			haul.addAll(tagRolls(sl, 2 * mult, 2, 6, Tags.Items.ORES));
 		}
 		if (lumberjack) {
 			rollTableTimes(haul, sl, LUMBER_TABLE, origin, mult);
