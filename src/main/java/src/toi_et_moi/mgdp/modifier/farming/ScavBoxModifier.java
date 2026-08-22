@@ -212,18 +212,17 @@ public class ScavBoxModifier extends GolemModifier {
 			// 标签抽取：矿石 2~6 个/次（与表内绿宝石/钻石同一数量级），模组矿石自动进池
 			haul.addAll(tagRolls(sl, 2 * mult, 2, 6, Tags.Items.ORES));
 		}
-		if (lumberjack) {
-			rollTableTimes(haul, sl, LUMBER_TABLE, origin, mult);
-			// 同种原木必带同种树苗（成对抽出）；无对应关系的原木/菌柄天然不配对，无需额外过滤
-			pairLogsWithSaplings(haul, sl);
-			// 标签抽取：原木 12~64（与 lumber.json 表一致）；树苗由表 + 原木配对兜底
-			haul.addAll(tagRolls(sl, 2 * mult, 12, 64, ItemTags.LOGS));
-		}
+        if (lumberjack) {
+            rollTableTimes(haul, sl, LUMBER_TABLE, origin, mult);   // ① 表滚原木进池
+            haul.addAll(logRolls(sl, 2 * mult));                     // ② 模组原木（暮色等）进池
+            pairLogsWithSaplings(haul, sl);                          // ③ 全部原木进池后再统一配对
+        }
 		if (brush) {
 			rollTableTimes(haul, sl, ARCH_TABLE, origin, mult);
-			// 陶片/纹饰锻造模板/音乐唱片都有统一标签，模组新增自动进池
+			// 陶片/纹饰锻造模板：统一标签抽取（可重复）
 			haul.addAll(tagRolls(sl, 2 * mult, 1, 3,
-					ItemTags.DECORATED_POT_SHERDS, ItemTags.TRIM_TEMPLATES, ItemTags.MUSIC_DISCS));
+					ItemTags.DECORATED_POT_SHERDS, ItemTags.TRIM_TEMPLATES));
+			haul.addAll(discRolls(sl, 2 * mult));
 		}
 		if (swim || fly) {
 			rollTableTimes(haul, sl, SWIM_TABLE, origin, mult);
@@ -253,23 +252,58 @@ public class ScavBoxModifier extends GolemModifier {
 	/**
 	 * 原木 -> 同种树苗成对：滚到的原木每种补 2~6 棵同种树苗。
 	 */
-	private void pairLogsWithSaplings(List<ItemStack> haul, ServerLevel sl) {
-		List<ItemStack> extras = new ArrayList<>();
-		for (ItemStack stack : haul) {
-			if (stack.isEmpty()) continue;
-			var key = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(stack.getItem());
-			if (key == null) continue;
-			String sapling = LOG_SAPLING_PAIRS.get(key.toString());
-			if (sapling != null) {
-				Item item = net.minecraftforge.registries.ForgeRegistries.ITEMS
-						.getValue(net.minecraft.resources.ResourceLocation.tryParse(sapling));
-				if (item != null) {
-					extras.add(new ItemStack(item, 2 + sl.random.nextInt(5)));
-				}
-			}
-		}
-		haul.addAll(extras);
-	}
+    private void pairLogsWithSaplings(List<ItemStack> haul, ServerLevel sl) {
+        List<ItemStack> extras = new ArrayList<>();
+        for (ItemStack stack : haul) {
+            if (stack.isEmpty()) continue;
+            var key = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(stack.getItem());
+            if (key == null) continue;
+            Item sapling = findSaplingFor(key);
+            if (sapling != null) {
+                extras.add(new ItemStack(sapling, 2 + sl.random.nextInt(5)));
+            }
+        }
+        haul.addAll(extras);
+    }
+
+    private Item findSaplingFor(ResourceLocation logKey) {
+        String direct = LOG_SAPLING_PAIRS.get(logKey.toString());
+        if (direct != null) {
+            Item item = net.minecraftforge.registries.ForgeRegistries.ITEMS
+                    .getValue(net.minecraft.resources.ResourceLocation.tryParse(direct));
+            if (item != null) return item;
+        }
+        String path = logKey.getPath();
+        String tree = path.replaceFirst("_log$", "").replaceFirst("_stem$", "");
+        if (tree.isEmpty() || tree.equals(path)) return null;
+        String ns = logKey.getNamespace();
+        // 从原木名推导树苗名；注册存在即接受（原木名是可靠的锚点，误配概率极低）
+        // 兼容命名差异：xxx_sapling / xxx_wood_sapling（如 dark_log -> darkwood_sapling）/ xxx_propagule
+        for (String suffix : new String[]{"sapling", "wood_sapling", "propagule"}) {
+            Item cand = net.minecraftforge.registries.ForgeRegistries.ITEMS
+                    .getValue(new net.minecraft.resources.ResourceLocation(ns, tree + "_" + suffix));
+            if (cand != null) return cand;
+        }
+        return null;
+    }
+
+    private List<ItemStack> logRolls(ServerLevel sl, int count) {
+        List<Item> pool = new ArrayList<>();
+        for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(ItemTags.LOGS)) {
+            Item item = holder.value();
+            ResourceLocation key = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item);
+            if (key == null) continue;
+            String path = key.getPath();
+            if (path.startsWith("stripped_")) continue;
+            if (!path.endsWith("_log") && !path.endsWith("_stem")) continue;
+            pool.add(item);
+        }
+        List<ItemStack> out = new ArrayList<>();
+        for (int i = 0; i < count && !pool.isEmpty(); i++) {
+            out.add(new ItemStack(pool.get(sl.random.nextInt(pool.size())), 12 + sl.random.nextInt(53)));
+        }
+        return out;
+    }
 
 	/**
 	 * 同一张表滚 times 次（飞行翻倍用）。
@@ -318,6 +352,23 @@ public class ScavBoxModifier extends GolemModifier {
 		}
 		return out;
 	}
+
+	/**
+	 * 音乐唱片单独抽取：同一次拾荒内去重（唱片池小、抽取次数多，不去重重复率极高）。
+	 * 每张唱片只出 1 张，抽 count 次、每次一张不同的唱片。
+	 */
+	private List<ItemStack> discRolls(ServerLevel sl, int count) {
+		List<Item> pool = new ArrayList<>();
+		for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(ItemTags.MUSIC_DISCS)) {
+			pool.add(holder.value());
+		}
+		List<ItemStack> out = new ArrayList<>();
+		for (int i = 0; i < count && !pool.isEmpty(); i++) {
+			out.add(new ItemStack(pool.remove(sl.random.nextInt(pool.size()))));
+		}
+		return out;
+	}
+
 
 	/**
 	 * 查找傀儡周围 1 格（3x3x3）内的第一个容器。
