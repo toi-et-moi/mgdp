@@ -14,6 +14,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
+import src.toi_et_moi.mgdp.compat.goety_revelation.ProfaneStealHandler;
+
 public class WitchKingModifier extends GolemModifier {
 
     private static final int RANGE = 35;
@@ -104,11 +106,10 @@ public class WitchKingModifier extends GolemModifier {
 			target.addEffect(new MobEffectInstance(eff, DURATION, AMPLIFIER));
 		}
 
-		// Steal all positive effects from target
-		for (var effect : new java.util.ArrayList<>(target.getActiveEffects())) {
-			if (effect.getEffect().isBeneficial()) {
-				target.removeEffect(effect.getEffect());
-				golem.addEffect(new MobEffectInstance(effect.getEffect(), effect.getDuration(), effect.getAmplifier()));
+		// 窃取被天启饥荒（The Profane）删除的正面效果（需同时拥有天启饥荒）
+		if (ProfaneStealHandler.hasProfane(golem)) {
+			for (MobEffectInstance stolen : ProfaneStealHandler.drain(target)) {
+				golem.addEffect(stolen);
 			}
 		}
 	}

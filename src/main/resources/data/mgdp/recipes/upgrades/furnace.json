@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "CDC",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "mgdp:blast_furnace"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "minecraft:furnace"
+    },
+    "D": {
+      "item": "modulargolems:empty_upgrade"
+    }
+  },
+  "result": {
+    "item": "mgdp:furnace"
+  }
+}

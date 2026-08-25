@@ -47,6 +47,7 @@ import src.toi_et_moi.mgdp.modifier.buff.TotemicModifier;
 import src.toi_et_moi.mgdp.modifier.farming.HeroModifier;
 import src.toi_et_moi.mgdp.modifier.farming.FlareModifier;
 import src.toi_et_moi.mgdp.modifier.farming.BlastFurnaceModifier;
+import src.toi_et_moi.mgdp.modifier.farming.FurnaceModifier;
 import src.toi_et_moi.mgdp.modifier.farming.AnglerModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.UndyingModifier;
 import src.toi_et_moi.mgdp.modifier.hostility.GrenadeModifier;
@@ -156,6 +157,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<HeroModifier> HERO;
 	public static final RegistryEntry<FlareModifier> FLARE;
 	public static final RegistryEntry<BlastFurnaceModifier> BLAST_FURNACE;
+	public static final RegistryEntry<FurnaceModifier> FURNACE;
 	public static final RegistryEntry<AnglerModifier> ANGLER;
 	public static final RegistryEntry<MinerModifier> MINER;
 	public static final RegistryEntry<ScavBoxModifier> SCAV_BOX;
@@ -393,7 +395,11 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 
 			BLAST_FURNACE = reg("blast_furnace", BlastFurnaceModifier::new,
 				"Blast Furnace",
-				"Golem smelts ores in hand like a blast furnace.");
+				"Golem smelts ores in hand like a blast furnace, dropping experience.");
+
+			FURNACE = reg("furnace", FurnaceModifier::new,
+				"Furnace",
+				"Upgraded blast furnace: smelts items in hand and nearby containers using all furnace recipes (smelting, blasting, smoking), dropping experience.");
 
 			ANGLER = reg("angler", AnglerModifier::new,
 				"Angler",

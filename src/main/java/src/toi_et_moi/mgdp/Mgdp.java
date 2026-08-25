@@ -180,6 +180,7 @@ public class Mgdp {
 						output.accept(MGDPItems.PROSPERITY.get());
 						output.accept(MGDPItems.LIQUID_CLEAR.get());
 						output.accept(MGDPItems.BLAST_FURNACE.get());
+						output.accept(MGDPItems.FURNACE.get());
 						output.accept(MGDPItems.MINER.get());
 						output.accept(MGDPItems.SCAV_BOX.get());
 						output.accept(MGDPItems.LUMBERJACK.get());
@@ -201,27 +202,27 @@ public class Mgdp {
 							output.accept(MGDPItems.MANA_OVERLOAD.get());
 						if (MGDPItems.THE_PYRE_LORD != null) output.accept(MGDPItems.THE_PYRE_LORD.get());
 					if (MGDPItems.THE_CRUEL != null) output.accept(MGDPItems.THE_CRUEL.get());
-						if (MGDPItems.THE_WITCH_KING != null) output.accept(MGDPItems.THE_WITCH_KING.get());
+                    if (MGDPItems.THE_WITCH_KING != null) output.accept(MGDPItems.THE_WITCH_KING.get());
 					if (MGDPItems.THE_GREAT_SHADOW != null) output.accept(MGDPItems.THE_GREAT_SHADOW.get());
 					if (MGDPItems.THE_DEFILER != null) output.accept(MGDPItems.THE_DEFILER.get());
 					if (MGDPItems.THE_DARK != null) output.accept(MGDPItems.THE_DARK.get());
 					if (MGDPItems.THE_GLORIOUS != null) output.accept(MGDPItems.THE_GLORIOUS.get());
 					if (MGDPItems.THE_GENESIS != null) output.accept(MGDPItems.THE_GENESIS.get());
 					if (MGDPItems.THE_APOCALYPSE != null) output.accept(MGDPItems.THE_APOCALYPSE.get());
-							if (MGDPItems.VOID_ECHO != null) output.accept(MGDPItems.VOID_ECHO.get());
-							if (MGDPItems.COATING != null) output.accept(MGDPItems.COATING.get());
-							if (MGDPItems.MECHANICAL_ENGINE != null) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
-							if (MGDPItems.MECHANICAL_FORCE != null) output.accept(MGDPItems.MECHANICAL_FORCE.get());
-							if (MGDPItems.MECHANICAL_MOBILITY != null) output.accept(MGDPItems.MECHANICAL_MOBILITY.get());
-							if (MGDPItems.CATACLYSMFARMER_TEMPLATE != null) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
-							if (MGDPItems.DARK_TEMPLATE != null) output.accept(MGDPItems.DARK_TEMPLATE.get());
-							if (MGDPItems.PYRIUM_TEMPLATE != null) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
-							if (MGDPItems.SCULKIUM_TEMPLATE != null) output.accept(MGDPItems.SCULKIUM_TEMPLATE.get());
-							if (MGDPItems.MEROR_TEMPLATE != null) output.accept(MGDPItems.MEROR_TEMPLATE.get());
-							if (MGDPItems.REFINE_MEROR_TEMPLATE != null) output.accept(MGDPItems.REFINE_MEROR_TEMPLATE.get());
-							output.accept(MGDPItems.LORD.get());
-							output.accept(MGDPItems.SNOW_TRAIL.get());
-							output.accept(MGDPItems.SWAP.get());
+                    if (MGDPItems.VOID_ECHO != null) output.accept(MGDPItems.VOID_ECHO.get());
+                    if (MGDPItems.COATING != null) output.accept(MGDPItems.COATING.get());
+                    if (MGDPItems.MECHANICAL_ENGINE != null) output.accept(MGDPItems.MECHANICAL_ENGINE.get());
+                    if (MGDPItems.MECHANICAL_FORCE != null) output.accept(MGDPItems.MECHANICAL_FORCE.get());
+                    if (MGDPItems.MECHANICAL_MOBILITY != null) output.accept(MGDPItems.MECHANICAL_MOBILITY.get());
+                    if (MGDPItems.CATACLYSMFARMER_TEMPLATE != null) output.accept(MGDPItems.CATACLYSMFARMER_TEMPLATE.get());
+                    if (MGDPItems.DARK_TEMPLATE != null) output.accept(MGDPItems.DARK_TEMPLATE.get());
+                    if (MGDPItems.PYRIUM_TEMPLATE != null) output.accept(MGDPItems.PYRIUM_TEMPLATE.get());
+                    if (MGDPItems.SCULKIUM_TEMPLATE != null) output.accept(MGDPItems.SCULKIUM_TEMPLATE.get());
+                    if (MGDPItems.MEROR_TEMPLATE != null) output.accept(MGDPItems.MEROR_TEMPLATE.get());
+                    if (MGDPItems.REFINE_MEROR_TEMPLATE != null) output.accept(MGDPItems.REFINE_MEROR_TEMPLATE.get());
+                    output.accept(MGDPItems.LORD.get());
+                    output.accept(MGDPItems.SNOW_TRAIL.get());
+                    output.accept(MGDPItems.SWAP.get());
 						output.accept(MGDPItems.BACKFLIP.get());
 						output.accept(MGDPItems.WINDMILL.get());
 							output.accept(MGDPItems.WITCH.get());
@@ -230,7 +231,7 @@ public class Mgdp {
 						if (MGDPItems.ILLAGER_GOLEM != null) output.accept(MGDPItems.ILLAGER_GOLEM.get());
 						if (MGDPItems.PIGLIN_GOLEM != null) output.accept(MGDPItems.PIGLIN_GOLEM.get());
 						if (MGDPItems.SCULK_GOLEM != null) output.accept(MGDPItems.SCULK_GOLEM.get());
-							if (MGDPItems.TWILIGHT_GOLEM != null) {
+                        if (MGDPItems.TWILIGHT_GOLEM != null) {
 								output.accept(MGDPItems.TWILIGHT_GOLEM.get());
 							}
 

@@ -125,6 +125,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> MECHANICAL_FORCE;
 	public static final RegistryObject<SimpleUpgradeItem> MECHANICAL_MOBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> BLAST_FURNACE;
+	public static final RegistryObject<SimpleUpgradeItem> FURNACE;
 	public static final RegistryObject<SimpleUpgradeItem> MINER;
 	public static final RegistryObject<SimpleUpgradeItem> SCAV_BOX;
 	public static final RegistryObject<SimpleUpgradeItem> LUMBERJACK;
@@ -449,6 +450,9 @@ public class MGDPItems {
 
 		BLAST_FURNACE = Mgdp.ITEMS.register("blast_furnace",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.BLAST_FURNACE.get(), 1, false));
+
+		FURNACE = Mgdp.ITEMS.register("furnace",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.FURNACE.get(), 1, false));
 
 		MINER = Mgdp.ITEMS.register("mine",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MINER.get(), 1, false));
@@ -842,6 +846,7 @@ public class MGDPItems {
 				event.accept(FLARE.get());
 				event.accept(UNBREAKABLE.get());
 				event.accept(BLAST_FURNACE.get());
+				event.accept(FURNACE.get());
 				event.accept(MINER.get());
 				event.accept(SCAV_BOX.get());
 				event.accept(LUMBERJACK.get());

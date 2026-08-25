@@ -20,6 +20,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
+import src.toi_et_moi.mgdp.compat.goety_revelation.ProfaneStealHandler;
+import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -175,6 +177,13 @@ public class GolemFeedHandler {
         if (food == null) return 0;
 
         int healAmount = (int) (food.getNutrition() + food.getNutrition() * food.getSaturationModifier() * 2.0f);
+        // 天启饥荒（The Profane）：进食恢复翻倍；配合万众归一（The Genesis）再翻倍（共4倍）
+        if (ProfaneStealHandler.hasProfane(golem)) {
+            healAmount *= 2;
+            if (golem.getModifiers().containsKey(MGDPModifiers.THE_GENESIS.get())) {
+                healAmount *= 2;
+            }
+        }
         golem.heal(Math.max(1, healAmount));
 
         if (food.getEffects() != null) {
