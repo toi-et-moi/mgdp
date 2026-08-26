@@ -33,7 +33,7 @@ public class AtrociousArrowRainHandler {
 	private static final ResourceLocation GENESIS_MG = new ResourceLocation("modulargolems", "the_genesis");
 	private static final ResourceLocation GENESIS_MDP = new ResourceLocation("mgdp", "the_genesis");
 
-	private static final int INTERVAL = 100;
+	private static final int INTERVAL = 80;
 
 	@SubscribeEvent
 	public static void onGolemTick(LivingEvent.LivingTickEvent event) {

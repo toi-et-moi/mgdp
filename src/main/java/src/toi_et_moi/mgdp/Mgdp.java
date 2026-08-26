@@ -44,6 +44,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import src.toi_et_moi.mgdp.init.BlackMourningItem;
 import src.toi_et_moi.mgdp.entity.MourningBeamEntity;
+import src.toi_et_moi.mgdp.entity.GuardianLaserTargetEntity;
 
 @Mod(Mgdp.MODID)
 public class Mgdp {
@@ -78,6 +79,10 @@ public class Mgdp {
 		public static final RegistryObject<EntityType<MourningBeamEntity>> MOURNING_BEAM = ENTITIES.register("mourning_beam",
 				() -> EntityType.Builder.<MourningBeamEntity>of(MourningBeamEntity::new, MobCategory.MISC)
 						.fireImmune().noSave().noSummon().sized(0, 0).build("mourning_beam"));
+
+	public static final RegistryObject<EntityType<GuardianLaserTargetEntity>> GUARDIAN_LASER_TARGET = ENTITIES.register("guardian_laser_target",
+			() -> EntityType.Builder.<GuardianLaserTargetEntity>of(GuardianLaserTargetEntity::new, MobCategory.MISC)
+					.fireImmune().noSave().noSummon().sized(0, 0).build("guardian_laser_target"));
 
 	public static final RegistryObject<CreativeModeTab> MGDP_TAB = CREATIVE_MODE_TABS.register("mgdp_tab",
 			() -> CreativeModeTab.builder()
@@ -360,6 +365,9 @@ public class Mgdp {
 			net.minecraft.client.renderer.entity.EntityRenderers.register(
 					Mgdp.MOURNING_BEAM.get(),
 					src.toi_et_moi.mgdp.entity.MourningBeamRenderer::new);
+			net.minecraft.client.renderer.entity.EntityRenderers.register(
+					Mgdp.GUARDIAN_LASER_TARGET.get(),
+					src.toi_et_moi.mgdp.entity.GuardianLaserTargetRenderer::new);
 		});
 		}
 
