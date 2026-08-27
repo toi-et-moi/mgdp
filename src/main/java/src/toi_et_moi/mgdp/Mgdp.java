@@ -134,6 +134,7 @@ public class Mgdp {
 						if (MGDPItems.TRUE_INVISIBILITY != null)
 							output.accept(MGDPItems.TRUE_INVISIBILITY.get());
 							output.accept(MGDPItems.GUARDIAN_LASER.get());
+							output.accept(MGDPItems.INDOMITABLE.get());
 							if (MGDPItems.FROST_BURST != null) output.accept(MGDPItems.FROST_BURST.get());
 						output.accept(MGDPItems.ARMOR_PIERCE.get());
 						output.accept(MGDPItems.MAGIC_RESISTANCE.get());

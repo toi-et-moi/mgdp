@@ -42,6 +42,8 @@
     "GolemMaterialMixin",
     "FrostInfinityMixin",
     "GenericBowItemMixin",
+    "L2BowQuickStrikeMixin",
+    "IndomitableArrowMixin",
     "EnderTeleportModifierMixin",
     "RangedGoalFlightMixin"
   ],

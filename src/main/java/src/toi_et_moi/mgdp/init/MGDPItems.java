@@ -49,6 +49,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> EXECUTIONER;
 	public static final RegistryObject<SimpleUpgradeItem> INVISIBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> GUARDIAN_LASER;
+	public static final RegistryObject<SimpleUpgradeItem> INDOMITABLE;
 	public static final RegistryObject<SimpleUpgradeItem> FROST_BURST;
 	public static final RegistryObject<SimpleUpgradeItem> TRUE_INVISIBILITY;
 	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
@@ -698,6 +699,9 @@ public class MGDPItems {
 		GUARDIAN_LASER = Mgdp.ITEMS.register("guardian_laser",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.UNCOMMON), () -> MGDPModifiers.GUARDIAN_LASER.get(), 1, false));
 
+		INDOMITABLE = Mgdp.ITEMS.register("indomitable",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(Rarity.RARE), () -> MGDPModifiers.INDOMITABLE.get(), 1, true));
+
 		FROST_BURST = net.minecraftforge.fml.ModList.get().isLoaded("smc")
 			? Mgdp.ITEMS.register("frost_burst",
 				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE), () -> MGDPModifiers.FROST_BURST.get(), 1, false))
@@ -823,6 +827,7 @@ public class MGDPItems {
         if (MEROR_TEMPLATE != null) event.accept(MEROR_TEMPLATE.get());
         if (REFINE_MEROR_TEMPLATE != null) event.accept(REFINE_MEROR_TEMPLATE.get());
         event.accept(GUARDIAN_LASER.get());
+        event.accept(INDOMITABLE.get());
         if (FROST_BURST != null) event.accept(FROST_BURST.get());
 				event.accept(ARMOR_PIERCE.get());
 				event.accept(MAGIC_RESISTANCE.get());

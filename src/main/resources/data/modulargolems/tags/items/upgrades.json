@@ -255,6 +255,7 @@
       "required": false
     },
     "mgdp:scav_box",
-    "mgdp:lumberjack"
+    "mgdp:lumberjack",
+    "mgdp:indomitable"
   ]
 }

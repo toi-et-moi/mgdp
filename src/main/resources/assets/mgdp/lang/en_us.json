@@ -431,6 +431,9 @@
   "item.mgdp.guardian_laser": "Guardian Upgrade",
   "modifier.modulargolems.guardian_laser": "Guardian",
   "modifier.modulargolems.guardian_laser.desc": "Charges a laser beam dealing line damage.",
+   "item.mgdp.indomitable": "Indomitable Upgrade",
+   "modifier.modulargolems.indomitable": "Indomitable",
+   "modifier.modulargolems.indomitable.desc": "Leaps high and fires a volley of scattered arrows. Arrows inherit bow enchantments, bypass armor and i-frames. +10% ATK per level, one extra volley per level. If Backflip is also installed, the leap becomes a stylish backflip.",
   "item.mgdp.shrink": "Shrink Upgrade",
   "modifier.modulargolems.shrink": "Shrink",
   "mgdp.recycle.recovered": "Your golem %s has been safely recycled"

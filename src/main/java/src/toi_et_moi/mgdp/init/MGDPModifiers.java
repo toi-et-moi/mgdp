@@ -104,6 +104,7 @@ import src.toi_et_moi.mgdp.modifier.goety_revelation.WitchKingModifier;
 import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
 import src.toi_et_moi.mgdp.modifier.buff.FrostBurstModifier;
 import src.toi_et_moi.mgdp.modifier.combat.GuardianLaserModifier;
+import src.toi_et_moi.mgdp.modifier.combat.IndomitableModifier;
 import src.toi_et_moi.mgdp.modifier.conqueror.ConquerorModifier;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
@@ -214,6 +215,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<ApocalypseModifier> THE_APOCALYPSE;
 	public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
 	public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
+	public static final RegistryEntry<IndomitableModifier> INDOMITABLE;
 	public static final RegistryEntry<ConquerorModifier> CONQUEROR;
 	public static final RegistryEntry<ShrinkModifier> SHRINK;
 	public static final RegistryEntry<AddSlotModifier> CATACLYSMFARMER_ADD, DARK_ADD, PYRIUM_ADD, SCULKIUM_ADD;
@@ -652,6 +654,10 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 			GUARDIAN_LASER = reg("guardian_laser", GuardianLaserModifier::new,
 				"Guardian Laser",
 				"Charge a laser beam dealing heavy damage to all enemies in its path.");
+
+			INDOMITABLE = reg("indomitable", IndomitableModifier::new,
+				"Indomitable",
+				"Leaps high and fires a volley of scattered arrows. Arrows inherit bow enchantments, bypass armor and i-frames. +10% ATK per level, one extra volley per level.");
 
 			CONQUEROR = reg("conqueror", ConquerorModifier::new,
 				"Veterancy",
