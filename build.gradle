@@ -193,6 +193,12 @@ dependencies {
 
     compileOnly fg.deobf("maven.modrinth:l2-complements:${l2complements_version}")
     compileOnly files("libs/l2archery-2.5.0.jar")
+
+    // Cataclysm (Wadjet_Entity isSleep fix) — optional cross-mod patch.
+    // Use the slim jar (SRG-named) matching the player-installed
+    // version; mapped_official jars have different method names.
+    compileOnly files("libs/lendercataclysm-3.31-slim.jar")
+
     // Create mod is an optional dependency — players install it in the mods folder.
     // Our code uses reflection (CreateCompat.java), so no compile/runtime Maven dep needed.
 
