@@ -1,11 +1,14 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.Vec3;
@@ -28,6 +31,27 @@ public class GolemTickHandler {
 		tickUnstoppable(golem);
 		tickProjectileDodge(golem);
 		tickJukebox(golem);
+		tickOwnerSneak(golem);
+	}
+
+	/** 主人潜行时，周围从属的人形傀儡也摆出潜行（蹲伏）姿态（致敬召唤师模组同款特性） */
+	private static final double OWNER_SNEAK_RANGE = 64.0;
+
+	private static void tickOwnerSneak(AbstractGolemEntity<?, ?> golem) {
+		if (golem.level().isClientSide) return;
+		if (!(golem instanceof HumanoidGolemEntity)) return;
+		Player owner = golem.getOwner();
+		if (owner == null) return;
+		boolean sneak = owner.isCrouching()
+				&& golem.distanceToSqr(owner) <= OWNER_SNEAK_RANGE * OWNER_SNEAK_RANGE
+				&& !golem.isInWater()
+				&& !golem.isDeadOrDying();
+		if (sneak) {
+			golem.setPose(Pose.CROUCHING);
+		} else if (golem.getPose() == Pose.CROUCHING && !golem.isDeadOrDying()) {
+			// 主人不潜行/离远/入水时恢复站姿（不覆盖死亡等其它姿态）
+			golem.setPose(Pose.STANDING);
+		}
 	}
 
 	private static void tickCreateCompat(AbstractGolemEntity<?, ?> golem) {

@@ -51,7 +51,8 @@
     "EntityRendererAccessor",
       "EntityRendererShadowMixin",
     "AbstractGolemRendererMixin",
-    "LivingEntityRendererMixin"
+    "LivingEntityRendererMixin",
+      "GolemSneakRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
