@@ -64,6 +64,11 @@ public class GuardianLaserTargetEntity extends BaseEntity implements OwnableEnti
 		return entityData.get(CHARGE);
 	}
 
+	/** 连发时从指定蓄力进度重新生成瞄准实体（跳过完整蓄力，直接进入收尾阶段） */
+	public void setCharge(int charge) {
+		entityData.set(CHARGE, charge);
+	}
+
 	public int getFlash() {
 		return entityData.get(FLASH);
 	}

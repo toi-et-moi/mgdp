@@ -430,7 +430,7 @@
   "modifier.modulargolems.frost_burst.desc": "Stack frost on attack. Burst deals AoE damage after 10s.",
   "item.mgdp.guardian_laser": "Guardian Upgrade",
   "modifier.modulargolems.guardian_laser": "Guardian",
-  "modifier.modulargolems.guardian_laser.desc": "Charges a laser beam dealing line damage.",
+  "modifier.modulargolems.guardian_laser.desc": "Charges a laser beam dealing line damage. Max level 4. From level 2, fires a volley of beams equal to the level (1 second apart). From level 3, extra damage increases to 10.5.",
    "item.mgdp.indomitable": "Indomitable Upgrade",
    "modifier.modulargolems.indomitable": "Indomitable",
    "modifier.modulargolems.indomitable.desc": "Leaps high and fires a volley of scattered arrows. Arrows inherit bow enchantments, bypass armor and i-frames. +10% ATK per level, one extra volley per level. If Backflip is also installed, the leap becomes a stylish backflip.",

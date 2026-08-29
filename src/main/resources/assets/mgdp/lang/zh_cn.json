@@ -417,10 +417,10 @@
   "modifier.modulargolems.frost_burst.desc": "攻击/被攻击时，对目标/攻击者施加：霜冻爆发（00:10）。",
   "item.mgdp.guardian_laser": "守护者升级",
   "modifier.modulargolems.guardian_laser": "守护者",
-  "modifier.modulargolems.guardian_laser.desc": "傀儡蓄力后会向目标发射激光束。",
+  "modifier.modulargolems.guardian_laser.desc": "傀儡蓄力后向目标发射激光束。",
    "item.mgdp.indomitable": "锐不可当升级",
    "modifier.modulargolems.indomitable": "锐不可当",
-   "modifier.modulargolems.indomitable.desc": "满足条件时高跳并朝目标打出大量散射箭矢；箭矢继承手持弓的附魔，无视护甲与无敌帧。每级箭矢伤害+傀儡攻击力10%，且每级多打出一轮箭矢。若同时装有后空翻升级，高跳会变为帅气的后空翻。",
+   "modifier.modulargolems.indomitable.desc": "在地面时高跳并朝目标打出大量散射箭矢。若同时装有后空翻升级，高跳会变为帅气的后空翻。",
   "item.mgdp.shrink": "缩小升级",
   "modifier.modulargolems.shrink": "缩小",
   "mgdp.recycle.recovered": "您的傀儡 %s 已被安全回收"
