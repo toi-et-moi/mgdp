@@ -68,9 +68,11 @@ public class GuardianLaserModifier extends GolemModifier {
 		int charge = data.getInt(TAG_CHARGE);
 		charge++;
 
-		// 蓄力开始：生成瞄准实体（渲染红线/红圈，发射阶段白光），重置音效节拍
+		// 蓄力开始：生成瞄准实体（渲染红线/红圈，发射阶段白光），重置音效节拍；
+		// setCharge(1) 与本体蓄力进度同步，避免实体滞后导致目标死亡时光束丢失/跳转
 		if (charge == 1) {
 			var laser = new GuardianLaserTargetEntity(Mgdp.GUARDIAN_LASER_TARGET.get(), golem.level(), golem);
+			laser.setCharge(1);
 			golem.level().addFreshEntity(laser);
 			data.putInt(TAG_BEAT, 1);
 		}

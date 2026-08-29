@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -34,6 +35,8 @@ public class EnvHazardHandler {
 	public static void onGolemHurt(LivingHurtEvent event) {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
+		// 停留模式（站岗）不主动躲避环境伤害
+		if (golem.getMode() == GolemModes.STAND) return;
 		Entity direct = event.getSource().getDirectEntity();
 		if (direct != null) return;
 		if (event.getSource().is(DamageTypes.FALL)) return;

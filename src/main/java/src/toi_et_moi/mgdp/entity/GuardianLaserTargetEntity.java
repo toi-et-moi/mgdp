@@ -80,40 +80,54 @@ public class GuardianLaserTargetEntity extends BaseEntity implements OwnableEnti
 	@Override
 	public void tick() {
 		LivingEntity owner = getOwner();
-		LivingEntity target = owner instanceof AbstractGolemEntity<?, ?> g ? g.getTarget() : null;
 		if (!level().isClientSide()) {
-			if (owner == null || !owner.isAlive() || target == null || !target.isAlive()) {
-				discard();
-				return;
-			}
-			// 瞄准实体跟随目标
-			setPos(target.getX(), target.getY() + target.getBbHeight() * 0.5D, target.getZ());
 			if (entityData.get(BEAM) == 1) {
-				// 发射阶段：白光短存后消失
+				// 发射阶段：锁定发射时的位置（不再跟随目标），目标被激光击败也不中断，白光显示完再消失
 				beamTicks++;
 				if (beamTicks >= BEAM_TICKS) {
 					discard();
 					return;
 				}
 			} else {
+				// 蓄力阶段
+				if (owner == null || !owner.isAlive()) {
+					discard();
+					return;
+				}
 				int charge = entityData.get(CHARGE) + 1;
 				entityData.set(CHARGE, charge);
 				if (charge >= CHARGE_TICKS) {
+					// 完成蓄力 → BEAM（锁定当前位置，下一 tick 起不再跟随）
 					entityData.set(BEAM, 1);
 					entityData.set(FLASH, 0);
 					beamTicks = 0;
 				} else {
+					LivingEntity target = owner instanceof AbstractGolemEntity<?, ?> g ? g.getTarget() : null;
 					int remaining = CHARGE_TICKS - charge;
-					boolean flash = false;
-					if (remaining > 5) {
-						// 与音效同步：bit 播放的刻即为闪烁亮时刻（同一节拍公式）
-						int interval = Math.max(1, 12 - charge * 11 / CHARGE_TICKS);
-						if (charge >= nextBeat) {
-							flash = true;
-							nextBeat = charge + interval;
+					if (target == null || !target.isAlive()) {
+						// 目标死亡：若已进入收尾（剩≤5刻，激光即将发射），仍完成 BEAM 锁定最后位置；否则丢弃
+						if (remaining <= 5) {
+							entityData.set(BEAM, 1);
+							entityData.set(FLASH, 0);
+							beamTicks = 0;
+						} else {
+							discard();
+							return;
 						}
+					} else {
+						// 瞄准实体跟随目标
+						setPos(target.getX(), target.getY() + target.getBbHeight() * 0.5D, target.getZ());
+						boolean flash = false;
+						if (remaining > 5) {
+							// 与音效同步：bit 播放的刻即为闪烁亮时刻（同一节拍公式）
+							int interval = Math.max(1, 12 - charge * 11 / CHARGE_TICKS);
+							if (charge >= nextBeat) {
+								flash = true;
+								nextBeat = charge + interval;
+							}
+						}
+						entityData.set(FLASH, flash ? 1 : 0);
 					}
-					entityData.set(FLASH, flash ? 1 : 0);
 				}
 			}
 		}
