@@ -68,11 +68,14 @@
     {
       "id": "mgdp:ignis_jump",
       "required": false
+    },
+    {
+      "id": "mgdp:indomitable",
+      "required": false
+    },
+    {
+      "id": "mgdp:enchant",
+      "required": false
     }
-,
-      {
-        "id": "mgdp:indomitable",
-        "required": false
-      }
   ]
 }

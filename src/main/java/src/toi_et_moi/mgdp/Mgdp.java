@@ -149,6 +149,7 @@ public class Mgdp {
 						if (MGDPItems.DEMENTOR != null) output.accept(MGDPItems.DEMENTOR.get());
 						if (MGDPItems.DRAIN != null) output.accept(MGDPItems.DRAIN.get());
 						if (MGDPItems.REPRINT != null) output.accept(MGDPItems.REPRINT.get());
+						output.accept(MGDPItems.ENCHANT.get());
 						output.accept(MGDPItems.SELF_DESTRUCT.get());
 						output.accept(MGDPItems.FIREBALL.get());
 						output.accept(MGDPItems.HERO.get());

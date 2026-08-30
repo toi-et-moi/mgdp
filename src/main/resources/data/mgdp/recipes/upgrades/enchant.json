@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "AEA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "B": {
+      "item": "minecraft:enchanted_book"
+    },
+    "C": {
+      "item": "minecraft:bookshelf"
+    },
+    "D": {
+      "item": "modulargolems:empty_upgrade"
+    },
+    "E": {
+      "item": "minecraft:enchanting_table"
+    }
+  },
+  "result": {
+    "item": "mgdp:enchant"
+  }
+}

@@ -44,6 +44,7 @@ import src.toi_et_moi.mgdp.modifier.farming.BrushModifier;
 import src.toi_et_moi.mgdp.modifier.defense.BombDisposalModifier;
 import src.toi_et_moi.mgdp.modifier.combat.FireballModifier;
 import src.toi_et_moi.mgdp.modifier.buff.TotemicModifier;
+import src.toi_et_moi.mgdp.modifier.buff.EnchantModifier;
 import src.toi_et_moi.mgdp.modifier.farming.HeroModifier;
 import src.toi_et_moi.mgdp.modifier.farming.FlareModifier;
 import src.toi_et_moi.mgdp.modifier.farming.BlastFurnaceModifier;
@@ -155,6 +156,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<BombDisposalModifier> BOMB_DISPOSAL;
 	public static final RegistryEntry<FireballModifier> FIREBALL;
 	public static final RegistryEntry<TotemicModifier> TOTEMIC;
+	public static final RegistryEntry<EnchantModifier> ENCHANT;
 	public static final RegistryEntry<HeroModifier> HERO;
 	public static final RegistryEntry<FlareModifier> FLARE;
 	public static final RegistryEntry<BlastFurnaceModifier> BLAST_FURNACE;
@@ -386,6 +388,10 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 			TOTEMIC = reg("totemic", TotemicModifier::new,
 				"Totemic Apple",
 				"Every %ss, grants absorption hearts equal to 10%% of max health per level.");
+
+			ENCHANT = reg("enchant", EnchantModifier::new,
+				"Auto-Enchant",
+				"Every 10s, randomly enchants unenchanted items in the golem's gear and nearby containers. Each level adds 10 levels of enchantment-table power. Level 3 also maxes out any existing enchantments.");
 
 			HERO = reg("hero", HeroModifier::new,
 				"Hero of the Village",

@@ -56,6 +56,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
 	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
 	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANT;
 	public static final RegistryObject<SimpleUpgradeItem> HERO;
 	public static final RegistryObject<SimpleUpgradeItem> FLARE;
 	public static final RegistryObject<SimpleUpgradeItem> UNDYING;
@@ -774,6 +775,9 @@ public class MGDPItems {
 
 			SHRINK = Mgdp.ITEMS.register("shrink",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SHRINK.get(), 1, false));
+
+			ENCHANT = Mgdp.ITEMS.register("enchant",
+				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.ENCHANT.get(), 1, false));
 			SHIELD_BLOCK = Mgdp.ITEMS.register("shield_block",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SHIELD_BLOCK.get(), 1, false));
 
@@ -916,6 +920,7 @@ public class MGDPItems {
 			event.accept(GHOST.get());
 			event.accept(SPYGLASS.get());
 			event.accept(SHRINK.get());
+			event.accept(ENCHANT.get());
 			}
 		}
 	}
