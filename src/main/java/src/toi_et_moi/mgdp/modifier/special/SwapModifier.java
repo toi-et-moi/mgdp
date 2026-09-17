@@ -6,12 +6,18 @@ import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.Nullable;
 import src.toi_et_moi.mgdp.Mgdp;
+import src.toi_et_moi.mgdp.init.MGDPItems;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.util.*;
@@ -81,6 +87,9 @@ public class SwapModifier extends GolemModifier {
     }
 
     private static void doSwap(ServerPlayer player, AbstractGolemEntity<?, ?> golem) {
+        // 虞美人仪式：换位双方各自手持虞美人时，双方的虞美人各变为一个重现升级
+        tryPoppyRitual(player, golem);
+
         var pPos = player.position();
         var gPos = golem.position();
 
@@ -111,8 +120,39 @@ public class SwapModifier extends GolemModifier {
                 SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0f, 1.0f);
     }
 
-    private static boolean onCooldown(Player player) {
-        Long time = COOLDOWNS.get(player.getUUID());
+    // ---- 虞美人仪式：换位双方各自手持虞美人（主/副手均可）时，双方的虞美人各变为一个重现升级 ----
+
+    private static void tryPoppyRitual(ServerPlayer player, AbstractGolemEntity<?, ?> golem) {
+        InteractionHand playerHand = findPoppyHand(player);
+        if (playerHand == null) return;
+        InteractionHand golemHand = findPoppyHand(golem);
+        if (golemHand == null) return;
+        replacePoppy(player, playerHand);
+        replacePoppy(golem, golemHand);
+    }
+
+    @Nullable
+    private static InteractionHand findPoppyHand(LivingEntity entity) {
+        if (entity.getMainHandItem().is(Items.POPPY)) return InteractionHand.MAIN_HAND;
+        if (entity.getOffhandItem().is(Items.POPPY)) return InteractionHand.OFF_HAND;
+        return null;
+    }
+
+    /** 消耗一个虞美人；该手空了就把重现升级放回原格，否则进玩家背包 / 掉在原地 */
+    private static void replacePoppy(LivingEntity holder, InteractionHand hand) {
+        ItemStack poppy = holder.getItemInHand(hand);
+        ItemStack luna = new ItemStack(MGDPItems.LUNA.get());
+        poppy.shrink(1);
+        if (poppy.isEmpty()) {
+            holder.setItemInHand(hand, luna);
+        } else if (holder instanceof Player player) {
+            if (!player.getInventory().add(luna)) player.drop(luna, false);
+        } else {
+            holder.spawnAtLocation(luna);
+        }
+    }
+
+    private static boolean onCooldown(Player player) {        Long time = COOLDOWNS.get(player.getUUID());
         return time != null && time > player.level().getGameTime();
     }
 

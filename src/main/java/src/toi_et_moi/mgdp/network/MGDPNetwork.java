@@ -32,6 +32,8 @@ public class MGDPNetwork {
                 GolemRecallPacket::encode, GolemRecallPacket::decode, GolemRecallPacket::handle);
         CHANNEL.registerMessage(id++, ScavStatusPacket.class,
                 ScavStatusPacket::encode, ScavStatusPacket::decode, ScavStatusPacket::handle);
+        CHANNEL.registerMessage(id++, LunaClonePacket.class,
+                LunaClonePacket::encode, LunaClonePacket::decode, LunaClonePacket::handle);
         return CHANNEL;
     }
 }

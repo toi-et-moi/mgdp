@@ -76,6 +76,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> LORD;
 	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
 	public static final RegistryObject<SimpleUpgradeItem> SWAP;
+	public static final RegistryObject<SimpleUpgradeItem> LUNA;
 	public static final RegistryObject<SimpleUpgradeItem> BACKFLIP;
 	public static final RegistryObject<SimpleUpgradeItem> WINDMILL;
 	public static final RegistryObject<SimpleUpgradeItem> WITCH;
@@ -297,6 +298,9 @@ public class MGDPItems {
 		SWAP = Mgdp.ITEMS.register("swap",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.SWAP.get(), 1, false));
 
+		LUNA = Mgdp.ITEMS.register("luna",
+			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.LUNA.get(), 1, true));
+
 		WITCH = Mgdp.ITEMS.register("witch",
 			() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.WITCH.get(), 1, false));
 
@@ -460,7 +464,7 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MINER.get(), 1, false));
 
 		SCAV_BOX = Mgdp.ITEMS.register("scav_box",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.SCAV_BOX.get(), 1, false));
+				() -> new SimpleUpgradeItem(new Item.Properties(), MGDPModifiers.SCAV_BOX::get, 1, false));
 
 		LUMBERJACK = Mgdp.ITEMS.register("lumberjack",
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LUMBERJACK.get(), 1, false));
@@ -468,141 +472,141 @@ public class MGDPItems {
 
 			REMNANT_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("golemdungeons")
 				? Mgdp.ITEMS.register("remnant_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("golemdungeons", "factory_remnant")))
 				: null;
 
 			ILLAGER_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("golemdungeons")
 				? Mgdp.ITEMS.register("illager_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("golemdungeons", "illagers_creation")))
 				: null;
 
 			PIGLIN_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("golemdungeons")
 				? Mgdp.ITEMS.register("piglin_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("golemdungeons", "piglin_legacy")))
 				: null;
 
 			SCULK_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("golemdungeons")
 				? Mgdp.ITEMS.register("sculk_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("golemdungeons", "sculk_infestation")))
 				: null;
 
 			TWILIGHT_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")
 				? Mgdp.ITEMS.register("twilight_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("twilightforest", "twilight_invasion")))
 				: null;
 
 		HARBINGER_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 				? Mgdp.ITEMS.register("harbinger_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(8).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("cataclysm", "harbingers_revenge")))
 				: null;
 
 		MONSTROSITY_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 				? Mgdp.ITEMS.register("monstrosity_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(8).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("cataclysm", "monstrosity_expanded")))
 				: null;
 
 		ENDER_GUARDIAN_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 				? Mgdp.ITEMS.register("ender_guardian_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(8).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("cataclysm", "meknight_of_the_end")))
 				: null;
 
 		IGNIS_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 				? Mgdp.ITEMS.register("ignis_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(8).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("cataclysm", "resurgent_flame")))
 				: null;
 
 		SCYLLA_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 				? Mgdp.ITEMS.register("scylla_golem",
-					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(4).rarity(net.minecraft.world.item.Rarity.EPIC),
+					() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(8).rarity(net.minecraft.world.item.Rarity.EPIC),
 							new ResourceLocation("cataclysm", "heavenly_storm")))
 				: null;
 
 		CARVED_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("carved_golem",
-				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 					new ResourceLocation("jerotes_village_golems", "villager_metal")))
 			: null;
 
 		ENHANCED_CARVED_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("enhanced_carved_golem",
-				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 					new ResourceLocation("jerotes_village_golems", "enhanced_villager_metal")))
 			: null;
 
 		QOAIKU_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("qoaiku_golem",
-				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 					new ResourceLocation("jerotes_village_golems", "qoaiku")))
 			: null;
 
 		MEROR_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("meror_golem",
-				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 					new ResourceLocation("jerotes_village_golems", "meror")))
 			: null;
 
 		REFINE_MEROR_GOLEM = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("refine_meror_golem",
-				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(20).rarity(net.minecraft.world.item.Rarity.EPIC),
+				() -> new GolemSummonItem(new Item.Properties().stacksTo(1).defaultDurability(40).rarity(net.minecraft.world.item.Rarity.EPIC),
 					new ResourceLocation("jerotes_village_golems", "refine_meror")))
 			: null;
 
 		CATACLYSMFARMER_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("cataclysm")
 			? Mgdp.ITEMS.register("cataclysmfarer_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.CATACLYSMFARMER_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.CATACLYSMFARMER_ADD::get))
 			: null;
 
 		DARK_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("goety")
 			? Mgdp.ITEMS.register("dark_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.DARK_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.DARK_ADD::get))
 			: null;
 
 		PYRIUM_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("irons_spellbooks")
 			? Mgdp.ITEMS.register("pyrium_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.PYRIUM_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.PYRIUM_ADD::get))
 			: null;
 
 		SCULKIUM_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("l2complements")
 			? Mgdp.ITEMS.register("sculkium_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.SCULKIUM_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.SCULKIUM_ADD::get))
 			: null;
 		MEROR_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("meror_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.MEROR_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.MEROR_ADD::get))
 			: null;
 
 		REFINE_MEROR_TEMPLATE = net.minecraftforge.fml.ModList.get().isLoaded("jerotes_village_golems")
 			? Mgdp.ITEMS.register("refine_meror_expansion_template",
-				() -> new AddSlotTemplate(new Item.Properties(), () -> MGDPModifiers.REFINE_MEROR_ADD.get()))
+				() -> new AddSlotTemplate(new Item.Properties(), MGDPModifiers.REFINE_MEROR_ADD::get))
 			: null;
 
 
 		CREATIVE_SLOT_100 = Mgdp.ITEMS.register("creative_slot_100",
-			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), () -> MGDPModifiers.CREATIVE_SLOT_100.get(), 1, false));
+			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), MGDPModifiers.CREATIVE_SLOT_100::get, 1, false));
 
 		CREATIVE_SLOT = Mgdp.ITEMS.register("creative_slot",
-			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), () -> MGDPModifiers.CREATIVE_SLOT.get(), 1, false));
+			() -> new SimpleUpgradeItem(new Item.Properties().stacksTo(64), MGDPModifiers.CREATIVE_SLOT::get, 1, false));
 
 		MIND_CONTROL = Mgdp.ITEMS.register("mind_control",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.MIND_CONTROL.get(), 1, false));
 
 		PHANTOM = net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")
 			? Mgdp.ITEMS.register("phantom",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.PHANTOM.get(), 1, false))
+				() -> new SimpleUpgradeItem(new Item.Properties(), MGDPModifiers.PHANTOM::get, 1, false))
 			: null;
 
 		NECROMANCER = net.minecraftforge.fml.ModList.get().isLoaded("goety")
 			? Mgdp.ITEMS.register("necromancer",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.NECROMANCER.get(), 1, false))
+				() -> new SimpleUpgradeItem(new Item.Properties(), MGDPModifiers.NECROMANCER::get, 1, false))
 			: null;
 
 		LAST_LINE = net.minecraftforge.fml.ModList.get().isLoaded("twilightforest")
@@ -892,6 +896,7 @@ public class MGDPItems {
 				event.accept(LORD.get());
 			event.accept(SNOW_TRAIL.get());
 			event.accept(SWAP.get());
+			event.accept(LUNA.get());
 			event.accept(BACKFLIP.get());
 			event.accept(WINDMILL.get());
 			event.accept(WITCH.get());

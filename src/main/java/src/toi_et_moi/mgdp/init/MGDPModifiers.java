@@ -74,6 +74,7 @@ import src.toi_et_moi.mgdp.modifier.special.LordModifier;
 import src.toi_et_moi.mgdp.modifier.buff.SnowTrailModifier;
 import src.toi_et_moi.mgdp.modifier.buff.WitchModifier;
 import src.toi_et_moi.mgdp.modifier.special.SwapModifier;
+import src.toi_et_moi.mgdp.modifier.special.LunaModifier;
 import src.toi_et_moi.mgdp.modifier.special.BackflipModifier;
 import src.toi_et_moi.mgdp.modifier.special.WindmillModifier;
 import src.toi_et_moi.mgdp.modifier.special.PenguinModifier;
@@ -186,6 +187,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<LordModifier> LORD;
 	public static final RegistryEntry<SnowTrailModifier> SNOW_TRAIL;
 	public static final RegistryEntry<SwapModifier> SWAP;
+	public static final RegistryEntry<LunaModifier> LUNA;
 	public static final RegistryEntry<BackflipModifier> BACKFLIP;
 	public static final RegistryEntry<WindmillModifier> WINDMILL;
 	public static final RegistryEntry<WitchModifier> WITCH;
@@ -505,6 +507,10 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 			SWAP = reg("swap", SwapModifier::new,
 				"Swap",
 				"Press the swap key (default: R) to switch places with the golem. When taking fatal damage, passively swaps with a random golem with this upgrade. 10s cooldown.");
+
+			LUNA = reg("luna", LunaModifier::new,
+				"Luna",
+				"Press the reappear key (default: Alt+L) to duplicate the golem you are looking at. Materials, upgrades, owner, health and custom name are all preserved. With Scav Box, scavenging rolls an extra Luna loot table. 30s cooldown.");
 
 			BACKFLIP = reg("backflip", BackflipModifier::new,
 				"Backflip",

@@ -81,6 +81,12 @@ public class ScavBoxModifier extends GolemModifier {
 			{"curseofpandora", "mgdp:scav/curse_of_pandora"}
 	};
 
+	/** 重现（luna）联动：只写了表的模组才会被掷；仅当对应模组已加载时生效 */
+	private static final String[][] LUNA_TABLES = {
+			{"goety_revelation", "mgdp:scav/luna/goety_revelation"}
+	};
+	private static final ResourceLocation LUNA_VANILLA_TABLE = new ResourceLocation("mgdp", "scav/luna/vanilla");
+
 	private static final ResourceLocation FARM_TABLE = new ResourceLocation("mgdp", "scav/farm");
 	private static final ResourceLocation MINE_TABLE = new ResourceLocation("mgdp", "scav/mine");
 	private static final ResourceLocation LUMBER_TABLE = new ResourceLocation("mgdp", "scav/lumber");
@@ -197,6 +203,10 @@ public class ScavBoxModifier extends GolemModifier {
 				}
 			}
 		}
+		// 2.5 重现（luna）联动：装了重现升级的傀儡额外掷「重现」系列表（终局/一次性物品）
+		if (golem.getModifiers().containsKey(MGDPModifiers.LUNA.get())) {
+			rollLunaTables(haul, sl, origin);
+		}
 		// 3. 收获/挖矿/伐木/考古/游泳联动：各自滚精选表 + 标签抽取（飞行翻倍）
 		boolean farmer = golem.getModifiers().containsKey(MGDPModifiers.HARVEST_CROP.get());
 		boolean miner = golem.getModifiers().containsKey(MGDPModifiers.MINER.get());
@@ -311,6 +321,23 @@ public class ScavBoxModifier extends GolemModifier {
 	private void rollTableTimes(List<ItemStack> haul, ServerLevel sl, ResourceLocation id, Vec3 origin, int times) {
 		for (int i = 0; i < times; i++) {
 			haul.addAll(rollTable(sl, id, origin));
+		}
+	}
+
+	/**
+	 * 「重现」系列表：原版终局物品表（龙蛋/鞘翅等）+ 各已加载联动模组的重现表。
+	 * 每张表各自按 Config.lunaScavChance 掷一次；表不存在时原版返回 LootTable.EMPTY，静默无产出。
+	 */
+	private void rollLunaTables(List<ItemStack> haul, ServerLevel sl, Vec3 origin) {
+		double chance = Config.lunaScavChance;
+		if (chance <= 0) return;
+		if (sl.random.nextDouble() < chance) {
+			haul.addAll(rollTable(sl, LUNA_VANILLA_TABLE, origin));
+		}
+		for (String[] entry : LUNA_TABLES) {
+			if (!ModList.get().isLoaded(entry[0])) continue;
+			if (sl.random.nextDouble() >= chance) continue;
+			haul.addAll(rollTable(sl, new ResourceLocation(entry[1]), origin));
 		}
 	}
 

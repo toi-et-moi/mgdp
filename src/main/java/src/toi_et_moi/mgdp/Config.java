@@ -22,6 +22,14 @@ public class Config {
             .comment("Cooldown for the Swap upgrade in seconds (default: 10)", "换位升级的冷却时间（秒）（默认：10）")
             .defineInRange("swapCooldown", 10, 0, 300);
 
+    private static final ForgeConfigSpec.IntValue LUNA_COOLDOWN = COMMON_BUILDER
+            .comment("Cooldown for the Luna upgrade's clone ability in seconds (default: 30)", "重现升级复制傀儡的冷却时间（秒）（默认：30）")
+            .defineInRange("lunaCooldown", 30, 0, 3600);
+
+    private static final ForgeConfigSpec.DoubleValue LUNA_SCAV_CHANCE = COMMON_BUILDER
+            .comment("Chance to roll each Luna loot table when a Luna + Scav Box golem scavenges (default: 0.1)", "同时装有重现与拾荒箱的傀儡拾荒时，每张「重现」战利品表的触发概率（默认：0.1）")
+            .defineInRange("lunaScavChance", 0.1, 0.0, 1.0);
+
     private static final ForgeConfigSpec.IntValue LIQUID_CLEAR_RANGE = COMMON_BUILDER
             .comment("Liquid Clear range per level in blocks (default: 8)", "清液升级每级范围（格）（默认：8）")
             .defineInRange("liquidClearRangePerLevel", 8, 1, 128);
@@ -41,6 +49,11 @@ public class Config {
     private static final ForgeConfigSpec.IntValue DOG_FALL_DISTANCE = COMMON_BUILDER
             .comment("Minimum fall distance for dog golem to rescue player (default: 5)", "跟随犬形傀儡救援主人的最小坠落距离（格）（默认：5）")
             .defineInRange("dogFallDistance", 5, 1, 50);
+
+    private static final ForgeConfigSpec.IntValue SUMMON_SPACING = COMMON_BUILDER
+            .comment("Spacing between golems summoned at once by sneak-using a reinforcement summon item (default: 4, range: 1 - 32)",
+                    "增援召唤器潜行整批召唤时傀儡之间的间隔（格）（默认：4，范围：1 - 32）")
+            .defineInRange("summonSpacing", 4, 1, 32);
 
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> MINER_EXTRA_BLOCKS = COMMON_BUILDER
             .comment("Additional mineable blocks for the Miner upgrade (registry names, e.g. \"minecraft:ancient_debris\")", "挖矿升级额外可开采方块（注册名，如 \"minecraft:ancient_debris\"）")
@@ -81,11 +94,14 @@ public class Config {
     static final ForgeConfigSpec COMMON_SPEC = COMMON_BUILDER.build();
 
     public static int swapCooldown;
+    public static int lunaCooldown;
+    public static double lunaScavChance;
     public static int liquidClearRangePerLevel;
     public static boolean destructionMode;
     public static int timeAxisSpeed;
     public static boolean mobAutoAggro;
     public static int dogFallDistance;
+    public static int summonSpacing;
     public static Set<String> minerExtraBlocks;
     public static int scavCooldownBaseMinutes;
     public static int scavCooldownPerLevel;
@@ -115,11 +131,14 @@ public class Config {
     static void onLoad(final ModConfigEvent event) {
         if (event.getConfig().getSpec() == COMMON_SPEC) {
             swapCooldown = SWAP_COOLDOWN.get();
+            lunaCooldown = LUNA_COOLDOWN.get();
+            lunaScavChance = LUNA_SCAV_CHANCE.get();
             liquidClearRangePerLevel = LIQUID_CLEAR_RANGE.get();
             destructionMode = DESTRUCTION_MODE.get();
             timeAxisSpeed = TIME_AXIS_SPEED.get();
             mobAutoAggro = MOB_AUTO_AGGRO.get();
             dogFallDistance = DOG_FALL_DISTANCE.get();
+            summonSpacing = SUMMON_SPACING.get();
             minerExtraBlocks = new HashSet<>(MINER_EXTRA_BLOCKS.get());
             scavCooldownBaseMinutes = SCAV_COOLDOWN_BASE.get();
             scavCooldownPerLevel = SCAV_COOLDOWN_PER_LEVEL.get();

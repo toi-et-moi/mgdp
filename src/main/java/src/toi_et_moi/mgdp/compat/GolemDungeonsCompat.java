@@ -7,12 +7,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 /**
  * Soft dependency wrapper for GolemDungeons mod.
@@ -50,15 +50,17 @@ public class GolemDungeonsCompat {
     }
 
     /**
-     * Summon a golem from a GolemDungeons faction SpawnConfig as a player-owned golem.
+     * Summon a golem from a GolemDungeons faction SpawnConfig.
+     * <p>SpawnConfig 创建傀儡时会把地牢阵营的 UUID 传成 owner（因此生成即敌对），
+     * 所以 owner 传 null 时必须显式清空，傀儡才是真正无主且不敌对。</p>
      *
      * @param configId the SpawnConfig ResourceLocation
      * @param level    the server level
-     * @param player   the player to set as owner
+     * @param owner    owner UUID to set; null clears the faction owner (ownerless, non-hostile)
      * @return the summoned golem, or null if failed
      */
     @Nullable
-    public static LivingEntity summonFactionGolem(ResourceLocation configId, ServerLevel level, Player player) {
+    public static LivingEntity summonFactionGolem(ResourceLocation configId, ServerLevel level, @Nullable UUID owner) {
         if (!loaded) return null;
 
         try {
@@ -73,7 +75,7 @@ public class GolemDungeonsCompat {
             if (summoned instanceof Enemy && !summoned.getPassengers().isEmpty()) {
                 var firstRider = summoned.getPassengers().get(0);
                 if (firstRider instanceof AbstractGolemEntity<?, ?> age) {
-                    age.setOwnerUUID(player.getUUID());
+                    age.setOwnerUUID(owner);
                     firstRider.stopRiding();
                     summoned.discard();
                     return age;
@@ -81,7 +83,7 @@ public class GolemDungeonsCompat {
             }
 
             // Normal case: returned entity is the golem itself or a golem mount
-            setOwnerRecursive(summoned, player.getUUID());
+            setOwnerRecursive(summoned, owner);
             return summoned;
         } catch (Exception e) {
             return null;

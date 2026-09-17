@@ -230,6 +230,7 @@ public class Mgdp {
                     output.accept(MGDPItems.LORD.get());
                     output.accept(MGDPItems.SNOW_TRAIL.get());
                     output.accept(MGDPItems.SWAP.get());
+                    output.accept(MGDPItems.LUNA.get());
 						output.accept(MGDPItems.BACKFLIP.get());
 						output.accept(MGDPItems.WINDMILL.get());
 							output.accept(MGDPItems.WITCH.get());
@@ -504,10 +505,12 @@ public class Mgdp {
             long gameTime = mc.level.getGameTime();
             if (gameTime - Mgdp.ClientTickHandler.lastScanTick >= 10 || Mgdp.ClientTickHandler.lastScanTick < 0) {
                 Mgdp.ClientTickHandler.lastScanTick = gameTime;
+                // 只统计玩家自己的傀儡：无主傀儡（如阵形召唤）和其他玩家的傀儡不告警
+                var ownerId = mc.player.getUUID();
                 Mgdp.ClientTickHandler.cachedLowHpGolems = mc.level.getEntitiesOfClass(
                     dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity.class,
                     mc.player.getBoundingBox().inflate(64),
-                    g -> g.isAlive() && !g.isHostile() && g.getHealth() / g.getMaxHealth() < 0.25f);
+                    g -> g.isAlive() && ownerId.equals(g.getOwnerUUID()) && g.getHealth() / g.getMaxHealth() < 0.25f);
             }
             var cache = Mgdp.ClientTickHandler.cachedLowHpGolems;
             java.util.List<net.minecraft.network.chat.MutableComponent> lines = new java.util.ArrayList<>();

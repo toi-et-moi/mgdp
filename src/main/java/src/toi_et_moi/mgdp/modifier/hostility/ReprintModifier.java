@@ -1,11 +1,13 @@
 package src.toi_et_moi.mgdp.modifier.hostility;
 
+import dev.xkmc.l2complements.init.registrate.LCEnchantments;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,6 +27,8 @@ import java.util.Map;
 
 public class ReprintModifier extends GolemModifier {
 
+	private static final int REPRINT_BYPASS = 10;
+
 	public ReprintModifier() {
 		super(StatFilterType.ATTACK, 1);
 	}
@@ -34,31 +38,54 @@ public class ReprintModifier extends GolemModifier {
 		applyReprint(golem, golem.getOffhandItem());
 
 		if (!(event.getEntity() instanceof LivingEntity)) return;
-		LivingEntity target = (LivingEntity) event.getEntity();
-		float bonus = calcReprintDamage(target);
-		if (bonus > 0) {
-			event.setAmount(event.getAmount() * (1 + bonus));
-		}
-	}
+		LivingEntity target = event.getEntity();
 
-	private static float calcReprintDamage(LivingEntity target) {
+		// 单次循环：累加 total（增伤用）+ 追踪 maxLv（bypass 触发用）
 		long total = 0;
+		int maxLv = 0;
 		for (var slot : EquipmentSlot.values()) {
 			ItemStack src = target.getItemBySlot(slot);
-			var ench = src.getAllEnchantments();
-			for (var e : ench.entrySet()) {
+			for (var e : src.getAllEnchantments().entrySet()) {
 				int lv = e.getValue();
+				maxLv = Math.max(maxLv, lv);
 				if (lv >= 30) {
 					total = -1;
 					break;
 				} else if (total >= 0) {
-					total += 1L << lv;
+					total += 1L << (lv - 1);
 				}
 			}
 			if (total < 0) break;
 		}
-		long pts = total >= 0 ? Math.min(total, 1000) : (1L << 30);
-		return 0.02f * pts;
+
+		// 增伤
+		long pts = total >= 0 ? total : (1L << 30);
+		float bonus = 0.02f * pts;
+		if (bonus > 0) {
+			event.setAmount(event.getAmount() * (1 + bonus));
+		}
+
+		// bypass：目标任一附魔等级 >= 10 时给攻方主手加虚空之触（不附消失诅咒）
+		if (maxLv >= REPRINT_BYPASS) {
+			tryAddVoidTouch(golem);
+		}
+	}
+
+	/**
+	 * 给攻方主手加虚空之触（VOID_TOUCH），与 L2Hostility 原著的 bypass 机制一致，
+	 * 但移除 VANISHING_CURSE——消失诅咒大多数情况对玩家方是负面。
+	 * 写入 level 用 20 沿用 L2 习惯值（vanilla setEnchantments 不限制写入数值）。
+	 */
+	private static void tryAddVoidTouch(AbstractGolemEntity<?, ?> golem) {
+		ItemStack weapon = golem.getMainHandItem();
+		if (weapon.isEmpty()) return;
+		if (!weapon.isEnchanted() && !weapon.isEnchantable()) return;
+		var voidTouch = LCEnchantments.VOID_TOUCH.get();
+		if (!weapon.canApplyAtEnchantingTable(voidTouch)) return;
+
+		var map = weapon.getAllEnchantments();
+		map.compute(voidTouch, (k, v) -> v == null ? 20 : Math.max(v, 20));
+		EnchantmentHelper.setEnchantments(map, weapon);
 	}
 
 	@Override
