@@ -44,13 +44,17 @@ public abstract class GolemUserMixin {
 				return;
 			}
 		}
-		// Check dedicated arrow slot on HumanoidGolemEntity (no consumption)
-		if (golem instanceof dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity humanoid) {
-			ItemStack arrowSlot = humanoid.getArrowSlot().getItem();
-			if (!arrowSlot.isEmpty() && general.test(arrowSlot)) {
-				cir.setReturnValue(arrowSlot.copyWithCount(1));
-				return;
-			}
+		// Check dedicated arrow slots (no consumption). Metal, humanoid and dog
+		// golems have two arrow slots as of Modular Golems 2.7.6.
+		ItemStack arrowSlot = golem.getArrowSlot().getItem();
+		if (!arrowSlot.isEmpty() && general.test(arrowSlot)) {
+			cir.setReturnValue(arrowSlot.copyWithCount(1));
+			return;
+		}
+		ItemStack arrowSlot2 = golem.getArrowSlot2().getItem();
+		if (!arrowSlot2.isEmpty() && general.test(arrowSlot2)) {
+			cir.setReturnValue(arrowSlot2.copyWithCount(1));
+			return;
 		}
 		// Check full inventory via capability (no consumption — getStackInSlot is read-only)
 		var opt = golem.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve();

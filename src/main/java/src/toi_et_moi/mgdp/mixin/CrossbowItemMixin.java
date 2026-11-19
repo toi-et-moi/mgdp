@@ -46,12 +46,14 @@ public abstract class CrossbowItemMixin {
 				return inHand.copyWithCount(1);
 			}
 		}
-		// Check arrow slot (HumanoidGolemEntity only)
-		if (golem instanceof dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity humanoid) {
-			ItemStack slot = humanoid.getArrowSlot().getItem();
-			if (!slot.isEmpty() && slot.getItem() instanceof net.minecraft.world.item.ArrowItem) {
-				return slot.copyWithCount(1);
-			}
+		// Check dedicated arrow slots (metal/humanoid/dog golems)
+		ItemStack slot = golem.getArrowSlot().getItem();
+		if (!slot.isEmpty() && slot.getItem() instanceof net.minecraft.world.item.ArrowItem) {
+			return slot.copyWithCount(1);
+		}
+		ItemStack slot2 = golem.getArrowSlot2().getItem();
+		if (!slot2.isEmpty() && slot2.getItem() instanceof net.minecraft.world.item.ArrowItem) {
+			return slot2.copyWithCount(1);
 		}
 		// Check full inventory
 		var opt = golem.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve();

@@ -60,8 +60,8 @@ public class MourningBeamEntity extends BaseEntity implements OwnableEntity {
 	public void setup(LivingEntity le) {
 		if (!(le instanceof MetalGolemEntity e)) return;
 		var hand = right ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-		var pos = CannonPoseUtil.BEACON.getOrigin(e, hand);
-		var rot = CannonPoseUtil.BEACON.getAngle(e, hand);
+		var pos = CannonPoseUtil.BEACON_CANNON.getOrigin(e, hand);
+		var rot = CannonPoseUtil.BEACON_CANNON.getAngle(e, hand);
 		var dst = e.getTargetAimPos().add(e.position()).subtract(pos).normalize().scale(35).add(pos);
 		var endPos = dst; // No block clip - beam goes through walls
 		len = (float) endPos.subtract(pos).length();

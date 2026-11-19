@@ -1,19 +1,64 @@
 {
   "values": [
-    "mgdp:remnant_golem",
-    "mgdp:illager_golem",
-    "mgdp:piglin_golem",
-    "mgdp:sculk_golem",
-    "mgdp:twilight_golem",
-    "mgdp:harbinger_golem",
-    "mgdp:monstrosity_golem",
-    "mgdp:ender_guardian_golem",
-    "mgdp:ignis_golem",
-    "mgdp:scylla_golem",
-    "mgdp:carved_golem",
-    "mgdp:enhanced_carved_golem",
-    "mgdp:qoaiku_golem",
-    "mgdp:meror_golem",
-    "mgdp:refine_meror_golem"
+    {
+      "id": "mgdp:remnant_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:illager_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:piglin_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:sculk_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:twilight_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:harbinger_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:monstrosity_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:ender_guardian_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:ignis_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:scylla_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:carved_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:enhanced_carved_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:qoaiku_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:meror_golem",
+      "required": false
+    },
+    {
+      "id": "mgdp:refine_meror_golem",
+      "required": false
+    }
   ]
 }

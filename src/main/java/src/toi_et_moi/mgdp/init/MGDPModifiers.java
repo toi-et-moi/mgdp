@@ -32,7 +32,8 @@ import src.toi_et_moi.mgdp.modifier.defense.SunlightModifier;
 import src.toi_et_moi.mgdp.modifier.buff.SelfRepairModifier;
 import src.toi_et_moi.mgdp.modifier.combat.ExecutionerModifier;
 import src.toi_et_moi.mgdp.modifier.defense.FocusedDefenseModifier;
-import src.toi_et_moi.mgdp.modifier.combat.SonicBoomModifier;
+import dev.xkmc.modulargolems.content.modifier.special.SonicModifier;
+import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import src.toi_et_moi.mgdp.modifier.special.VersatilityModifier;
 import src.toi_et_moi.mgdp.modifier.defense.ProjectileDodgeModifier;
 import src.toi_et_moi.mgdp.modifier.defense.BackstepModifier;
@@ -145,7 +146,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<PotionDefenseModifier> INVISIBILITY;
 	public static final RegistryEntry<ExecutionerModifier> EXECUTIONER;
 	public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
-	public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
+	public static final RegistryEntry<SonicModifier> SONIC_BOOM;
 	public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
 	public static final RegistryEntry<ShieldBlockModifier> SHIELD_BLOCK;
 	public static final RegistryEntry<BackstepModifier> BACKSTEP;
@@ -316,9 +317,9 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 					"Focused Defense",
 					"Only takes damage from the golem's own target.");
 
-			SONIC_BOOM = reg("sonic_boom", SonicBoomModifier::new,
-					"Sonic Boom",
-					"Golem can use Sonic Boom Attack. Deals 10 damage per level and knocks back enemies.");
+			// modulargolems:sonic_boom is already registered by the parent mod.
+			// Reuse it instead of trying to register a second modifier under the same id.
+			SONIC_BOOM = GolemModifiers.SONIC;
 
 			SELF_REPAIR = reg("self_repair", SelfRepairModifier::new,
 					"Self Repair",

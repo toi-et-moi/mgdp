@@ -2,7 +2,6 @@ package src.toi_et_moi.mgdp.mixin;
 
 import dev.xkmc.l2archery.content.item.GenericBowItem;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
-import dev.xkmc.modulargolems.content.entity.common.SweepGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
@@ -81,11 +80,11 @@ public abstract class GenericBowItemMixin {
 				ItemStack held = ProjectileWeaponItem.getHeldProjectile(golem, pwi.getSupportedHeldProjectiles());
 				if (!held.isEmpty()) return held.copyWithCount(1);
 			}
-			// 2. 专属箭槽（SweepGolemEntity）
-			if (golem instanceof SweepGolemEntity<?, ?> sweep) {
-				ItemStack slot = sweep.getArrowSlot().getItem();
-				if (!slot.isEmpty()) return slot.copyWithCount(1);
-			}
+			// 2. 专属箭槽（2.7.6 起金属/人形/犬形傀儡各有两个）
+			ItemStack slot = golem.getArrowSlot().getItem();
+			if (!slot.isEmpty()) return slot.copyWithCount(1);
+			ItemStack slot2 = golem.getArrowSlot2().getItem();
+			if (!slot2.isEmpty()) return slot2.copyWithCount(1);
 			// 3. 背包搜索（只读，不消耗）
 			var opt = golem.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve();
 			if (opt.isPresent()) {

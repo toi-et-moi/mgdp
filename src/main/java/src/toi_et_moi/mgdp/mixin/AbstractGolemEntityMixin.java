@@ -41,8 +41,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 
+import dev.xkmc.modulargolems.content.entity.impl.GolemTargetImpl;
+import src.toi_et_moi.mgdp.handler.AutoAggroHandler;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
-import src.toi_et_moi.mgdp.Config;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 import src.toi_et_moi.mgdp.init.IFlipData;
 
@@ -78,6 +79,13 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     private boolean mgdp$strafeClockwise = false;
     @Unique
     private boolean mgdp$strafeBackwards = false;
+
+    // 2.7.6's updateSwimming() switches navigation to water/ground whenever
+    // canSwim() is true. Flying golems force canSwim() true, so it would
+    // replace FlightPathNavigation every tick. Keep our instance and
+    // restore it after the upstream assignment.
+    @Unique
+    private FlightPathNavigation mgdp$flightNavigation;
 
     @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
     private void mgdp$flightTravel(Vec3 travelVector, CallbackInfo ci) {
@@ -288,7 +296,7 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
         if (mgdp$isFlying(golem)) {
             this.moveControl = new GolemSwimMoveControl(golem);
-            this.navigation = new FlightPathNavigation(golem, golem.level());
+            this.navigation = mgdp$flightNavigation = new FlightPathNavigation(golem, golem.level());
         }
         if (golem.getModifiers().containsKey(MGDPModifiers.UNSTOPPABLE.get())) {
             golem.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0);
@@ -355,6 +363,17 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         }
     }
 
+    @Inject(method = "updateSwimming", at = @At("TAIL"))
+    private void mgdp$keepFlightNavigation(CallbackInfo ci) {
+        if (this.level().isClientSide) return;
+        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+        if (!mgdp$isFlying(golem)) return;
+        if (mgdp$flightNavigation == null) {
+            mgdp$flightNavigation = new FlightPathNavigation(golem, golem.level());
+        }
+        this.navigation = mgdp$flightNavigation;
+    }
+
     // --- Unstoppable modifier mixins ---
     private boolean mgdp$hasUnstoppable() {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
@@ -372,14 +391,6 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
                 && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             cir.setReturnValue(false);
         }
-    }
-
-    @Inject(method = "checkRide", at = @At("HEAD"), cancellable = true, remap = false)
-    private void mgdp$checkRide(LivingEntity target, CallbackInfo ci) {
-        if (target != null) {
-            this.startRiding(target);
-        }
-        ci.cancel();
     }
 
     // ========== Jukebox Fields & Methods ==========
@@ -547,30 +558,20 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
 		if (target != null) return;
 		AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
 		LivingEntity old = golem.getTarget();
-		if (old != null) aaggroLast.remove(old.getUUID());
+		if (old != null) AutoAggroHandler.clear(old.getUUID());
 	}
 
-	// === Auto-aggro per-mob cooldown: each mob can be re-targeted at most once per 100 ticks ===
-	private static final java.util.Map<java.util.UUID, Long> aaggroLast = new java.util.HashMap<>();
-	private static int aaggroCleanTick;
-
+	// In 2.7.5 mob.setTarget(self) lives in GolemTargetImpl.postSetTarget. Wrap that call so
+	// AutoAggroHandler can apply the config toggle / per-mob cooldown through LivingChangeTargetEvent.
 	@Redirect(method = "setTarget",
-			  at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setTarget(Lnet/minecraft/world/entity/LivingEntity;)V"))
-	private void mgdp$redirectAutoAggro(Mob mob, LivingEntity target) {
-		if (!Config.mobAutoAggro) return;
-
-		long now = this.level().getGameTime();
-		Long last = aaggroLast.get(mob.getUUID());
-		if (last != null && now - last < 100) return;
-
-		aaggroLast.put(mob.getUUID(), now);
-
-		// Periodically purge entries older than 10s (200 ticks)
-		if (++aaggroCleanTick % 100 == 0) {
-			aaggroLast.values().removeIf(v -> now - v > 200);
+			  at = @At(value = "INVOKE", target = "Ldev/xkmc/modulargolems/content/entity/common/AbstractGolemEntity;postSetTarget(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)V"))
+	private void mgdp$wrapPostSetTarget(AbstractGolemEntity<?, ?> self, LivingEntity prev, LivingEntity target) {
+		AutoAggroHandler.enterPostSetTarget();
+		try {
+			((GolemTargetImpl) self).postSetTarget(prev, target);
+		} finally {
+			AutoAggroHandler.exitPostSetTarget();
 		}
-
-		mob.setTarget(target);
 	}
     }
 

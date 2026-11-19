@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jerotes_village_golems"
+    }
+  ],
   "type": "modulargolems:golem_add_slot",
   "addition": {
     "item": "minecraft:iron_ingot"

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jerotes_village_golems"
+    }
+  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_template": {
